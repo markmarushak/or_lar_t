@@ -1,17 +1,4 @@
 <!DOCTYPE html>
-<!--
-Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
-Version: 5.0.2
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Dribbble: www.dribbble.com/keenthemes
-Like: www.facebook.com/keenthemes
-Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
-Renew Support: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
--->
 <html lang="{{ app()->getLocale() }}">
 <!-- begin::Head -->
 <head>
@@ -35,24 +22,35 @@ License: You must have a valid license purchased only from themeforest(the above
             }
         });
     </script>
+    {{--<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>--}}
     <!--end::Web font -->
     <!--begin::Base Styles -->
 {!! Html::style('assets/vendors/base/vendors.bundle.css') !!}
-{!! Html::style('assets/demo/demo2/base/style.bundle.css') !!}
+{!! Html::style('assets/demo/default/base/style.bundle.css') !!}
+
+{!! Html::style('assets/vendors/custom/fullcalendar/fullcalendar.bundle.css') !!}
+
+
 @yield('css')
 <!--end::Base Styles -->
-    <link rel="shortcut icon" href="assets/demo/demo2/media/img/logo/favicon.ico"/>
+<link rel="shortcut icon" href="assets/demo/default/media/img/logo/favicon.ico"/>
 </head>
 <!-- end::Head -->
 <!-- end::Body -->
-<body class="m-page--wide m-header--fixed m-header--fixed-mobile m-footer--push m-aside--offcanvas-default">
+<body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
 @include('layouts.admin._layout')
 <!--begin::Base Scripts -->
+
+
 {!! Html::script('assets/vendors/base/vendors.bundle.js') !!}
-{!! Html::script('assets/demo/demo2/base/scripts.bundle.js') !!}
+{!! Html::script('assets/demo/default/base/scripts.bundle.js') !!}
 <!--end::Base Scripts -->
 <!--begin::Page Snippets -->
-{!! Html::script('./assets/app/js/dashboard.js') !!}
+{!! Html::script('assets/app/js/dashboard.js') !!}
+
+{!! Html::script('assets/vendors/custom/fullcalendar/fullcalendar.bundle.js') !!}
+
+
 <!--end::Page Snippets -->
 </body>
 <!-- end::Body -->
