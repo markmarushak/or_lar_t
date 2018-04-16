@@ -46,9 +46,9 @@
 {!! Html::script('assets/demo/default/base/scripts.bundle.js') !!}
 <!--end::Base Scripts -->
 <!--begin::Page Snippets -->
-{!! Html::script('assets/app/js/dashboard.js') !!}
 
 {!! Html::script('assets/vendors/custom/fullcalendar/fullcalendar.bundle.js') !!}
+{!! Html::script('assets/app/js/dashboard.js') !!}
 
 
 <!--end::Page Snippets -->
