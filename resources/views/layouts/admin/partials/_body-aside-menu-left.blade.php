@@ -47,7 +47,7 @@
 											</span>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/base/state.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -57,7 +57,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/base/typography.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -67,7 +67,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/base/stack.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -77,7 +77,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/base/tables.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -87,7 +87,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/base/progress.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -97,7 +97,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/base/modal.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -107,7 +107,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/base/alerts.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -117,7 +117,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/base/popover.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -127,7 +127,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/base/tooltip.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -137,7 +137,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/base/blockui.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -147,7 +147,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/base/spinners.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -157,7 +157,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/base/scrollable.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -167,7 +167,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/base/dropdown.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -190,7 +190,7 @@
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/base/tabs/bootstrap.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -200,7 +200,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/base/tabs/line.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -213,7 +213,7 @@
 							</div>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/base/accordions.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -223,7 +223,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/base/navs.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -233,7 +233,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/base/lists.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -243,7 +243,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/base/treeview.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -253,7 +253,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/base/bootstrap-notify.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -263,7 +263,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/base/toastr.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -273,7 +273,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/base/sweetalert2.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -297,7 +297,7 @@
 					<span class="m-menu__arrow"></span>
 					<ul class="m-menu__subnav">
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/icons/flaticon.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -307,7 +307,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/icons/fontawesome.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -317,7 +317,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/icons/lineawesome.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -327,7 +327,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/icons/socicons.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -371,7 +371,7 @@
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/buttons/base/default.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -381,7 +381,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/buttons/base/square.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -391,7 +391,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/buttons/base/pill.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -401,7 +401,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/buttons/base/air.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -414,7 +414,7 @@
 							</div>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/buttons/group.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -424,7 +424,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/buttons/dropdown.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -447,7 +447,7 @@
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/buttons/icon/lineawesome.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -457,7 +457,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/buttons/icon/fontawesome.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -467,7 +467,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/buttons/icon/flaticon.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -514,7 +514,7 @@
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/controls/base.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -524,7 +524,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/controls/checkbox-radio.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -534,7 +534,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/controls/input-group.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -544,7 +544,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/controls/switch.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -554,7 +554,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/controls/option.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -580,7 +580,7 @@
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/widgets/bootstrap-datepicker.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -600,7 +600,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/widgets/bootstrap-timepicker.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -650,7 +650,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/widgets/bootstrap-multipleselectsplitter.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -660,7 +660,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/widgets/bootstrap-select.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -670,7 +670,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/widgets/select2.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -680,7 +680,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/widgets/typeahead.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -690,7 +690,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/widgets/nouislider.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -700,7 +700,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/widgets/form-repeater.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -710,7 +710,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/widgets/ion-range-slider.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -720,7 +720,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/widgets/input-mask.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -730,7 +730,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/widgets/summernote.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -740,7 +740,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/widgets/bootstrap-markdown.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -750,7 +750,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/widgets/autosize.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -760,7 +760,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/widgets/clipboard.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -770,7 +770,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/widgets/dropzone.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -780,7 +780,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/widgets/recaptcha.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -806,7 +806,7 @@
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/layouts/default-forms.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -816,7 +816,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/layouts/multi-column-forms.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -826,7 +826,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/layouts/action-bars.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -852,7 +852,7 @@
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/validation/states.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -862,7 +862,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/validation/form-controls.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -872,7 +872,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/validation/form-widgets.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -898,7 +898,7 @@
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/wizard/wizard-1.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -908,7 +908,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/wizard/wizard-2.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -918,7 +918,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/wizard/wizard-3.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -928,7 +928,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/wizard/wizard-4.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -938,7 +938,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/forms/wizard/wizard-5.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -985,7 +985,7 @@
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/datatables/base/data-local.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -995,7 +995,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/datatables/base/data-json.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -1005,7 +1005,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/datatables/base/data-ajax.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -1015,7 +1015,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/datatables/base/html-table.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -1025,7 +1025,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/datatables/base/record-selection.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -1035,7 +1035,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/datatables/base/local-sort.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -1045,7 +1045,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/datatables/base/row-details.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -1055,7 +1055,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/datatables/base/column-rendering.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -1065,7 +1065,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/datatables/base/column-width.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -1075,7 +1075,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/datatables/base/responsive-columns.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -1085,7 +1085,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/datatables/base/translation.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -1111,7 +1111,7 @@
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/datatables/scrolling/vertical.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -1121,7 +1121,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/datatables/scrolling/horizontal.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -1131,7 +1131,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/datatables/scrolling/both.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -1157,7 +1157,7 @@
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/datatables/locked/left.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -1167,7 +1167,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/datatables/locked/right.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -1177,7 +1177,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/datatables/locked/both.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -1187,7 +1187,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/datatables/locked/html-table.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -1213,7 +1213,7 @@
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/datatables/child/data-local.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -1223,7 +1223,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/datatables/child/data-ajax.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -1249,7 +1249,7 @@
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/datatables/api/methods.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -1259,7 +1259,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="components/datatables/api/events.html" class="m-menu__link ">
+										<a href="{{ URL::route('home') }}" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -1293,7 +1293,7 @@
 											</span>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/portlets/base.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -1303,7 +1303,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/portlets/advanced.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -1313,7 +1313,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/portlets/creative.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -1323,7 +1323,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/portlets/tabbed.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -1333,7 +1333,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/portlets/draggable.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -1343,7 +1343,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/portlets/tools.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -1374,7 +1374,7 @@
 											</span>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/timeline/timeline-1.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -1384,7 +1384,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/timeline/timeline-2.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -1415,7 +1415,7 @@
 											</span>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/widgets/general.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -1425,7 +1425,7 @@
 							</a>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/widgets/chart.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
@@ -1456,7 +1456,7 @@
 											</span>
 						</li>
 						<li class="m-menu__item " aria-haspopup="true">
-							<a href="components/calendar/basic.html" class="m-menu__link ">
+							<a href="{{ URL::route('home') }}" class="m-menu__link ">
 								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 									<span></span>
 								</i>
