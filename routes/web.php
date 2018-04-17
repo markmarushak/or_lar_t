@@ -21,3 +21,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+
+//Affiliate Programs
+
+
+Route::get('/affiliate-service', function () {
+    return 'affiliate-service';
+})->name('home');
+
+
