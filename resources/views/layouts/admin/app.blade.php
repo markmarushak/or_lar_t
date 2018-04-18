@@ -51,14 +51,12 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--begin::Base Scripts -->
 
 
-
 {!! Html::script('assets/vendors/base/vendors.bundle.js') !!}
 {!! Html::script('assets/demo/default/base/scripts.bundle.js') !!}
 <!--end::Base Scripts -->
 <!--begin::Page Snippets -->
 {!! Html::script('assets/vendors/custom/fullcalendar/fullcalendar.bundle.js') !!}
 {!! Html::script('assets/app/js/dashboard.js') !!}
-
 
 <!--end::Page Snippets -->
 </body>

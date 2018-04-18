@@ -20,14 +20,16 @@ Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/affiliate-service', '\App\Http\Controllers\Affiliate\AffiliateService@index');
+
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 
-//Affiliate Programs
 
 
-Route::get('/affiliate-service', function () {
-    return 'affiliate-service';
-})->name('home');
 
-
+Route::group(['middleware' => 'can:accessAdminpanel'], function() {
+    Route::get('/adminpanel/dashboard', 'Adminpanel\Dashboard@index');
+    // future adminpanel routes also should belong to the group
+});
