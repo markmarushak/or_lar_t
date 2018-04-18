@@ -47,23 +47,37 @@
                 <div class="m-menu__submenu ">
                     <span class="m-menu__arrow"></span>
                     <ul class="m-menu__subnav">
-
-                        <li class="m-menu__item " aria-haspopup="true">
-                            <a href="{{ URL::route('home') }}" class="m-menu__link ">
+                        <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggles="hover">
+                            <a href="javascript:;" class="m-menu__link m-menu__toggle">
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>
                                 <span class="m-menu__link-text">
 													Email BulkSplit
-												</span>
+								</span>
+                                <i class="m-menu__ver-arrow la la-angle-right"></i>
                             </a>
-                        </li>
-                       
+                            <div class="m-menu__submenu ">
+                                <span class="m-menu__arrow"></span>
+                                <ul class="m-menu__subnav">
+                                    <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggles="hover">
+                                        <a href="javascript:;" class="m-menu__link m-menu__toggle">
+                                            <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                                <span></span>
+                                            </i>
+                                            <span class="m-menu__link-text">
+													Data Filters & Rules
+								</span>
+
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                         </li>
                     </ul>
                 </div>
             </li>
-
-
 			<?php endif; ?>
 
 
