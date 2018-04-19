@@ -16,11 +16,8 @@ class GenerateMenus
     public function handle($request, Closure $next)
     {
         \Menu::make('MyNavBar', function ($menu) {
-
             $menu->add('Affiliate Service', 'affiliate-service');
-
         });
-
         return $next($request);
     }
 }

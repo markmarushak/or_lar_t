@@ -16,8 +16,6 @@
     {!! Html::style('assets/vendors/base/vendors.bundle.css') !!}
     {!! Html::style('assets/demo/default/base/style.bundle.css') !!}
     @yield('css')
-
-
 </head>
 <body class="m--skin- m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
 
