@@ -5,8 +5,6 @@
 		<?php $nameRoute = \Request::route()->getName(); ?>
 
 		<!--Must be dynamic changed -->
-
-
 			{!! Breadcrumbs::render($nameRoute) !!}
 		</div>
 

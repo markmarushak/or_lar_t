@@ -25,10 +25,9 @@ Breadcrumbs::register('compaigns', function($breadcrumbs)
 Breadcrumbs::register('data-filters-rules', function($breadcrumbs) {
 
     $breadcrumbs->parent('compaigns');
-    $breadcrumbs->push('Data Filters Rules', route('data-filters-rules'));
+    $breadcrumbs->push('Data Filters & Rules', route('data-filters-rules'));
 
 });
-
 
 
 

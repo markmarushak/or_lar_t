@@ -14,7 +14,7 @@
             @include('layouts.admin.partials._subheader-default')
             <!-- END: Subheader -->
             <div class="m-content">
-                @include('layouts.admin.partials._body-content')
+                @yield('content')
             </div>
         </div>
     </div>

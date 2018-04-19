@@ -18,15 +18,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
-
-
 Route::get('/affiliate-service', '\App\Http\Controllers\Affiliate\AffiliateService@index')->name('affiliate-service');
-
-
-Route::get('/compaigns', '\App\Http\Controllers\Affiliate\AffiliateService@index')->name('compaigns');
-
-Route::get('/affiliate-service/email-bulk-split/data-filters-rules', '\App\Http\Controllers\Affiliate\AffiliateService@index')
+Route::get('/compaigns', '\App\Http\Controllers\Affiliate\AffiliateService@compaigns')->name('compaigns');
+Route::get('/affiliate-service/email-bulk-split/data-filters-rules', '\App\Http\Controllers\Affiliate\AffiliateService@dataFiltersRules')
     ->name('data-filters-rules');

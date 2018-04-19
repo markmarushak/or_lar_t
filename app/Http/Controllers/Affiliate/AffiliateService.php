@@ -27,11 +27,25 @@ class AffiliateService extends Controller
     {
 
 
-        return view('home', ['menu' => 'affiliate-service']);
+        return view('admin/affiliate-service', ['menu' => 'affiliate-service']);
 
 
     }
 
 
+    public function compaigns()
+    {
+
+        return view('admin/affiliate-service', ['menu' => 'affiliate-service']);
+
+    }
+
+
+    public function dataFiltersRules()
+    {
+
+        return view('admin/data-filters-rules', ['menu' => 'affiliate-service']);
+
+    }
 
 }
