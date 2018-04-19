@@ -40,6 +40,13 @@ class AffiliateService extends Controller
 
     }
 
+    public function emailBulkSplit()
+    {
+
+        return view('admin/email-bulk-split', ['menu' => 'affiliate-service']);
+
+    }
+
 
     public function dataFiltersRules()
     {

@@ -21,10 +21,18 @@ Breadcrumbs::register('compaigns', function($breadcrumbs)
 });
 
 
+Breadcrumbs::register('email-bulk-split', function($breadcrumbs) {
+
+    $breadcrumbs->parent('compaigns');
+
+    $breadcrumbs->push('Email BulkSplit', route('email-bulk-split'));
+
+});
 
 Breadcrumbs::register('data-filters-rules', function($breadcrumbs) {
 
-    $breadcrumbs->parent('compaigns');
+    $breadcrumbs->parent('email-bulk-split');
+
     $breadcrumbs->push('Data Filters & Rules', route('data-filters-rules'));
 
 });
