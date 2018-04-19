@@ -23,9 +23,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 
-Route::get('/affiliate-service', '\App\Http\Controllers\Affiliate\AffiliateService@index');
+Route::get('/affiliate-service', '\App\Http\Controllers\Affiliate\AffiliateService@index')->name('affiliate-service');
 
 
 Route::get('/compaigns', '\App\Http\Controllers\Affiliate\AffiliateService@index')->name('compaigns');
 
-Route::get('/affiliate-service/email-bulk-split/data-filters-rules', '\App\Http\Controllers\Affiliate\AffiliateService@index');
+Route::get('/affiliate-service/email-bulk-split/data-filters-rules', '\App\Http\Controllers\Affiliate\AffiliateService@index')
+    ->name('data-filters-rules');
