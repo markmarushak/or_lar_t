@@ -51,32 +51,39 @@
             </tr>
             </thead>
             <tbody class="m-datatable__body" style="">
+
+
+            @foreach($dataFiltersRules as $row)
+
                 <tr data-row="0" class="m-datatable__row" style="left: 0px;">
 
-                    <td data-field="OrderID" class="m-datatable__cell">
-                        <span style="width: 130px;">Garasje-Tilbub.no</span>
+                    <td data-field="description" class="m-datatable__cell">
+                        <span style="width: 130px;">{{$row->description}}</span>
                     </td>
-                    <td data-field="ShipCity" class="m-datatable__cell">
-                        <span style="width: 130px;">Building Accessories</span>
+                    <td data-field="category" class="m-datatable__cell">
+                        <span style="width: 130px;">{{$row->category}}</span>
                     </td>
-                    <td data-field="Website" class="m-datatable__cell">
-                        <span style="width: 70px;">Form</span>
+                    <td data-field="source" class="m-datatable__cell">
+                        <span style="width: 70px;">{{$row->source}}</span>
                     </td>
-                    <td data-field="Department" class="m-datatable__cell">
-                        <span style="width: 70px;">Email</span>
+                    <td data-field="type" class="m-datatable__cell">
+                        <span style="width: 70px;">{{$row->type}}</span>
                     </td>
-                    <td data-field="ShipDate" class="m-datatable__cell">
-                        <span style="width: 70px;">Edit</span>
+                    <td data-field="edit" class="m-datatable__cell">
+                        <span style="width: 70px;">{{$row->edit}}</span>
                     </td>
-                    <td data-field="Actions" class="m-datatable__cell">
+                    <td data-field="status" class="m-datatable__cell">
                         <span style="overflow: visible; width: 70px;">
-                            Active
+                            {{$row->status}}
                         </span>
                     </td>
-                    <td data-field="ShipDate" class="m-datatable__cell">
-                        <span style="width: 70px;">Norway</span>
+                    <td data-field="country" class="m-datatable__cell">
+                        <span style="width: 70px;">{{$row->country}}</span>
                     </td>
                 </tr>
+
+            @endforeach
+
 
             </tbody>
         </table>

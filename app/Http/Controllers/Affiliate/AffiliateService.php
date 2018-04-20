@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Affiliate;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\DataFiltersRulesModel;
+
 
 class AffiliateService extends Controller
 {
@@ -51,7 +53,11 @@ class AffiliateService extends Controller
     public function dataFiltersRules()
     {
 
-        return view('admin/data-filters-rules', ['menu' => 'affiliate-service']);
+        $dataFiltersRules = DataFiltersRulesModel::all();
+
+
+
+        return view('admin/data-filters-rules', ['menu' => 'affiliate-service', 'dataFiltersRules' => $dataFiltersRules]);
 
     }
 
