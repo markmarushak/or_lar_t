@@ -88,6 +88,9 @@
             </tbody>
         </table>
 
+        <button type="button" class="btn btn-info" onclick="alert('New Filter should be created');">Add New Filter</button>
+
+
         <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
             <div class="m-datatable__pager-info">
                 <div class="dropdown bootstrap-select m-datatable__pager-size" style="width: 70px;"></div>
