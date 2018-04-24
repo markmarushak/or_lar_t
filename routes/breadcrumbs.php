@@ -38,5 +38,13 @@ Breadcrumbs::register('data-filters-rules', function($breadcrumbs) {
 });
 
 
+//data-filters-rules-edit
+Breadcrumbs::register('data-filters-rules-edit', function($breadcrumbs) {
+
+    $breadcrumbs->parent('data-filters-rules');
+
+    $breadcrumbs->push('Edit Section', route('data-filters-rules-edit', 'data_filters_rules_id'));
+
+});
 
 ?>

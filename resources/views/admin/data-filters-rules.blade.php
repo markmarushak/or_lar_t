@@ -3,7 +3,6 @@
 
 @section('content')
 
-
     <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
         <div class="row align-items-center">
             <div class="col-xl-8 order-2 order-xl-1">
@@ -13,7 +12,7 @@
                             <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch">
                             <span class="m-input-icon__icon m-input-icon__icon--left">
 									<span><i class="la la-search"></i></span>
-								</span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -70,7 +69,7 @@
                         <span style="width: 70px;">{{$row->type}}</span>
                     </td>
                     <td data-field="edit" class="m-datatable__cell">
-                        <span style="width: 70px;">{{$row->edit}}</span>
+                        <span style="width: 70px;"><a href="{{ route('data-filters-rules-edit', $row->data_filters_rules_id) }}">edit</a></span>
                     </td>
                     <td data-field="status" class="m-datatable__cell">
                         <span style="overflow: visible; width: 70px;">
@@ -97,10 +96,5 @@
             </div>
         </div>
     </div>
-
-
-
-
-
 
 @endsection

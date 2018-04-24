@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\DataFiltersRulesModel;
 
-
 class AffiliateService extends Controller
 {
 
@@ -30,8 +29,6 @@ class AffiliateService extends Controller
 
 
         return view('admin/affiliate-service', ['menu' => 'affiliate-service']);
-
-
     }
 
 
@@ -46,19 +43,29 @@ class AffiliateService extends Controller
     {
 
         return view('admin/email-bulk-split', ['menu' => 'affiliate-service']);
-
     }
 
-
-    public function dataFiltersRules()
+    public function dataFiltersRules(Request $request)
     {
+
 
         $dataFiltersRules = DataFiltersRulesModel::all();
 
+        if(!empty($request->data_filters_rules_id)) {
+
+            $dataFiltersRulesId = $request->data_filters_rules_id;
+
+            //Connect to Wordpress Forms should be
 
 
-        return view('admin/data-filters-rules', ['menu' => 'affiliate-service', 'dataFiltersRules' => $dataFiltersRules]);
+            return view('admin/data-filters-rules-edit', ['menu' => 'affiliate-service', 'dataFiltersRules' => $dataFiltersRules]);
+        } else {
+
+
+            return view('admin/data-filters-rules', ['menu' => 'affiliate-service', 'dataFiltersRules' => $dataFiltersRules]);
+        }
+
+
 
     }
-
 }

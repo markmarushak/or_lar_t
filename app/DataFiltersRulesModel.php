@@ -15,14 +15,7 @@ class DataFiltersRulesModel extends Model
     protected $table = 'data_filters_rules';
 
     public $timestamps = false;
-    /**
-     * Fields.
-     *
-     * @var array
-     */
-    /*protected $fillable = [
-        'profile_role_id', 'hr_id', 'vacancy', 'experience', 'job_description', 'status', 'viewed',
-    ];*/
+
 
 
 }
