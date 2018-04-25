@@ -57,7 +57,7 @@ return [
 
         'garage' => [
             'driver' => 'mysql',
-            'host' => '109.199.120.183',
+            'host' => 'es43.siteground.eu',
             'port' => '3306',
             'database' => 'weeklyex_wp126',
             'username' => 'weeklyex_wp126',
