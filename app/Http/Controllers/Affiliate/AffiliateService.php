@@ -80,7 +80,6 @@ class AffiliateService extends Controller
 
             echo "<pre>";
             print_r($dataRemoteDB);
-            
             die;
 
 
