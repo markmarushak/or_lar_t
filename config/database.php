@@ -57,11 +57,11 @@ return [
 
         'garage' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', '109.199.120.183'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'weeklyex_wp126'),
-            'username' => env('DB_USERNAME', 'weeklyex_wp126'),
-            'password' => env('DB_PASSWORD', '7d9!SO)pL4'),
+            'host' => '109.199.120.183',
+            'port' => '3306',
+            'database' => 'weeklyex_wp126',
+            'username' => 'weeklyex_wp126',
+            'password' => '7d9!SO)pL4',
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
