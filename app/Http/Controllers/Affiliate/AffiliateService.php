@@ -72,10 +72,9 @@ class AffiliateService extends Controller
             //wpau_quform_forms
 
 
-            $dataRemoteDB = DB::connection('garage')->getName();
-
-            echo $_SERVER['REMOTE_ADDR'];
             
+            echo $_SERVER['REMOTE_ADDR'];
+
             $dataRemoteDB = DB::connection('garage')->select("SELECT * FROM weeklyex_wp126.wpau_quform_forms");
 
             echo "<pre>";
