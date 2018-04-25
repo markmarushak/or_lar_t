@@ -7,7 +7,7 @@
 
     </h3>
 
-    <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+    <ul class="m-subheader__breadcrumbs m-nav m-nav--inline" style="height: 40px;">
         @foreach ($breadcrumbs as $breadcrumb)
 
             @if ($breadcrumb->url && !$loop->last)
