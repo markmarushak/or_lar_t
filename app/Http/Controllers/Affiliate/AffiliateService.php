@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Affiliate;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\DataFiltersRulesModel;
+use App\Quforms;
 
 class AffiliateService extends Controller
 {
@@ -53,14 +55,46 @@ class AffiliateService extends Controller
 
         if(!empty($request->data_filters_rules_id)) {
 
+
             $dataFiltersRulesId = $request->data_filters_rules_id;
+
+
+            $dataFiltersRuleRow = DB::connection('mysql')->select("SELECT * FROM data_filters_rules WHERE data_filters_rules_id = ?", [$dataFiltersRulesId]);
+
+
+
+
+            //COnditions will be enabled
 
             //Connect to Wordpress Forms should be
 
 
-            return view('admin/data-filters-rules-edit', ['menu' => 'affiliate-service', 'dataFiltersRules' => $dataFiltersRules]);
-        } else {
+            //wpau_quform_forms
 
+            $dataRemoteDB = DB::connection('garage')->select("SELECT * FROM weeklyex_wp126.wpau_quform_forms WHERE id = ?", [1]);
+
+            $description = $dataFiltersRuleRow[0]->description;
+
+            $tags = [];
+            if($description == "Garasje-Tilbub.no") {
+
+
+                $tags = Quforms::getTagsList($dataRemoteDB[0]->config, $description);
+
+            }
+
+
+
+
+            return view('admin/data-filters-rules-edit',
+                            [
+                             'menu' => 'affiliate-service',
+                             'dataFiltersRuleRow' => $dataFiltersRuleRow[0],
+                             'garageData' => $dataRemoteDB,
+                             'tags' => $tags
+                            ]
+            );
+        } else {
 
             return view('admin/data-filters-rules', ['menu' => 'affiliate-service', 'dataFiltersRules' => $dataFiltersRules]);
         }
