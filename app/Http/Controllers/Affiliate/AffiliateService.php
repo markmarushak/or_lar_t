@@ -71,6 +71,9 @@ class AffiliateService extends Controller
 
             //wpau_quform_forms
 
+            DB::connection('garage');
+
+            die;
             $dataRemoteDB = DB::connection('garage')->select("SELECT * FROM weeklyex_wp126.wpau_quform_forms WHERE id = ?", [1]);
 
             $description = $dataFiltersRuleRow[0]->description;
