@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Quforms extends Model
+class RemoteDBaccess extends Model
 {
     public function __construct(array $attributes = [])
     {
@@ -12,13 +12,9 @@ class Quforms extends Model
     }
 
 
-
-    public static function getTagsList($data, $description)
+    public static function getConfig($data, $description)
     {
-        $data = unserialize(base64_decode($data));
-
-
-        return $data['elements'][0]['elements'];
+        return unserialize(base64_decode($data));
     }
 
 }
