@@ -235,9 +235,10 @@ class Quform_Element_Select extends Quform_Element_Multi implements  Quform_Elem
     {
         $options = array();
 
-        $defaults = array('Option 1' => 'quform',
-            'Option 2' => 'quform',
-            'Option 3' => 'quform');
+        $defaults = array(
+            0 => 'quform',
+            1 => 'quform',
+            2 => 'quform');
 
         foreach ($defaults as $key => $value) {
             $option = self::getDefaultOptionConfig();

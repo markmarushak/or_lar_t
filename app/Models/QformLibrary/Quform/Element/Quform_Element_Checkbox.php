@@ -425,9 +425,9 @@ class Quform_Element_Checkbox extends Quform_Element_Multi implements Quform_Ele
     {
         $options = array();
         $defaults = array(
-                        'Option 1' => 'quform',
-                        'Option 2' => 'quform',
-                        'Option 3' => 'quform'
+                        0 => 'quform',
+                        1 => 'quform',
+                        2 => 'quform'
         );
 
         foreach ($defaults as $key => $value) {

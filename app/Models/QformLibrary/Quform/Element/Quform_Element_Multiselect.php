@@ -258,7 +258,11 @@ class Quform_Element_Multiselect extends Quform_Element_Select
     public static function getDefaultConfig()
     {
         $options = array();
-        $defaults = array(__('Option 1', 'quform'), __('Option 2', 'quform'), __('Option 3', 'quform'));
+        $defaults = array(
+            0 => 'quform',
+            1 => 'quform',
+            2 => 'quform'
+        );
 
         foreach ($defaults as $key => $value) {
             $option = self::getDefaultOptionConfig();
