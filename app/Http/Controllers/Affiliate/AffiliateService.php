@@ -124,7 +124,7 @@ class AffiliateService extends Controller
                 $this->config = RemoteDBaccess::getConfig($dataRemoteDB[0]->config, $description);
 
                 $this->form();
-                die;
+
 
             }
 
@@ -133,7 +133,7 @@ class AffiliateService extends Controller
                              'menu' => 'affiliate-service',
                              'dataFiltersRuleRow' => $dataFiltersRuleRow[0],
                              'garageData' => $dataRemoteDB,
-                             'tags' => $config
+                             'form' => $this->form()
                             ]
             );
 

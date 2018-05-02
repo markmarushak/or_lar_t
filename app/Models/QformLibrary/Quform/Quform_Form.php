@@ -278,10 +278,7 @@ class Quform_Form extends Model
         //$output .= $this->getEditFormLinkHtml();
 
         $output .= '</form></div>';
-        //echo "<textarea cols='30' rows='50'>";
-        echo $output;
-        //echo "</textarea>";
-        die;
+
 
         return $output;
     }
