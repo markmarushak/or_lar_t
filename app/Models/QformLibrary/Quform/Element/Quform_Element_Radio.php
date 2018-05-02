@@ -283,9 +283,9 @@ class Quform_Element_Radio extends Quform_Element_Multi implements Quform_Elemen
     public static function getDefaultConfig()
     {
         $options = array();
-        $defaults = array('Option 1' => 'quform',
-                          'Option 2' => 'quform',
-                          'Option 3' => 'quform');
+        $defaults = array(1 => 'quform',
+                          2 => 'quform',
+                          3 => 'quform');
 
 
         foreach ($defaults as $key => $value) {
