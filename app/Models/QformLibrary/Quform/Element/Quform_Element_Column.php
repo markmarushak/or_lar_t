@@ -2,6 +2,8 @@
 
 namespace App\Models\QformLibrary\Quform\Element;
 
+
+use App\Models\QformLibrary\Quform;
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
  */
@@ -72,10 +74,16 @@ class Quform_Element_Column extends Quform_Element_Container
      */
     public static function getDefaultConfig()
     {
-        $config = apply_filters('quform_default_config_column', array(
+        /*$config = apply_filters('quform_default_config_column', array(
             'width' => '',
             'elements' => array()
-        ));
+        ));*/
+
+        $config = array(
+            'width' => '',
+            'elements' => array()
+        );
+
 
         $config['type'] = 'column';
 

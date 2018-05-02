@@ -3,6 +3,9 @@
 namespace App\Models\QformLibrary\Quform\Element;
 
 use App\Models\QformLibrary\Quform\Quform_Element;
+use App\Models\QformLibrary\Quform;
+
+use App\Models\QformLibrary\Quform\Element\Container\Quform_Element_Container_Iterator;
 
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
@@ -174,7 +177,7 @@ abstract class Quform_Element_Container extends Quform_Element
      */
     public function getRecursiveIterator($mode = RecursiveIteratorIterator::LEAVES_ONLY)
     {
-        return new RecursiveIteratorIterator(
+        return new \RecursiveIteratorIterator(
             new Quform_Element_Container_Iterator($this),
             $mode
         );

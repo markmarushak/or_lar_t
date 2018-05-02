@@ -2,6 +2,7 @@
 
 namespace App\Models\QformLibrary\Quform\Element;
 
+use App\Models\QformLibrary\Quform;
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
  */
@@ -41,8 +42,8 @@ class Quform_Element_Radio extends Quform_Element_Multi implements Quform_Elemen
             $attributes['checked'] = true;
         }
 
-        $attributes = apply_filters('quform_field_attributes', $attributes, $this, $this->form, $context, $option);
-        $attributes = apply_filters('quform_field_attributes_' . $this->getIdentifier(), $attributes, $this, $this->form, $context, $option);
+        //$attributes = apply_filters('quform_field_attributes', $attributes, $this, $this->form, $context, $option);
+        //$attributes = apply_filters('quform_field_attributes_' . $this->getIdentifier(), $attributes, $this, $this->form, $context, $option);
 
         return $attributes;
     }
@@ -71,8 +72,8 @@ class Quform_Element_Radio extends Quform_Element_Multi implements Quform_Elemen
             $classes[] = 'quform-submit-on-choice';
         }
 
-        $classes = apply_filters('quform_field_classes', $classes, $option, $this, $this->form, $context);
-        $classes = apply_filters('quform_field_classes_' . $this->getIdentifier(), $classes, $option, $this, $this->form, $context);
+        //$classes = apply_filters('quform_field_classes', $classes, $option, $this, $this->form, $context);
+        //$classes = apply_filters('quform_field_classes_' . $this->getIdentifier(), $classes, $option, $this, $this->form, $context);
 
         return $classes;
     }
@@ -99,8 +100,8 @@ class Quform_Element_Radio extends Quform_Element_Multi implements Quform_Elemen
 
             $output .= sprintf(
                 '<label for="%s" class="quform-option-label quform-option-label-%s_%d">',
-                esc_attr($attributes['id']),
-                esc_attr($this->getIdentifier()),
+                $attributes['id'],
+                $this->getIdentifier(),
                 $this->getOptionValue($option, 'id')
             );
 

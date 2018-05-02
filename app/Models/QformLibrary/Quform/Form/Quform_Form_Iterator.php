@@ -2,6 +2,7 @@
 
 namespace App\Models\QformLibrary\Quform\Form;
 
+use App\Models\QformLibrary\Quform\Quform_Form;
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
  */

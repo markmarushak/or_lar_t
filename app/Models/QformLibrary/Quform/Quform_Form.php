@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\QformLibrary\Quform;
 use App\Models\QformLibrary\Quform\Form\Quform_Form_Iterator;
 use App\Models\QformLibrary\Quform\Element\Quform_Element_Page;
-
+use App\Models\QformLibrary\Quform\Quform_Options;
 
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
@@ -134,8 +134,8 @@ class Quform_Form extends Model
         $this->setId($id);
         $this->setUniqueId($uniqueId);
         //$this->session = $session;
-        /*$this->tokenReplacer = $tokenReplacer;
-        $this->options = $options;*/
+        /*$this->tokenReplacer = $tokenReplacer;*/
+
     }
 
     /**
@@ -209,9 +209,7 @@ class Quform_Form extends Model
             'show_title' => true,
             'show_description' => true
         ));*/
-        echo "<pre>";
-        print_r($this);
-        die;
+
 
         $options = array(
             'show_title' => true,
@@ -225,6 +223,8 @@ class Quform_Form extends Model
 //        do_action('quform_pre_display_' . $this->getId(), $this);
         $output = ob_get_clean();
 
+        $output .= "<link rel='stylesheet' id='quform-css'  href='http://garasje-tilbud.no/modules/quform/cache/quform.css?ver=1521656337' type='text/css' media='all' />";
+
         $output .= sprintf('<div id="quform-%s" class="%s">', Quform::escape($this->getUniqueId()), Quform::escape(Quform::sanitizeClass($this->getContainerClasses())));
 
         $output .= sprintf(
@@ -232,7 +232,7 @@ class Quform_Form extends Model
             Quform::escape($this->getUniqueId()),
             Quform::escape($this->getId()),
             $this->getAction(),
-            Quform::escape($this->getJsConfig())
+            'test'
         );
 
 
@@ -240,17 +240,17 @@ class Quform_Form extends Model
         $output .= '<button class="quform-default-submit" name="quform_submit" type="submit" value="submit"></button>';
 
         $output .= sprintf('<div class="quform-form-inner quform-form-inner-%d">', Quform::escape($this->getId()));
-        $output .= $this->getHiddenInputHtml();
+        //$output .= $this->getHiddenInputHtml();
 
-        $output .= $this->getTitleDescriptionHtml($options['show_title'], $options['show_description']);
+        //$output .= $this->getTitleDescriptionHtml($options['show_title'], $options['show_description']);
 
-        $output .= $this->getSuccessMessageHtml('above');
+        //$output .= $this->getSuccessMessageHtml('above');
 
-        $output .= $this->getPageProgressHtml();
+        //$output .= $this->getPageProgressHtml();
 
         $output .= sprintf('<div class="%s">', Quform::escape(Quform::sanitizeClass($this->getElementsClasses())));
 
-        $output .= $this->getGlobalErrorHtml();
+        //$output .= $this->getGlobalErrorHtml();
 
 
         foreach ($this->pages as $page) {
@@ -275,10 +275,13 @@ class Quform_Form extends Model
 
         $output .= '</div>';
 
-        $output .= $this->getEditFormLinkHtml();
+        //$output .= $this->getEditFormLinkHtml();
 
         $output .= '</form></div>';
-
+        //echo "<textarea cols='30' rows='50'>";
+        echo $output;
+        //echo "</textarea>";
+        die;
 
         return $output;
     }
@@ -536,21 +539,8 @@ class Quform_Form extends Model
      */
     protected function getReferralLinkHtml()
     {
-        $output = '';
 
-        if ($this->options->get('referralEnabled')) {
-            $output .= '<div class="quform-referral-link">';
 
-            $referralUrl = 'https://codecanyon.net/item/quform-wordpress-form-builder/706149';
-            $referralUsername = Quform::isNonEmptyString($this->options->get('referralUsername')) ? $this->options->get('referralUsername') : 'ThemeCatcher';
-            $referralUrl .= '?ref=' . urlencode($referralUsername);
-
-            $output .= sprintf('<a href="%s">%s</a>', esc_url($referralUrl), $this->options->get('referralText'));
-
-            $output .= '</div>';
-        }
-
-        return $output;
     }
 
     /**
@@ -901,7 +891,8 @@ class Quform_Form extends Model
             'logic' => $this->getLogicConfig(),
             'currentPageId' => $this->getCurrentPage()->getId(),
             'errorsIcon' => $this->config('errorsIcon'),
-            'updateFancybox' => apply_filters('quform_update_fancybox', true, $this),
+            //'updateFancybox' => apply_filters('quform_update_fancybox', true, $this),
+            'updateFancybox' => null,
             'hasPages' => $this->hasPages(),
             'pages' => $this->getPageIds(),
             'pageProgressType' => $this->config('pageProgressType'),
@@ -910,6 +901,7 @@ class Quform_Form extends Model
             'tooltipMy' => $this->config('tooltipMy'),
             'tooltipAt' => $this->config('tooltipAt')
         );
+
 
         if (is_numeric($this->options->get('scrollOffset'))) {
             $config['scrollOffset'] = ((int) $this->options->get('scrollOffset')) * -1;

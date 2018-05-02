@@ -1,6 +1,6 @@
 <?php
 namespace App\Models\QformLibrary\Quform\Element;
-
+use App\Models\QformLibrary\Quform;
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
  */

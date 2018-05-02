@@ -2,8 +2,12 @@
 
 namespace App\Models\QformLibrary\Quform\Element;
 
+use App\Models\QformLibrary\Quform;
 
 use App\Models\QformLibrary\Quform\Quform_Element;
+
+
+use \RecursiveIteratorIterator;
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
  */
@@ -23,16 +27,16 @@ class Quform_Element_Submit extends Quform_Element
 
         if ($this->form->hasPages()) {
             if ( ! $this->isOnFirstPage()) {
-                $output .= $this->getButtonHtml('back', __('Back', 'quform'));
+                //$output .= $this->getButtonHtml('back', __('Back', 'quform'));
             }
 
             if ( ! $this->isOnLastPage()) {
-                $output .= $this->getButtonHtml('next', __('Next', 'quform'));
+                //$output .= $this->getButtonHtml('next', __('Next', 'quform'));
             } else {
-                $output .= $this->getButtonHtml('submit', __('Send', 'quform'));
+                //$output .= $this->getButtonHtml('submit', __('Send', 'quform'));
             }
         } else {
-            $output .= $this->getButtonHtml('submit', __('Send', 'quform'));
+            //$output .= $this->getButtonHtml('submit', __('Send', 'quform'));
         }
 
         $output .= $this->getLoadingHtml();
@@ -171,8 +175,9 @@ class Quform_Element_Submit extends Quform_Element
             $classes[] = sprintf('quform-loading-type-%s', $this->form->config('loadingType'));
         }
 
-        $output = sprintf('<div class="%s">', esc_attr(join(' ', $classes)));
+//        $output = sprintf('<div class="%s">', esc_attr(join(' ', $classes)));
 
+        $output = sprintf('<div class="%s">', 'test');
         $output .= '<div class="quform-loading-inner">';
 
         if ($this->form->config('loadingType') == 'custom') {
@@ -291,8 +296,8 @@ class Quform_Element_Submit extends Quform_Element
      */
     public static function getDefaultConfig()
     {
-        $config = apply_filters('quform_default_config_submit', array(
-            'label' => __('Submit', 'quform'),
+        $config = array(
+            'label' => array('Submit', 'quform'),
             'submitType' => 'inherit',
             'submitText' => '',
             'submitIcon' => '',
@@ -320,7 +325,7 @@ class Quform_Element_Submit extends Quform_Element
             'buttonWidth' => 'inherit',
             'buttonWidthCustom' => '',
             'styles' => array()
-        ));
+        );
 
         $config['type'] = 'submit';
 

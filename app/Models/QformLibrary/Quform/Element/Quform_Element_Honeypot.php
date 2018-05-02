@@ -17,7 +17,7 @@ class Quform_Element_Honeypot extends Quform_Element_Field
     public function render(array $context = array())
     {
         $output = '<div class="quform-hidden"><label>';
-        $output .= esc_html__('This field should be left blank', 'quform');
+//        $output .= esc_html__('This field should be left blank', 'quform');
         $output .= $this->getFieldHtml($context);
         $output .= '</label></div>';
 

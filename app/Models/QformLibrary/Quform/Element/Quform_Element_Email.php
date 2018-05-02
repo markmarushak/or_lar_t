@@ -2,7 +2,7 @@
 
 namespace App\Models\QformLibrary\Quform\Element;
 
-
+use App\Models\QformLibrary\Quform;
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
  */
@@ -57,10 +57,10 @@ class Quform_Element_Email extends Quform_Element_Field implements Quform_Elemen
             $attributes['value'] = $this->getValue();
         }
 
-        $placeholder = $this->form->replaceVariablesPreProcess($this->config('placeholder'));
-        if (Quform::isNonEmptyString($placeholder)) {
-            $attributes['placeholder'] = $placeholder;
-        }
+//        $placeholder = $this->form->replaceVariablesPreProcess($this->config('placeholder'));
+//        if (Quform::isNonEmptyString($placeholder)) {
+//            $attributes['placeholder'] = $placeholder;
+//        }
 
         if (Quform::isNonEmptyString($this->config('maxLength'))) {
             $attributes['maxlength'] = $this->config('maxLength');
@@ -70,8 +70,8 @@ class Quform_Element_Email extends Quform_Element_Field implements Quform_Elemen
             $attributes['readonly'] = true;
         }
 
-        $attributes = apply_filters('quform_field_attributes', $attributes, $this, $this->form, $context);
-        $attributes = apply_filters('quform_field_attributes_' . $this->getIdentifier(), $attributes, $this, $this->form, $context);
+//        $attributes = apply_filters('quform_field_attributes', $attributes, $this, $this->form, $context);
+//        $attributes = apply_filters('quform_field_attributes_' . $this->getIdentifier(), $attributes, $this, $this->form, $context);
 
         return $attributes;
     }
@@ -98,8 +98,8 @@ class Quform_Element_Email extends Quform_Element_Field implements Quform_Elemen
             $classes[] = $this->config('customClass');
         }
 
-        $classes = apply_filters('quform_field_classes', $classes, $this, $this->form, $context);
-        $classes = apply_filters('quform_field_classes_' . $this->getIdentifier(), $classes, $this, $this->form, $context);
+//        $classes = apply_filters('quform_field_classes', $classes, $this, $this->form, $context);
+//        $classes = apply_filters('quform_field_classes_' . $this->getIdentifier(), $classes, $this, $this->form, $context);
 
         return $classes;
     }
@@ -150,7 +150,7 @@ class Quform_Element_Email extends Quform_Element_Field implements Quform_Elemen
      */
     public static function getDefaultConfig()
     {
-        $config = apply_filters('quform_default_config_email', array(
+        /*$config = apply_filters('quform_default_config_email', array(
             'label' => __('Email address', 'quform'),
             'placeholder' => '',
             'subLabel' => '',
@@ -190,7 +190,49 @@ class Quform_Element_Email extends Quform_Element_Field implements Quform_Elemen
                 array('type' => 'trim')
             ),
             'validators' => array()
-        ));
+        ));*/
+
+        $config = array(
+            'label' => array('Email address' => 'quform'),
+            'placeholder' => '',
+            'subLabel' => '',
+            'description' => '',
+            'descriptionAbove' => '',
+            'required' => true,
+            'labelIcon' => '',
+            'fieldIconLeft' => '',
+            'fieldIconRight' => '',
+            'fieldSize' => 'inherit',
+            'fieldWidth' => 'inherit',
+            'fieldWidthCustom' => '',
+            'customClass' => '',
+            'defaultValue' => '',
+            'dynamicDefaultValue' => false,
+            'dynamicKey' => '',
+            'maxLength' => '',
+            'readOnly' => false,
+            'tooltip' => '',
+            'adminLabel' => '',
+            'showInEmail' => true,
+            'saveToDatabase' => true,
+            'labelPosition' => 'inherit',
+            'labelWidth' => '',
+            'tooltipType' => 'inherit',
+            'tooltipEvent' => 'inherit',
+            'logicEnabled' => false,
+            'logicAction' => true,
+            'logicMatch' => 'all',
+            'logicRules' => array(),
+            'messageRequired' => '',
+            'messageEmailAddressInvalidFormat' => '',
+            'messageLengthTooLong' => '',
+            'styles' => array(),
+            'visibility' => '',
+            'filters' => array(
+                array('type' => 'trim')
+            ),
+            'validators' => array()
+        );
 
         $config['type'] = 'email';
 

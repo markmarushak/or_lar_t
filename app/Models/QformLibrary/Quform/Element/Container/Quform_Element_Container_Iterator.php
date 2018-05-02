@@ -1,4 +1,10 @@
 <?php
+namespace App\Models\QformLibrary\Quform\Element\Container;
+
+use App\Models\QformLibrary\Quform\Element\Quform_Element_Container;
+
+use \RecursiveArrayIterator;
+use \RecursiveIterator;
 
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)

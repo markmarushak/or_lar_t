@@ -2,6 +2,8 @@
 
 namespace App\Models\QformLibrary\Quform\Element;
 
+
+use App\Models\QformLibrary\Quform;
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
  */
@@ -72,8 +74,8 @@ class Quform_Element_Select extends Quform_Element_Multi implements  Quform_Elem
             $attributes['aria-labelledby'] = $this->config('aria-labelledby');
         }
 
-        $attributes = apply_filters('quform_field_attributes', $attributes, $this, $this->form, $context);
-        $attributes = apply_filters('quform_field_attributes_' . $this->getIdentifier(), $attributes, $this, $this->form, $context);
+//        $attributes = apply_filters('quform_field_attributes', $attributes, $this, $this->form, $context);
+//        $attributes = apply_filters('quform_field_attributes_' . $this->getIdentifier(), $attributes, $this, $this->form, $context);
 
         return $attributes;
     }
@@ -104,8 +106,8 @@ class Quform_Element_Select extends Quform_Element_Multi implements  Quform_Elem
             $classes[] = 'quform-submit-on-choice';
         }
 
-        $classes = apply_filters('quform_field_classes', $classes, $this, $this->form, $context);
-        $classes = apply_filters('quform_field_classes_' . $this->getIdentifier(), $classes, $this, $this->form, $context);
+//        $classes = apply_filters('quform_field_classes', $classes, $this, $this->form, $context);
+//        $classes = apply_filters('quform_field_classes_' . $this->getIdentifier(), $classes, $this, $this->form, $context);
 
         return $classes;
     }
@@ -132,8 +134,9 @@ class Quform_Element_Select extends Quform_Element_Multi implements  Quform_Elem
 
         if ($this->config('noneOption')) {
             $output .= $this->getOptionHtml(array(
-                'label' => $this->getTranslation('noneOptionText', __('Please select', 'quform')),
-                'value' => ''
+//                'label' => $this->getTranslation('noneOptionText', __('Please select', 'quform')),
+                'label' => 'test',
+                    'value' => ''
             ));
         }
 

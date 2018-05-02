@@ -1,6 +1,8 @@
 <?php
 namespace App\Models\QformLibrary\Quform\Element;
 
+use App\Models\QformLibrary\Quform;
+
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
  */
@@ -80,12 +82,18 @@ class Quform_Element_Row extends Quform_Element_Container
      */
     public static function getDefaultConfig()
     {
-        $config = apply_filters('quform_default_config_row', array(
+        /*$config = apply_filters('quform_default_config_row', array(
             'columnSize' => 'fixed',
             'responsiveColumns' => 'inherit',
             'responsiveColumnsCustom' => '',
             'elements' => array()
-        ));
+        ));*/
+        $config = array(
+            'columnSize' => 'fixed',
+            'responsiveColumns' => 'inherit',
+            'responsiveColumnsCustom' => '',
+            'elements' => array()
+        );
 
         $config['type'] = 'row';
 

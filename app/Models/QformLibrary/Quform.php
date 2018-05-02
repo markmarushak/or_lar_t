@@ -65,12 +65,12 @@ class Quform
     public static function getCurrentUrl()
     {
         $url = 'http';
+        return $url;
         if (is_ssl()) {
             $url .= 's';
         }
         $url .= '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
-        return $url;
     }
 
     /**
@@ -97,8 +97,9 @@ class Quform
      */
     public static function getPostProperty($property = 'ID', $postId = null)
     {
-        $post = ! is_null($postId) ? get_post($postId) : get_queried_object();
+        //$post = ! is_null($postId) ? get_post($postId) : get_queried_object();
         $value = '';
+        return (string) $value;
 
         $whitelist = array('ID', 'post_author', 'post_date', 'post_date_gmt', 'post_content', 'post_title',
             'post_excerpt', 'post_status', 'comment_status', 'ping_status', 'post_name', 'to_ping', 'pinged',
@@ -115,7 +116,6 @@ class Quform
             $value = $post->{$property};
         }
 
-        return (string) $value;
     }
 
     /**

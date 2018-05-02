@@ -2,6 +2,8 @@
 
 namespace App\Models\QformLibrary\Quform\Element;
 
+use App\Models\QformLibrary\Quform;
+
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
  */
@@ -98,7 +100,7 @@ class Quform_Element_Group extends Quform_Element_Container
      */
     public static function getDefaultConfig()
     {
-        $config = apply_filters('quform_default_config_group', array(
+        /*$config = apply_filters('quform_default_config_group', array(
             'label' => __('Untitled group', 'quform'),
             'title' => '',
             'titleTag' => 'h4',
@@ -122,7 +124,34 @@ class Quform_Element_Group extends Quform_Element_Container
             'logicRules' => array(),
             'styles' => array(),
             'elements' => array()
-        ));
+        ));*/
+
+        $config = array(
+            'label' => array('Untitled group' => 'quform'),
+            'title' => '',
+            'titleTag' => 'h4',
+            'description' => '',
+            'descriptionAbove' => '',
+            'fieldSize' => 'inherit',
+            'fieldWidth' => 'inherit',
+            'fieldWidthCustom' => '',
+            'groupStyle' => 'plain',
+            'borderColor' => '',
+            'backgroundColor' => '',
+            'labelPosition' => 'inherit',
+            'labelWidth' => '',
+            'showLabelInEmail' => false,
+            'showLabelInEntry' => false,
+            'tooltipType' => 'inherit',
+            'tooltipEvent' => 'inherit',
+            'logicEnabled' => false,
+            'logicAction' => true,
+            'logicMatch' => 'all',
+            'logicRules' => array(),
+            'styles' => array(),
+            'elements' => array()
+        );
+
 
         $config['type'] = 'group';
 

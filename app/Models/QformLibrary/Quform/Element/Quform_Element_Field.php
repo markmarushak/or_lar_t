@@ -5,6 +5,8 @@ namespace App\Models\QformLibrary\Quform\Element;
 use App\Models\QformLibrary\Quform\Quform_Element;
 
 use App\Models\QformLibrary\Quform\Validator\Quform_Validator_Interface;
+
+use App\Models\QformLibrary\Quform;
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
  */
@@ -207,7 +209,7 @@ abstract class Quform_Element_Field extends Quform_Element
         }
 
         if ($this->form->config('tooltipsEnabled') && Quform::isNonEmptyString($this->form->config('tooltipIcon')) && Quform::isNonEmptyString($this->config('tooltip')) && $context['tooltipType'] == 'icon') {
-            $output .= sprintf('<div class="quform-tooltip-icon quform-tooltip-icon-%s">', esc_attr($context['tooltipEvent']));
+            $output .= sprintf('<div class="quform-tooltip-icon quform-tooltip-icon-%s">', $context['tooltipEvent']);
             $output .= sprintf('<i class="%s"></i>', $this->form->config('tooltipIcon'));
             $output .= sprintf('<div class="quform-tooltip-icon-content">%s</div>', $this->config('tooltip'));
             $output .= '</div>';
