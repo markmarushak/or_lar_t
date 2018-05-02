@@ -7,10 +7,56 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\DataFiltersRulesModel;
 use App\RemoteDBaccess;
-use App\Models\Quform_Form;
+use App\Models\QformLibrary\Quform;
+
+//Quform Library
+use App\Models\QformLibrary\Quform\Quform_Form;
+
+use App\Models\QformLibrary\Quform\Form\Quform_Form_Factory;
 
 class AffiliateService extends Controller
 {
+
+    /**
+     * @var Quform_Repository
+     */
+    protected $repository;
+
+    /**
+     * @var Quform_Form_Factory
+     */
+    protected $formFactory;
+
+    /**
+     * @var Quform_Form_Processor
+     */
+    protected $processor;
+
+    /**
+     * @var Quform_Session
+     */
+    protected $session;
+
+    /**
+     * @var Quform_Uploader
+     */
+    protected $uploader;
+
+    /*
+     * Form counter to differentiate multiple instances of the same form
+     *
+     * @var int
+     */
+    protected $count = 0;
+
+    /**
+     * Store used unique IDs to avoid conflicts
+     *
+     * @var array
+     */
+    protected $uniqueIds = array();
+
+
 
     /**
      * Create a new controller instance.
@@ -48,6 +94,9 @@ class AffiliateService extends Controller
         return view('admin/email-bulk-split', ['menu' => 'affiliate-service']);
     }
 
+
+
+
     public function dataFiltersRules(Request $request)
     {
 
@@ -66,21 +115,16 @@ class AffiliateService extends Controller
             //wpau_quform_forms
 
             $dataRemoteDB = DB::connection('garage')->select("SELECT * FROM weeklyex_wp126.wpau_quform_forms");
-
             $description = $dataFiltersRuleRow[0]->description;
+
 
             $formData = [];
             if($description == "Garasje-Tilbub.no") {
 
-                $formConfig = RemoteDBaccess::getConfig($dataRemoteDB[0]->config, $description);
+                $this->config = RemoteDBaccess::getConfig($dataRemoteDB[0]->config, $description);
 
-                $Quform_Form = new Quform_Form($formConfig);
-                $Quform_Form->config = $formConfig;
-
-
-
-
-                $Quform_Form->render();
+                $this->form();
+                die;
 
             }
 
@@ -89,7 +133,7 @@ class AffiliateService extends Controller
                              'menu' => 'affiliate-service',
                              'dataFiltersRuleRow' => $dataFiltersRuleRow[0],
                              'garageData' => $dataRemoteDB,
-                             'tags' => $formConfig
+                             'tags' => $config
                             ]
             );
 
@@ -99,4 +143,72 @@ class AffiliateService extends Controller
         }
 
     }
+
+
+    public function form(array $options = array())
+    {
+        /*$options = wp_parse_args($options, array(
+            'id' => '',
+            'values' => '',
+            'content' => '',
+            'popup' => false,
+            'options' => '',
+            'width' => '',
+            'show_title' => true,
+            'show_description' => true
+        ));*/
+
+        //wp version
+        //$config = $this->repository->getConfig((int) $options['id']);
+
+
+        $config = $this->config;
+
+        if ( ! is_array($config)) {
+            return;
+        }
+
+        $this->count++;
+        $config['count'] = $this->count;
+
+        $processingThisForm = Quform::isPostRequest() && Quform::get($_POST, 'quform_form_id') == $config['id'] && Quform::get($_POST, 'quform_count') == $this->count;
+
+        if ($processingThisForm && Quform_Form::isValidUniqueId(Quform::get($_POST, 'quform_form_uid'))) {
+            $uniqueId = Quform::get($_POST, 'quform_form_uid');
+        } else {
+            $uniqueId = Quform_Form::generateUniqueId();
+
+            //while (in_array($uniqueId, $this->uniqueIds) || $this->session->has(sprintf('quform-%s', $uniqueId))) {
+                $uniqueId = Quform_Form::generateUniqueId();
+            //}
+        }
+
+        $config['uniqueId'] = $uniqueId;
+        $this->uniqueIds[] = $uniqueId;
+
+        /*if (is_string($options['values'])) {
+            $options['values'] = join('&', explode('&amp;', $options['values']));
+        }*/
+
+        //$config['dynamicValues'] = $options['values'];
+
+        $this->formFactory = new Quform_Form_Factory();
+
+
+        $form = $this->formFactory->create($config);
+
+
+        if ( ! ($form instanceof Quform_Form) || $form->config('trashed')) {
+            return;
+        }
+
+
+
+        $output = $form->render($options);
+
+
+        return $output;
+    }
+
+
 }

@@ -1,4 +1,5 @@
 <?php
+namespace App\Models\QformLibrary;
 
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
@@ -195,6 +196,8 @@ class Quform
      */
     public static function escape($value, $flags = ENT_QUOTES)
     {
+
+        return $value;
         $value = wp_check_invalid_utf8($value);
 
         return _wp_specialchars($value, $flags, false, true);
@@ -217,7 +220,9 @@ class Quform
         $sanitizedClasses = array();
 
         foreach($classes as $class) {
-            $sanitizedClass = sanitize_html_class($class);
+//            $sanitizedClass = sanitize_html_class($class);
+            $sanitizedClass = $class;
+
 
             if ( ! empty($sanitizedClass)) {
                 $sanitizedClasses[] = $sanitizedClass;
