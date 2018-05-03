@@ -69,7 +69,7 @@
                         <span style="width: 70px;">{{$row->type}}</span>
                     </td>
                     <td data-field="edit" class="m-datatable__cell">
-                        <span style="width: 70px;"><a href="{{ route('data-filters-rules-edit', $row->data_filters_rules_id) }}">edit</a></span>
+                        <span style="width: 70px;"><a href="{{ route('data-filters-rules-edit', ['data_filters_rules_id' => $row->data_filters_rules_id, 'data_filters_rules_description' => $row->description]) }}">edit</a></span>
                     </td>
                     <td data-field="status" class="m-datatable__cell">
                         <span style="overflow: visible; width: 70px;">

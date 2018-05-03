@@ -97,35 +97,24 @@ class AffiliateService extends Controller
 
 
 
+
     public function dataFiltersRules(Request $request)
     {
-
-
         $dataFiltersRules = DataFiltersRulesModel::all();
 
         if(!empty($request->data_filters_rules_id)) {
 
             $dataFiltersRulesId = $request->data_filters_rules_id;
             $dataFiltersRuleRow = DB::connection('mysql')->select("SELECT * FROM data_filters_rules WHERE data_filters_rules_id = ?", [$dataFiltersRulesId]);
-            //COnditions will be enabled
-
-            //Connect to Wordpress Forms should be
-
-
-            //wpau_quform_forms
 
             $dataRemoteDB = DB::connection('garage')->select("SELECT * FROM weeklyex_wp126.wpau_quform_forms");
             $description = $dataFiltersRuleRow[0]->description;
-
 
             $formData = [];
             if($description == "Garasje-Tilbub.no") {
 
                 $this->config = RemoteDBaccess::getConfig($dataRemoteDB[0]->config, $description);
-
                 $this->form();
-
-
             }
 
             return view('admin/data-filters-rules-edit',
@@ -133,7 +122,8 @@ class AffiliateService extends Controller
                              'menu' => 'affiliate-service',
                              'dataFiltersRuleRow' => $dataFiltersRuleRow[0],
                              'garageData' => $dataRemoteDB,
-                             'form' => $this->form()
+                             'form' => $this->form(),
+                             'params' => $request
                             ]
             );
 
@@ -147,20 +137,6 @@ class AffiliateService extends Controller
 
     public function form(array $options = array())
     {
-        /*$options = wp_parse_args($options, array(
-            'id' => '',
-            'values' => '',
-            'content' => '',
-            'popup' => false,
-            'options' => '',
-            'width' => '',
-            'show_title' => true,
-            'show_description' => true
-        ));*/
-
-        //wp version
-        //$config = $this->repository->getConfig((int) $options['id']);
-
 
         $config = $this->config;
 
@@ -208,6 +184,16 @@ class AffiliateService extends Controller
 
 
         return $output;
+    }
+
+    public function connection(Request $request)
+    {
+
+
+        die("ddddddd");
+        $dataFiltersRules = DataFiltersRulesModel::all();
+        return view('admin/data-filters-rules', ['menu' => 'affiliate-service', 'dataFiltersRules' => $dataFiltersRules]);
+
     }
 
 

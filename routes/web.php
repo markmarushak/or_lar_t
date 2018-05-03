@@ -34,4 +34,6 @@ Route::get('/affiliate-service/email-bulk-split/data-filters-rules', '\App\Http\
 Route::get('/affiliate-service/email-bulk-split/data-filters-rules/edit', '\App\Http\Controllers\Affiliate\AffiliateService@dataFiltersRules')
     ->name('data-filters-rules');
 
-Route::get('/data-filters-rules/edit/{data_filters_rules_id}', '\App\Http\Controllers\Affiliate\AffiliateService@dataFiltersRules')->name('data-filters-rules-edit');
+
+// Data Filters Edit page
+Route::get('/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules_description?}', '\App\Http\Controllers\Affiliate\AffiliateService@dataFiltersRules')->name('data-filters-rules-edit');

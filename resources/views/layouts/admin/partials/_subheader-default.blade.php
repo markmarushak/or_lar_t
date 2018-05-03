@@ -5,7 +5,14 @@
 		<?php $nameRoute = \Request::route()->getName(); ?>
 
 		<!--Must be dynamic changed -->
+			@if('data-filters-rules-edit' == $nameRoute)
+				{{--if parameter passed--}}
+				{!! Breadcrumbs::render($nameRoute, $params->description) !!}
+			@else
 			{!! Breadcrumbs::render($nameRoute) !!}
+			@endif
+
+
 		</div>
 
 
