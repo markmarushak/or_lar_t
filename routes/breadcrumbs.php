@@ -65,4 +65,13 @@ Breadcrumbs::register('data-base-fields', function($breadcrumbs, $param = null) 
     $breadcrumbs->parent('data-filters-rules-edit');
     $breadcrumbs->push('Database Fields', route('data-base-fields', ['data_filters_rules_id', 'data_filters_rules_description']));
 });
+
+//affiliates-partners
+Breadcrumbs::register('affiliates-partners', function($breadcrumbs, $param = null) {
+
+    $breadcrumbs->parent('data-filters-rules-edit');
+    $breadcrumbs->push('Affiliates/Partners', route('affiliates-partners', ['data_filters_rules_id', 'data_filters_rules_description']));
+});
+
+
 ?>

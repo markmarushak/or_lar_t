@@ -47,3 +47,5 @@ Route::get('/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules
 //dataBaseFields
 Route::get('/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules_description}/data-base-fields', '\App\Http\Controllers\Affiliate\AffiliateService@dataBaseFields')->name('data-base-fields');
 
+//affiliates-partners
+Route::get('/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules_description}/affiliates-partners', '\App\Http\Controllers\Affiliate\AffiliateService@affiliatesPartners')->name('affiliates-partners');
