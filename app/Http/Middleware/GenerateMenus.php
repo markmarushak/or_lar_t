@@ -62,7 +62,13 @@ class GenerateMenus
                     ]]);
 
 
-            $menu->add('Data Filters & Rules', 'data-filters-rules');
+            $menu->add('Data Filters & Rules',
+                ['action' =>
+                    ['\App\Http\Controllers\Affiliate\AffiliateService@dataFiltersRulesData',
+                        'data_filters_rules_id' => $this->request->data_filters_rules_id,
+                        'data_filters_rules_description' => $this->request->data_filters_rules_description
+                    ]]);
+
             $menu->add('Output Overview', 'output-overview');
         });
 

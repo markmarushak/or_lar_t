@@ -49,3 +49,6 @@ Route::get('/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules
 
 //affiliates-partners
 Route::get('/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules_description}/affiliates-partners', '\App\Http\Controllers\Affiliate\AffiliateService@affiliatesPartners')->name('affiliates-partners');
+
+//data-filters and rules data
+Route::get('/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules_description}/data-filters-rules-data', '\App\Http\Controllers\Affiliate\AffiliateService@dataFiltersRulesData')->name('data-filters-rules-data');
