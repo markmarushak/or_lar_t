@@ -61,7 +61,7 @@ class GenerateMenus
                         'data_filters_rules_description' => $this->request->data_filters_rules_description
                     ]]);
 
-            $menu->add('Affiliates/Partners', 'affiliates-partners');
+
             $menu->add('Data Filters & Rules', 'data-filters-rules');
             $menu->add('Output Overview', 'output-overview');
         });
