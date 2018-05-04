@@ -1,6 +1,5 @@
 <!-- begin:: Page -->
 
-
 <div class="m-grid m-grid--hor m-grid--root m-page">
 	<!--[html-partial:include:{"file":"partials\/_header-base.html"}]/-->
 @include('layouts.admin.partials._header-base')

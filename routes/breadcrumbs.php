@@ -37,16 +37,32 @@ Breadcrumbs::register('data-filters-rules', function($breadcrumbs) {
 
 });
 
-
 //data-filters-rules-edit
 Breadcrumbs::register('data-filters-rules-edit', function($breadcrumbs, $param = null) {
 
     $breadcrumbs->parent('data-filters-rules');
+    $breadcrumbs->push($param . 'Garasje-Tilbub.no - Edit Section', route('data-filters-rules-edit', ['data_filters_rules_id', 'data_filters_rules_description']));
+});
 
-    $breadcrumbs->push($param . 'Garasje-Tilbub.no / Edit Section', route('data-filters-rules-edit', ['data_filters_rules_id', 'data_filters_rules_description']));
+//connection
+Breadcrumbs::register('connection', function($breadcrumbs, $param = null) {
+
+    $breadcrumbs->parent('data-filters-rules-edit');
+    $breadcrumbs->push('Connection', route('connection', ['data_filters_rules_id', 'data_filters_rules_description']));
+});
+
+//form-builder
+Breadcrumbs::register('form-builder', function($breadcrumbs, $param = null) {
+
+    $breadcrumbs->parent('data-filters-rules-edit');
+    $breadcrumbs->push('Form Builder', route('form-builder', ['data_filters_rules_id', 'data_filters_rules_description']));
 });
 
 
+//data-base-fields
+Breadcrumbs::register('data-base-fields', function($breadcrumbs, $param = null) {
 
-
+    $breadcrumbs->parent('data-filters-rules-edit');
+    $breadcrumbs->push('Database Fields', route('data-base-fields', ['data_filters_rules_id', 'data_filters_rules_description']));
+});
 ?>

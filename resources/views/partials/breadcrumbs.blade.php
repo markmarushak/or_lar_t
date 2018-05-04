@@ -6,7 +6,6 @@
          ?>
 
     </h3>
-
     <ul class="m-subheader__breadcrumbs m-nav m-nav--inline" style="height: 40px;">
         @foreach ($breadcrumbs as $breadcrumb)
 
@@ -19,7 +18,7 @@
                         {{ $breadcrumb->title }}
                     </a>
                 </li>
-                <li class="m-nav__separator">/</li>
+                <li class="m-nav__separator">-</li>
             @else
                 <li class="m-nav__item">
                     <a href="#" class="m-nav__link">
