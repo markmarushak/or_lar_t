@@ -52,3 +52,6 @@ Route::get('/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules
 
 //data-filters and rules data
 Route::get('/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules_description}/data-filters-rules-data', '\App\Http\Controllers\Affiliate\AffiliateService@dataFiltersRulesData')->name('data-filters-rules-data');
+
+//outputOverview
+Route::get('/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules_description}/output-overview', '\App\Http\Controllers\Affiliate\AffiliateService@outputOverview')->name('output-overview');

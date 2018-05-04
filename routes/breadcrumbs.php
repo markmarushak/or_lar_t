@@ -45,14 +45,14 @@ Breadcrumbs::register('data-filters-rules-edit', function($breadcrumbs, $param =
 });
 
 //connection
-Breadcrumbs::register('connection', function($breadcrumbs, $param = null) {
+Breadcrumbs::register('connection', function($breadcrumbs) {
 
     $breadcrumbs->parent('data-filters-rules-edit');
     $breadcrumbs->push('Connection', route('connection', ['data_filters_rules_id', 'data_filters_rules_description']));
 });
 
 //form-builder
-Breadcrumbs::register('form-builder', function($breadcrumbs, $param = null) {
+Breadcrumbs::register('form-builder', function($breadcrumbs) {
 
     $breadcrumbs->parent('data-filters-rules-edit');
     $breadcrumbs->push('Form Builder', route('form-builder', ['data_filters_rules_id', 'data_filters_rules_description']));
@@ -60,24 +60,31 @@ Breadcrumbs::register('form-builder', function($breadcrumbs, $param = null) {
 
 
 //data-base-fields
-Breadcrumbs::register('data-base-fields', function($breadcrumbs, $param = null) {
+Breadcrumbs::register('data-base-fields', function($breadcrumbs) {
 
     $breadcrumbs->parent('data-filters-rules-edit');
     $breadcrumbs->push('Database Fields', route('data-base-fields', ['data_filters_rules_id', 'data_filters_rules_description']));
 });
 
 //affiliates-partners
-Breadcrumbs::register('affiliates-partners', function($breadcrumbs, $param = null) {
+Breadcrumbs::register('affiliates-partners', function($breadcrumbs) {
 
     $breadcrumbs->parent('data-filters-rules-edit');
     $breadcrumbs->push('Affiliates/Partners', route('affiliates-partners', ['data_filters_rules_id', 'data_filters_rules_description']));
 });
 
 //data-filters-rules-data
-Breadcrumbs::register('data-filters-rules-data', function($breadcrumbs, $param = null) {
+Breadcrumbs::register('data-filters-rules-data', function($breadcrumbs) {
 
     $breadcrumbs->parent('data-filters-rules-edit');
     $breadcrumbs->push('Data Filters & Rules', route('data-filters-rules-data', ['data_filters_rules_id', 'data_filters_rules_description']));
+});
+
+//output-overview
+Breadcrumbs::register('output-overview', function($breadcrumbs) {
+
+    $breadcrumbs->parent('data-filters-rules-edit');
+    $breadcrumbs->push('Output Overview', route('output-overview', ['data_filters_rules_id', 'data_filters_rules_description']));
 });
 
 ?>

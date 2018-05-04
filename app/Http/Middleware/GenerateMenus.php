@@ -69,7 +69,14 @@ class GenerateMenus
                         'data_filters_rules_description' => $this->request->data_filters_rules_description
                     ]]);
 
-            $menu->add('Output Overview', 'output-overview');
+            //output-overview
+            $menu->add('Output Overview',
+                ['action' =>
+                    ['\App\Http\Controllers\Affiliate\AffiliateService@outputOverview',
+                        'data_filters_rules_id' => $this->request->data_filters_rules_id,
+                        'data_filters_rules_description' => $this->request->data_filters_rules_description
+                    ]]);
+
         });
 
         return $next($request);

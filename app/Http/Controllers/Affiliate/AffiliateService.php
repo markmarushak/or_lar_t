@@ -267,7 +267,7 @@ class AffiliateService extends Controller
     public function dataFiltersRulesData(Request $request)
     {
 
-        $data = "affiliates / Partners should be here";
+        $data = "dataFiltersRulesData";
 
         $dataFiltersRules = DataFiltersRulesModel::all();
         return view('affiliate/connection',
