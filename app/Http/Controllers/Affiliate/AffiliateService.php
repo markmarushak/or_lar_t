@@ -178,6 +178,8 @@ class AffiliateService extends Controller
         $data = "Connection Data should be here";
 
         $dataFiltersRules = DataFiltersRulesModel::all();
+
+
         return view('affiliate/connection',
                     [
                         'menu' => 'affiliate-service',
@@ -235,10 +237,30 @@ class AffiliateService extends Controller
     public function dataBaseFields(Request $request)
     {
 
-        $data = "dataBaseFields should be here";
+        $data = "DataBaseFields should be here";
 
         $dataFiltersRules = DataFiltersRulesModel::all();
-        return view('affiliate/connection',
+
+
+        $dbName = "weeklyex_wp126";
+        $tableName = "wpau_quform_forms";
+        $dataRemoteDB = DB::connection('garage')->select("SELECT * FROM $dbName.$tableName");
+
+
+
+        //fetch row corresponding data_filters_rules
+        $dataFiltersRuleRow = DB::connection('mysql')->select("SELECT * FROM data_filters_rules WHERE data_filters_rules_id = ?", [1]);
+
+        //Get Description from current data_filters_rules
+        $description = $dataFiltersRuleRow[0]->description;
+
+        $data = array(
+                    'db_name' => $dbName,
+                    'db_table' => $tableName,
+                    'data_fields_number' => 1
+        );
+
+        return view('affiliate/database-fields',
             [
                 'menu' => 'affiliate-service',
                 'dataFiltersRules' => $dataFiltersRules,
@@ -251,16 +273,17 @@ class AffiliateService extends Controller
     public function affiliatesPartners(Request $request)
     {
 
-        $data = "affiliates / Partners should be here";
+        $data = array();
 
         $dataFiltersRules = DataFiltersRulesModel::all();
-        return view('affiliate/connection',
+        return view('affiliate/affiliates-partners',
             [
                 'menu' => 'affiliate-service',
                 'dataFiltersRules' => $dataFiltersRules,
                 'data' => $data
             ]
         );
+
     }
 
 

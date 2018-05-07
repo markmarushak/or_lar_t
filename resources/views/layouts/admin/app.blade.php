@@ -29,34 +29,47 @@ License: You must have a valid license purchased only from themeforest(the above
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
     <script>
         WebFont.load({
-            google: {"families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"]},
-            active: function () {
+            google: {"families":["Poppins:300,400,500,600,700","Roboto:300,400,500,600,700"]},
+            active: function() {
                 sessionStorage.fonts = true;
             }
         });
     </script>
     <!--end::Web font -->
     <!--begin::Base Styles -->
+
+
+
 {!! Html::style('assets/vendors/custom/fullcalendar/fullcalendar.bundle.css') !!}
 {!! Html::style('assets/vendors/base/vendors.bundle.css') !!}
 {!! Html::style('assets/demo/default/base/style.bundle.css') !!}
 @yield('css')
 <!--end::Base Styles -->
-    <link rel="shortcut icon" href="assets/demo/default/media/img/logo/favicon.ico"/>
+    <link rel="shortcut icon" href="/assets/demo/default/media/img/logo/favicon.ico"/>
+
+
 </head>
 <!-- end::Head -->
 <!-- end::Body -->
+
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
 @include('layouts.admin._layout')
 <!--begin::Base Scripts -->
 
+{{--
+{!! Html::script('https://keenthemes.com/metronic/preview/assets/vendors/base/vendors.bundle.js') !!}
+{!! Html::script('https://keenthemes.com/metronic/preview/assets/demo/default/custom/components/datatables/base/data-local.js') !!}
+{!! Html::script('https://keenthemes.com/metronic/preview/assets/demo/default/base/scripts.bundle.js') !!}
+--}}
 
 {!! Html::script('assets/vendors/base/vendors.bundle.js') !!}
 {!! Html::script('assets/demo/default/base/scripts.bundle.js') !!}
 <!--end::Base Scripts -->
 <!--begin::Page Snippets -->
 {!! Html::script('assets/vendors/custom/fullcalendar/fullcalendar.bundle.js') !!}
+{!! Html::script('assets/demo/default/custom/components/datatables/base/data-local.js') !!}
 {!! Html::script('assets/app/js/dashboard.js') !!}
+
 
 <!--end::Page Snippets -->
 </body>

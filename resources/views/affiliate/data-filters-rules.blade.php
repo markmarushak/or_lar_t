@@ -1,24 +1,8 @@
 
 @extends('layouts.admin.app')
 
-@section('content')
 
-    <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
-        <div class="row align-items-center">
-            <div class="col-xl-8 order-2 order-xl-1">
-                <div class="form-group m-form__group row align-items-center">
-                    <div class="col-md-4">
-                        <div class="m-input-icon m-input-icon--left">
-                            <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch">
-                            <span class="m-input-icon__icon m-input-icon__icon--left">
-									<span><i class="la la-search"></i></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+@section('content')
 
     <div class="m_datatable m-datatable m-datatable--default m-datatable--loaded" id="base_responsive_columns" style="">
         <table class="m-datatable__table" style="display: block; min-height: 300px; overflow-x: auto;">
@@ -73,7 +57,8 @@
                     </td>
                     <td data-field="status" class="m-datatable__cell">
                         <span style="overflow: visible; width: 70px;">
-                            {{$row->status}}
+                            <span class="m-badge  m-badge--success m-badge--wide">{{$row->status}}</span>
+
                         </span>
                     </td>
                     <td data-field="country" class="m-datatable__cell">
@@ -98,3 +83,4 @@
     </div>
 
 @endsection
+
