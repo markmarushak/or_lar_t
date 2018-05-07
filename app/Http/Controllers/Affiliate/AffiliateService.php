@@ -293,7 +293,7 @@ class AffiliateService extends Controller
         $data = "dataFiltersRulesData";
 
         $dataFiltersRules = DataFiltersRulesModel::all();
-        return view('affiliate/connection',
+        return view('affiliate/data-filters-rules-data',
             [
                 'menu' => 'affiliate-service',
                 'dataFiltersRules' => $dataFiltersRules,
@@ -309,7 +309,7 @@ class AffiliateService extends Controller
         $data = "outputOverview should be here";
 
         $dataFiltersRules = DataFiltersRulesModel::all();
-        return view('affiliate/connection',
+        return view('affiliate/output-overview',
             [
                 'menu' => 'affiliate-service',
                 'dataFiltersRules' => $dataFiltersRules,
