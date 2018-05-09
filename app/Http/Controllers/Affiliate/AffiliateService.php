@@ -292,6 +292,21 @@ class AffiliateService extends Controller
 
         $data = "dataFiltersRulesData";
 
+        //Connect to remote server in order to receive correspond form output
+        $dbName = "weeklyex_wp126";
+        $tableName = "wpau_quform_entries";
+
+
+        $data = DB::connection('garage_dev')->select("SELECT * FROM weeklyex_wp126.wpau_quform_entries 
+                        INNER JOIN weeklyex_wp126.wpau_quform_entry_data 
+                        ON wpau_quform_entries.id = wpau_quform_entry_data.entry_id
+                        WHERE form_id='1'                      
+                      ");
+
+        //get data_filters_rules_id from get Request
+        $dataFiltersRulesId = $request->data_filters_rules_id;
+        $dataFiltersRulesDescription = $request->data_filters_rules_description;
+
         $dataFiltersRules = DataFiltersRulesModel::all();
         return view('affiliate/data-filters-rules-data',
             [
