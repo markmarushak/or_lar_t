@@ -34,21 +34,21 @@ class GenerateMenus
 
             $menu->add('Connection',
                 ['action' =>
-                    ['\App\Http\Controllers\Affiliate\AffiliateService@connection',
+                    ['\App\Http\Controllers\Affiliate\AffiliateController@connection',
                         'data_filters_rules_id' => $this->request->data_filters_rules_id,
                         'data_filters_rules_description' => $this->request->data_filters_rules_description
                     ]]);
 
             $menu->add('Form Builder',
                 ['action' =>
-                    ['\App\Http\Controllers\Affiliate\AffiliateService@formbuilder',
+                    ['\App\Http\Controllers\Affiliate\AffiliateController@formbuilder',
                         'data_filters_rules_id' => $this->request->data_filters_rules_id,
                         'data_filters_rules_description' => $this->request->data_filters_rules_description
                     ]]);
 
             $menu->add('Database Fields',
                 ['action' =>
-                    ['\App\Http\Controllers\Affiliate\AffiliateService@dataBaseFields',
+                    ['\App\Http\Controllers\Affiliate\AffiliateController@dataBaseFields',
                         'data_filters_rules_id' => $this->request->data_filters_rules_id,
                         'data_filters_rules_description' => $this->request->data_filters_rules_description
                     ]]);
@@ -56,7 +56,7 @@ class GenerateMenus
 
             $menu->add('Affiliates/Partners',
                 ['action' =>
-                    ['\App\Http\Controllers\Affiliate\AffiliateService@affiliatesPartners',
+                    ['\App\Http\Controllers\Affiliate\AffiliateController@affiliatesPartners',
                         'data_filters_rules_id' => $this->request->data_filters_rules_id,
                         'data_filters_rules_description' => $this->request->data_filters_rules_description
                     ]]);
@@ -64,7 +64,7 @@ class GenerateMenus
 
             $menu->add('Data Filters & Rules',
                 ['action' =>
-                    ['\App\Http\Controllers\Affiliate\AffiliateService@dataFiltersRulesData',
+                    ['\App\Http\Controllers\Affiliate\AffiliateController@dataFiltersRulesData',
                         'data_filters_rules_id' => $this->request->data_filters_rules_id,
                         'data_filters_rules_description' => $this->request->data_filters_rules_description
                     ]]);
@@ -72,7 +72,7 @@ class GenerateMenus
             //output-overview
             $menu->add('Output Overview',
                 ['action' =>
-                    ['\App\Http\Controllers\Affiliate\AffiliateService@outputOverview',
+                    ['\App\Http\Controllers\Affiliate\AffiliateController@outputOverview',
                         'data_filters_rules_id' => $this->request->data_filters_rules_id,
                         'data_filters_rules_description' => $this->request->data_filters_rules_description
                     ]]);
