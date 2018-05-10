@@ -27,7 +27,6 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
         Route::get('/affiliate-service', 'AffiliateController@index')->name('affiliate-service');
         Route::get('/compaigns', 'AffiliateController@compaigns')->name('compaigns');
 
-
     //Email BulkSplit
         Route::get('/affiliate-service/email-bulk-split', 'AffiliateController@emailBulkSplit')
             ->name('email-bulk-split');
@@ -37,7 +36,6 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
         Route::get('/affiliate-service/email-bulk-split/data-filters-rules/edit', 'AffiliateController@dataFiltersRules')
             ->name('data-filters-rules');
-
 
     // Data Filters Edit page
         Route::get('/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules_description}', 'AffiliateController@dataFiltersRules')->name('data-filters-rules-edit');
@@ -60,6 +58,5 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
     //outputOverview
         Route::get('/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules_description}/output-overview', 'AffiliateController@outputOverview')->name('output-overview');
-
-    });
+});
 

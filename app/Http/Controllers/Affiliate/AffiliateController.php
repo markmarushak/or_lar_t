@@ -250,8 +250,11 @@ class AffiliateController extends Controller
 
 
         //fetch row corresponding data_filters_rules
-        $id = [1];
+        $id = 1;
+
+
         $dataFiltersRuleRow = $this->affiliateRepository->allGetFiltersRulesById($id);
+
 
         //Get Description from current data_filters_rules
         $description = $dataFiltersRuleRow[0]->description;
