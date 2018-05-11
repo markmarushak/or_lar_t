@@ -72,50 +72,54 @@
                         </tr>
                         </thead>
                         <tbody class="m-datatable__body" style="">
-                        <tr data-row="0" class="m-datatable__row" style="left: 0px;">
-                            <td data-field="RecordID" class="m-datatable__cell--center m-datatable__cell m-datatable__cell--check">
-                                <span style="width: 50px;">
-                                    <label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">
-                                        <input type="checkbox" value="80"><span></span>
-                                    </label>
-                                </span>
-                            </td>
-                            <td data-field="OrderID" class="m-datatable__cell--sorted m-datatable__cell">
-                                <span style="width: 5px;">1</span></td>
-                            <td data-field="ShipName" class="m-datatable__cell">
-                                <span style="width: 150px;">Bergensgarasjen AS</span>
-                            </td>
-                            <td data-field="Currency" class="m-datatable__cell">
-                                <span style="width: 100px;">Norway</span></td>
-                            <td data-field="ShipAddress" class="m-datatable__cell">
-                                <span style="width: 100px;">Partner</span>
-                            </td>
-                            <td data-field="ShipDate" class="m-datatable__cell">
-                                <span style="width: 200px;">zipCode=from 5000 to 5500 - Material=</span>
-                            </td>
-                            <td data-field="Latitude" class="m-datatable__cell">
-                                <span style="width: 100px;">Active</span>
-                            </td>
-                            <td data-field="Status" class="m-datatable__cell">
-                                <span style="width: 100px;">
-                                    <i class="fa fa-filter"></i>
+                            <tr data-row="0" class="m-datatable__row" style="left: 0px;">
+                                <td data-field="RecordID" class="m-datatable__cell--center m-datatable__cell m-datatable__cell--check">
+                                    <span style="width: 50px;">
+                                        <label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">
+                                            <input type="checkbox" value="80"><span></span>
+                                        </label>
+                                    </span>
+                                </td>
+                                <td data-field="OrderID" class="m-datatable__cell--sorted m-datatable__cell">
+                                    <span style="width: 5px;">1</span></td>
+                                <td data-field="ShipName" class="m-datatable__cell">
+                                    <span style="width: 150px;">Bergensgarasjen AS</span>
+                                </td>
+                                <td data-field="Currency" class="m-datatable__cell">
+                                    <span style="width: 100px;">Norway</span></td>
+                                <td data-field="ShipAddress" class="m-datatable__cell">
+                                    <span style="width: 100px;">Partner</span>
+                                </td>
+                                <td data-field="ShipDate" class="m-datatable__cell">
+                                    <span style="width: 200px;">zipCode=from 5000 to 5500 - Material=</span>
+                                </td>
+                                <td data-field="Latitude" class="m-datatable__cell">
+                                    <span style="width: 100px;">Active</span>
+                                </td>
+                                <td data-field="Status" class="m-datatable__cell">
+                                    <span style="width: 100px;">
+                                        <i class="fa fa-filter"></i>
 
-                                </span>
-                            </td>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 
+                    <div class="col-3">
+                        <span class="m-switch m-switch--icon m-switch--success">
+                            <label>
+                                <input type="checkbox" checked="checked" name="">
+                                <span></span>
+                            </label>
+                        </span>
+                    </div>
 
-                        </tr>
-                     </tbody>
-
-                     </table>
 
                 </div>
+            </div>
+
         </div>
-
-
-    </div>
-
-
     </div>
 
 
