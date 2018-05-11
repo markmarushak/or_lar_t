@@ -47,7 +47,7 @@
                                 <span style="width: 100px;">IP</span>
                             </th>
                             <th data-field="FormUrl" class="m-datatable__cell m-datatable__cell--sort">
-                                <span style="width: 200px;">Form Url</span>
+                                <span style="width: 140px;">Form Url</span>
                             </th>
                             <th data-field="PostID" class="m-datatable__cell m-datatable__cell--sort">
                                 <span style="width: 40px;">Post ID</span>
@@ -101,7 +101,7 @@
                                 <span style="width: 100px;">{{$row->ip}}</span>
                             </td>
                             <td data-field="FormUrl" class="m-datatable__cell--sorted m-datatable__cell">
-                                <span style="width: 200px;">{{$row->form_url}}</span>
+                                <span style="width: 140px;">{{$row->form_url}}</span>
                             </td>
                             <td data-field="PostID" class="m-datatable__cell--sorted m-datatable__cell">
 
@@ -114,7 +114,9 @@
                                 </span>
                             </td>
                             <td data-field="CreatedBY" class="m-datatable__cell--sorted m-datatable__cell"
+                                <span style="width: 50px;">
                                 {{$row->created_by}}
+                                </span>
                             </td>
                             <td data-field="CreatedAT" class="m-datatable__cell--sorted m-datatable__cell">
                                 <span style="width: 50px;">{{$row->created_at}}</span>
