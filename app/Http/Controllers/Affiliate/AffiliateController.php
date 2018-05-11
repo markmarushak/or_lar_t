@@ -320,7 +320,11 @@ class AffiliateController extends Controller
     public function outputOverview(Request $request)
     {
 
-        $data = "outputOverview should be here";
+        $data = $this->affiliateRepository->getGarageFormsById();
+
+        //get data_filters_rules_id from get Request
+        $dataFiltersRulesId = $request->data_filters_rules_id;
+        $dataFiltersRulesDescription = $request->data_filters_rules_description;
 
         $dataFiltersRules = DataFiltersRulesModel::all();
         return view('affiliate.output-overview',
@@ -331,5 +335,4 @@ class AffiliateController extends Controller
             ]
         );
     }
-
 }

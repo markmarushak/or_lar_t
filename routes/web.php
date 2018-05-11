@@ -58,5 +58,6 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
     //outputOverview
         Route::get('/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules_description}/output-overview', 'AffiliateController@outputOverview')->name('output-overview');
+
 });
 

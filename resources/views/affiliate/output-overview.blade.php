@@ -20,6 +20,11 @@
         <div class="tab-content">
             <div class="tab-pane active show" id="m_tabs_1_1" role="tabpanel">
 
+                Output Overview
+            <pre>
+                {{print_r($data)}}
+            </pre>
+
                 
             </div>
         </div>
