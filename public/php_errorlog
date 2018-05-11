@@ -1,0 +1,2 @@
+[16-Apr-2018 06:10:51 CST6CDT] PHP Fatal error:  require(): Failed opening required '/home/orbitlea/public_html/admin/bootstrap/../vendor/autoload.php' (include_path='.:/usr/local/php72/pear') in /home/orbitlea/public_html/admin/bootstrap/autoload.php on line 17
+[16-Apr-2018 06:13:03 CST6CDT] PHP Fatal error:  require(): Failed opening required '/home/orbitlea/public_html/admin/bootstrap/../vendor/autoload.php' (include_path='.:/usr/local/php72/pear') in /home/orbitlea/public_html/admin/bootstrap/autoload.php on line 17
