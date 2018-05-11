@@ -42,7 +42,8 @@ License: You must have a valid license purchased only from themeforest(the above
 
 {!! Html::style('assets/vendors/custom/fullcalendar/fullcalendar.bundle.css') !!}
 {!! Html::style('assets/vendors/base/vendors.bundle.css') !!}
-{!! Html::style('assets/demo/default/base/style.bundle.css') !!}
+{!! Html::style('assets/vendors/custom/datatables/datatables.bundle.css') !!}
+{!! Html::style('assets/vendors/custom/datatables/style.bundle.css') !!}
 @yield('css')
 <!--end::Base Styles -->
     <link rel="shortcut icon" href="/assets/demo/default/media/img/logo/favicon.ico"/>
@@ -62,13 +63,20 @@ License: You must have a valid license purchased only from themeforest(the above
 {!! Html::script('https://keenthemes.com/metronic/preview/assets/demo/default/base/scripts.bundle.js') !!}
 --}}
 
+{{--{!! Html::script('assets/demo/default/custom/components/base/util.js') !!}--}}
 {!! Html::script('assets/vendors/base/vendors.bundle.js') !!}
+{!! Html::script('assets/vendors/custom/datatables/datatables.bundle.js') !!}
 {!! Html::script('assets/demo/default/base/scripts.bundle.js') !!}
 <!--end::Base Scripts -->
 <!--begin::Page Snippets -->
+
 {!! Html::script('assets/vendors/custom/fullcalendar/fullcalendar.bundle.js') !!}
-{!! Html::script('assets/demo/default/custom/components/datatables/base/data-local.js') !!}
+
+{!! Html::script('assets/demo/default/custom/components/datatables/base/basic.js') !!}
 {!! Html::script('assets/app/js/dashboard.js') !!}
+
+{!! Html::script('assets/app/js/my.js') !!}
+
 
 
 <!--end::Page Snippets -->

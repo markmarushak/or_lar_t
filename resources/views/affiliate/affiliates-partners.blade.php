@@ -48,7 +48,8 @@
 
                 <div class="m_datatable m-datatable m-datatable--default m-datatable--loaded" id="local_data" style="">
                     <table class="m-datatable__table" style="display: block; min-height: 300px; overflow-x: auto;">
-                        <thead class="m-datatable__head"><tr class="m-datatable__row" style="left: 0px;">
+                        <thead class="m-datatable__head">
+                        <tr class="m-datatable__row" style="left: 0px;">
                             <th data-field="RecordID" class="m-datatable__cell--center m-datatable__cell m-datatable__cell--check">
                                 <span style="width: 50px;">
                                     <label class="m-checkbox m-checkbox--single m-checkbox--all m-checkbox--solid m-checkbox--brand">
