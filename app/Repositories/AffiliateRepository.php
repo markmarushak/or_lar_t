@@ -16,12 +16,16 @@ class AffiliateRepository
        return DB::connection('mysql')->select("SELECT * FROM data_filters_rules WHERE data_filters_rules_id = ?", [$dataFiltersRulesId]);
     }
 
-    public function getGarageFormsById($id = null)
+    public function getGarageFormsEntryById($id = null)
     {
        return DB::connection('garage_dev')->select("SELECT * FROM weeklyex_wp126.wpau_quform_entries 
                         INNER JOIN weeklyex_wp126.wpau_quform_entry_data 
                         ON wpau_quform_entries.id = wpau_quform_entry_data.entry_id
-                        WHERE form_id='1'                      
+                        WHERE form_id='$id'                      
                       ");
     }
+
+
+
+
 }

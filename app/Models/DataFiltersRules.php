@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DataFiltersRulesModel extends Model
+class DataFiltersRules extends Model
 {
 
     /**
@@ -15,6 +15,11 @@ class DataFiltersRulesModel extends Model
     protected $table = 'data_filters_rules';
 
     public $timestamps = false;
+
+    public function settingsDataBase()
+    {
+        return $this->hasOne(SettingDataBase::class);
+    }
 
 
 

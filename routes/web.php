@@ -23,19 +23,21 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 
-    Route::group(['namespace' => 'Affiliate', ], function(){
+    Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service'], function(){
 
-        Route::get('/affiliate-service', 'AffiliateController@index')->name('affiliate-service');
+        Route::get('/', 'AffiliateController@index')->name('affiliate-service');
         Route::get('/compaigns', 'AffiliateController@compaigns')->name('compaigns');
 
     //Email BulkSplit
-        Route::get('/affiliate-service/email-bulk-split', 'AffiliateController@emailBulkSplit')
+        Route::get('/email-bulk-split', 'AffiliateController@emailBulkSplit')
             ->name('email-bulk-split');
 
-        Route::get('/affiliate-service/email-bulk-split/data-filters-rules', 'AffiliateController@dataFiltersRules')
+        Route::get('/email-bulk-split/data-filters-rules', 'AffiliateController@dataFiltersRules')
             ->name('data-filters-rules');
+        //CRUD connection DB
+        Route::resource('/email-bulk-split/data-filters-rules/settings-for-data-base', 'SettingDataBaseController');
 
-        Route::get('/affiliate-service/email-bulk-split/data-filters-rules/edit', 'AffiliateController@dataFiltersRules')
+        Route::get('/email-bulk-split/data-filters-rules/edit', 'AffiliateController@dataFiltersRules')
             ->name('data-filters-rules');
 
 

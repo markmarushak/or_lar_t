@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Affiliate;
 
+use App\Models\SettingDataBase;
 use App\Repositories\AffiliateRepository;
 use App\Services\AffiliateService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\DataFiltersRulesModel;
+use App\Models\DataFiltersRules;
 use App\Models\RemoteDBaccess;
 use App\Plugins\QformLibrary\Quform;
 
@@ -104,14 +105,14 @@ class AffiliateController extends Controller
 
     public function dataFiltersRules(Request $request)
     {
-        $dataFiltersRules = DataFiltersRulesModel::all();
+        $dataFiltersRules = DataFiltersRules::all();
 
         if(!empty($request->data_filters_rules_id)) {
 
             $dataFiltersRulesId = $request->data_filters_rules_id;
             $dataFiltersRuleRow = $this->affiliateRepository->allGetFiltersRulesById($dataFiltersRulesId);
 
-            return view('affiliate/data-filters-rules-edit',
+            return view('affiliate.data-filters-rules-edit',
                             [
                              'menu' => 'affiliate-service',
                              'dataFiltersRuleRow' => $dataFiltersRuleRow[0],
@@ -183,15 +184,14 @@ class AffiliateController extends Controller
 
         $data = "Connection Data should be here";
 
-        $dataFiltersRules = DataFiltersRulesModel::all();
+        $dataFiltersRules = DataFiltersRules::all();
+        $settingsDataBase = SettingDataBase::all();
 
-
-        return view('affiliate.connection',
-                    [
-                        'menu' => 'affiliate-service',
-                        'dataFiltersRules' => $dataFiltersRules,
-                        'data' => $data
-                    ]
+        return view('affiliate.connection', compact(
+            'data',
+            'dataFiltersRules',
+            'settingsDataBase'
+            )
         );
 
     }
@@ -205,7 +205,7 @@ class AffiliateController extends Controller
     public function formBuilder(Request $request)
     {
         //Get All rows from DataFiltersRules table
-        $dataFiltersRules = DataFiltersRulesModel::all();
+        $dataFiltersRules = DataFiltersRules::all();
 
         //get data_filters_rules_id from get Request
         $dataFiltersRulesId = $request->data_filters_rules_id;
@@ -240,7 +240,7 @@ class AffiliateController extends Controller
 
         $data = "DataBaseFields should be here";
 
-        $dataFiltersRules = DataFiltersRulesModel::all();
+        $dataFiltersRules = DataFiltersRules::all();
 
 
         $dbName = "weeklyex_wp126";
@@ -250,7 +250,7 @@ class AffiliateController extends Controller
 
 
         //fetch row corresponding data_filters_rules
-        $id = [1];
+        $id ='1';
         $dataFiltersRuleRow = $this->affiliateRepository->allGetFiltersRulesById($id);
 
         //Get Description from current data_filters_rules
@@ -274,8 +274,7 @@ class AffiliateController extends Controller
 
     public function affiliatesPartners(Request $request)
     {
-
-        $dataFiltersRules = DataFiltersRulesModel::all();
+        $dataFiltersRules = DataFiltersRules::all();
         return view('affiliate.affiliates-partners',
             [
                 'menu' => 'affiliate-service',
@@ -283,7 +282,6 @@ class AffiliateController extends Controller
                 'data' => []
             ]
         );
-
     }
 
 
@@ -297,13 +295,13 @@ class AffiliateController extends Controller
         $tableName = "wpau_quform_entries";
 
 
-        $data = $this->affiliateRepository->getGarageFormsById();
+        $data = $this->affiliateRepository->getGarageFormsEntryById();
 
         //get data_filters_rules_id from get Request
         $dataFiltersRulesId = $request->data_filters_rules_id;
         $dataFiltersRulesDescription = $request->data_filters_rules_description;
 
-        $dataFiltersRules = DataFiltersRulesModel::all();
+        $dataFiltersRules = DataFiltersRules::all();
         return view('affiliate.data-filters-rules-data',
             [
                 'menu' => 'affiliate-service',
@@ -319,7 +317,8 @@ class AffiliateController extends Controller
 
         $data = "outputOverview should be here";
 
-        $dataFiltersRules = DataFiltersRulesModel::all();
+        $dataFiltersRules = DataFiltersRules::all();
+        $data = $this->affiliateRepository->getGarageFormsEntryById('5');
         return view('affiliate.output-overview',
             [
                 'menu' => 'affiliate-service',
