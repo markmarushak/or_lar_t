@@ -25,4 +25,5 @@ class AffiliateRepository
                         WHERE form_id='$id'                      
                       ");
     }
+
 }
