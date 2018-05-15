@@ -25,6 +25,16 @@ class AffiliateRepository
                       ");
     }
 
+    public function getConfigById($id)
+    {
+        return DB::connection('garage_dev')->select("SELECT config FROM weeklyex_wp126.wpau_quform_forms 
+                          WHERE id='$id'                      
+                      ");
+    }
+
+
+
+
 
 
 

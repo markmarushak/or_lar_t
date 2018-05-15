@@ -75,7 +75,7 @@ return [
             'port' => '3306',
             'database' => 'weeklyex_wp126',
             'username' => 'root',
-            'password' => 'root',
+            'password' => 'q',
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',

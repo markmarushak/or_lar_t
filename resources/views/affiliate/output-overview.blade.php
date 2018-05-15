@@ -20,7 +20,12 @@
         <div class="tab-content">
             <div class="tab-pane active show" id="m_tabs_1_1" role="tabpanel">
 
-                
+
+
+                <tr><th><div class="qfb-entry-element-label"></div></th></tr>
+                <tr><td>%s</td></tr>
+
+
             </div>
         </div>
 

@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Plugins\QformLibrary\Quform;
+
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
  */
@@ -21,9 +23,9 @@ class Quform_View
      * @param  string  $template
      * @param  array   $data
      */
-    public function __construct($template, array $data = array())
+    public function __construct( array $data = array())
     {
-        $this->template = $template;
+        //$this->template = $template;
         $this->data = $data;
     }
 
@@ -38,7 +40,7 @@ class Quform_View
 
         ob_start();
 
-        include $this->template;
+        //include $this->template;
 
         return ob_get_clean();
     }

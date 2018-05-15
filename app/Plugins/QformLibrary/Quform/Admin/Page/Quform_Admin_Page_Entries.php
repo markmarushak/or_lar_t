@@ -1,4 +1,9 @@
 <?php
+namespace App\Plugins\QformLibrary\Quform\Admin\Page;
+
+use App\Plugins\QformLibrary\Quform;
+use App\Plugins\QformLibrary\Quform\Admin\Quform_Admin_Page;
+
 
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
