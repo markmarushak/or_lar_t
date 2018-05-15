@@ -38,15 +38,14 @@ class AffiliateRepository
 
     public function findEntry($entryId, $form)
     {
+
         global $wpdb;
         $sql = "SELECT `entries`.*";
         $columns = array();
+
         foreach ($form->getRecursiveIterator() as $element) {
 
                 if (true) {
-                    dd($element);
-
-
 
                     $sql .= ", GROUP_CONCAT(IF (`data`.`element_id` = " . $element->getId() . " , `data`.`value`, NULL)) AS `element_" . $element->getId() . "`";
 
@@ -56,9 +55,9 @@ class AffiliateRepository
         }
 
         $sql .= " FROM `" . 'quform_entries' . "` `entries`
-LEFT JOIN `" . 'quform_entry_data' . "` `data` ON `data`.`entry_id` = `entries`.`id`
-WHERE `entries`.`id` = %d
-GROUP BY `data`.`entry_id`". $entryId;
+                LEFT JOIN `" . 'quform_entry_data' . "` `data` ON `data`.`entry_id` = `entries`.`id`
+                WHERE `entries`.`id` = %d
+                GROUP BY `data`.`entry_id`". $entryId;
 
         $wpdb->query('SET @@GROUP_CONCAT_MAX_LEN = 65535');
 

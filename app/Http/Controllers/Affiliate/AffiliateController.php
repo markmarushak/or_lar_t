@@ -331,9 +331,6 @@ class AffiliateController extends Controller
 
     public function outputOverview(Request $request)
     {
-
-
-
         $options = array();
         $data = "outputOverview should be here";
         $dataFiltersRules = DataFiltersRules::all();
@@ -346,8 +343,6 @@ class AffiliateController extends Controller
         $this->formFactory = new Quform_Form_Factory();
         $form = $this->formFactory->create($config);
 
-
-        dd($config);
 
 
         $data = array(
