@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Affiliate;
 
 use App\Models\SettingDataBase;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Field;
+use App\Plugins\QformLibrary\Quform\Quform_Repository;
+use App\Plugins\QformLibrary\Quform\Quform_View;
 use App\Repositories\AffiliateRepository;
 use App\Services\AffiliateService;
 use Illuminate\Support\Facades\DB;
@@ -17,9 +20,13 @@ use App\Plugins\QformLibrary\Quform\Quform_Form;
 
 use App\Plugins\QformLibrary\Quform\Form\Quform_Form_Factory;
 
+
+
 class AffiliateController extends Controller
 {
 
+
+    protected $data;
     /**
      * @var Quform_Repository
      */
@@ -59,21 +66,28 @@ class AffiliateController extends Controller
      */
     protected $uniqueIds = array();
 
+    protected $view;
 
     protected $affiliateRepository;
     protected $affiliateService;
-
+    protected $quformElementField;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(AffiliateRepository $affiliateRepository, AffiliateService $affiliateService)
+    public function __construct(AffiliateRepository $affiliateRepository,
+                                AffiliateService $affiliateService,
+                                Quform_Repository $repository,
+                                Quform_View $view
+                                )
     {
       //  $this->middleware('auth');
         $this->affiliateRepository = $affiliateRepository;
         $this->affiliateService = $affiliateService;
+        $this->repository = $repository;
+        $this->view =$view;
     }
 
     /**
@@ -168,8 +182,9 @@ class AffiliateController extends Controller
         if ( ! ($form instanceof Quform_Form) || $form->config('trashed')) {
             return;
         }
-        $output = $form->render($options);
 
+
+        $output = $form->render($options);
         return $output;
     }
 
@@ -317,14 +332,32 @@ class AffiliateController extends Controller
     public function outputOverview(Request $request)
     {
 
-        $data = $this->affiliateRepository->getGarageFormsById();
 
-        //get data_filters_rules_id from get Request
-        $dataFiltersRulesId = $request->data_filters_rules_id;
-        $dataFiltersRulesDescription = $request->data_filters_rules_description;
 
+        $options = array();
+        $data = "outputOverview should be here";
         $dataFiltersRules = DataFiltersRules::all();
-        $data = $this->affiliateRepository->getGarageFormsEntryById('5');
+        $data = $this->affiliateRepository->getConfigById('1');
+        $dataFiltersRulesId = $request->data_filters_rules_id;
+        $dataFiltersRuleRow = $this->affiliateRepository->allGetFiltersRulesById($dataFiltersRulesId);
+        $dataRemoteDB = $this->affiliateRepository->allGetGarageForms();
+        $description = $dataFiltersRuleRow[0]->description;
+        $config = $this->config = $this->affiliateService->decryptionConfig($dataRemoteDB[0]->config, $description);
+        $this->formFactory = new Quform_Form_Factory();
+        $form = $this->formFactory->create($config);
+
+
+        dd($config);
+
+
+        $data = array(
+
+            'form' => $form,
+            //'entry' => $entry,
+            'showEmptyFields' => Quform::get($_COOKIE, 'qfb-show-empty-fields') ? true : false,
+        );
+        $data = $this->view->with($data);
+
         return view('affiliate.output-overview',
             [
                 'menu' => 'affiliate-service',
@@ -333,4 +366,18 @@ class AffiliateController extends Controller
             ]
         );
     }
+
+
+    public function with($key, $value = null)
+    {
+
+        if (is_array($key)) {
+            $this->data = array_merge($this->data, $key);
+        } else {
+            $this->data[$key] = $value;
+        }
+        return $this;
+    }
+
+
 }

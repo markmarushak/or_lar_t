@@ -1,4 +1,10 @@
 <?php
+namespace App\Plugins\QformLibrary\Quform\Admin\Page\Entries;
+use App\Plugins\QformLibrary\Quform\Admin\Page\Quform_Admin_Page_Entries;
+use App\Plugins\QformLibrary\Quform\Form\Quform_Form_Factory;
+use App\Plugins\QformLibrary\Quform\Quform_Repository;
+use App\Plugins\QformLibrary\Quform\Quform_ViewFactory;
+
 
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
@@ -22,12 +28,12 @@ class Quform_Admin_Page_Entries_View extends Quform_Admin_Page_Entries
      * @param  Quform_Options       $options
      */
     public function __construct(Quform_ViewFactory $viewFactory, Quform_Repository $repository,
-                                Quform_Form_Factory $formFactory, Quform_Options $options)
+                                Quform_Form_Factory $formFactory)
     {
         parent::__construct($viewFactory, $repository);
 
         $this->formFactory = $formFactory;
-        $this->options = $options;
+
     }
 
     public function init()

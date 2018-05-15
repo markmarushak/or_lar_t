@@ -1,4 +1,10 @@
 <?php
+namespace App\Plugins\QformLibrary\Quform\Admin;
+use App\Plugins\QformLibrary\Quform;
+use App\Plugins\QformLibrary\Quform\Quform_Repository;
+use App\Plugins\QformLibrary\Quform\Quform_View;
+use App\Plugins\QformLibrary\Quform\Quform_ViewFactory;
+
 
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
