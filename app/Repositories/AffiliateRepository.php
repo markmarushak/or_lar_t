@@ -9,10 +9,7 @@ use Illuminate\Support\Facades\DB;
 class AffiliateRepository
 {
 
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/back-end
     public function allGetGarageForms()
     {
        return DB::connection('garage')->select("SELECT * FROM weeklyex_wp126.wpau_quform_forms");
