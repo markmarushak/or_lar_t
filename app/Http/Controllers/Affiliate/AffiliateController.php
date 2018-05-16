@@ -344,24 +344,24 @@ class AffiliateController extends Controller
         $this->formFactory = new Quform_Form_Factory();
         $form = $this->formFactory->create($config);
 
-
-        dd($config);
-
+        $entry = $this->affiliateRepository->findEntry(5, $form);
+        $labels = $this->affiliateRepository->getLabelForAffiliate();
 
         $data = array(
 
             'form' => $form,
-            //'entry' => $entry,
+            'entry' => $entry,
             'showEmptyFields' => Quform::get($_COOKIE, 'qfb-show-empty-fields') ? true : false,
         );
         $data = $this->view->with($data);
 
-        return view('affiliate.output-overview',
-            [
-                'menu' => 'affiliate-service',
-                'dataFiltersRules' => $dataFiltersRules,
-                'data' => $data
-            ]
+        return view('affiliate.output-overview',compact(
+            'entry',
+            'data',
+            'form',
+            'labels'
+            )
+
         );
     }
 

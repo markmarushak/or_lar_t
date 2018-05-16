@@ -101,8 +101,6 @@ class Quform_Form_Factory
 
         $factory = new Quform_Element_Factory();
 
-
-
         // Add form elements
         foreach ($elements as $eConfig) {
 
@@ -133,7 +131,6 @@ class Quform_Form_Factory
                 'id' => 0
             ), $form));
         }
-
         return $form;
     }
 
