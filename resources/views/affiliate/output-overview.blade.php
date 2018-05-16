@@ -26,17 +26,12 @@
                         <h3 class="qfb-entry-heading qfb-settings-heading"><i class="mdi mdi-message"></i></h3>
                         <table class="qfb-entry-table">
 
+                            <?php
+                            for ($i = 0; $i < count($entry); $i++)
+                            echo '<tr><th><div class="qfb-entry-element-label">'.$entry[$i].'</div></th></tr>'.'<tr><td>'.$labels[$i].'</td></tr>';
 
-                            @foreach($entry as $value)
+                                ?>
 
-
-                                @foreach($labels as $label)
-                                    <tr><th><div class="qfb-entry-element-label">{{$value}}</div></th></tr>
-                                    <tr><td>{{$label}}</td></tr>
-                                @endforeach
-                                    @continue
-
-                            @endforeach
 
 
 

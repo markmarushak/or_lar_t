@@ -58,7 +58,7 @@ class AffiliateRepository
 
         $wpdb = 'SET @@GROUP_CONCAT_MAX_LEN = 65535';
 
-          $value = ["Behov:",
+          $value = ["","Behov:",
               "Byggestart", "Gateadresse","Postnummer","Garasje med loft?",
                 "Takkonstruksjon",
              "Lengde på garasjen?",  "Bredde på garasjen?",  "Ditt navn",

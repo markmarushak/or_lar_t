@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Plugins\QformLibrary\Quform\Element;
+use App\Plugins\QformLibrary\Quform;
 
 
 /**
