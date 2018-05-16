@@ -182,8 +182,6 @@ class AffiliateController extends Controller
         if ( ! ($form instanceof Quform_Form) || $form->config('trashed')) {
             return;
         }
-
-
         $output = $form->render($options);
         return $output;
     }
@@ -346,7 +344,7 @@ class AffiliateController extends Controller
 
         $entry = $this->affiliateRepository->findEntry(5, $form);
         $labels = $this->affiliateRepository->getLabelForAffiliate();
-
+            $element = '';
         $data = array(
 
             'form' => $form,
@@ -354,7 +352,7 @@ class AffiliateController extends Controller
             'showEmptyFields' => Quform::get($_COOKIE, 'qfb-show-empty-fields') ? true : false,
         );
         $data = $this->view->with($data);
-
+        $form = $this->form();
         return view('affiliate.output-overview',compact(
             'entry',
             'data',

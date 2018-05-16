@@ -19,27 +19,35 @@
 
         <div class="tab-content">
             <div class="tab-pane active show" id="m_tabs_1_1" role="tabpanel">
+                <div class="qfb-cf qfb-entry-wrap">
                 <div class="qfb-entry-left">
                     <div class="qfb-box">
-                        <div class="qfb-entry-show-empty-wrap"><form><label></label></form></div>
+                        <div class="qfb-entry-show-empty-wrap"><form><label> </label></form></div>
                         <h3 class="qfb-entry-heading qfb-settings-heading"><i class="mdi mdi-message"></i></h3>
                         <table class="qfb-entry-table">
+
+
                             @foreach($entry as $value)
-                                <tr><th><div class="qfb-entry-element-label">{{$value}}</div></th></tr>
+
+
+                                @foreach($labels as $label)
+                                    <tr><th><div class="qfb-entry-element-label">{{$value}}</div></th></tr>
+                                    <tr><td>{{$label}}</td></tr>
+                                @endforeach
+                                    @continue
+
                             @endforeach
-                            @foreach($labels as $label)
-                                <tr><td>{{$label}}</td></tr>
-                            @endforeach
+
+
 
                         </table>
                     </div>
                 </div>
 
 
-
             </div>
         </div>
-
+        </div>
 
     </div>
 
