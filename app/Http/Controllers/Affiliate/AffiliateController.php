@@ -197,6 +197,7 @@ class AffiliateController extends Controller
 
         $data = "Connection Data should be here";
 
+
         $dataFiltersRules = DataFiltersRules::all();
         $settingsDataBase = SettingDataBase::all();
 
