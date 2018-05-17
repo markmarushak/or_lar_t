@@ -4,7 +4,8 @@ namespace App\Repositories;
 
 
 use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Field;
-use App\Quform_Form;
+
+use App\Plugins\QformLibrary\Quform\Quform_Form;
 use Illuminate\Support\Facades\DB;
 
 class AffiliateRepository
@@ -37,7 +38,7 @@ class AffiliateRepository
                       ");
     }
 
-    public function findEntry($entryId, $form)
+    public function findEntry($entryId, Quform_Form $form)
     {
         $array = [];
 
@@ -45,18 +46,14 @@ class AffiliateRepository
         $sql = "SELECT `entries`.*";
         $columns = array();
         foreach ($form->getRecursiveIterator() as $element) {
-                if (true) {
+            if ($element->config('saveToDatabase')) {
+                $sql .= $wpdb->prepare(", GROUP_CONCAT(IF (`data`.`element_id` = %d, `data`.`value`, NULL)) AS `element_%d`", $element->getId(), $element->getId());
 
-                    $sql .= ", GROUP_CONCAT(IF (`data`.`element_id` = " . $element->getId() . " , `data`.`value`, NULL)) AS `element_" . $element->getId() . "`";
+                $columns['element_' . $element->getId()] = $element;
 
-                    $columns['element_' . $element->getId()] = $element;
-                }
-
+            }
         }
 
-
-
-        $wpdb = 'SET @@GROUP_CONCAT_MAX_LEN = 65535';
 
           $value = ["","Behov:",
               "Byggestart", "Gateadresse","Postnummer","Garasje med loft?",
@@ -71,6 +68,8 @@ class AffiliateRepository
 LEFT JOIN `" . 'quform_entry_data' . "` `data` ON `data`.`entry_id` = `entries`.`id`
 WHERE `entries`.`id` = %d
 GROUP BY `data`.`entry_id`". $entryId;
+
+
         return $value ;
     }
 

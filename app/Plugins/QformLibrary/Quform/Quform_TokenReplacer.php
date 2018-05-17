@@ -1,4 +1,7 @@
 <?php
+namespace App\Plugins\QformLibrary\Quform;
+
+use App\Plugins\QformLibrary\Quform;
 
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
@@ -30,9 +33,9 @@ class Quform_TokenReplacer
     /**
      * @param Quform_Options $options
      */
-    public function __construct(Quform_Options $options)
+    public function __construct(Quform_Options $options = null)
     {
-        $this->options = $options;
+        $this->options = new Quform_Options();
     }
 
     /**

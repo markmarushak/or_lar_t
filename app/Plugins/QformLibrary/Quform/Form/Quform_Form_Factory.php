@@ -2,6 +2,7 @@
 
 namespace App\Plugins\QformLibrary\Quform\Form;
 
+use App\Plugins\QformLibrary\Quform\Quform_Confirmation;
 use App\Plugins\QformLibrary\Quform\Quform_Form;
 
 use App\Plugins\QformLibrary\Quform;
@@ -9,6 +10,10 @@ use App\Plugins\QformLibrary\Quform;
 use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Factory;
 
 use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Page;
+use App\Plugins\QformLibrary\Quform\Quform_Notification;
+use App\Plugins\QformLibrary\Quform\Quform_Options;
+use App\Plugins\QformLibrary\Quform\Quform_Session;
+use App\Plugins\QformLibrary\Quform\Quform_TokenReplacer;
 
 
 /**
@@ -45,7 +50,7 @@ class Quform_Form_Factory
     public function __construct(
         Quform_Element_Factory $elementFactory = null,
         Quform_Options $options = null,
-        Quform_Session $session  = null,
+        Quform_Session $session = null,
         Quform_TokenReplacer $tokenReplacer = null
     ) {
         $this->elementFactory = $elementFactory;
@@ -66,12 +71,12 @@ class Quform_Form_Factory
         if ( ! array_key_exists('uniqueId', $config) || ! Quform_Form::isValidUniqueId($config['uniqueId'])) {
             $config['uniqueId'] = Quform_Form::generateUniqueId();
         }
-
-
         $config['id'] = 1;
 
+        $this->options = new Quform_Options();
+        $this->session = new Quform_Session();
+        $this->tokenReplacer = new Quform_TokenReplacer();
         $form = new Quform_Form($config['id'], $config['uniqueId'], $this->session, $this->tokenReplacer, $this->options);
-
 //        $form->setCharset(get_bloginfo('charset'));
         $form->setIsActive($this->getConfigValue($config, 'active'));
 
@@ -80,50 +85,39 @@ class Quform_Form_Factory
         }
 
         // Add notifications
-//        foreach ($this->getConfigValue($config, 'notifications') as $notification) {
-//            $form->addNotification(new Quform_Notification($notification, $form, $this->options));
-//        }
+        foreach ($this->getConfigValue($config, 'notifications') as $notification) {
+            $form->addNotification(new Quform_Notification($notification, $form, $this->options));
+        }
 
         // Add confirmations
-//        foreach ($this->getConfigValue($config, 'confirmations') as $confirmation) {
-//            $form->addConfirmation(new Quform_Confirmation($confirmation, $form));
-//        }
+        foreach ($this->getConfigValue($config, 'confirmations') as $confirmation) {
+            $form->addConfirmation(new Quform_Confirmation($confirmation, $form));
+        }
 
         // Save config parts we need later
         $elements = $this->getConfigValue($config, 'elements');
 
         // Clean up the config & set it on the form
-        //unset($config['notifications'], $config['confirmations'], $config['elements']);
+        unset($config['notifications'], $config['confirmations'], $config['elements']);
 
         $form->setConfig($config);
 
 
 
-        $factory = new Quform_Element_Factory();
+        $this->elementFactory = new Quform_Element_Factory();
 
         // Add form elements
         foreach ($elements as $eConfig) {
-
-
-            $page = $factory->create($eConfig, $form);
-
+            $page = $this->elementFactory->create($eConfig, $form);
             if ($page instanceof Quform_Element_Page) {
                 $form->addPage($page);
             }
-
-
-
         }
-
-
-
 
 
         // Add honeypot element
         $lastPage = $form->getLastPage();
         if ($form->config('honeypot') && ! in_array($form->config('environment'), array('viewEntry', 'editEntry', 'listEntry')) && $lastPage instanceof Quform_Element_Page) {
-
-           $this->elementFactory = new Quform_Element_Factory();
 
             $lastPage->addElement(
                 $this->elementFactory->create(array(

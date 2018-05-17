@@ -29,11 +29,7 @@
                             <?php
                             for ($i = 0; $i < count($entry); $i++)
                             echo '<tr><th><div class="qfb-entry-element-label">'.$entry[$i].'</div></th></tr>'.'<tr><td>'.$labels[$i].'</td></tr>';
-
                                 ?>
-
-
-
 
                         </table>
                     </div>

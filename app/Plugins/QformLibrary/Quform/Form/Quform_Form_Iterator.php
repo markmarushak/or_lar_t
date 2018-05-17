@@ -2,6 +2,8 @@
 
 namespace App\Plugins\QformLibrary\Quform\Form;
 
+use App\Plugins\QformLibrary\Quform\Element\Container\Quform_Element_Container_Iterator;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Container;
 use App\Plugins\QformLibrary\Quform\Quform_Form;
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)

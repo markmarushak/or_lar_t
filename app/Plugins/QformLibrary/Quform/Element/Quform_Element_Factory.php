@@ -8,6 +8,9 @@ use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Page;
 use App\Plugins\QformLibrary\Quform\Quform_Element;
 use App\Plugins\QformLibrary\Quform;
 
+use App\Plugins\QformLibrary\Quform\Quform_Options;
+use App\Plugins\QformLibrary\Quform\Quform_Repository;
+use App\Plugins\QformLibrary\Quform\Quform_Session;
 use App\Plugins\QformLibrary\Quform\Validator\Quform_Validator_InArray;
 use App\Plugins\QformLibrary\Quform\Validator\Quform_Validator_Array;
 
@@ -42,9 +45,13 @@ class Quform_Element_Factory
      */
     public function __construct(Quform_Options $options = null, Quform_Session $session = null, Quform_Repository $repository = null)
     {
-        $this->options = $options;
-        $this->session = $session;
-        $this->repository = $repository;
+
+        $this->options = new Quform_Options();
+        $this->session = new Quform_Session();
+        $this->repository = new Quform_Repository();
+//        $this->options = $options;
+//        $this->session = $session;
+//        $this->repository = $repository;
     }
 
 

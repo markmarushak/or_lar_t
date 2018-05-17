@@ -19,7 +19,7 @@ use App\Plugins\QformLibrary\Quform;
 use App\Plugins\QformLibrary\Quform\Quform_Form;
 
 use App\Plugins\QformLibrary\Quform\Form\Quform_Form_Factory;
-
+use RecursiveIteratorIterator;
 
 
 class AffiliateController extends Controller
@@ -330,7 +330,6 @@ class AffiliateController extends Controller
     public function outputOverview(Request $request)
     {
 
-
         $options = array();
         $data = "outputOverview should be here";
         $dataFiltersRules = DataFiltersRules::all();
@@ -340,12 +339,15 @@ class AffiliateController extends Controller
         $dataRemoteDB = $this->affiliateRepository->allGetGarageForms();
         $description = $dataFiltersRuleRow[0]->description;
         $config = $this->config = $this->affiliateService->decryptionConfig($dataRemoteDB[0]->config, $description);
+
         $this->formFactory = new Quform_Form_Factory();
         $form = $this->formFactory->create($config);
 
+
         $entry = $this->affiliateRepository->findEntry(5, $form);
+
         $labels = $this->affiliateRepository->getLabelForAffiliate();
-            $element = '';
+
         $data = array(
 
             'form' => $form,
@@ -366,7 +368,6 @@ class AffiliateController extends Controller
 
     public function with($key, $value = null)
     {
-
         if (is_array($key)) {
             $this->data = array_merge($this->data, $key);
         } else {

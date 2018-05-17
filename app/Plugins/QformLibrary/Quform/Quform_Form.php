@@ -2,13 +2,14 @@
 
 namespace App\Plugins\QformLibrary\Quform;
 
-use \RecursiveIteratorIterator;
+
 
 use Illuminate\Database\Eloquent\Model;
 use App\Plugins\QformLibrary\Quform;
 use App\Plugins\QformLibrary\Quform\Form\Quform_Form_Iterator;
 use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Page;
 use App\Plugins\QformLibrary\Quform\Quform_Options;
+use RecursiveIteratorIterator;
 
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
@@ -129,14 +130,15 @@ class Quform_Form extends Model
      * @param  Quform_TokenReplacer  $tokenReplacer
      * @param  Quform_Options        $options
      */
-    public function __construct($id, $uniqueId)
-    {
-        $this->setId($id);
-        $this->setUniqueId($uniqueId);
-        //$this->session = $session;
-        /*$this->tokenReplacer = $tokenReplacer;*/
 
-    }
+     public function __construct($id, $uniqueId, Quform_Session $session = null, Quform_TokenReplacer $tokenReplacer = null, Quform_Options $options)
+     {
+         $this->setId($id);
+         $this->setUniqueId($uniqueId);
+         $this->session = $session;
+         $this->tokenReplacer = $tokenReplacer;
+         $this->options = $options;
+     }
 
     /**
      * Set the ID of the form
@@ -2040,10 +2042,11 @@ class Quform_Form extends Model
      */
     public function getRecursiveIterator($mode = RecursiveIteratorIterator::LEAVES_ONLY)
     {
-        return new RecursiveIteratorIterator(
-            new Quform_Form_Iterator($this),
-            $mode
-        );
+        $quformIterator = new Quform_Form_Iterator($this);
+
+        $recursiveIterator = new RecursiveIteratorIterator($quformIterator , $mode);
+
+        return new RecursiveIteratorIterator($quformIterator ,$mode);
     }
 
     /**

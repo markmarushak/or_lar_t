@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Plugins\QformLibrary\Quform;
+
+use App\Plugins\QformLibrary\Quform;
+
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
  */
@@ -66,7 +70,7 @@ class Quform_Session
     {
         global $wpdb;
 
-        return $wpdb->prefix . 'quform_sessions';
+        return 'wpau_quform_sessions';
     }
 
     /**
