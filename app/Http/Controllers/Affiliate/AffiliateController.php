@@ -19,7 +19,7 @@ use App\Plugins\QformLibrary\Quform;
 use App\Plugins\QformLibrary\Quform\Quform_Form;
 
 use App\Plugins\QformLibrary\Quform\Form\Quform_Form_Factory;
-use RecursiveIteratorIterator;
+
 
 
 class AffiliateController extends Controller
@@ -182,6 +182,8 @@ class AffiliateController extends Controller
         if ( ! ($form instanceof Quform_Form) || $form->config('trashed')) {
             return;
         }
+
+
         $output = $form->render($options);
         return $output;
     }
@@ -330,6 +332,7 @@ class AffiliateController extends Controller
     public function outputOverview(Request $request)
     {
 
+
         $options = array();
         $data = "outputOverview should be here";
         $dataFiltersRules = DataFiltersRules::all();
@@ -339,12 +342,19 @@ class AffiliateController extends Controller
         $dataRemoteDB = $this->affiliateRepository->allGetGarageForms();
         $description = $dataFiltersRuleRow[0]->description;
         $config = $this->config = $this->affiliateService->decryptionConfig($dataRemoteDB[0]->config, $description);
-
         $this->formFactory = new Quform_Form_Factory();
         $form = $this->formFactory->create($config);
 
-
         $entry = $this->affiliateRepository->findEntry(5, $form);
+
+        foreach ($entry[0] as $key => $value) {
+            if (preg_match('/element_(\d+)/', $key, $matches)) {
+                $elementId = $matches[1];
+                $form->setValueFromStorage($elementId, $value);
+                unset($entry[$key]);
+            }
+        }
+
 
         $labels = $this->affiliateRepository->getLabelForAffiliate();
 
