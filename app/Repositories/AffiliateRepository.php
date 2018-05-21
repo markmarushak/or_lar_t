@@ -47,8 +47,6 @@ class AffiliateRepository
         $columns = array();
         foreach ($form->getRecursiveIterator() as $element) {
             if ($element->config('saveToDatabase')) {
-                $sql .= $wpdb->prepare(", GROUP_CONCAT(IF (`data`.`element_id` = %d, `data`.`value`, NULL)) AS `element_%d`", $element->getId(), $element->getId());
-
                     $columns['element_' . $element->getId()] = $element;
                 }
 
@@ -89,11 +87,5 @@ GROUP BY `data`.`entry_id`";
             "",  "", "Ja", "Halvvalmet tak", "",  "", "Josip", "98002513","maki.jmaric@gmail.com"
             , ""];
     }
-
-
-
-
-
-
 
 }

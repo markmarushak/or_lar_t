@@ -139,7 +139,7 @@ class Quform_Element_Multiselect extends Quform_Element_Select
      */
     public function setValueFromStorage($value)
     {
-        $this->setValue(is_serialized($value) ? unserialize($value) : $this->getEmptyValue());
+        //$this->setValue(is_serialized($value) ? unserialize($value) : $this->getEmptyValue());
     }
 
     /**

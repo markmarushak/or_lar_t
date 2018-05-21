@@ -168,7 +168,7 @@ class Quform_Element_Name extends Quform_Element_Field implements Quform_Element
      */
     public function setValueFromStorage($value)
     {
-        $this->setValue(is_serialized($value) ? unserialize($value) : $this->getEmptyValue());
+        //$this->setValue(is_serialized($value) ? unserialize($value) : $this->getEmptyValue());
     }
 
     /**

@@ -6,13 +6,9 @@
     <div class="row">
 
         <div class="clearfix"></div>
-
             <div class="col-xl-4">
-                {{--<strong>{!!$dataFiltersRuleRow->description!!} -  Form Frontpage</strong>--}}
             </div>
-
         </div>
-
     <div class="col-xl-12" style="margin-top: 20px;">
         {{--Call Tab Menu--}}
         @include('affiliate.tabs-menu.top-menu')
@@ -25,11 +21,43 @@
                         <div class="qfb-entry-show-empty-wrap"><form><label> </label></form></div>
                         <h3 class="qfb-entry-heading qfb-settings-heading"><i class="mdi mdi-message"></i></h3>
                         <table class="qfb-entry-table">
-
                             <?php
+
+                            use App\Plugins\QformLibrary\Quform;use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Container;use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Field;use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Group;use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Html;foreach ($form->getRecursiveIterator(RecursiveIteratorIterator::SELF_FIRST) as $element) {
+                                if ( ! $element instanceof Quform_Element_Field && ! $element instanceof Quform_Element_Container && ! $element instanceof Quform_Element_Html) {
+
+                                    continue;
+                                }
+
+
+                                if ($element instanceof Quform_Element_Group) {
+
+                                } else if ($element instanceof Quform_Element_Field) {
+                                    if ($element->config('saveToDatabase')) {
+
+                                        $var =$element->getAdminLabel();
+
+                                        echo sprintf('<tr><th><div class="qfb-entry-element-label">%s</div></th></tr>', Quform::escape($element->getAdminLabel()));
+                                        echo sprintf('<tr><td>%s</td></tr>', $element->getValueHtml());
+                                    }
+                                }
+                            }
+                            ?>
+
+
+
+
+
+
+
+
+
+
+
+                           <?php
                             for ($i = 0; $i < count($entry); $i++)
                             echo '<tr><th><div class="qfb-entry-element-label">'.$entry[$i].'</div></th></tr>'.'<tr><td>'.$labels[$i].'</td></tr>';
-                                ?>
+                             ?>
 
                         </table>
                     </div>

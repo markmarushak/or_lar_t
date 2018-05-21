@@ -1091,6 +1091,7 @@ class Quform_Form extends Model
      */
     public function getElement($nameOrId)
     {
+
         return is_numeric($nameOrId) ? $this->getElementById($nameOrId) : $this->getElementByName($nameOrId);
     }
 
@@ -1104,7 +1105,6 @@ class Quform_Form extends Model
     public function setValue($nameOrId, $value)
     {
         $element = $this->getElement($nameOrId);
-
         if ($element instanceof Quform_Element_Field) {
             $element->setValue($value);
         }
@@ -1122,11 +1122,9 @@ class Quform_Form extends Model
     public function setValueFromStorage($nameOrId, $value)
     {
         $element = $this->getElement($nameOrId);
-
         if ($element instanceof Quform_Element_Field) {
             $element->setValueFromStorage($value);
         }
-
         return $this;
     }
 
@@ -1198,6 +1196,7 @@ class Quform_Form extends Model
      */
     public function getElementById($id)
     {
+
         foreach ($this->getRecursiveIterator(RecursiveIteratorIterator::SELF_FIRST) as $element) {
             if ($element->getId() == $id) {
                 return $element;

@@ -19,7 +19,7 @@ use App\Plugins\QformLibrary\Quform;
 use App\Plugins\QformLibrary\Quform\Quform_Form;
 
 use App\Plugins\QformLibrary\Quform\Form\Quform_Form_Factory;
-
+use RecursiveIteratorIterator;
 
 
 class AffiliateController extends Controller
@@ -345,15 +345,37 @@ class AffiliateController extends Controller
         $this->formFactory = new Quform_Form_Factory();
         $form = $this->formFactory->create($config);
 
-        $entry = $this->affiliateRepository->findEntry(5, $form);
 
+        $entry = $this->affiliateRepository->findEntry(5, $form);
         foreach ($entry[0] as $key => $value) {
             if (preg_match('/element_(\d+)/', $key, $matches)) {
                 $elementId = $matches[1];
                 $form->setValueFromStorage($elementId, $value);
                 unset($entry[$key]);
+
             }
         }
+
+    foreach ($form->getRecursiveIterator(RecursiveIteratorIterator::SELF_FIRST) as $element) {
+        if ( ! $element instanceof Quform_Element_Field && ! $element instanceof Quform_Element_Container && ! $element instanceof Quform_Element_Html) {
+
+            continue;
+        }
+
+
+        if ($element instanceof Quform_Element_Group) {
+
+        } else if ($element instanceof Quform_Element_Field) {
+            if ($element->config('saveToDatabase')) {
+
+                $var =$element->getAdminLabel();
+
+                $value = $element->getValueHtml();
+                echo sprintf('<tr><th><div class="qfb-entry-element-label">%s</div></th></tr>', Quform::escape($element->getAdminLabel()));
+                echo sprintf('<tr><td>%s</td></tr>', $element->getValueHtml());
+            }
+        }
+    }
 
 
         $labels = $this->affiliateRepository->getLabelForAffiliate();
@@ -364,8 +386,9 @@ class AffiliateController extends Controller
             'entry' => $entry,
             'showEmptyFields' => Quform::get($_COOKIE, 'qfb-show-empty-fields') ? true : false,
         );
+
+
         $data = $this->view->with($data);
-        $form = $this->form();
         return view('affiliate.output-overview',compact(
             'entry',
             'data',

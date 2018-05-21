@@ -7,6 +7,10 @@ use App\Plugins\QformLibrary\Quform\Quform_Element;
 use App\Plugins\QformLibrary\Quform\Validator\Quform_Validator_Interface;
 
 use App\Plugins\QformLibrary\Quform;
+
+use App\Plugins\Helpers;
+
+
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
  */
@@ -636,7 +640,9 @@ abstract class Quform_Element_Field extends Quform_Element
      */
     public function setValue($value)
     {
+
         $this->value = $this->isValidValue($value) ? $value : $this->getEmptyValue();
+
     }
 
     /**
@@ -693,7 +699,7 @@ abstract class Quform_Element_Field extends Quform_Element
     {
         $value = Quform::escape($this->getValue());
 
-        $value = apply_filters('quform_get_value_html_' . $this->getIdentifier(), $value, $this, $this->getForm());
+        $value = (new \App\Plugins\Helpers)->apply_filters('quform_get_value_html_' . $this->getIdentifier(), $value, $this, $this->getForm());
 
         return $value;
     }
@@ -712,6 +718,42 @@ abstract class Quform_Element_Field extends Quform_Element
 
         return $value;
     }
+
+
+    function apply_filters( $tag, $value ) {
+        global $wp_filter, $wp_current_filter;
+
+        $args = array();
+
+        // Do 'all' actions first.
+        if ( isset($wp_filter['all']) ) {
+            $wp_current_filter[] = $tag;
+            $args = func_get_args();
+            _wp_call_all_hook($args);
+        }
+
+        if ( !isset($wp_filter[$tag]) ) {
+            if ( isset($wp_filter['all']) )
+                array_pop($wp_current_filter);
+            return $value;
+        }
+
+        if ( !isset($wp_filter['all']) )
+            $wp_current_filter[] = $tag;
+
+        if ( empty($args) )
+            $args = func_get_args();
+
+        // don't pass the tag name to WP_Hook
+        array_shift( $args );
+
+        $filtered = $wp_filter[ $tag ]->apply_filters( $value, $args );
+
+        array_pop( $wp_current_filter );
+
+        return $filtered;
+    }
+
 
     /**
      * Get the value for storage in the database

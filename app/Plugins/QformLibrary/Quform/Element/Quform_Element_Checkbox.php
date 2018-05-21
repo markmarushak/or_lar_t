@@ -140,7 +140,7 @@ class Quform_Element_Checkbox extends Quform_Element_Multi implements Quform_Ele
      */
     public function setValueFromStorage($value)
     {
-        $this->setValue(is_serialized($value) ? unserialize($value) : $this->getEmptyValue());
+        //$this->setValue(is_serialized($value) ? unserialize($value) : $this->getEmptyValue());
     }
 
     /**

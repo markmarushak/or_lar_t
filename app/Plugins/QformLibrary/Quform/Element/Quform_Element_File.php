@@ -2,6 +2,9 @@
 
 namespace App\Plugins\QformLibrary\Quform\Element;
 
+use App\Plugins\QformLibrary\Quform;
+use App\Plugins\QformLibrary\Quform\Quform_Attachable;
+
 
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
@@ -224,8 +227,13 @@ class Quform_Element_File extends Quform_Element_Field implements Quform_Attacha
      */
     public function setValueFromStorage($value)
     {
-        $this->setValue(is_serialized($value) ? unserialize($value) : $this->getEmptyValue());
+        //$this->setValue(is_serialized($value) ? unserialize($value) : $this->getEmptyValue());
     }
+
+
+
+
+
 
     /**
      * Get the HTML attributes for the field
