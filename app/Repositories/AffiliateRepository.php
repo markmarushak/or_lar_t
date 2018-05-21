@@ -12,9 +12,18 @@ class AffiliateRepository
 {
 
 
+    protected $garageDB;
+
+    public function __construct()
+    {
+        //Check if it's local domain assign local db credentials
+        $this->garageDB = ($_SERVER['HTTP_HOST'] != 'admin.orbitleads.com')? "garage_dev": "garage";
+
+    }
+
     public function allGetGarageForms()
     {
-       return DB::connection('garage_dev')->select("SELECT * FROM weeklyex_wp126.wpau_quform_forms");
+       return DB::connection($this->garageDB)->select("SELECT * FROM weeklyex_wp126.wpau_quform_forms");
     }
 
     public function allGetFiltersRulesById($dataFiltersRulesId)
@@ -24,7 +33,7 @@ class AffiliateRepository
 
     public function getGarageFormsEntryById($id = null)
     {
-       return DB::connection('garage_dev')->select("SELECT * FROM weeklyex_wp126.wpau_quform_entries 
+       return DB::connection($this->garageDB)->select("SELECT * FROM weeklyex_wp126.wpau_quform_entries 
                         INNER JOIN weeklyex_wp126.wpau_quform_entry_data 
                         ON wpau_quform_entries.id = wpau_quform_entry_data.entry_id
                         WHERE form_id='$id'                      
@@ -33,7 +42,7 @@ class AffiliateRepository
 
     public function getConfigById($id)
     {
-        return DB::connection('garage_dev')->select("SELECT config FROM weeklyex_wp126.wpau_quform_forms 
+        return DB::connection($this->garageDB)->select("SELECT config FROM weeklyex_wp126.wpau_quform_forms 
                           WHERE id='$id'                      
                       ");
     }
@@ -76,7 +85,7 @@ GROUP BY `data`.`entry_id`";
     public function getLabelForAffiliate()
     {
 
-        DB::connection('garage_dev')->select("SELECT * FROM weeklyex_wp126.wpau_quform_entries 
+        DB::connection($this->garageDB)->select("SELECT * FROM weeklyex_wp126.wpau_quform_entries 
                         INNER JOIN weeklyex_wp126.wpau_quform_entry_data 
                         ON wpau_quform_entries.id = wpau_quform_entry_data.entry_id
                         WHERE form_id='id'                      
