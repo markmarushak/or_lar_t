@@ -697,10 +697,9 @@ abstract class Quform_Element_Field extends Quform_Element
      */
     public function getValueHtml()
     {
-        $value = Quform::escape($this->getValue());
+        $value = $this->getValue();
 
-        $value = (new \App\Plugins\Helpers)->apply_filters('quform_get_value_html_' . $this->getIdentifier(), $value, $this, $this->getForm());
-
+        $value = apply_filters('quform_get_value_html_' . $this->getIdentifier(), $value, $this, $this->getForm());
         return $value;
     }
 
@@ -744,7 +743,7 @@ abstract class Quform_Element_Field extends Quform_Element
         if ( empty($args) )
             $args = func_get_args();
 
-        // don't pass the tag name to WP_Hook
+        // don't pass the tag name to class-wp-hook
         array_shift( $args );
 
         $filtered = $wp_filter[ $tag ]->apply_filters( $value, $args );

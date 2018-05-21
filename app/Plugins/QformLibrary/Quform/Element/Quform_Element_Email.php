@@ -30,7 +30,7 @@ class Quform_Element_Email extends Quform_Element_Field implements Quform_Elemen
         $value = '';
 
         if ( ! $this->isEmpty()) {
-            $value = sprintf('<a href="mailto:%1$s">%1$s</a>', Quform::escape($this->getValue()));
+            $value = sprintf('<a href="mailto:%1$s">%1$s</a>', $this->getValue());
         }
 
         $value = apply_filters('quform_get_value_html_' . $this->getIdentifier(), $value, $this, $this->getForm());

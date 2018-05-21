@@ -38,7 +38,7 @@ class Helpers
         if ( empty($args) )
             $args = func_get_args();
 
-        // don't pass the tag name to WP_Hook
+        // don't pass the tag name to class-wp-hook
         array_shift( $args );
 
         $filtered = $wp_filter[ $tag ]->WP_Hook->apply_filters( $value, $args );

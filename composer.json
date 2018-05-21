@@ -19,6 +19,15 @@
         "phpunit/phpunit": "~5.7"
     },
     "autoload": {
+        "files": [
+            "app/Helpers/class-wp-hook.php",
+            "app/Helpers/formatting.php",
+            "app/Helpers/option.php",
+            "app/Helpers/plugin.php",
+            "app/Helpers/kses.php",
+            "app/Helpers/load.php",
+            "app/Helpers/cache.php"
+        ],
         "classmap": [
             "database"
         ],

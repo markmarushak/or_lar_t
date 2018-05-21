@@ -1,10 +1,7 @@
 <?php
 
-
-namespace App\Plugins;
-
 /**
- * Plugin API: WP_Hook class
+ * Plugin API: class-wp-hook class
  *
  * @package WordPress
  * @subpackage Plugin
@@ -19,7 +16,7 @@ namespace App\Plugins;
  * @see Iterator
  * @see ArrayAccess
  */
-final class WP_Hook  {
+final class hook  {
 
     /**
      * Hook callbacks.
@@ -357,24 +354,24 @@ final class WP_Hook  {
     }
 
     /**
-     * Normalizes filters set up before WordPress has initialized to WP_Hook objects.
+     * Normalizes filters set up before WordPress has initialized to class-wp-hook objects.
      *
      * @since 4.7.0
      * @static
      *
      * @param array $filters Filters to normalize.
-     * @return WP_Hook[] Array of normalized filters.
+     * @return hook[] Array of normalized filters.
      */
     public static function build_preinitialized_hooks( $filters ) {
-        /** @var WP_Hook[] $normalized */
+        /** @var hook[] $normalized */
         $normalized = array();
 
         foreach ( $filters as $tag => $callback_groups ) {
-            if ( is_object( $callback_groups ) && $callback_groups instanceof WP_Hook ) {
+            if ( is_object( $callback_groups ) && $callback_groups instanceof hook ) {
                 $normalized[ $tag ] = $callback_groups;
                 continue;
             }
-            $hook = new WP_Hook();
+            $hook = new hook();
 
             // Loop through callback groups.
             foreach ( $callback_groups as $priority => $callbacks ) {

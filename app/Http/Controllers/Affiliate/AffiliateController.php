@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Affiliate;
 
 use App\Models\SettingDataBase;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Container;
 use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Field;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Html;
 use App\Plugins\QformLibrary\Quform\Quform_Repository;
 use App\Plugins\QformLibrary\Quform\Quform_View;
 use App\Repositories\AffiliateRepository;
@@ -331,8 +333,6 @@ class AffiliateController extends Controller
 
     public function outputOverview(Request $request)
     {
-
-
         $options = array();
         $data = "outputOverview should be here";
         $dataFiltersRules = DataFiltersRules::all();
@@ -355,30 +355,14 @@ class AffiliateController extends Controller
 
             }
         }
-
-    foreach ($form->getRecursiveIterator(RecursiveIteratorIterator::SELF_FIRST) as $element) {
-        if ( ! $element instanceof Quform_Element_Field && ! $element instanceof Quform_Element_Container && ! $element instanceof Quform_Element_Html) {
-
-            continue;
-        }
-
-
-        if ($element instanceof Quform_Element_Group) {
-
-        } else if ($element instanceof Quform_Element_Field) {
+        foreach ($form->getRecursiveIterator(RecursiveIteratorIterator::SELF_FIRST) as $element) {
             if ($element->config('saveToDatabase')) {
 
-                $var =$element->getAdminLabel();
-
-                $value = $element->getValueHtml();
-                echo sprintf('<tr><th><div class="qfb-entry-element-label">%s</div></th></tr>', Quform::escape($element->getAdminLabel()));
-                echo sprintf('<tr><td>%s</td></tr>', $element->getValueHtml());
+                $result[0][] = sprintf('<tr><th><div class="qfb-entry-element-label">%s</div></th></tr>', $element->getAdminLabel());
+                $result[1][] = sprintf('<tr><td>%s</td></tr>', $element->getValueHtml());
             }
         }
-    }
-
-
-        $labels = $this->affiliateRepository->getLabelForAffiliate();
+        //  $labels = $this->affiliateRepository->getLabelForAffiliate();
 
         $data = array(
 
@@ -393,7 +377,7 @@ class AffiliateController extends Controller
             'entry',
             'data',
             'form',
-            'labels'
+            'result'
             )
 
         );
