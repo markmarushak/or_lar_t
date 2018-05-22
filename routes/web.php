@@ -28,7 +28,7 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service'], func
     Route::get('/', 'AffiliateController@index')->name('affiliate-service');
     Route::get('/compaigns', 'AffiliateController@compaigns')->name('compaigns');
 
-//Email BulkSplit
+    //Email BulkSplit
     Route::get('/email-bulk-split', 'AffiliateController@emailBulkSplit')
         ->name('email-bulk-split');
 
@@ -41,26 +41,35 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service'], func
         ->name('data-filters-rules');
 
 
-// Data Filters Edit page
-    Route::get('/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules_description}', 'AffiliateController@dataFiltersRules')->name('data-filters-rules-edit');
 
-//connection
-    Route::get('/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules_description}/connection', 'AffiliateController@connection')->name('connection');
 
-//form-builder
-    Route::get('/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules_description}/form-builder', 'AffiliateController@formbuilder')->name('form-builder');
+    Route::group(['prefix' => '/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules_description}'], function (){
 
-//dataBaseFields
-    Route::get('/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules_description}/data-base-fields', 'AffiliateController@dataBaseFields')->name('data-base-fields');
+        // Data Filters Edit page
+        Route::get('', 'AffiliateController@dataFiltersRules')->name('data-filters-rules-edit');
 
-//affiliates-partners
-    Route::get('/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules_description}/affiliates-partners', 'AffiliateController@affiliatesPartners')->name('affiliates-partners');
+        //connection
+        Route::get('/connection', 'AffiliateController@connection')->name('connection');
 
-//data-filters and rules data
-    Route::get('/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules_description}/data-filters-rules-data', 'AffiliateController@dataFiltersRulesData')->name('data-filters-rules-data');
+        //form-builder
+        Route::get('/form-builder', 'AffiliateController@formbuilder')->name('form-builder');
 
-//outputOverview
-    Route::get('/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules_description}/output-overview', 'AffiliateController@outputOverview')->name('output-overview');
+        //dataBaseFields
+        Route::get('/data-base-fields', 'AffiliateController@dataBaseFields')->name('data-base-fields');
 
+        //affiliates-partners
+        Route::get('/affiliates-partners', 'AffiliateController@affiliatesPartners')->name('affiliates-partners');
+
+        //data-filters and rules data
+        Route::get('/data-filters-rules-data', 'AffiliateController@dataFiltersRulesData')->name('data-filters-rules-data');
+
+        //outputOverview
+        Route::get('/output-overview', 'AffiliateController@outputOverview')->name('output-overview');
+
+        //outputOverviews
+        Route::get('/output-overview-single/{single_id}', 'AffiliateController@outputOverviewSingle', function ($single_id){
+
+        })->name('output-overview-single');
+    });
 });
 

@@ -40,6 +40,20 @@ class AffiliateRepository
                       ");
     }
 
+    public function getFormIdFromEntryId($entryId)
+    {
+        $result = DB::connection($this->garageDB)->select("SELECT form_id FROM wpau_quform_entries WHERE `id` = '$entryId'");
+        $formId = $result[0]->form_id;
+        return $formId;
+    }
+
+    public function getQuformFormsById($id)
+    {
+        $result = DB::connection($this->garageDB)->select("SELECT * FROM wpau_quform_forms WHERE id = '$id'");
+        return (array) $result[0];
+    }
+
+
     public function getConfigById($id)
     {
         return DB::connection($this->garageDB)->select("SELECT config FROM weeklyex_wp126.wpau_quform_forms 
@@ -51,50 +65,122 @@ class AffiliateRepository
     {
         $array = [];
 
-        global $wpdb;
         $sql = "SELECT `entries`.*";
         $columns = array();
         foreach ($form->getRecursiveIterator() as $element) {
-            if ($element->config('saveToDatabase')) {
-                    $columns['element_' . $element->getId()] = $element;
+             if ($element->config('saveToDatabase')) {
+                $sql .= ", GROUP_CONCAT(IF (`data`.`element_id` = " . $element->getId() .", `data`.`value`, NULL)) AS `element_" . $element->getId() ."`";
+                $columns['element_' . $element->getId()] = $element;
                 }
+        }
+        $sql .= " FROM `wpau_quform_entries` `entries`
+LEFT JOIN `wpau_quform_entry_data` `data` ON `data`.`entry_id` = `entries`.`id`
+WHERE `entries`.`id` =  ".$entryId."
+GROUP BY `data`.`entry_id`";
 
+
+        $result = DB::connection('garage_dev')->select($sql);
+        return (array) $result[0];
+    }
+
+
+
+
+    //TODO fix limit
+    public function getRecentEntries($count = null)
+    {
+        if (is_numeric($count)) {
+         $sql = "SELECT f.name, e.* FROM wpau_quform_entries e LEFT JOIN wpau_quform_forms f ON e.form_id = f.id ORDER BY e.created_at DESC LIMIT 10";
         }
 
 
+        $result = DB::connection($this->garageDB)->select($sql);
 
-        $wpdb = 'SET @@GROUP_CONCAT_MAX_LEN = 65535';
-
-          $value = ["Behov:",
-              "Byggestart", "Gateadresse","Postnummer","Garasje med loft?",
-                "Takkonstruksjon",
-             "Lengde på garasjen?",  "Bredde på garasjen?",  "Ditt navn",
- "Telefon nummer", "Email address",
- "Utfyllende informasjon"
-            ];
-
-        $sql = "SELECT `entries`.*, GROUP_CONCAT(IF (`data`.`element_id` = 20, `data`.`value`, NULL)) AS `element_20`, GROUP_CONCAT(IF (`data`.`element_id` = 30, `data`.`value`, NULL)) AS `element_30`, GROUP_CONCAT(IF (`data`.`element_id` = 25, `data`.`value`, NULL)) AS `element_25`, GROUP_CONCAT(IF (`data`.`element_id` = 42, `data`.`value`, NULL)) AS `element_42`, GROUP_CONCAT(IF (`data`.`element_id` = 37, `data`.`value`, NULL)) AS `element_37`, GROUP_CONCAT(IF (`data`.`element_id` = 61, `data`.`value`, NULL)) AS `element_61`, GROUP_CONCAT(IF (`data`.`element_id` = 63, `data`.`value`, NULL)) AS `element_63`, GROUP_CONCAT(IF (`data`.`element_id` = 65, `data`.`value`, NULL)) AS `element_65`, GROUP_CONCAT(IF (`data`.`element_id` = 66, `data`.`value`, NULL)) AS `element_66`, GROUP_CONCAT(IF (`data`.`element_id` = 67, `data`.`value`, NULL)) AS `element_67`, GROUP_CONCAT(IF (`data`.`element_id` = 68, `data`.`value`, NULL)) AS `element_68`, GROUP_CONCAT(IF (`data`.`element_id` = 70, `data`.`value`, NULL)) AS `element_70`, GROUP_CONCAT(IF (`data`.`element_id` = 71, `data`.`value`, NULL)) AS `element_71`, GROUP_CONCAT(IF (`data`.`element_id` = 78, `data`.`value`, NULL)) AS `element_78`, GROUP_CONCAT(IF (`data`.`element_id` = 79, `data`.`value`, NULL)) AS `element_79`, GROUP_CONCAT(IF (`data`.`element_id` = 50, `data`.`value`, NULL)) AS `element_50`, GROUP_CONCAT(IF (`data`.`element_id` = 54, `data`.`value`, NULL)) AS `element_54`, GROUP_CONCAT(IF (`data`.`element_id` = 55, `data`.`value`, NULL)) AS `element_55`, GROUP_CONCAT(IF (`data`.`element_id` = 56, `data`.`value`, NULL)) AS `element_56`, GROUP_CONCAT(IF (`data`.`element_id` = 57, `data`.`value`, NULL)) AS `element_57`, GROUP_CONCAT(IF (`data`.`element_id` = 11, `data`.`value`, NULL)) AS `element_11`, GROUP_CONCAT(IF (`data`.`element_id` = 81, `data`.`value`, NULL)) AS `element_81`, GROUP_CONCAT(IF (`data`.`element_id` = 26, `data`.`value`, NULL)) AS `element_26`, GROUP_CONCAT(IF (`data`.`element_id` = 80, `data`.`value`, NULL)) AS `element_80` FROM `wpau_quform_entries` `entries`
-LEFT JOIN `wpau_quform_entry_data` `data` ON `data`.`entry_id` = `entries`.`id`
-WHERE `entries`.`id` = 5
-GROUP BY `data`.`entry_id`";
-
-        return DB::connection('garage_dev')->select($sql);
+        return $result;
     }
 
 
-    public function getLabelForAffiliate()
+
+    /**
+     * Mark the entries with the IDs in the given array as read
+     *
+     * @param   array  $ids  The array of entry IDs
+     * @return  int          The number of affected rows
+     */
+    public function readEntries(array $ids)
     {
+        $ids = $this->prepareIds($ids);
 
-        DB::connection($this->garageDB)->select("SELECT * FROM weeklyex_wp126.wpau_quform_entries 
-                        INNER JOIN weeklyex_wp126.wpau_quform_entry_data 
-                        ON wpau_quform_entries.id = wpau_quform_entry_data.entry_id
-                        WHERE form_id='id'                      
-                      ");
+        if ($ids == '') {
+            return 0;
+        }
+        $sql = "UPDATE wpau_quform_entries SET unread = 0 WHERE id IN '.$ids.'";
 
-
-      return  $label = [ "GARASJE",  "Dobbeltgarasje ink. garasjeport","2018",
-            "",  "", "Ja", "Halvvalmet tak", "",  "", "Josip", "98002513","maki.jmaric@gmail.com"
-            , ""];
+        return DB::connection($this->garageDB)->select($sql);
     }
+
+
+
+    /**
+     * Prepare an array of IDs for use in an IN clause
+     *
+     * @param   array   $ids  The array of IDs
+     * @return  string        The sanitised string for the IN clause
+     */
+    protected function prepareIds(array $ids)
+    {
+        $ids = $this->sanitiseIds($ids);
+        $ids = array_map('esc_sql', $ids);
+        $ids = join(',', $ids);
+
+        return $ids;
+    }
+
+    /**
+     * Sanitise the array of IDs ensuring they are all positive integers
+     *
+     * @param   array   $ids  The array of IDs
+     * @return  array         The array of sanitised IDs
+     */
+    protected function sanitiseIds(array $ids)
+    {
+        $sanitised = array();
+
+        foreach ($ids as $id) {
+            if ( ! is_numeric($id)) {
+                continue;
+            }
+
+            $id = (int) $id;
+
+            if ($id > 0) {
+                $sanitised[] = $id;
+            }
+        }
+
+        $sanitised = array_unique($sanitised);
+
+        return $sanitised;
+    }
+
+
+    /**
+     * Get the entry label data from the given label IDs
+     *
+     * @param   int    $entryId
+     * @return  array
+     */
+    public function getEntryLabels($entryId)
+    {
+        $sql ="SELECT * FROM wpau_quform_entry_labels WHERE `id` IN (SELECT entry_label_id FROM wpau_quform_entry_entry_labels WHERE entry_id =$entryId)";
+
+        $labels = DB::connection($this->garageDB)->select($sql);
+        if ( ! is_array($labels)) {
+            $labels = array();
+        }
+        return $labels;
+    }
+
+
 
 }

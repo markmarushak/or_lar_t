@@ -17,28 +17,34 @@
         {{--Call Tab Menu--}}
         @include('affiliate.tabs-menu.top-menu')
 
-        <div class="tab-content">
-            <div class="tab-pane active show" id="m_tabs_1_1" role="tabpanel">
-                <div class="qfb-cf qfb-entry-wrap">
-                <div class="qfb-entry-left">
-                    <div class="qfb-box">
-                        <div class="qfb-entry-show-empty-wrap"><form><label> </label></form></div>
-                        <h3 class="qfb-entry-heading qfb-settings-heading"><i class="mdi mdi-message"></i></h3>
-                        <table class="qfb-entry-table">
-                            @if (is_array($result))
-                                @for ($i = 0; $i < count($result[0]); $i++)
-                                    {!!  $result[0][$i] !!}
-                                    {!! $result[1][$i] !!}
-                                @endfor
-                            @endif
+        <div class="qfb-db-col">
 
-                        </table>
-                    </div>
+            <div class="qfb-box">
+                <div class="qfb-cf">
+                    <h3 class="qfb-box-heading qfb-db-heading">
+                        <i class="mdi mdi-chat"></i>
+                        Recent entries
+                    </h3>
                 </div>
-
-
+                <div class="qfb-content qfb-form-switcher qfb-db-entry-list">
+                    <ul class="qfb-nav-menu qfb-cf">
+                        <?php foreach ($recentEntries as $recentEntry) : ?>
+                        <li class="qfb-cf<?php echo $recentEntry['unread'] == '1' ? ' qfb-unread' : ''; ?>">
+                            <a href="{{route('output-overview-single', ['single_id' => $recentEntry['id'], 'data_filters_rules_id' => $dataFiltersRulesId, 'data_filters_rules_description'=> $dataFiltersRulesDescription ])}}">
+                                <?php if ($recentEntry['unread'] == '1') : ?>
+                                <i class="fa fa-envelope"></i>
+                                <?php else : ?>
+                                <i class="fa fa-envelope-open-o"></i>
+                                <?php endif; ?>
+                                <span class="qfb-db-entry-list-date"><?php echo $recentEntry['created_at']?></span>
+                                <span class="qfb-db-entry-list-form-name"><?php echo $recentEntry['name']?></span>
+                            </a>
+                        </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
             </div>
-        </div>
+
         </div>
 
     </div>
