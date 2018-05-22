@@ -121,12 +121,14 @@ class AffiliateController extends Controller
 
     public function dataFiltersRules(Request $request)
     {
+
         $dataFiltersRules = DataFiltersRules::all();
 
         if(!empty($request->data_filters_rules_id)) {
 
             $dataFiltersRulesId = $request->data_filters_rules_id;
             $dataFiltersRuleRow = $this->affiliateRepository->allGetFiltersRulesById($dataFiltersRulesId);
+
 
             return view('affiliate.data-filters-rules-edit',
                             [
@@ -222,6 +224,7 @@ class AffiliateController extends Controller
      */
     public function formBuilder(Request $request)
     {
+
         //Get All rows from DataFiltersRules table
         $dataFiltersRules = DataFiltersRules::all();
 
@@ -314,13 +317,14 @@ class AffiliateController extends Controller
         $tableName = "wpau_quform_entries";
 
 
-        $data = $this->affiliateRepository->getGarageFormsEntryById();
+        $data = $this->affiliateRepository->getGarageFormsEntryById(1);
 
         //get data_filters_rules_id from get Request
         $dataFiltersRulesId = $request->data_filters_rules_id;
         $dataFiltersRulesDescription = $request->data_filters_rules_description;
 
         $dataFiltersRules = DataFiltersRules::all();
+
         return view('affiliate.data-filters-rules-data',
             [
                 'menu' => 'affiliate-service',
@@ -333,6 +337,7 @@ class AffiliateController extends Controller
 
     public function outputOverview(Request $request)
     {
+
         $options = array();
         $data = "outputOverview should be here";
         $dataFiltersRules = DataFiltersRules::all();

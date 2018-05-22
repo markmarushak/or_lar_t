@@ -196,7 +196,7 @@ class Quform
      */
     public static function escape($value, $flags = ENT_QUOTES)
     {
-
+            return $value;
         $value = wp_check_invalid_utf8($value);
 
         return _wp_specialchars($value, $flags, false, true);
