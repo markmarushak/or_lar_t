@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\DB;
 class AffiliateRepository
 {
 
-
     protected $garageDB;
 
     public function __construct()
@@ -79,7 +78,7 @@ WHERE `entries`.`id` =  ".$entryId."
 GROUP BY `data`.`entry_id`";
 
 
-        $result = DB::connection('garage_dev')->select($sql);
+        $result = DB::connection($this->garageDB)->select($sql);
         return (array) $result[0];
     }
 
