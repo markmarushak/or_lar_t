@@ -87,4 +87,12 @@ Breadcrumbs::register('output-overview', function($breadcrumbs) {
     $breadcrumbs->push('Output Overview', route('output-overview', ['data_filters_rules_id', 'data_filters_rules_description']));
 });
 
+
+//output-overview-single
+Breadcrumbs::register('output-overview-single', function($breadcrumbs, $nameEntry ) {
+
+    $breadcrumbs->parent('output-overview');
+    $breadcrumbs->push($nameEntry ,route('output-overview-single', ['data_filters_rules_id', 'data_filters_rules_description', 'single_id']));
+});
+
 ?>

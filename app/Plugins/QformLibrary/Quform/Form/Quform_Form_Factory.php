@@ -71,15 +71,15 @@ class Quform_Form_Factory
         if ( ! array_key_exists('uniqueId', $config) || ! Quform_Form::isValidUniqueId($config['uniqueId'])) {
             $config['uniqueId'] = Quform_Form::generateUniqueId();
         }
-        $config['id'] = 1;
 
         $this->options = new Quform_Options();
         $this->session = new Quform_Session();
         $this->tokenReplacer = new Quform_TokenReplacer();
+        $config['id'] = 1;
         $form = new Quform_Form($config['id'], $config['uniqueId'], $this->session, $this->tokenReplacer, $this->options);
-//        $form->setCharset(get_bloginfo('charset'));
-        $form->setIsActive($this->getConfigValue($config, 'active'));
+ //       $form->setCharset(get_bloginfo('charset'));
 
+        $form->setIsActive($this->getConfigValue($config, 'active'));
         if (array_key_exists('dynamicValues', $config)) {
             $form->setDynamicValues($config['dynamicValues']);
         }
@@ -96,13 +96,10 @@ class Quform_Form_Factory
 
         // Save config parts we need later
         $elements = $this->getConfigValue($config, 'elements');
-
         // Clean up the config & set it on the form
         unset($config['notifications'], $config['confirmations'], $config['elements']);
 
         $form->setConfig($config);
-
-
 
         $this->elementFactory = new Quform_Element_Factory();
 
@@ -113,7 +110,6 @@ class Quform_Form_Factory
                 $form->addPage($page);
             }
         }
-
 
         // Add honeypot element
         $lastPage = $form->getLastPage();

@@ -83,13 +83,13 @@ class AffiliateController extends Controller
                                 AffiliateService $affiliateService,
                                 Quform_Repository $repository,
                                 Quform_View $view
-    )
+                                )
     {
-        //  $this->middleware('auth');
+      //  $this->middleware('auth');
         $this->affiliateRepository = $affiliateRepository;
         $this->affiliateService = $affiliateService;
         $this->repository = $repository;
-        $this->view = $view;
+        $this->view =$view;
     }
 
     /**
@@ -124,18 +124,18 @@ class AffiliateController extends Controller
 
         $dataFiltersRules = DataFiltersRules::all();
 
-        if (!empty($request->data_filters_rules_id)) {
+        if(!empty($request->data_filters_rules_id)) {
 
             $dataFiltersRulesId = $request->data_filters_rules_id;
             $dataFiltersRuleRow = $this->affiliateRepository->allGetFiltersRulesById($dataFiltersRulesId);
 
 
             return view('affiliate.data-filters-rules-edit',
-                [
-                    'menu' => 'affiliate-service',
-                    'dataFiltersRuleRow' => $dataFiltersRuleRow[0],
-                    'params' => $request
-                ]
+                            [
+                             'menu' => 'affiliate-service',
+                             'dataFiltersRuleRow' => $dataFiltersRuleRow[0],
+                             'params' => $request
+                            ]
             );
 
         } else {
@@ -151,7 +151,7 @@ class AffiliateController extends Controller
 
         $config = $this->config;
 
-        if (!is_array($config)) {
+        if ( ! is_array($config)) {
             return;
         }
 
@@ -166,7 +166,7 @@ class AffiliateController extends Controller
             $uniqueId = Quform_Form::generateUniqueId();
 
             //while (in_array($uniqueId, $this->uniqueIds) || $this->session->has(sprintf('quform-%s', $uniqueId))) {
-            $uniqueId = Quform_Form::generateUniqueId();
+                $uniqueId = Quform_Form::generateUniqueId();
             //}
         }
 
@@ -183,7 +183,7 @@ class AffiliateController extends Controller
 
         $form = $this->formFactory->create($config);
 
-        if (!($form instanceof Quform_Form) || $form->config('trashed')) {
+        if ( ! ($form instanceof Quform_Form) || $form->config('trashed')) {
             return;
         }
 
@@ -198,7 +198,7 @@ class AffiliateController extends Controller
      *
      * Connection Action
      */
-    public function connection()
+    public function connection(Request $request)
     {
 
         $data = "Connection Data should be here";
@@ -208,9 +208,9 @@ class AffiliateController extends Controller
         $settingsDataBase = SettingDataBase::all();
 
         return view('affiliate.connection', compact(
-                'data',
-                'dataFiltersRules',
-                'settingsDataBase'
+            'data',
+            'dataFiltersRules',
+            'settingsDataBase'
             )
         );
 
@@ -222,88 +222,89 @@ class AffiliateController extends Controller
      *
      *  Action
      */
-        public function formBuilder(Request $request)
-        {
+    public function formBuilder(Request $request)
+    {
 
-            //Get All rows from DataFiltersRules table
-            $dataFiltersRules = DataFiltersRules::all();
+        //Get All rows from DataFiltersRules table
+        $dataFiltersRules = DataFiltersRules::all();
 
-            //get data_filters_rules_id from get Request
-            $dataFiltersRulesId = $request->data_filters_rules_id;
-            //fetch row corresponding data_filters_rules
-            $dataFiltersRuleRow = $this->affiliateRepository->allGetFiltersRulesById($dataFiltersRulesId);
+        //get data_filters_rules_id from get Request
+        $dataFiltersRulesId = $request->data_filters_rules_id;
+        //fetch row corresponding data_filters_rules
+        $dataFiltersRuleRow = $this->affiliateRepository->allGetFiltersRulesById($dataFiltersRulesId);
 
-            //Connect to remote db of garasje-tilbud.no website
-            $dataRemoteDB = $this->affiliateRepository->allGetGarageForms();
+        //Connect to remote db of garasje-tilbud.no website
+        $dataRemoteDB = $this->affiliateRepository->allGetGarageForms();
 
-            //Get Description from current data_filters_rules
-            $description = $dataFiltersRuleRow[0]->description;
+        //Get Description from current data_filters_rules
+        $description = $dataFiltersRuleRow[0]->description;
 
-            //Determine the config for qforms it containes decoded array of form
-            $this->config = $this->affiliateService->decryptionConfig($dataRemoteDB[0]->config, $description);
-            $this->form();
+        //Determine the config for qforms it containes decoded array of form
+        $this->config = $this->affiliateService->decryptionConfig($dataRemoteDB[0]->config, $description);
+        $this->form();
 
-            //send params
-            return view('affiliate.form-builder',
-                [
-                    'menu' => 'affiliate-service',
-                    'dataFiltersRuleRow' => $dataFiltersRuleRow[0],
-                    'garageData' => $dataRemoteDB,
-                    'form' => $this->form(),
-                    'params' => $request
-                ]
-            );
-        }
-
-
-        public function dataBaseFields()
-        {
-
-            $data = "DataBaseFields should be here";
-
-            $dataFiltersRules = DataFiltersRules::all();
+        //send params
+        return view('affiliate.form-builder',
+            [
+                'menu' => 'affiliate-service',
+                'dataFiltersRuleRow' => $dataFiltersRuleRow[0],
+                'garageData' => $dataRemoteDB,
+                'form' => $this->form(),
+                'params' => $request
+            ]
+        );
+    }
 
 
-            $dbName = "weeklyex_wp126";
-            $tableName = "wpau_quform_forms";
-            $dataRemoteDB = $this->affiliateRepository->allGetGarageForms();
+    public function dataBaseFields(Request $request)
+    {
+
+        $data = "DataBaseFields should be here";
+
+        $dataFiltersRules = DataFiltersRules::all();
 
 
-            //fetch row corresponding data_filters_rules
-            $id = '1';
-            $dataFiltersRuleRow = $this->affiliateRepository->allGetFiltersRulesById($id);
-
-            //Get Description from current data_filters_rules
-            $description = $dataFiltersRuleRow[0]->description;
-
-            $data = array(
-                'db_name' => $dbName,
-                'db_table' => $tableName,
-                'data_fields_number' => 1
-            );
-
-            return view('affiliate.database-fields',
-                [
-                    'menu' => 'affiliate-service',
-                    'dataFiltersRules' => $dataFiltersRules,
-                    'data' => $data
-                ]
-            );
-        }
+        $dbName = "weeklyex_wp126";
+        $tableName = "wpau_quform_forms";
+        $dataRemoteDB = $this->affiliateRepository->allGetGarageForms();
 
 
-        public function affiliatesPartners(Request $request)
-        {
-            $dataFiltersRules = DataFiltersRules::all();
-            return view('affiliate.affiliates-partners',
-                [
-                    'menu' => 'affiliate-service',
-                    'dataFiltersRules' => $dataFiltersRules,
-                    'data' => []
-                ]
-            );
 
-        }
+        //fetch row corresponding data_filters_rules
+        $id ='1';
+        $dataFiltersRuleRow = $this->affiliateRepository->allGetFiltersRulesById($id);
+
+        //Get Description from current data_filters_rules
+        $description = $dataFiltersRuleRow[0]->description;
+
+        $data = array(
+                    'db_name' => $dbName,
+                    'db_table' => $tableName,
+                    'data_fields_number' => 1
+        );
+
+        return view('affiliate.database-fields',
+            [
+                'menu' => 'affiliate-service',
+                'dataFiltersRules' => $dataFiltersRules,
+                'data' => $data
+            ]
+        );
+    }
+
+
+    public function affiliatesPartners(Request $request)
+    {
+        $dataFiltersRules = DataFiltersRules::all();
+        return view('affiliate.affiliates-partners',
+            [
+                'menu' => 'affiliate-service',
+                'dataFiltersRules' => $dataFiltersRules,
+                'data' => []
+            ]
+        );
+
+    }
 
 
         public function dataFiltersRulesData(Request $request)
@@ -352,7 +353,7 @@ class AffiliateController extends Controller
 
 
 
-            
+
             $config['environment'] = 'viewEntry';
 
             $dataFiltersRulesId = $request->data_filters_rules_id;
