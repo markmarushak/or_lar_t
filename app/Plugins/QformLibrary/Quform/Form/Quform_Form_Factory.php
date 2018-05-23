@@ -75,7 +75,7 @@ class Quform_Form_Factory
         $this->options = new Quform_Options();
         $this->session = new Quform_Session();
         $this->tokenReplacer = new Quform_TokenReplacer();
-       // $config['id'] = 1;
+        $config['id'] = 1;
         $form = new Quform_Form($config['id'], $config['uniqueId'], $this->session, $this->tokenReplacer, $this->options);
  //       $form->setCharset(get_bloginfo('charset'));
 

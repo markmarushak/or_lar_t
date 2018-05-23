@@ -30,7 +30,7 @@
                     <ul class="qfb-nav-menu qfb-cf">
                         <?php foreach ($recentEntries as $recentEntry) : ?>
                         <li class="qfb-cf<?php echo $recentEntry['unread'] == '1' ? ' qfb-unread' : ''; ?>">
-                            <a href="{{route('output-overview-single', ['single_id' => $recentEntry['id'], 'data_filters_rules_id' => $dataFiltersRulesId, 'data_filters_rules_description'=> $dataFiltersRulesDescription ])}}">
+                            <a href="{{route('output-overview-single', ['single_id' => $recentEntry['id'], 'name' => $recentEntry, 'data_filters_rules_id' => $dataFiltersRulesId, 'data_filters_rules_description'=> $dataFiltersRulesDescription ])}}">
                                 <?php if ($recentEntry['unread'] == '1') : ?>
                                 <i class="fa fa-envelope"></i>
                                 <?php else : ?>

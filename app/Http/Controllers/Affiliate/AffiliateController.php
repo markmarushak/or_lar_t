@@ -334,12 +334,14 @@ class AffiliateController extends Controller
 
         public function outputOverviewSingle(Request $request)
         {
+
             $entryId = $request->single_id;
 
 
             //getConfig
             $formId =$this->affiliateRepository->getFormIdFromEntryId($entryId);
             $row = $this->affiliateRepository->getQuformFormsById($formId);
+
             $config = maybe_unserialize(base64_decode($row['config']));
             if (is_array($config)) {
                 $config = $this->addRowDataToConfig($row, $config);
@@ -396,19 +398,19 @@ class AffiliateController extends Controller
                 'entry' => $entry,
                 'showEmptyFields' => Quform::get($_COOKIE, 'qfb-show-empty-fields') ? true : false,
             );
-
+                $nameEntry =$config['name'];
 
             $data = $this->view->with($data);
             return view('affiliate.output-overview-single', compact(
                     'entry',
                     'data',
                     'form',
-                    'result'
+                    'result',
+                    'nameEntry'
                 )
             );
 
         }
-
 
 
         public function outputOverview(Request $request)
@@ -424,6 +426,7 @@ class AffiliateController extends Controller
                     $unreadCount++;
                 }
             }
+
             $dataFiltersRulesId = $request->data_filters_rules_id;
             $dataFiltersRulesDescription = $request->data_filters_rules_description;
             return view('affiliate.output-overview', ['menu' => 'affiliate-service',

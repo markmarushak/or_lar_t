@@ -5,17 +5,19 @@
 		<?php $nameRoute = \Request::route()->getName(); ?>
 
 		<!--Must be dynamic changed -->
+
 			@if('data-filters-rules-edit' == $nameRoute)
-				{{--if parameter passed--}}
+				if parameter passed
 				{!! Breadcrumbs::render($nameRoute, $params->description) !!}
+
+			@elseif('output-overview-single' == $nameRoute)
+				{!! Breadcrumbs::render($nameRoute, $nameEntry) !!}
 			@else
-			{!! Breadcrumbs::render($nameRoute) !!}
+				{!! Breadcrumbs::render($nameRoute) !!}
 			@endif
 
 
 		</div>
-
-
 		<div>
 			<span class="m-subheader__daterange" id="m_dashboard_daterangepicker">
 				<span class="m-subheader__daterange-label">
