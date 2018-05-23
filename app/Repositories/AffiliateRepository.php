@@ -8,6 +8,8 @@ use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Field;
 use App\Plugins\QformLibrary\Quform\Quform_Form;
 use Illuminate\Support\Facades\DB;
 
+use App\Models\wpdb;
+
 class AffiliateRepository
 {
 
@@ -19,6 +21,9 @@ class AffiliateRepository
         $this->garageDB = ($_SERVER['HTTP_HOST'] != 'admin.orbitleads.com')? "garage_dev": "garage";
 
     }
+
+
+
 
     public function allGetGarageForms()
     {
@@ -178,6 +183,64 @@ GROUP BY `data`.`entry_id`";
             $labels = array();
         }
         return $labels;
+    }
+
+
+    /**
+     * Get form rows, including counts of read and unread entries
+     *
+     * @param   array  $args  The query args
+     * @return  array
+     */
+    public function getForms(array $args = array())
+    {
+
+        global $wpdb;
+        $wpdb = new wpdb( 'root', 'q', 'weeklyex_wp126', 'localhost' );
+
+
+            $args = wp_parse_args($args, array(
+            'active' => null,
+            'orderby' => 'updated_at',
+            'order' => 'DESC',
+            'trashed' => false,
+            'offset' => 0,
+            'limit' => 20,
+            'search' => ''
+        ));
+
+        $sql = "SELECT SQL_CALC_FOUND_ROWS f.id, f.name, f.active, f.trashed, f.updated_at,
+                COALESCE(e.cnt, 0) AS entries,
+                COALESCE(u.cnt, 0) AS unread
+                FROM wpau_quform_forms f
+                LEFT JOIN ( SELECT form_id, COUNT(*) AS cnt FROM wpau_quform_entries GROUP BY form_id ) e
+                ON f.id = e.form_id
+                LEFT JOIN ( SELECT form_id, COUNT(*) AS cnt FROM wpau_quform_entries WHERE unread = 1 GROUP BY form_id ) u
+                ON f.id = u.form_id";
+
+        $where = array($wpdb->repare('trashed = %d', $args['trashed'] ? 1 : 0));
+        
+        if ($args['active'] !== null) {
+            $where[] = $wpdb->prepare('active = %d', $args['active'] ? 1 : 0);
+        }
+
+        if (Quform::isNonEmptyString($args['search'])) {
+            $args['search'] = $wpdb->esc_like($args['search']);
+            $where[] = $wpdb->prepare("name LIKE '%s'", '%' . $args['search'] . '%');
+        }
+
+        $sql .= " WHERE " . join(' AND ', $where);
+
+        // Sanitise order/limit
+        $args['orderby'] = in_array($args['orderby'], array('id', 'name', 'entries', 'active', 'created_at', 'updated_at')) ? $args['orderby'] : 'updated_at';
+        $args['order'] = strtoupper($args['order']);
+        $args['order'] = in_array($args['order'], array('ASC', 'DESC')) ? $args['order'] : 'DESC';
+        $args['limit'] = (int) $args['limit'];
+        $args['offset'] = (int) $args['offset'];
+
+        $sql .= " ORDER BY `{$args['orderby']}` {$args['order']} LIMIT {$args['limit']} OFFSET {$args['offset']}";
+
+        return $wpdb->get_results($sql, ARRAY_A);
     }
 
 
