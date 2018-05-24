@@ -224,10 +224,7 @@ class AffiliateController extends Controller
      */
         public function formBuilder(Request $request)
         {
-
-            $this->affiliateRepository->getForms(array('limit' => 9));
-
-
+           // $this->affiliateRepository->getForms(array('limit' => 9));
 
             //Get All rows from DataFiltersRules table
             $dataFiltersRules = DataFiltersRules::all();

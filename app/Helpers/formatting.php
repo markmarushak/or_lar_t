@@ -3774,6 +3774,7 @@ function _deep_replace( $search, $subject ) {
  * @return string|array Escaped data
  */
 function esc_sql( $data ) {
+
 	global $wpdb;
 	return $wpdb->_escape( $data );
 }

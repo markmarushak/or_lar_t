@@ -118,7 +118,7 @@ GROUP BY `data`.`entry_id`";
         if ($ids == '') {
             return 0;
         }
-        $sql = "UPDATE wpau_quform_entries SET unread = 0 WHERE id IN '.$ids.'";
+        $sql = "UPDATE wpau_quform_entries SET unread = 0 WHERE id IN ($ids)";
 
         return DB::connection($this->garageDB)->select($sql);
     }
@@ -133,9 +133,11 @@ GROUP BY `data`.`entry_id`";
      */
     protected function prepareIds(array $ids)
     {
+
         $ids = $this->sanitiseIds($ids);
-        $ids = array_map('esc_sql', $ids);
-        $ids = join(',', $ids);
+        $ids = (int) implode('', $ids);
+        //$ids = array_map('esc_sql', $ids);
+       // $ids = join(',', $ids);
 
         return $ids;
     }
@@ -207,7 +209,8 @@ GROUP BY `data`.`entry_id`";
             'offset' => 0,
             'limit' => 20,
             'search' => ''
-        ));
+            ));
+            
 
         $sql = "SELECT SQL_CALC_FOUND_ROWS f.id, f.name, f.active, f.trashed, f.updated_at,
                 COALESCE(e.cnt, 0) AS entries,
@@ -219,7 +222,7 @@ GROUP BY `data`.`entry_id`";
                 ON f.id = u.form_id";
 
         $where = array($wpdb->repare('trashed = %d', $args['trashed'] ? 1 : 0));
-        
+
         if ($args['active'] !== null) {
             $where[] = $wpdb->prepare('active = %d', $args['active'] ? 1 : 0);
         }
