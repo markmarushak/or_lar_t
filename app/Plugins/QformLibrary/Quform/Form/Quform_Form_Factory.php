@@ -100,7 +100,6 @@ class Quform_Form_Factory
         unset($config['notifications'], $config['confirmations'], $config['elements']);
 
         $form->setConfig($config);
-
         $this->elementFactory = new Quform_Element_Factory();
 
         // Add form elements

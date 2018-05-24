@@ -1,0 +1,19 @@
+.btn-no-underline {
+    text-align: center;
+}
+.btn-no-underline:hover {
+    text-decoration: none;
+}
+.btn-no-underline:focus {
+    text-decoration: none;
+    outline: none;
+}
+.btn-no-underline:active {
+    text-decoration: none;
+}
+.cancel-padding-left {
+    padding-left: 0;
+}
+.cancel-margin-bottom {
+    margin-bottom: 0;
+}

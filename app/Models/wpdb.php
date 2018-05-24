@@ -1228,7 +1228,7 @@ class wpdb {
 	 * @return string|void Sanitized query string, if there is a query to prepare.
 	 */
 	public function prepare( $query, $args ) {
-        dd($args);
+
 		if ( is_null( $query ) ) {
 			return;
 		}

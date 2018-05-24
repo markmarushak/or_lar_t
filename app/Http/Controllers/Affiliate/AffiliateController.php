@@ -203,7 +203,6 @@ class AffiliateController extends Controller
 
         $data = "Connection Data should be here";
 
-
         $dataFiltersRules = DataFiltersRules::all();
         $settingsDataBase = SettingDataBase::all();
 
@@ -224,7 +223,7 @@ class AffiliateController extends Controller
      */
         public function formBuilder(Request $request)
         {
-           // $this->affiliateRepository->getForms(array('limit' => 9));
+            //$this->affiliateRepository->getForms(array('limit' => 9));
 
             //Get All rows from DataFiltersRules table
             $dataFiltersRules = DataFiltersRules::all();
@@ -315,7 +314,6 @@ class AffiliateController extends Controller
             $dbName = "weeklyex_wp126";
             $tableName = "wpau_quform_entries";
 
-
             $data = $this->affiliateRepository->getGarageFormsEntryById(1);
 
             //get data_filters_rules_id from get Request
@@ -337,7 +335,6 @@ class AffiliateController extends Controller
         {
 
             $entryId = $request->single_id;
-
 
             //getConfig
             $formId =$this->affiliateRepository->getFormIdFromEntryId($entryId);

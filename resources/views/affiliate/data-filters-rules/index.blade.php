@@ -1,6 +1,4 @@
 @extends('layouts.admin.app')
-
-
 @section('content')
 
 
@@ -81,8 +79,12 @@
 
                 </tbody>
             </table>
+            {{--<input type="submit" class="form-control m-input btn-primary text-white" value="Submit">--}}
+            <div class="form-group m-form__group row">
+                <div class="offset-10 col-lg-2 col-md-9 col-sm-12">
+                    <a href="{{route('data-filters-rules-add')}}" class="form-control m-input btn-primary text-white btn-no-underline">Add</a>
+                </div>
+            </div>
         </div>
     </div>
-
 @endsection
-

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class DataFiltersRules extends Model
 {
 
+
+
     /**
      * The table associated with the model.
      *

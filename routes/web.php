@@ -32,13 +32,19 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service'], func
     Route::get('/email-bulk-split', 'AffiliateController@emailBulkSplit')
         ->name('email-bulk-split');
 
-    Route::get('/email-bulk-split/data-filters-rules', 'AffiliateController@dataFiltersRules')
-        ->name('data-filters-rules');
+    //data filters rules
+    Route::get('/email-bulk-split/data-filters-rules', 'dataFiltersRulesController@index')->name('data-filters-rules');
+
+    Route::get('/email-bulk-split/data-filters-rules/add', 'dataFiltersRulesController@add')->name('data-filters-rules-add');
+
+    Route::post('/email-bulk-split/data-filters-rules/add', 'dataFiltersRulesController@store')->name('data-filters-rules-store');
+
+
     //CRUD connection DB
     Route::resource('/email-bulk-split/data-filters-rules/settings-for-data-base', 'SettingDataBaseController');
 
-    Route::get('/email-bulk-split/data-filters-rules/edit', 'AffiliateController@dataFiltersRules')
-        ->name('data-filters-rules');
+//    Route::get('/email-bulk-split/data-filters-rules/edit', 'AffiliateController@dataFiltersRules')
+//        ->name('data-filters-rules');
 
 
 

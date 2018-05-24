@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 
+use App\Plugins\QformLibrary\Quform;
 use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Field;
 
 use App\Plugins\QformLibrary\Quform\Quform_Form;
@@ -133,7 +134,7 @@ GROUP BY `data`.`entry_id`";
      */
     protected function prepareIds(array $ids)
     {
-
+        //TODO fix array to string
         $ids = $this->sanitiseIds($ids);
         $ids = (int) implode('', $ids);
         //$ids = array_map('esc_sql', $ids);
@@ -178,6 +179,7 @@ GROUP BY `data`.`entry_id`";
      */
     public function getEntryLabels($entryId)
     {
+
         $sql ="SELECT * FROM wpau_quform_entry_labels WHERE `id` IN (SELECT entry_label_id FROM wpau_quform_entry_entry_labels WHERE entry_id =$entryId)";
 
         $labels = DB::connection($this->garageDB)->select($sql);
@@ -200,7 +202,6 @@ GROUP BY `data`.`entry_id`";
         global $wpdb;
         $wpdb = new wpdb( 'root', 'q', 'weeklyex_wp126', 'localhost' );
 
-
             $args = wp_parse_args($args, array(
             'active' => null,
             'orderby' => 'updated_at',
@@ -210,7 +211,8 @@ GROUP BY `data`.`entry_id`";
             'limit' => 20,
             'search' => ''
             ));
-            
+
+
 
         $sql = "SELECT SQL_CALC_FOUND_ROWS f.id, f.name, f.active, f.trashed, f.updated_at,
                 COALESCE(e.cnt, 0) AS entries,
@@ -221,7 +223,7 @@ GROUP BY `data`.`entry_id`";
                 LEFT JOIN ( SELECT form_id, COUNT(*) AS cnt FROM wpau_quform_entries WHERE unread = 1 GROUP BY form_id ) u
                 ON f.id = u.form_id";
 
-        $where = array($wpdb->repare('trashed = %d', $args['trashed'] ? 1 : 0));
+        $where = array($wpdb->prepare('trashed = %d', $args['trashed'] ? 1 : 0));
 
         if ($args['active'] !== null) {
             $where[] = $wpdb->prepare('active = %d', $args['active'] ? 1 : 0);
