@@ -351,7 +351,6 @@ class AffiliateController extends Controller
             }
             //endFunction
 
-            
             $config['environment'] = 'viewEntry';
 
             $dataFiltersRulesId = $request->data_filters_rules_id;
@@ -421,7 +420,9 @@ class AffiliateController extends Controller
             $recentEntries = json_decode(json_encode($result), true);
             $unreadCount = 0;
             foreach ($recentEntries as $recentEntry) {
+
                 if ($recentEntry['unread'] == '1') {
+
                     $unreadCount++;
                 }
             }
@@ -447,11 +448,6 @@ class AffiliateController extends Controller
             }
             return $this;
         }
-
-
-
-
-
 
 
 
