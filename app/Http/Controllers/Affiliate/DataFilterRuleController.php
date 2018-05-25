@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Affiliate;
 
 use App\Http\Controllers\Controller;
 use App\Models\DataFiltersRules;
+use App\Models\SettingDataBase;
 use App\Repositories\AffiliateRepository;
 use Illuminate\Http\Request;
 
 
-class dataFiltersRulesController extends Controller
+class DataFilterRuleController extends Controller
 {
     private $affiliateRepository;
 
@@ -30,17 +31,16 @@ class dataFiltersRulesController extends Controller
                     'dataFiltersRules' => $dataFiltersRules
                 ]
             );
-
         }
         return view('affiliate.data-filters-rules.index', ['menu' => 'affiliate-service', 'dataFiltersRules' => $dataFiltersRules]);
-
-
     }
+
 
     public function add()
     {
         return view('affiliate.data-filters-rules.add');
     }
+
 
     public function store(Request $request)
     {
@@ -48,10 +48,31 @@ class dataFiltersRulesController extends Controller
             'description' => 'required',
             'category' => 'required',
             'source' => 'required',
-            'type' => 'required',
             'country' => 'required'
         ]);
-        dd(123123);
+        DataFiltersRules::add($request->all());
+        return redirect()->route('data-filters-rules');
+    }
+
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * Connection Action
+     */
+    public function connection()
+    {
+        $settingsDataBase = SettingDataBase::all();
+        return view('affiliate.data-filters-rules.connection', compact(
+                'settingsDataBase'
+            )
+        );
+    }
+
+    public function updateConnectDb(Request $request)
+    {
+        dd($request);
     }
 
 

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class DataFiltersRules extends Model
 {
 
-
+    protected $fillable = ['description', 'category', 'source', 'country', ];
 
     /**
      * The table associated with the model.
@@ -21,6 +21,15 @@ class DataFiltersRules extends Model
     public function settingsDataBase()
     {
         return $this->hasOne(SettingDataBase::class);
+    }
+
+
+    public static function add($fields)
+    {
+        $data = new static;
+        $data->fill($fields);
+        $data->save();
+        return $data;
     }
 
 

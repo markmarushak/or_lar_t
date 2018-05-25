@@ -19,8 +19,6 @@
 
         <div class="tab-content">
             <div class="tab-pane active show" id="m_tabs_1_1" role="tabpanel">
-
-
                 <div class="row m_datatable m-datatable m-datatable--default m-datatable--loaded" id="local_data" style="">
                     <table class="m-datatable__table" style="display: block; min-height: 300px; overflow-x: auto;">
                         <thead class="m-datatable__head">
@@ -136,7 +134,6 @@
                             <td data-field="Value" class="m-datatable__cell--sorted m-datatable__cell">
                                 <span style="width: 50px;">{{$row->value}}</span>
                             </td>
-
                         </tr>
                         @endforeach
                         </tbody>

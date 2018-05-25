@@ -16,6 +16,7 @@ class CreateSettingConnectionDataBases extends Migration
         Schema::create('setting_data_bases', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('data_filters_rules_id');
+            $table->string('domain');
             $table->string('host_name');
             $table->string('host');
             $table->string('port');

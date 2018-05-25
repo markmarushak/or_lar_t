@@ -27,7 +27,6 @@ use RecursiveIteratorIterator;
 class AffiliateController extends Controller
 {
 
-
     protected $data;
     /**
      * @var Quform_Repository
@@ -99,51 +98,21 @@ class AffiliateController extends Controller
      */
     public function index()
     {
-
-
         return view('affiliate.affiliate-service', ['menu' => 'affiliate-service']);
     }
 
 
     public function compaigns()
     {
-
         return view('affiliate.affiliate-service', ['menu' => 'affiliate-service']);
-
     }
 
     public function emailBulkSplit()
     {
-
         return view('affiliate.email-bulk-split', ['menu' => 'affiliate-service']);
     }
 
 
-    public function dataFiltersRules(Request $request)
-    {
-
-        $dataFiltersRules = DataFiltersRules::all();
-
-        if (!empty($request->data_filters_rules_id)) {
-
-            $dataFiltersRulesId = $request->data_filters_rules_id;
-            $dataFiltersRuleRow = $this->affiliateRepository->allGetFiltersRulesById($dataFiltersRulesId);
-
-
-            return view('affiliate.data-filters-rules-edit',
-                [
-                    'menu' => 'affiliate-service',
-                    'dataFiltersRuleRow' => $dataFiltersRuleRow[0],
-                    'params' => $request
-                ]
-            );
-
-        } else {
-
-            return view('affiliate.data-filters-rules', ['menu' => 'affiliate-service', 'dataFiltersRules' => $dataFiltersRules]);
-        }
-
-    }
 
 
     public function form(array $options = array())
@@ -192,28 +161,7 @@ class AffiliateController extends Controller
         return $output;
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     *
-     * Connection Action
-     */
-    public function connection()
-    {
 
-        $data = "Connection Data should be here";
-
-        $dataFiltersRules = DataFiltersRules::all();
-        $settingsDataBase = SettingDataBase::all();
-
-        return view('affiliate.connection', compact(
-                'data',
-                'dataFiltersRules',
-                'settingsDataBase'
-            )
-        );
-
-    }
 
     /**
      * @param Request $request
@@ -348,7 +296,6 @@ class AffiliateController extends Controller
             }
             //endFunction
 
-            
             $config['environment'] = 'viewEntry';
 
             $dataFiltersRulesId = $request->data_filters_rules_id;
@@ -433,8 +380,6 @@ class AffiliateController extends Controller
         }
 
 
-
-
         public function with($key, $value = null)
         {
             if (is_array($key)) {
@@ -446,22 +391,14 @@ class AffiliateController extends Controller
         }
 
 
+        protected function addRowDataToConfig(array $row, array $config)
+        {
+            $config['id'] = (int) $row['id'];
+            $config['name'] = $row['name'];
+            $config['active'] = $row['active'] == 1;
+            $config['trashed'] = $row['trashed'] == 1;
 
+            return $config;
+        }
 
-
-
-
-
-
-
-    protected function addRowDataToConfig(array $row, array $config)
-    {
-        $config['id'] = (int) $row['id'];
-        $config['name'] = $row['name'];
-        $config['active'] = $row['active'] == 1;
-        $config['trashed'] = $row['trashed'] == 1;
-
-        return $config;
-    }
-
-    }
+}

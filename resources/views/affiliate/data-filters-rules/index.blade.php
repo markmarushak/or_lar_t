@@ -60,7 +60,7 @@
 
                         <td>
                             <span style="width: 70px;"><a
-                                        href="{{ route('form-builder', ['data_filters_rules_id' => $row->data_filters_rules_id, 'data_filters_rules_description' => $row->description]) }}">
+                                        href="{{ route('connection', ['data_filters_rules_id' => $row->data_filters_rules_id, 'data_filters_rules_description' => $row->description]) }}">
                                     edit
                                 </a></span>
                         </td>

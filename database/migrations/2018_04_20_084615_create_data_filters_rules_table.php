@@ -15,7 +15,7 @@ class CreateDataFiltersRulesTable extends Migration
     {
         Schema::create('data_filters_rules', function (Blueprint $table) {
             $table->increments('data_filters_rules_id');
-            $table->string('description', 100);
+            $table->string('domain', 100);
             $table->string('category', 100);
             $table->string('source', 100);
             $table->enum('type', ['email']);
