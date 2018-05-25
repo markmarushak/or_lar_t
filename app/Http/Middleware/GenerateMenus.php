@@ -39,6 +39,7 @@ class GenerateMenus
                         'data_filters_rules_description' => $this->request->data_filters_rules_description
                     ]]);
 
+
             $menu->add('Form Builder',
                 ['action' =>
                     ['\App\Http\Controllers\Affiliate\AffiliateController@formbuilder',

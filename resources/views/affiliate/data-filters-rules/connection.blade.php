@@ -22,17 +22,18 @@
                     </div>
                 </div>
             </div>
-            <form action="{{route('connection-update')}}" method="post">
+            @foreach($settingsOfDataBase as $settingOfDataBase)
+                <form action="{{route('connection-update', ['data_filters_rules_id' => $dataFiltersRulesId, 'data_filters_rules_description' => $dataFiltersRulesDescription])}}" method="post">
+
                 <input type="hidden" name="_method" value="PUT">
                 {{ csrf_field() }}
                 @include('errors')
-                @foreach($settingsDataBase as $settingDataBase)
                     <div class="form-group m-form__group row">
                         <label class="col-form-label col-lg-3 col-sm-12">
                             Domain:
                         </label>
                         <div class="col-lg-4 col-md-9 col-sm-12">
-                            <input type="text" class="form-control m-input" value="{{$settingDataBase->domain}}">
+                            <input type="text" name="domain" class="form-control m-input" value="{{$settingOfDataBase->domain}}">
                         </div>
                     </div>
 
@@ -42,7 +43,7 @@
                         </label>
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
-                            <input type="email" class="form-control m-input" value="Form Frontpage">
+                            <input type="text" class="form-control m-input" value="Form Frontpage">
                         </div>
                     </div>
                     <div class="form-group m-form__group row">
@@ -52,7 +53,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="host_name" type="text" class="form-control m-input"
-                                   value="{{$settingDataBase->host_name}}">
+                                   value="{{$settingOfDataBase->host_name}}">
                         </div>
                     </div>
                     <div class="form-group m-form__group row">
@@ -62,7 +63,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="host" type="text" class="form-control m-input"
-                                   value="{{$settingDataBase->host}}">
+                                   value="{{$settingOfDataBase->host}}">
                         </div>
                     </div>
                     <div class="form-group m-form__group row">
@@ -72,7 +73,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="port" type="text" class="form-control m-input"
-                                   value="{{$settingDataBase->port}}">
+                                   value="{{$settingOfDataBase->port}}">
                         </div>
                     </div>
                     <div class="form-group m-form__group row">
@@ -82,7 +83,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="database" type="text" class="form-control m-input"
-                                   value="{{$settingDataBase->database}}">
+                                   value="{{$settingOfDataBase->database}}">
                         </div>
                     </div>
                     <div class="form-group m-form__group row">
@@ -92,7 +93,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="username" type="text" class="form-control m-input"
-                                   value="{{$settingDataBase->username}}">
+                                   value="{{$settingOfDataBase->username}}">
                         </div>
                     </div>
 
@@ -103,7 +104,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="password" type="text" class="form-control m-input"
-                                   value="{{$settingDataBase->password}}">
+                                   value="{{$settingOfDataBase->password}}">
                         </div>
                     </div>
 
@@ -114,7 +115,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="charset" type="text" class="form-control m-input"
-                                   value="{{$settingDataBase->charset}}">
+                                   value="{{$settingOfDataBase->charset}}">
                         </div>
                     </div>
                     <div class="form-group m-form__group row">
@@ -123,11 +124,11 @@
                         </label>
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
-                            <input id="host" type="text" class="form-control m-input"
-                                   value="{{$settingDataBase->collation}}">
+                            <input id="host" name="collation" type="text" class="form-control m-input"
+                                   value="{{$settingOfDataBase->collation}}">
                         </div>
                     </div>
-                @endforeach
+
                 <div class="form-group m-form__group row">
 
                     <div class="offset-10 col-lg-2 col-md-9 col-sm-12">
@@ -136,6 +137,8 @@
                     </div>
                 </div>
             </form>
+            @endforeach
+
         </div>
 
 

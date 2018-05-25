@@ -13,11 +13,11 @@
                 @include('errors')
                 <div class="form-group m-form__group row">
                     <label class="col-form-label col-lg-1 col-sm-12">
-                        Domain:
+                        Description:
                     </label>
                     <div class="col-lg-6 col-md-9 col-sm-12">
-                        <input name="domain" type="text" class="form-control m-input"
-                               value="{{old('domain')}}">
+                        <input name="description" type="text" class="form-control m-input"
+                               value="{{old('description')}}">
                     </div>
                 </div>
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSettingConnectionDataBases extends Migration
+class CreateSettingOfDataBases extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSettingConnectionDataBases extends Migration
      */
     public function up()
     {
-        Schema::create('setting_data_bases', function (Blueprint $table) {
+        Schema::create('setting_of_data_bases', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('data_filters_rules_id');
             $table->string('domain');
@@ -36,6 +36,6 @@ class CreateSettingConnectionDataBases extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('setting_data_bases');
+        Schema::dropIfExists('setting_of_data_bases');
     }
 }

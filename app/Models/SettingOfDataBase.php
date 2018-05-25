@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SettingDataBase extends Model
+class SettingOfDataBase extends Model
 {
     protected $fillable = ['driver', 'host', 'port', 'database', 'username',
         'password', 'charset', 'collation', 'prefix', 'domain'
@@ -14,4 +14,11 @@ class SettingDataBase extends Model
     {
         $this->belongsTo(DataFiltersRules::class);
     }
+
+    public function add($fields)
+    {
+        $this->fill($fields);
+        $this->save();
+    }
+
 }

@@ -20,17 +20,17 @@ class DataFiltersRules extends Model
 
     public function settingsDataBase()
     {
-        return $this->hasOne(SettingDataBase::class);
+        return $this->hasOne(SettingOfDataBase::class);
     }
 
 
-    public static function add($fields)
+    public function add($fields)
     {
-        $data = new static;
-        $data->fill($fields);
-        $data->save();
-        return $data;
+        $this->fill($fields);
+        $this->save();
     }
+
+
 
 
 
