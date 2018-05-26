@@ -22,8 +22,7 @@
                     </div>
                 </div>
             </div>
-            @foreach($settingsOfDataBase as $settingOfDataBase)
-                <form action="{{route('connection-update', ['data_filters_rules_id' => $dataFiltersRulesId, 'data_filters_rules_description' => $dataFiltersRulesDescription])}}" method="post">
+            <form action="{{route('connection-update', ['data_filters_rules_id' => $dataFiltersRulesId, 'data_filters_rules_description' => $dataFiltersRulesDescription, 'id' => isset($settingsOfDataBase['id']) ? $settingsOfDataBase['id'] : null ])}}" method="post">
 
                 <input type="hidden" name="_method" value="PUT">
                 {{ csrf_field() }}
@@ -33,7 +32,7 @@
                             Domain:
                         </label>
                         <div class="col-lg-4 col-md-9 col-sm-12">
-                            <input type="text" name="domain" class="form-control m-input" value="{{$settingOfDataBase->domain}}">
+                            <input type="text" name="domain" class="form-control m-input" value="@if($settingsOfDataBase['domain']) {{$settingsOfDataBase['domain']}} @endif">
                         </div>
                     </div>
 
@@ -53,7 +52,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="host_name" type="text" class="form-control m-input"
-                                   value="{{$settingOfDataBase->host_name}}">
+                                   value="">
                         </div>
                     </div>
                     <div class="form-group m-form__group row">
@@ -63,7 +62,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="host" type="text" class="form-control m-input"
-                                   value="{{$settingOfDataBase->host}}">
+                                   value="">
                         </div>
                     </div>
                     <div class="form-group m-form__group row">
@@ -73,7 +72,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="port" type="text" class="form-control m-input"
-                                   value="{{$settingOfDataBase->port}}">
+                                   value="">
                         </div>
                     </div>
                     <div class="form-group m-form__group row">
@@ -83,7 +82,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="database" type="text" class="form-control m-input"
-                                   value="{{$settingOfDataBase->database}}">
+                                   value="">
                         </div>
                     </div>
                     <div class="form-group m-form__group row">
@@ -93,7 +92,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="username" type="text" class="form-control m-input"
-                                   value="{{$settingOfDataBase->username}}">
+                                   value="">
                         </div>
                     </div>
 
@@ -104,7 +103,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="password" type="text" class="form-control m-input"
-                                   value="{{$settingOfDataBase->password}}">
+                                   value="">
                         </div>
                     </div>
 
@@ -115,7 +114,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="charset" type="text" class="form-control m-input"
-                                   value="{{$settingOfDataBase->charset}}">
+                                   value="">
                         </div>
                     </div>
                     <div class="form-group m-form__group row">
@@ -125,7 +124,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="collation" type="text" class="form-control m-input"
-                                   value="{{$settingOfDataBase->collation}}">
+                                   value="">
                         </div>
                     </div>
 
@@ -137,8 +136,6 @@
                     </div>
                 </div>
             </form>
-            @endforeach
-
         </div>
 
 
