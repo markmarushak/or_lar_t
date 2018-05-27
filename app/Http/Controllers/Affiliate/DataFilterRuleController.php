@@ -93,11 +93,21 @@ class DataFilterRuleController extends Controller
             'collation' => 'required'
         ]);
         if($request->id) {
-            $settingOfDataBase =  $this->settingOfDataBaseModel->findOrFail($request->id);
-            $dataFiltersRules = $this->dataFiltersRulesModel->where('data_filters_rules_id', $data_filters_rules_id)->get();
 
-        $dataFiltersRules[0]->settingDataBase()->create($request->all());
-                
+            $settingOfDataBase =  $this->settingOfDataBaseModel->findOrFail($request->id);
+            $dataFiltersRules = $this->dataFiltersRulesModel
+                ->where('data_filters_rules_id', $data_filters_rules_id)
+                ->with('settingDataBase')
+                ->firstOrFail();
+            if($dataFiltersRules->settingDataBase) {
+                   dd(11);
+            } else {
+                $dataFiltersRules->settingDataBase()->updateOrCreate($request->only('domain', 'host_name', 'host', 'port', 'database', 'username',
+                    'password', 'charset', 'collation'
+                ));
+            }
+
+
             //$settingOfDataBase->edit($request->all(), $dataFiltersRules);
         } else {
             $this->settingOfDataBaseModel->add($request->all());
