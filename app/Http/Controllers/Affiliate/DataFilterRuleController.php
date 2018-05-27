@@ -79,7 +79,7 @@ class DataFilterRuleController extends Controller
         );
     }
 
-    public function updateConnectDb(Request $request, $id = null)
+    public function updateConnectDb(Request $request,  $data_filters_rules_id, $data_filters_rules_description)
     {
         $this->validate($request, [
             'domain' => 'required',
@@ -92,15 +92,17 @@ class DataFilterRuleController extends Controller
             'charset' => 'required',
             'collation' => 'required'
         ]);
+        if($request->id) {
+            $settingOfDataBase =  $this->settingOfDataBaseModel->findOrFail($request->id);
+            $dataFiltersRules = $this->dataFiltersRulesModel->where('data_filters_rules_id', $data_filters_rules_id)->get();
 
-        if($id) {
-            dd($this->dataFiltersRulesModel->findOrFail($id));
-            $this->dataFiltersRulesModel->findOrFail($id);
-            $this->dataFiltersRulesModel->edit($request->all());
+        $dataFiltersRules[0]->settingDataBase()->create($request->all());
+                
+            //$settingOfDataBase->edit($request->all(), $dataFiltersRules);
         } else {
-            $this->dataFiltersRulesModel->add($request->all());
+            $this->settingOfDataBaseModel->add($request->all());
         }
-        return redirect()->route('connection');
+        return redirect()->route('connection', [ 'data_filters_rules_id' => $data_filters_rules_id, 'data_filters_rules_description' => $data_filters_rules_description]);
     }
 
 

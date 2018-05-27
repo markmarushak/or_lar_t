@@ -22,7 +22,8 @@
                     </div>
                 </div>
             </div>
-            <form action="{{route('connection-update', ['data_filters_rules_id' => $dataFiltersRulesId, 'data_filters_rules_description' => $dataFiltersRulesDescription, 'id' => isset($settingsOfDataBase['id']) ? $settingsOfDataBase['id'] : null ])}}" method="post">
+
+            <form action="{{route('connection-update', [  'data_filters_rules_id' => $dataFiltersRulesId, 'data_filters_rules_description' => $dataFiltersRulesDescription, 'id' => !empty($settingsOfDataBase[0]['id']) ? $settingsOfDataBase[0]['id'] : null ])}}" method="post">
 
                 <input type="hidden" name="_method" value="PUT">
                 {{ csrf_field() }}
@@ -32,7 +33,7 @@
                             Domain:
                         </label>
                         <div class="col-lg-4 col-md-9 col-sm-12">
-                            <input type="text" name="domain" class="form-control m-input" value="@if($settingsOfDataBase['domain']) {{$settingsOfDataBase['domain']}} @endif">
+                            <input type="text" name="domain" class="form-control m-input" value="<?php if(!empty($settingsOfDataBase[0]['domain'])) {  echo $settingsOfDataBase[0]['domain']; } ?>">
                         </div>
                     </div>
 
@@ -52,7 +53,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="host_name" type="text" class="form-control m-input"
-                                   value="">
+                                   value="<?php if(!empty($settingsOfDataBase[0]['host_name'])) {  echo $settingsOfDataBase[0]['host_name']; } ?>">
                         </div>
                     </div>
                     <div class="form-group m-form__group row">
@@ -62,7 +63,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="host" type="text" class="form-control m-input"
-                                   value="">
+                                   value="<?php if(!empty($settingsOfDataBase[0]['host'])) {  echo $settingsOfDataBase[0]['host']; } ?>">
                         </div>
                     </div>
                     <div class="form-group m-form__group row">
@@ -72,7 +73,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="port" type="text" class="form-control m-input"
-                                   value="">
+                                   value="<?php if(!empty($settingsOfDataBase[0]['port'])) {  echo $settingsOfDataBase[0]['port']; } ?>">
                         </div>
                     </div>
                     <div class="form-group m-form__group row">
@@ -82,7 +83,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="database" type="text" class="form-control m-input"
-                                   value="">
+                                   value="<?php if(!empty($settingsOfDataBase[0]['database'])) {  echo $settingsOfDataBase[0]['database']; } ?>">
                         </div>
                     </div>
                     <div class="form-group m-form__group row">
@@ -92,7 +93,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="username" type="text" class="form-control m-input"
-                                   value="">
+                                   value="<?php if(!empty($settingsOfDataBase[0]['username'])) {  echo $settingsOfDataBase[0]['username']; } ?>">
                         </div>
                     </div>
 
@@ -103,7 +104,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="password" type="text" class="form-control m-input"
-                                   value="">
+                                   value="<?php if(!empty($settingsOfDataBase[0]['password'])) {  echo $settingsOfDataBase[0]['password']; } ?>">
                         </div>
                     </div>
 
@@ -114,7 +115,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="charset" type="text" class="form-control m-input"
-                                   value="">
+                                   value="<?php if(!empty($settingsOfDataBase[0]['charset'])) {  echo $settingsOfDataBase[0]['charset']; } ?>">
                         </div>
                     </div>
                     <div class="form-group m-form__group row">
@@ -124,7 +125,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="collation" type="text" class="form-control m-input"
-                                   value="">
+                                   value="<?php if(!empty($settingsOfDataBase[0]['collation'])) {  echo $settingsOfDataBase[0]['collation']; } ?>">
                         </div>
                     </div>
 

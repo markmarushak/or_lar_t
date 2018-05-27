@@ -45,7 +45,7 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service'], func
         //connection
         Route::get('/connection', 'DataFilterRuleController@connection')->name('connection');
 
-        Route::any('/connection/update', 'DataFilterRuleController@updateConnectDb')->name('connection-update');
+        Route::put('/connection/update', 'DataFilterRuleController@updateConnectDb')->name('connection-update');
 
 
 
