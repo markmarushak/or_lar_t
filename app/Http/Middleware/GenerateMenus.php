@@ -34,14 +34,15 @@ class GenerateMenus
 
             $menu->add('Connection',
                 ['action' =>
-                    ['\App\Http\Controllers\Affiliate\AffiliateController@connection',
+                    ['\App\Http\Controllers\Affiliate\DataFilterRuleController@connection',
                         'data_filters_rules_id' => $this->request->data_filters_rules_id,
                         'data_filters_rules_description' => $this->request->data_filters_rules_description
                     ]]);
 
+
             $menu->add('Form Builder',
                 ['action' =>
-                    ['\App\Http\Controllers\Affiliate\AffiliateController@formbuilder',
+                    ['\App\Http\Controllers\Affiliate\DataFilterRuleController@formbuilder',
                         'data_filters_rules_id' => $this->request->data_filters_rules_id,
                         'data_filters_rules_description' => $this->request->data_filters_rules_description
                     ]]);

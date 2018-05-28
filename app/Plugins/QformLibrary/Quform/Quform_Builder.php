@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Plugins\QformLibrary\Quform;
+
+use App\Plugins\QformLibrary\Quform\Form\Quform_Form_Factory;
+
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
  */

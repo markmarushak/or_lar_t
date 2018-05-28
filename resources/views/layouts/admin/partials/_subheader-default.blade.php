@@ -6,17 +6,13 @@
 
 		<!--Must be dynamic changed -->
 
-			@if('data-filters-rules-edit' == $nameRoute)
-				if parameter passed
-				{!! Breadcrumbs::render($nameRoute, $params->description) !!}
-
+			@if('data-filters-rules' == $nameRoute)
+				{!! Breadcrumbs::render($nameRoute) !!}
 			@elseif('output-overview-single' == $nameRoute)
 				{!! Breadcrumbs::render($nameRoute, $nameEntry) !!}
 			@else
 				{!! Breadcrumbs::render($nameRoute) !!}
 			@endif
-
-
 		</div>
 		<div>
 			<span class="m-subheader__daterange" id="m_dashboard_daterangepicker">

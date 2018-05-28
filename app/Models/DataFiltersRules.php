@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class DataFiltersRules extends Model
 {
 
+    protected $fillable = ['description', 'category', 'source', 'country', ];
+
     /**
      * The table associated with the model.
      *
@@ -16,10 +18,20 @@ class DataFiltersRules extends Model
 
     public $timestamps = false;
 
-    public function settingsDataBase()
+
+    public function settingOfDataBase()
     {
-        return $this->hasOne(SettingDataBase::class);
+        return $this->hasOne(SettingOfDataBase::class, 'data_filters_rules_id', 'data_filters_rules_id');
     }
+
+
+    public function add($fields)
+    {
+        $this->fill($fields);
+        $this->save();
+    }
+
+
 
 
 

@@ -3,27 +3,40 @@
 
 namespace App\Services;
 
+use App\Plugins\WordPress\Wpdb;
 use App\Services\BaseService;
-use http\Env\Request;
+
+
 
 class AffiliateService extends BaseService
 {
-        public function decryptionConfig($data, $description)
-        {
-            return unserialize(base64_decode($data));
-        }
+    public function decryptionConfig($data, $description)
+    {
+         return unserialize(base64_decode($data));
+    }
 
-        public function objectToArray($value)
-        {
+    public function objectToArray($value)
+    {
             foreach($value[0] as $object)
             {
                 $var =  $object;
             }
             return $var;
-        }
+    }
 
-        public function outputOverviewSingleService(Request $request)
-        {
+    public function connectionToDataBase()
+    {
+        global $wpdb;
 
-        }
+
+        return $wpdb = new Wpdb( 'root', 'q', 'weeklyex_wp126', 'localhost' );
+    }
+
+
+
+
+
+
+
+
 }

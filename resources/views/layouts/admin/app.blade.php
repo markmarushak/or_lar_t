@@ -45,6 +45,7 @@ License: You must have a valid license purchased only from themeforest(the above
 {!! Html::style('assets/vendors/custom/datatables/datatables.bundle.css') !!}
 {!! Html::style('assets/vendors/custom/datatables/style.bundle.css') !!}
     {!! Html::style('assets/admin/css/admin.min.css') !!}
+{!! Html::style('assets/admin/css/style.css') !!}
 @yield('css')
 <!--end::Base Styles -->
     <link rel="shortcut icon" href="/assets/demo/default/media/img/logo/favicon.ico"/>

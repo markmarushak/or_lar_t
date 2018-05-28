@@ -22,24 +22,23 @@ Breadcrumbs::register('compaigns', function($breadcrumbs)
 
 
 Breadcrumbs::register('email-bulk-split', function($breadcrumbs) {
-
     $breadcrumbs->parent('compaigns');
-
     $breadcrumbs->push('Email BulkSplit', route('email-bulk-split'));
-
 });
 
 Breadcrumbs::register('data-filters-rules', function($breadcrumbs) {
-
     $breadcrumbs->parent('email-bulk-split');
-
     $breadcrumbs->push('Data Filters & Rules', route('data-filters-rules'));
+});
 
+//data-filters-rules-add
+Breadcrumbs::register('data-filters-rules-add', function($breadcrumbs) {
+    $breadcrumbs->parent('data-filters-rules');
+    $breadcrumbs->push('Add', route('data-filters-rules-add'));
 });
 
 //data-filters-rules-edit
 Breadcrumbs::register('data-filters-rules-edit', function($breadcrumbs, $param = null) {
-
     $breadcrumbs->parent('data-filters-rules');
     $breadcrumbs->push($param . 'Garasje-Tilbub.no - Edit Section', route('data-filters-rules-edit', ['data_filters_rules_id', 'data_filters_rules_description']));
 });

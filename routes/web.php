@@ -32,27 +32,29 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service'], func
     Route::get('/email-bulk-split', 'AffiliateController@emailBulkSplit')
         ->name('email-bulk-split');
 
-    Route::get('/email-bulk-split/data-filters-rules', 'AffiliateController@dataFiltersRules')
-        ->name('data-filters-rules');
-    //CRUD connection DB
-    Route::resource('/email-bulk-split/data-filters-rules/settings-for-data-base', 'SettingDataBaseController');
+    //data filters rules
+    Route::get('/email-bulk-split/data-filters-rules', 'DataFilterRuleController@index')->name('data-filters-rules');
 
-    Route::get('/email-bulk-split/data-filters-rules/edit', 'AffiliateController@dataFiltersRules')
-        ->name('data-filters-rules');
+    Route::get('/email-bulk-split/data-filters-rules/add', 'DataFilterRuleController@add')->name('data-filters-rules-add');
 
-
+    Route::post('/email-bulk-split/data-filters-rules/add', 'DataFilterRuleController@store')->name('data-filters-rules-store');
 
 
     Route::group(['prefix' => '/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules_description}'], function (){
 
+        //connection
+        Route::get('/connection', 'DataFilterRuleController@connection')->name('connection');
+
+        Route::put('/connection/update', 'DataFilterRuleController@updateConnectDb')->name('connection-update');
+
+        //form-builder
+        Route::get('/form-builder', 'DataFilterRuleController@formbuilder')->name('form-builder');
+
+
         // Data Filters Edit page
         Route::get('', 'AffiliateController@dataFiltersRules')->name('data-filters-rules-edit');
 
-        //connection
-        Route::get('/connection', 'AffiliateController@connection')->name('connection');
 
-        //form-builder
-        Route::get('/form-builder', 'AffiliateController@formbuilder')->name('form-builder');
 
         //dataBaseFields
         Route::get('/data-base-fields', 'AffiliateController@dataBaseFields')->name('data-base-fields');
