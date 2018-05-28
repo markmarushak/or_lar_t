@@ -79,7 +79,14 @@ class DataFilterRuleController extends Controller
         );
     }
 
-    public function updateConnectDb(Request $request,  $data_filters_rules_id, $data_filters_rules_description)
+    
+    /**
+     * @param Request $request
+     * @param $dataFiltersRulesId
+     * @param $dataFiltersRulesDescription
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateConnectDb(Request $request,  $dataFiltersRulesId, $dataFiltersRulesDescription)
     {
         $this->validate($request, [
             'domain' => 'required',
@@ -93,26 +100,13 @@ class DataFilterRuleController extends Controller
             'collation' => 'required'
         ]);
         if($request->id) {
-
-            $settingOfDataBase =  $this->settingOfDataBaseModel->findOrFail($request->id);
-            $dataFiltersRules = $this->dataFiltersRulesModel
-                ->where('data_filters_rules_id', $data_filters_rules_id)
-                ->with('settingDataBase')
-                ->firstOrFail();
-            if($dataFiltersRules->settingDataBase) {
-                   dd(11);
-            } else {
-                $dataFiltersRules->settingDataBase()->updateOrCreate($request->only('domain', 'host_name', 'host', 'port', 'database', 'username',
-                    'password', 'charset', 'collation'
-                ));
-            }
-
-
-            //$settingOfDataBase->edit($request->all(), $dataFiltersRules);
+            $dataFiltersRulesObject = $this->affiliateRepository->getDataFiltersRulesById($dataFiltersRulesId);
+            $this->settingOfDataBaseModel->edit($request, $dataFiltersRulesObject);
         } else {
-            $this->settingOfDataBaseModel->add($request->all());
+            $dataFiltersRulesObject = $this->affiliateRepository->getDataFiltersRulesById($dataFiltersRulesId);
+            $this->settingOfDataBaseModel->add($request, $dataFiltersRulesObject);
         }
-        return redirect()->route('connection', [ 'data_filters_rules_id' => $data_filters_rules_id, 'data_filters_rules_description' => $data_filters_rules_description]);
+        return redirect()->route('connection', [ 'data_filters_rules_id' => $dataFiltersRulesId, 'data_filters_rules_description' => $dataFiltersRulesDescription]);
     }
 
 

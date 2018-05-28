@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 
+use App\Models\DataFiltersRules;
 use App\Plugins\QformLibrary\Quform;
 use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Field;
 
@@ -15,16 +16,15 @@ class AffiliateRepository
 {
 
     protected $garageDB;
+    protected $dataFiltersRulesModel;
 
-    public function __construct()
+    public function __construct(DataFiltersRules $dataFiltersRulesModel)
     {
+        $this->dataFiltersRulesModel = $dataFiltersRulesModel;
         //Check if it's local domain assign local db credentials
         $this->garageDB = ($_SERVER['HTTP_HOST'] != 'admin.orbitleads.com')? "garage_dev": "garage";
 
     }
-
-
-
 
     public function allGetGarageForms()
     {
@@ -248,6 +248,12 @@ GROUP BY `data`.`entry_id`";
         return $wpdb->get_results($sql, ARRAY_A);
     }
 
-
+    public function getDataFiltersRulesById($id)
+    {
+        return $this->dataFiltersRulesModel
+            ->where('data_filters_rules_id', $id)
+            ->with('settingDataBase')
+            ->firstOrFail();
+    }
 
 }

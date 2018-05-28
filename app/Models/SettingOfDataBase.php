@@ -15,18 +15,18 @@ class SettingOfDataBase extends Model
         $this->belongsTo(DataFiltersRules::class, 'data_filters_rules_id');
     }
 
-    public function add($fields)
+    public function add($request, $dataFiltersRulesObject)
     {
-        $data = $this->fill($fields);
-        $data->save();
+        $dataFiltersRulesObject->settingDataBase()->updateOrCreate($request->only('domain', 'host_name', 'host', 'port', 'database', 'username',
+            'password', 'charset', 'collation'
+        ));
     }
 
-    public function edit($fields, $dataFiltersRules)
+    public function edit($request, $dataFiltersRulesObject)
     {
-
-        dd($fields, $dataFiltersRules);
-        $data = $this->fill($fields);
-        $data->save();
+        $dataFiltersRulesObject->settingDataBase()->update($request->only('domain', 'host_name', 'host', 'port', 'database', 'username',
+            'password', 'charset', 'collation'
+        ));
     }
 
 }
