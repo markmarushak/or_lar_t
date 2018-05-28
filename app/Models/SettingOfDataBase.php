@@ -17,14 +17,14 @@ class SettingOfDataBase extends Model
 
     public function add($request, $dataFiltersRulesObject)
     {
-        $dataFiltersRulesObject->settingDataBase()->updateOrCreate($request->only('domain', 'host_name', 'host', 'port', 'database', 'username',
+        $dataFiltersRulesObject->settingOfDataBase()->updateOrCreate($request->only('domain', 'host_name', 'host', 'port', 'database', 'username',
             'password', 'charset', 'collation'
         ));
     }
 
     public function edit($request, $dataFiltersRulesObject)
     {
-        $dataFiltersRulesObject->settingDataBase()->update($request->only('domain', 'host_name', 'host', 'port', 'database', 'username',
+        $dataFiltersRulesObject->settingOfDataBase()->update($request->only('domain', 'host_name', 'host', 'port', 'database', 'username',
             'password', 'charset', 'collation'
         ));
     }

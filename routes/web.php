@@ -47,14 +47,14 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service'], func
 
         Route::put('/connection/update', 'DataFilterRuleController@updateConnectDb')->name('connection-update');
 
-
+        //form-builder
+        Route::get('/form-builder', 'DataFilterRuleController@formbuilder')->name('form-builder');
 
 
         // Data Filters Edit page
         Route::get('', 'AffiliateController@dataFiltersRules')->name('data-filters-rules-edit');
 
-        //form-builder
-        Route::get('/form-builder', 'AffiliateController@formbuilder')->name('form-builder');
+
 
         //dataBaseFields
         Route::get('/data-base-fields', 'AffiliateController@dataBaseFields')->name('data-base-fields');

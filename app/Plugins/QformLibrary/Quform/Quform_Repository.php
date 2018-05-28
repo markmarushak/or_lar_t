@@ -1,7 +1,9 @@
 <?php
 
-
 namespace App\Plugins\QformLibrary\Quform;
+
+use App\Plugins\QformLibrary\Quform;
+
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
  */
@@ -111,7 +113,6 @@ class Quform_Repository
     public function getForms(array $args = array())
     {
         global $wpdb;
-
         $args = wp_parse_args($args, array(
             'active' => null,
             'orderby' => 'updated_at',
@@ -131,6 +132,7 @@ class Quform_Repository
                 LEFT JOIN ( SELECT form_id, COUNT(*) AS cnt FROM " . $this->getEntriesTableName() . " WHERE unread = 1 GROUP BY form_id ) u
                 ON f.id = u.form_id";
 
+
         $where = array($wpdb->prepare('trashed = %d', $args['trashed'] ? 1 : 0));
 
         if ($args['active'] !== null) {
@@ -141,7 +143,6 @@ class Quform_Repository
             $args['search'] = $wpdb->esc_like($args['search']);
             $where[] = $wpdb->prepare("name LIKE '%s'", '%' . $args['search'] . '%');
         }
-
         $sql .= " WHERE " . join(' AND ', $where);
 
         // Sanitise order/limit
@@ -152,7 +153,6 @@ class Quform_Repository
         $args['offset'] = (int) $args['offset'];
 
         $sql .= " ORDER BY `{$args['orderby']}` {$args['order']} LIMIT {$args['limit']} OFFSET {$args['offset']}";
-
         return $wpdb->get_results($sql, ARRAY_A);
     }
 

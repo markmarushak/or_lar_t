@@ -862,6 +862,7 @@ function wp_load_translations_early() {
 	if ( $loaded )
 		return;
 	$loaded = true;
+    //TODO here STOP
 
 	if ( function_exists( 'did_action' ) && did_action( 'init' ) )
 		return;

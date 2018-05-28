@@ -3,6 +3,7 @@
 
 namespace App\Services;
 
+use App\Plugins\WordPress\Wpdb;
 use App\Services\BaseService;
 
 
@@ -22,6 +23,15 @@ class AffiliateService extends BaseService
             }
             return $var;
     }
+
+    public function connectionToDataBase()
+    {
+        global $wpdb;
+
+
+        return $wpdb = new Wpdb( 'root', 'q', 'weeklyex_wp126', 'localhost' );
+    }
+
 
 
 

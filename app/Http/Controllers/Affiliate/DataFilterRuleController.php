@@ -6,7 +6,9 @@ namespace App\Http\Controllers\Affiliate;
 use App\Http\Controllers\Controller;
 use App\Models\DataFiltersRules;
 use App\Models\SettingOfDataBase;
+use App\Plugins\QformLibrary\Quform\Quform_Repository;
 use App\Repositories\AffiliateRepository;
+use App\Services\AffiliateService;
 use Illuminate\Http\Request;
 
 
@@ -15,12 +17,21 @@ class DataFilterRuleController extends Controller
     private $affiliateRepository;
     private $dataFiltersRulesModel;
     private $settingOfDataBaseModel;
+    private $affiliateService;
+    private $quformRepository;
 
-    public function __construct(AffiliateRepository $affiliateRepository, DataFiltersRules $dataFiltersRulesModel, SettingOfDataBase $settingOfDataBaseModel)
+    public function __construct(AffiliateRepository $affiliateRepository,
+                                DataFiltersRules $dataFiltersRulesModel,
+                                SettingOfDataBase $settingOfDataBaseModel,
+                                AffiliateService $affiliateService,
+                                Quform_Repository $quformRepository
+    )
     {
         $this->affiliateRepository = $affiliateRepository;
         $this->dataFiltersRulesModel = $dataFiltersRulesModel;
         $this->settingOfDataBaseModel = $settingOfDataBaseModel;
+        $this->affiliateService = $affiliateService;
+        $this->quformRepository =$quformRepository;
     }
 
     public function index()
@@ -79,7 +90,7 @@ class DataFilterRuleController extends Controller
         );
     }
 
-    
+
     /**
      * @param Request $request
      * @param $dataFiltersRulesId
@@ -110,4 +121,49 @@ class DataFilterRuleController extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     *  Action
+     */
+    public function formBuilder(Request $request)
+    {
+        global $wpdb;
+
+        $this->affiliateService->connectionToDataBase();
+        dd($this->quformRepository->getForms(array('limit' => 9)));
+        $this->quformRepository->getForms(array('limit' => 9));
+
+        //$this->affiliateRepository->getForms(array('limit' => 9));
+
+        //Get All rows from DataFiltersRules table
+        $dataFiltersRules = DataFiltersRules::all();
+
+        //get data_filters_rules_id from get Request
+        $dataFiltersRulesId = $request->data_filters_rules_id;
+        //fetch row corresponding data_filters_rules
+        $dataFiltersRuleRow = $this->affiliateRepository->allGetFiltersRulesById($dataFiltersRulesId);
+
+        //Connect to remote db of garasje-tilbud.no website
+        $dataRemoteDB = $this->affiliateRepository->allGetGarageForms();
+
+        //Get Description from current data_filters_rules
+        $description = $dataFiltersRuleRow[0]->description;
+
+        //Determine the config for qforms it containes decoded array of form
+        $this->config = $this->affiliateService->decryptionConfig($dataRemoteDB[0]->config, $description);
+        $this->form();
+
+        //send params
+        return view('affiliate.form-builder',
+            [
+                'menu' => 'affiliate-service',
+                'dataFiltersRuleRow' => $dataFiltersRuleRow[0],
+                'garageData' => $dataRemoteDB,
+                'form' => $this->form(),
+                'params' => $request
+            ]
+        );
+    }
 }

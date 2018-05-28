@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Plugins\QformLibrary\Quform;
+
+
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
  */

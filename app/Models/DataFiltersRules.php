@@ -19,7 +19,7 @@ class DataFiltersRules extends Model
     public $timestamps = false;
 
 
-    public function settingDataBase()
+    public function settingOfDataBase()
     {
         return $this->hasOne(SettingOfDataBase::class, 'data_filters_rules_id', 'data_filters_rules_id');
     }

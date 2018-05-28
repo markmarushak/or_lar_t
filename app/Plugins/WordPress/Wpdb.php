@@ -1,9 +1,5 @@
 <?php
-
-
-namespace App\Models;
-
-
+namespace App\Plugins\WordPress;
 /**
  * WordPress DB Class
  *
@@ -40,6 +36,13 @@ define( 'ARRAY_A', 'ARRAY_A' );
  */
 define( 'ARRAY_N', 'ARRAY_N' );
 
+
+
+define('WP_DEBUG', true);
+
+define( 'WP_DEBUG_DISPLAY', true );
+
+
 /**
  * WordPress Database Access Abstraction Object
  *
@@ -52,7 +55,7 @@ define( 'ARRAY_N', 'ARRAY_N' );
  *
  * @since 0.71
  */
-class wpdb {
+class Wpdb {
 
 	/**
 	 * Whether to show SQL/DB errors.
@@ -570,17 +573,14 @@ class wpdb {
 	 * @param string $dbhost     MySQL database host
 	 */
 	public function __construct( $dbuser, $dbpassword, $dbname, $dbhost ) {
+		register_shutdown_function( array( $this, '__destruct' ) );
 
-
-	    register_shutdown_function( array( $this, '__destruct' ) );
-//
-//		if ( WP_DEBUG && WP_DEBUG_DISPLAY )
-//			$this->show_errors();
+		if ( WP_DEBUG && WP_DEBUG_DISPLAY )
+			$this->show_errors();
 
 		// Use ext/mysqli if it exists unless WP_USE_EXT_MYSQL is defined as true
 		if ( function_exists( 'mysqli_connect' ) ) {
 			$this->use_mysqli = true;
-
 			if ( defined( 'WP_USE_EXT_MYSQL' ) ) {
 				$this->use_mysqli = ! WP_USE_EXT_MYSQL;
 			}
@@ -595,7 +595,6 @@ class wpdb {
 		if ( defined( 'WP_SETUP_CONFIG' ) ) {
 			return;
 		}
-
 
 		$this->db_connect();
 	}
@@ -1228,7 +1227,6 @@ class wpdb {
 	 * @return string|void Sanitized query string, if there is a query to prepare.
 	 */
 	public function prepare( $query, $args ) {
-
 		if ( is_null( $query ) ) {
 			return;
 		}
@@ -1352,7 +1350,6 @@ class wpdb {
 	 */
 	public function print_error( $str = '' ) {
 		global $EZSQL_ERROR;
-
 		if ( !$str ) {
 			if ( $this->use_mysqli ) {
 				$str = mysqli_error( $this->dbh );
@@ -1536,7 +1533,7 @@ class wpdb {
 				$host = "[$host]";
 			}
 
-			if (true) {
+			if ( WP_DEBUG ) {
 				mysqli_real_connect( $this->dbh, $host, $this->dbuser, $this->dbpassword, null, $port, $socket, $client_flags );
 			} else {
 				@mysqli_real_connect( $this->dbh, $host, $this->dbuser, $this->dbpassword, null, $port, $socket, $client_flags );
@@ -1780,11 +1777,11 @@ class wpdb {
 	 * @return int|false Number of rows affected/selected or false on error
 	 */
 	public function query( $query ) {
-		if ( ! $this->ready ) {
-			$this->check_current_query = true;
+
+        if ( ! $this->ready ) {
+            $this->check_current_query = true;
 			return false;
 		}
-
 		/**
 		 * Filters the database query.
 		 *
@@ -1870,6 +1867,7 @@ class wpdb {
 			if ( $this->insert_id && preg_match( '/^\s*(insert|replace)\s/i', $query ) )
 				$this->insert_id = 0;
 
+
 			$this->print_error();
 			return false;
 		}
@@ -1893,7 +1891,7 @@ class wpdb {
 			// Return number of rows affected
 			$return_val = $this->rows_affected;
 		} else {
-			$num_rows = 0;
+            $num_rows = 0;
 			if ( $this->use_mysqli && $this->result instanceof mysqli_result ) {
 				while ( $row = mysqli_fetch_object( $this->result ) ) {
 					$this->last_result[$num_rows] = $row;
@@ -2494,8 +2492,8 @@ class wpdb {
 		}
 
 		if ( $query ) {
-			$this->query( $query );
-		} else {
+            $this->query( $query );
+        } else {
 			return null;
 		}
 

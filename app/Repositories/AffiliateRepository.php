@@ -248,11 +248,14 @@ GROUP BY `data`.`entry_id`";
         return $wpdb->get_results($sql, ARRAY_A);
     }
 
-    public function getDataFiltersRulesById($id)
+
+
+
+    public function getDataFiltersRulesById($dataFiltersRulesId)
     {
         return $this->dataFiltersRulesModel
-            ->where('data_filters_rules_id', $id)
-            ->with('settingDataBase')
+            ->where('data_filters_rules_id', $dataFiltersRulesId)
+            ->with('settingOfDataBase')
             ->firstOrFail();
     }
 
