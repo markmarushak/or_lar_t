@@ -129,39 +129,34 @@ class DataFilterRuleController extends Controller
      */
     public function formBuilder(Request $request)
     {
-        global $wpdb;
 
         $this->affiliateService->connectionToDataBase();
-        dd($this->quformRepository->getForms(array('limit' => 9)));
-        $this->quformRepository->getForms(array('limit' => 9));
+      $forms =  $this->quformRepository->getForms(array('limit' => 9));
 
-        //$this->affiliateRepository->getForms(array('limit' => 9));
 
         //Get All rows from DataFiltersRules table
-        $dataFiltersRules = DataFiltersRules::all();
-
-        //get data_filters_rules_id from get Request
-        $dataFiltersRulesId = $request->data_filters_rules_id;
-        //fetch row corresponding data_filters_rules
-        $dataFiltersRuleRow = $this->affiliateRepository->allGetFiltersRulesById($dataFiltersRulesId);
-
-        //Connect to remote db of garasje-tilbud.no website
-        $dataRemoteDB = $this->affiliateRepository->allGetGarageForms();
-
-        //Get Description from current data_filters_rules
-        $description = $dataFiltersRuleRow[0]->description;
-
-        //Determine the config for qforms it containes decoded array of form
-        $this->config = $this->affiliateService->decryptionConfig($dataRemoteDB[0]->config, $description);
-        $this->form();
+//        $dataFiltersRules = DataFiltersRules::all();
+//
+//        //get data_filters_rules_id from get Request
+//        $dataFiltersRulesId = $request->data_filters_rules_id;
+//        //fetch row corresponding data_filters_rules
+//        $dataFiltersRuleRow = $this->affiliateRepository->allGetFiltersRulesById($dataFiltersRulesId);
+//
+//        //Connect to remote db of garasje-tilbud.no website
+//        $dataRemoteDB = $this->affiliateRepository->allGetGarageForms();
+//
+//        //Get Description from current data_filters_rules
+//        $description = $dataFiltersRuleRow[0]->description;
+//
+//        //Determine the config for qforms it containes decoded array of form
+//        $this->config = $this->affiliateService->decryptionConfig($dataRemoteDB[0]->config, $description);
+//        $this->form();
 
         //send params
-        return view('affiliate.form-builder',
+        return view('affiliate.data-filters-rules.form-builder',
             [
                 'menu' => 'affiliate-service',
-                'dataFiltersRuleRow' => $dataFiltersRuleRow[0],
-                'garageData' => $dataRemoteDB,
-                'form' => $this->form(),
+                'forms' => $forms,
                 'params' => $request
             ]
         );

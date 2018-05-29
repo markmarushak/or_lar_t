@@ -18,7 +18,7 @@ class Quform_Repository
     {
         global $wpdb;
 
-        return $wpdb->prefix . 'quform_forms';
+        return  'wpau_quform_forms';
     }
 
     /**
@@ -30,7 +30,7 @@ class Quform_Repository
     {
         global $wpdb;
 
-        return $wpdb->prefix . 'quform_entries';
+        return 'wpau_quform_entries';
     }
 
     /**
@@ -42,7 +42,7 @@ class Quform_Repository
     {
         global $wpdb;
 
-        return $wpdb->prefix . 'quform_entry_data';
+        return 'wpau_quform_entry_data';
     }
 
     /**
@@ -54,7 +54,7 @@ class Quform_Repository
     {
         global $wpdb;
 
-        return $wpdb->prefix . 'quform_entry_labels';
+        return 'wpau_quform_entry_labels';
     }
 
     /**
@@ -66,7 +66,7 @@ class Quform_Repository
     {
         global $wpdb;
 
-        return $wpdb->prefix . 'quform_entry_entry_labels';
+        return 'wpau_quform_entry_entry_labels';
     }
 
     /**
@@ -131,7 +131,6 @@ class Quform_Repository
                 ON f.id = e.form_id
                 LEFT JOIN ( SELECT form_id, COUNT(*) AS cnt FROM " . $this->getEntriesTableName() . " WHERE unread = 1 GROUP BY form_id ) u
                 ON f.id = u.form_id";
-
 
         $where = array($wpdb->prepare('trashed = %d', $args['trashed'] ? 1 : 0));
 
@@ -972,7 +971,6 @@ GROUP BY entries.id";
 
         // Maximum display length of a single field value
         $wpdb->query('SET @@GROUP_CONCAT_MAX_LEN = 65535');
-
         return $wpdb->get_results($sql, ARRAY_A);
     }
 
