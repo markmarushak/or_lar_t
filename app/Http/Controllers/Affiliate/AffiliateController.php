@@ -27,6 +27,7 @@ use RecursiveIteratorIterator;
 class AffiliateController extends Controller
 {
 
+
     protected $data;
     /**
      * @var Quform_Repository
@@ -98,17 +99,22 @@ class AffiliateController extends Controller
      */
     public function index()
     {
+
+
         return view('affiliate.affiliate-service', ['menu' => 'affiliate-service']);
     }
 
 
     public function compaigns()
     {
+
         return view('affiliate.affiliate-service', ['menu' => 'affiliate-service']);
+
     }
 
     public function emailBulkSplit()
     {
+
         return view('affiliate.email-bulk-split', ['menu' => 'affiliate-service']);
     }
 
@@ -244,6 +250,7 @@ class AffiliateController extends Controller
 
             $entryId = $request->single_id;
 
+
             //getConfig
             $formId =$this->affiliateRepository->getFormIdFromEntryId($entryId);
             $row = $this->affiliateRepository->getQuformFormsById($formId);
@@ -254,10 +261,11 @@ class AffiliateController extends Controller
             } else {
                 $config = null;
             }
-
             //endFunction
 
+            
             $config['environment'] = 'viewEntry';
+
             $dataFiltersRulesId = $request->data_filters_rules_id;
             $dataFiltersRuleRow = $this->affiliateRepository->allGetFiltersRulesById($dataFiltersRulesId);
             $dataRemoteDB = $this->affiliateRepository->allGetGarageForms();
@@ -278,6 +286,7 @@ class AffiliateController extends Controller
             }
             // Calculate which elements are hidden by conditional logic and which groups are empty
             $form->calculateElementVisibility();
+
 
             // Mark as read
             if ($entry['unread'] == 1) {
@@ -316,6 +325,7 @@ class AffiliateController extends Controller
 
         }
 
+
         public function outputOverview(Request $request)
         {
             $result = $this->affiliateRepository->getRecentEntries(10);
@@ -336,6 +346,8 @@ class AffiliateController extends Controller
                 'dataFiltersRulesDescription' => $dataFiltersRulesDescription
             ]);
         }
+
+
 
 
         public function with($key, $value = null)
