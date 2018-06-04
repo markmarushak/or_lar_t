@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
@@ -69,7 +68,6 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service'], func
         Route::get('/output-overview', 'AffiliateController@outputOverview')->name('output-overview');
 
         //outputOverviews
-        Route::get('/output-overview-single/{single_id}', 'AffiliateController@outputOverviewSingle')->name('output-overview-single');
+        Route::get('/output-overview-single/{single_id?}', 'AffiliateController@outputOverviewSingle')->name('output-overview-single');
     });
 });
-

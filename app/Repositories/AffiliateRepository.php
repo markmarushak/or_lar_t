@@ -200,7 +200,7 @@ GROUP BY `data`.`entry_id`";
     {
 
         global $wpdb;
-        $wpdb = new wpdb( 'root', 'q', 'weeklyex_wp126', 'localhost' );
+        $wpdb = new wpdb( 'root', 'root', 'weeklyex_wp126', 'localhost' );
 
             $args = wp_parse_args($args, array(
             'active' => null,

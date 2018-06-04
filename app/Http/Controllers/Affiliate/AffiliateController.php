@@ -317,7 +317,7 @@ class AffiliateController extends Controller
             return view('affiliate.output-overview-single', compact(
                     'entry',
                     'data',
-                    'form',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        'form',
                     'result',
                     'nameEntry'
                 )

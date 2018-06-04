@@ -83,7 +83,7 @@ class DataFilterRuleController extends Controller
         $dataFiltersRulesId = $request->data_filters_rules_id;
         $dataFiltersRulesDescription = $request->data_filters_rules_description;
         return view('affiliate.data-filters-rules.connection', compact(
-                'settingsOfDataBase',
+                'settingsOfDataBa00000se',
                 'dataFiltersRulesId',
                 'dataFiltersRulesDescription'
             )
@@ -122,7 +122,7 @@ class DataFilterRuleController extends Controller
 
 
     /**
-     * @param Request $request
+     * @param Request $r0equest
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      *
      *  Action
