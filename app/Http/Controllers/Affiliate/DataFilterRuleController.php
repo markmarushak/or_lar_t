@@ -129,9 +129,9 @@ class DataFilterRuleController extends Controller
      */
     public function formBuilder(Request $request)
     {
-
         $this->affiliateService->connectionToDataBase();
-      $forms =  $this->quformRepository->getForms(array('limit' => 9));
+
+        $forms =  $this->quformRepository->getForms(array('limit' => 9));
 
 
         //Get All rows from DataFiltersRules table
