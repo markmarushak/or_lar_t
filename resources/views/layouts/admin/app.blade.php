@@ -69,6 +69,7 @@ License: You must have a valid license purchased only from themeforest(the above
 {!! Html::script('assets/vendors/base/vendors.bundle.js') !!}
 {!! Html::script('assets/vendors/custom/datatables/datatables.bundle.js') !!}
 {!! Html::script('assets/demo/default/base/scripts.bundle.js') !!}
+{!! Html::script('assets/admin/js/script.js') !!}
 <!--end::Base Scripts -->
 <!--begin::Page Snippets -->
 

@@ -133,6 +133,11 @@ var DatatablesBasicBasic = function() {
 
 }();
 
+function RemoveLines() {
+	$('.m-switch').parent().addClass('removeline');
+}
+
 jQuery(document).ready(function() {
 	DatatablesBasicBasic.init();
+	RemoveLines();
 });

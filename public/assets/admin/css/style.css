@@ -17,3 +17,6 @@
 .cancel-margin-bottom {
     margin-bottom: 0;
 }
+.dt-right-remove-pseudo:before {
+    display: none !important;
+}
