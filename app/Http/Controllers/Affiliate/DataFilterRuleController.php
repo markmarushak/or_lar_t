@@ -34,8 +34,9 @@ class DataFilterRuleController extends Controller
         $this->quformRepository =$quformRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
+
         $dataFiltersRules = DataFiltersRules::all();
         if (!empty($dataFiltersRules)) {
 

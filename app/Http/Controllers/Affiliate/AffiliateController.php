@@ -100,7 +100,6 @@ class AffiliateController extends Controller
     public function index()
     {
 
-
         return view('affiliate.affiliate-service', ['menu' => 'affiliate-service']);
     }
 
@@ -166,11 +165,6 @@ class AffiliateController extends Controller
         $output = $form->render($options);
         return $output;
     }
-
-
-
-
-
 
         public function dataBaseFields()
         {
