@@ -202,15 +202,13 @@ class AffiliateController extends Controller
 
         public function affiliatesPartners(Request $request)
         {
-            $dataFiltersRules = DataFiltersRules::all();
+
             return view('affiliate.affiliates-partners',
                 [
                     'menu' => 'affiliate-service',
-                    'dataFiltersRules' => $dataFiltersRules,
                     'data' => []
                 ]
             );
-
         }
 
 
