@@ -122,6 +122,13 @@ var DatatablesBasicBasic = function() {
 		});
 	};
 
+
+
+
+
+
+
+
 	return {
 
 		//main function to initiate the module

@@ -55,14 +55,6 @@ class GenerateMenus
                     ]]);
 
 
-            $menu->add('Affiliates/Partners',
-                ['action' =>
-                    ['\App\Http\Controllers\Affiliate\AffiliateController@affiliatesPartners',
-                        'data_filters_rules_id' => $this->request->data_filters_rules_id,
-                        'data_filters_rules_description' => $this->request->data_filters_rules_description
-                    ]]);
-
-
             $menu->add('Data Filters & Rules',
                 ['action' =>
                     ['\App\Http\Controllers\Affiliate\AffiliateController@dataFiltersRulesData',
