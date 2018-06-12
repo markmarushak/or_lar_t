@@ -29,7 +29,7 @@ class AffiliateService extends BaseService
         global $wpdb;
 
 
-        return $wpdb = new Wpdb( 'root', '123', 'weeklyex_wp126', 'localhost' );
+        return $wpdb = new Wpdb( 'weeklyex_wp126', '7d9!SO)pL4', 'weeklyex_wp126', '109.199.120.183' );
     }
 
 

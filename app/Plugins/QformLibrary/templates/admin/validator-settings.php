@@ -21,7 +21,7 @@
 
 
 
-        
+
 
         <div class="qfb-setting">
             <div class="qfb-setting-label">
