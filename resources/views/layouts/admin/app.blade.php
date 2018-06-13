@@ -70,6 +70,7 @@ License: You must have a valid license purchased only from themeforest(the above
 {!! Html::script('assets/vendors/custom/datatables/datatables.bundle.js') !!}
 {!! Html::script('assets/demo/default/base/scripts.bundle.js') !!}
 {!! Html::script('assets/admin/js/script.js') !!}
+{!! Html::script('assets/demo/default/custom/components/base/bootstrap-notify.js') !!}
 <!--end::Base Scripts -->
 <!--begin::Page Snippets -->
 
