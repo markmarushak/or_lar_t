@@ -32,9 +32,9 @@
                                         @foreach($forms as $form)
 
                                         <li class="qfb-cf">
-                                           <a href="http://{{$dataFiltersRulesDescription}}/wp-admin/admin.php?page=quform.forms&sp=edit&id={{$form['id']}}">{{$form['name']}}<span class="qfb-fade-overflow"></span></a>
+                                           <a href="http://garasje-tilbud.no/wp-admin/admin.php?page=quform.forms&sp=edit&id=3">{{$form['name']}}<span class="qfb-fade-overflow"></span></a>
                                             <span class="qfb-form-switcher-icons">
-                                            <a href="http://{{$dataFiltersRulesDescription}}/wp-admin/admin.php?page=quform.forms&sp=edit&id={{$form['id']}}"><i title="Edit this form" class="fa fa-pencil"></i></a>
+                                            <a href="https://{{$dataFiltersRulesDescription}}/wp-admin/admin.php?page=quform.forms&sp=edit&id={{$form['id']}}"><i title="Edit this form" class="fa fa-pencil"></i></a>
                                         </span>
                                         </li>
                                         @endforeach
