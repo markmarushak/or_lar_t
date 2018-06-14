@@ -1,126 +1,163 @@
-
 @extends('layouts.admin.app')
-<link rel='stylesheet' id='quform-css'  href='http://garasje-tilbud.no/modules/quform/cache/quform.css?ver=1521656337' type='text/css' media='all' />
+<link rel='stylesheet' id='quform-css'
+      type='text/css' media='all'/>
 @section('content')
 
     <div class="row">
-
         <div class="clearfix"></div>
-
-            <div class="col-xl-4">
-                {{--<strong>{!!$dataFiltersRuleRow->description!!} -  Form Frontpage</strong>--}}
-            </div>
-
+        <div class="col-xl-4">
         </div>
+    </div>
 
     <div class="col-xl-12" style="margin-top: 20px;">
-        {{--Call Tab Menu--}}
-        @include('affiliate.tabs-menu.top-menu')
 
         <div class="tab-content">
             <div class="tab-pane active show" id="m_tabs_1_1" role="tabpanel">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="m-content">
+                            <div class="m-portlet m-portlet--mobile">
+                                <div class="m-portlet__body">
 
-                <div class="col-xl-8">
-                    <div class="form-group">
+                                    <div class="input-group-prepend">
+                                        <div class="m-radio-inline col-xl-5">
+                                            <label class="m-radio">
+                                                <input type="radio" name="example_8" value="1">
+                                                Affiliate
+                                                <span></span>
+                                            </label>
+                                            <label class="m-radio">
+                                                <input type="radio" name="example_8" value="2">
+                                                Partner
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
 
-                        <div class="input-group-prepend">
-                            <div class="m-radio-inline col-xl-5">
-                                <label class="m-radio">
-                                    <input type="radio" name="example_8" value="1">
-                                    Affiliate
-                                    <span></span>
-                                </label>
-                                <label class="m-radio">
-                                    <input type="radio" name="example_8" value="2">
-                                    Partner
-                                    <span></span>
-                                </label>
+                                    <table class="table table-striped- table-bordered table-hover table-checkable cell-border "
+                                           id="m_table_2">
+                                        <thead>
+                                        <tr>
+
+                                            <th>
+
+                                            </th>
+                                            <th data-field="ID" class="m-datatable__cell m-datatable__cell--sort">
+
+                                                <span style="width: 130px;">ID</span>
+                                            </th>
+
+                                            <th data-field="OrderID" class="m-datatable__cell m-datatable__cell--sort">
+
+                                                <span style="width: 130px;">Descriptions</span>
+                                            </th>
+
+                                            <th data-field="Country" class="m-datatable__cell m-datatable__cell--sort">
+                                                <span style="width: 70px;">Country</span>
+                                            </th>
+
+                                            <th data-field="Department"
+                                                class="m-datatable__cell m-datatable__cell--sort">
+                                                <span style="width: 70px;">Type</span>
+                                            </th>
+
+                                            <th data-field="Rules" class="m-datatable__cell m-datatable__cell--sort">
+                                                <span style="width: 130px;">Rules</span>
+                                            </th>
+
+                                            <th data-field="Actions" class="m-datatable__cell m-datatable__cell--sort">
+                                                <span style="width: 70px;">Status</span>
+                                            </th>
+
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        <tr>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                1
+                                            </td>
+                                            <td>
+                                                <span style="width: 130px;">Bargensgarajen AS</span>
+                                            </td>
+
+                                            <td>
+                                                <span style="width: 130px;">Norway</span>
+                                            </td>
+
+                                            <td>
+                                                <span style="width: 70px;">Partner</span>
+                                            </td>
+                                            <td>
+                                                <span style="width: 70px;">ZipCode=from 5000 to 5500 - Material = Stone </span>
+                                            </td>
+
+                                            <td>
+                               <span style="overflow: visible; width: 70px;">
+                                    <span class="m-badge  m-badge--success m-badge--wide">status</span>
+                               </span>
+                                            </td>
+
+
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+
+
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-form-label col-lg-3 col-sm-12">Enable conditional logic rules</label>
+                                        <div class="col-lg-4 col-md-9 col-sm-12">
+
+
+                                                    <input data-switch="true"
+                                                                                                  type="checkbox"
+                                                                                                  data-on-color="brand"
+                                                                                                  id="m_notify_icon">
+                                                </div>
+
+                                        </div>
+                                    <div class="form-group m-form__group row">
+
+                                        <div class="col-lg-4 col-md-9 col-sm-12">
+                                            <select class="form-control m-input--fixed" id="m_notify_placement_from">
+                                                <option value="top">ZipCode</option>
+                                                <option value="bottom">Bottom</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-4 col-md-9 col-sm-12">
+                                            <select class="form-control m-input--fixed m-input--slim" id="m_notify_placement_from">
+                                                <option value="top">ZipCode</option>
+                                                <option value="bottom">Bottom</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-9 col-sm-12">
+                                            <select class="form-control m-input--fixed m-input--slim" id="m_notify_placement_from">
+                                                <option value="top">ZipCode</option>
+                                                <option value="bottom">Bottom</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    </div>
+
+                                </div>
                             </div>
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    Add
-                                </button>
-                            </div>
+
                         </div>
                     </div>
                 </div>
 
-                <div class="m_datatable m-datatable m-datatable--default m-datatable--loaded" id="local_data" style="">
-                    <table class="m-datatable__table" style="display: block; min-height: 300px; overflow-x: auto;">
-                        <thead class="m-datatable__head">
-                        <tr class="m-datatable__row" style="left: 0px;">
-                            <th data-field="RecordID" class="m-datatable__cell--center m-datatable__cell m-datatable__cell--check">
-                                <span style="width: 50px;">
-                                    <label class="m-checkbox m-checkbox--single m-checkbox--all m-checkbox--solid m-checkbox--brand">
-                                        <input type="checkbox"><span></span></label></span></th>
-                            <th data-field="OrderID" class="m-datatable__cell m-datatable__cell--sort" data-sort="desc">
-                                <span style="width: 150px;">ID<i class="la la-arrow-down"></i></span></th>
-                            <th data-field="ShipName" class="m-datatable__cell m-datatable__cell--sort">
-                                <span style="width: 100px;">Descriptions</span>
-                            </th>
-                            <th data-field="Currency" class="m-datatable__cell m-datatable__cell--sort">
-                                <span style="width: 100px;">Country</span></th>
-                            <th data-field="ShipAddress" class="m-datatable__cell m-datatable__cell--sort">
-                                <span style="width: 100px;">Type</span></th>
-                            <th data-field="ShipDate" class="m-datatable__cell m-datatable__cell--sort">
-                                <span style="width: 100px;">Rules</span></th>
-                            <th data-field="Latitude" class="m-datatable__cell m-datatable__cell--sort">
-                                <span style="width: 100px;">Status</span></th>
-                            <th data-field="Status" class="m-datatable__cell m-datatable__cell--sort">
-                                <span style="width: 100px;">Filter</span></th>
-                        </tr>
-                        </thead>
-                        <tbody class="m-datatable__body" style="">
-                            <tr data-row="0" class="m-datatable__row" style="left: 0px;">
-                                <td data-field="RecordID" class="m-datatable__cell--center m-datatable__cell m-datatable__cell--check">
-                                    <span style="width: 50px;">
-                                        <label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">
-                                            <input type="checkbox" value="80"><span></span>
-                                        </label>
-                                    </span>
-                                </td>
-                                <td data-field="OrderID" class="m-datatable__cell--sorted m-datatable__cell">
-                                    <span style="width: 5px;">1</span></td>
-                                <td data-field="ShipName" class="m-datatable__cell">
-                                    <span style="width: 150px;">Bergensgarasjen AS</span>
-                                </td>
-                                <td data-field="Currency" class="m-datatable__cell">
-                                    <span style="width: 100px;">Norway</span></td>
-                                <td data-field="ShipAddress" class="m-datatable__cell">
-                                    <span style="width: 100px;">Partner</span>
-                                </td>
-                                <td data-field="ShipDate" class="m-datatable__cell">
-                                    <span style="width: 200px;">zipCode=from 5000 to 5500 - Material=</span>
-                                </td>
-                                <td data-field="Latitude" class="m-datatable__cell">
-                                    <span style="width: 100px;">Active</span>
-                                </td>
-                                <td data-field="Status" class="m-datatable__cell">
-                                    <span style="width: 100px;">
-                                        <i class="fa fa-filter"></i>
 
-                                    </span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="col-3">
-                        <span class="m-switch m-switch--icon m-switch--success">
-                            <label>
-                                <input type="checkbox" checked="checked" name="">
-                                <span></span>
-                            </label>
-                        </span>
-                    </div>
-
-
-                </div>
             </div>
 
         </div>
-    </div>
+
 
 
 

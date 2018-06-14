@@ -68,15 +68,20 @@
                                             <span class="m-menu__link-text">
 													Data Filters & Rules
 								            </span>
-
                                         </a>
                                     </li>
                                 </ul>
                             </div>
-
                          </li>
                     </ul>
                 </div>
+                <a href="{{route('affiliates-partners')}}" class="m-menu__link ">
+                    <i class="m-menu__link-icon flat icon-users"></i>
+                    <span class="m-menu__link-text">
+										Affiliates/Partners
+									</span>
+
+                </a>
             </li>
 			<?php endif; ?>
 

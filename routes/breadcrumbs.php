@@ -13,6 +13,13 @@ Breadcrumbs::register('affiliate-service', function($breadcrumbs)
     $breadcrumbs->push('Affiliate Service', route('affiliate-service'));
 });
 
+//affiliates-partners
+Breadcrumbs::register('affiliates-partners', function($breadcrumbs) {
+
+    $breadcrumbs->parent('affiliate-service');
+    $breadcrumbs->push('Affiliates/Partners', route('affiliates-partners'));
+});
+
 // Dashboard > Affiliate Service > compaigns
 Breadcrumbs::register('compaigns', function($breadcrumbs)
 {
@@ -65,12 +72,7 @@ Breadcrumbs::register('data-base-fields', function($breadcrumbs) {
     $breadcrumbs->push('Database Fields', route('data-base-fields', ['data_filters_rules_id', 'data_filters_rules_description']));
 });
 
-//affiliates-partners
-Breadcrumbs::register('affiliates-partners', function($breadcrumbs) {
 
-    $breadcrumbs->parent('data-filters-rules-edit');
-    $breadcrumbs->push('Affiliates/Partners', route('affiliates-partners', ['data_filters_rules_id', 'data_filters_rules_description']));
-});
 
 //data-filters-rules-data
 Breadcrumbs::register('data-filters-rules-data', function($breadcrumbs) {

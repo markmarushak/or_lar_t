@@ -18,10 +18,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta charset="utf-8"/>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-{{--    <title>{{ getSetting('SITE_TITLE') }} | @yield('title')</title>--}}
-
     <!-- Styles -->
-    {{--<link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
     <meta name="description" content="Latest updates and statistic charts">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -44,8 +41,11 @@ License: You must have a valid license purchased only from themeforest(the above
 {!! Html::style('assets/vendors/base/vendors.bundle.css') !!}
 {!! Html::style('assets/vendors/custom/datatables/datatables.bundle.css') !!}
 {!! Html::style('assets/vendors/custom/datatables/style.bundle.css') !!}
-    {!! Html::style('assets/admin/css/admin.min.css') !!}
+{!! Html::style('assets/admin/css/admin.min.css') !!}
 {!! Html::style('assets/admin/css/style.css') !!}
+{!! Html::style('assets/admin/css/simple-line-icons-webfont/simple-line-icons.css') !!}
+
+
 @yield('css')
 <!--end::Base Styles -->
     <link rel="shortcut icon" href="/assets/demo/default/media/img/logo/favicon.ico"/>
@@ -69,14 +69,14 @@ License: You must have a valid license purchased only from themeforest(the above
 {!! Html::script('assets/vendors/base/vendors.bundle.js') !!}
 {!! Html::script('assets/vendors/custom/datatables/datatables.bundle.js') !!}
 {!! Html::script('assets/demo/default/base/scripts.bundle.js') !!}
+{!! Html::script('assets/admin/js/script.js') !!}
+{!! Html::script('assets/demo/default/custom/components/base/bootstrap-notify.js') !!}
 <!--end::Base Scripts -->
 <!--begin::Page Snippets -->
 
 {!! Html::script('assets/vendors/custom/fullcalendar/fullcalendar.bundle.js') !!}
-
 {!! Html::script('assets/demo/default/custom/components/datatables/base/basic.js') !!}
 {!! Html::script('assets/app/js/dashboard.js') !!}
-
 {!! Html::script('assets/app/js/my.js') !!}
 
 

@@ -17,6 +17,12 @@
             </div>
         </div>
 
+
+
+
+
+
+
         <div class="qfb-setting">
             <div class="qfb-setting-label">
                 <div class="qfb-tooltip-icon"><div class="qfb-tooltip-content"><?php esc_html_e('The submitted value must match this regular expression. The pattern should include start and end delimiters, see below for an example.', 'quform'); ?><pre><?php echo esc_html('/^[a-zA-Z0-9]+$/'); ?></pre></div></div>

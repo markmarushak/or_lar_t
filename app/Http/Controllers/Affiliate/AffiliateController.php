@@ -100,7 +100,6 @@ class AffiliateController extends Controller
     public function index()
     {
 
-
         return view('affiliate.affiliate-service', ['menu' => 'affiliate-service']);
     }
 
@@ -167,11 +166,6 @@ class AffiliateController extends Controller
         return $output;
     }
 
-
-
-
-
-
         public function dataBaseFields()
         {
 
@@ -208,15 +202,13 @@ class AffiliateController extends Controller
 
         public function affiliatesPartners(Request $request)
         {
-            $dataFiltersRules = DataFiltersRules::all();
+
             return view('affiliate.affiliates-partners',
                 [
                     'menu' => 'affiliate-service',
-                    'dataFiltersRules' => $dataFiltersRules,
                     'data' => []
                 ]
             );
-
         }
 
 

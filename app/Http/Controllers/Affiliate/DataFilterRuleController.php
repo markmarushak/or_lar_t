@@ -83,7 +83,7 @@ class DataFilterRuleController extends Controller
         $dataFiltersRulesId = $request->data_filters_rules_id;
         $dataFiltersRulesDescription = $request->data_filters_rules_description;
         return view('affiliate.data-filters-rules.connection', compact(
-                'settingsOfDataBa00000se',
+                'settingsOfDataBase',
                 'dataFiltersRulesId',
                 'dataFiltersRulesDescription'
             )
@@ -127,37 +127,20 @@ class DataFilterRuleController extends Controller
      *
      *  Action
      */
-    public function formBuilder(Request $request)
+    public function formBuilder(Request $request, $dataFiltersRulesId, $dataFiltersRulesDescription)
     {
         $this->affiliateService->connectionToDataBase();
+      $forms =  $this->quformRepository->getForms();
 
-        $forms =  $this->quformRepository->getForms(array('limit' => 9));
 
-
-        //Get All rows from DataFiltersRules table
-//        $dataFiltersRules = DataFiltersRules::all();
-//
-//        //get data_filters_rules_id from get Request
-//        $dataFiltersRulesId = $request->data_filters_rules_id;
-//        //fetch row corresponding data_filters_rules
-//        $dataFiltersRuleRow = $this->affiliateRepository->allGetFiltersRulesById($dataFiltersRulesId);
-//
-//        //Connect to remote db of garasje-tilbud.no website
-//        $dataRemoteDB = $this->affiliateRepository->allGetGarageForms();
-//
-//        //Get Description from current data_filters_rules
-//        $description = $dataFiltersRuleRow[0]->description;
-//
-//        //Determine the config for qforms it containes decoded array of form
-//        $this->config = $this->affiliateService->decryptionConfig($dataRemoteDB[0]->config, $description);
-//        $this->form();
 
         //send params
         return view('affiliate.data-filters-rules.form-builder',
             [
                 'menu' => 'affiliate-service',
                 'forms' => $forms,
-                'params' => $request
+                'params' => $request,
+                'dataFiltersRulesDescription' => $dataFiltersRulesDescription
             ]
         );
     }

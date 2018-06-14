@@ -8,6 +8,7 @@
             @if($item->active)
                 <a href="{!! $item->url() !!}" class="nav-link active show" >
                     {!! $item->title !!}
+
                 </a>
             @else
                 <a href="{!! $item->url() !!}" class="nav-link" >

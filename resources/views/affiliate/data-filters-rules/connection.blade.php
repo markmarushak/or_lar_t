@@ -23,7 +23,7 @@
                 </div>
             </div>
 
-            <form action="{{route('connection-update', [  'data_filters_rules_id' => $dataFiltersRulesId, 'data_filters_rules_description' => $dataFiltersRulesDescription, 'id' => !empty($settingsOfDataBase[0]['id']) ? $settingsOfDataBase[0]['id'] : null ])}}" method="post">
+            <form action="{{route('connection-update', [  'dataFiltersRulesId' => $dataFiltersRulesId, 'dataFiltersRulesDescription' => $dataFiltersRulesDescription, 'id' => !empty($settingsOfDataBase[0]['id']) ? $settingsOfDataBase[0]['id'] : null ])}}" method="post">
 
                 <input type="hidden" name="_method" value="PUT">
                 {{ csrf_field() }}
@@ -33,7 +33,7 @@
                             Domain:
                         </label>
                         <div class="col-lg-4 col-md-9 col-sm-12">
-                            <input type="text" name="domain" class="form-control m-input" value="<?php if(!empty($settingsOfDataBase[0]['domain'])) {  echo $settingsOfDataBase[0]['domain']; } ?>">
+                            <input type="text" name="domain" class="form-control m-input" value="<?php if(!empty($dataFiltersRulesDescription)) {  echo $dataFiltersRulesDescription; } ?>">
                         </div>
                     </div>
 
