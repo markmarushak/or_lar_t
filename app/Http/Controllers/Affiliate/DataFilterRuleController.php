@@ -34,7 +34,7 @@ class DataFilterRuleController extends Controller
         $this->quformRepository =$quformRepository;
     }
 
-    public function index(Request $request)
+    public function index()
     {
         $dataFiltersRules = DataFiltersRules::all();
         if (!empty($dataFiltersRules)) {
@@ -110,6 +110,7 @@ class DataFilterRuleController extends Controller
             'charset' => 'required',
             'collation' => 'required'
         ]);
+
         if($request->id) {
             $dataFiltersRulesObject = $this->affiliateRepository->getDataFiltersRulesById($dataFiltersRulesId);
             $this->settingOfDataBaseModel->edit($request, $dataFiltersRulesObject);
@@ -122,27 +123,33 @@ class DataFilterRuleController extends Controller
 
 
     /**
-     * @param Request $r0equest
+     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      *
      *  Action
      */
-    public function formBuilder(Request $request, $dataFiltersRulesDescription)
+    public function formBuilder(Request $request, $dataFiltersRulesId, $dataFiltersRulesDescription)
     {
+       $connectionToDataBase= $this->affiliateService->connectionToDataBase($dataFiltersRulesId);
+       if (is_a($connectionToDataBase, 'ErrorException')) {
 
-        $this->affiliateService->connectionToDataBase();
-      $forms =  $this->quformRepository->getForms(array('limit' => 9));
-
-
-
-        //send params
-        return view('affiliate.data-filters-rules.form-builder',
-            [
-                'menu' => 'affiliate-service',
-                'forms' => $forms,
-                'params' => $request,
-                'dataFiltersRulesDescription' => $dataFiltersRulesDescription
-            ]
-        );
+           return view('affiliate.data-filters-rules.form-builder',
+               [
+                   'menu' => 'affiliate-service',
+                   'dataFiltersRulesDescription' => $dataFiltersRulesDescription
+               ]
+           )->withErrors($connectionToDataBase->getMessage() );
+       } else {
+           $forms =  $this->quformRepository->getForms();
+           //send params
+           return view('affiliate.data-filters-rules.form-builder',
+               [
+                   'menu' => 'affiliate-service',
+                   'forms' => $forms,
+                   'params' => $request,
+                   'dataFiltersRulesDescription' => $dataFiltersRulesDescription
+               ]
+           );
+       }
     }
 }

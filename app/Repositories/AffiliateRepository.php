@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 
 use App\Models\DataFiltersRules;
+use App\Models\SettingOfDataBase;
 use App\Plugins\QformLibrary\Quform;
 use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Field;
 
@@ -17,9 +18,11 @@ class AffiliateRepository
 
     protected $garageDB;
     protected $dataFiltersRulesModel;
+    protected $settingOfDataBaseModel;
 
-    public function __construct(DataFiltersRules $dataFiltersRulesModel)
+    public function __construct(DataFiltersRules $dataFiltersRulesModel, SettingOfDataBase $settingOfDataBaseModel)
     {
+        $this->settingOfDataBaseModel = $settingOfDataBaseModel;
         $this->dataFiltersRulesModel = $dataFiltersRulesModel;
         //Check if it's local domain assign local db credentials
         $this->garageDB = ($_SERVER['HTTP_HOST'] != 'admin.orbitleads.com')? "garage_dev": "garage";
@@ -256,6 +259,14 @@ GROUP BY `data`.`entry_id`";
         return $this->dataFiltersRulesModel
             ->where('data_filters_rules_id', $dataFiltersRulesId)
             ->with('settingOfDataBase')
+            ->firstOrFail();
+    }
+
+
+    public function getSettingOfDataBaseById($dataFiltersRulesId)
+    {
+        return $this->settingOfDataBaseModel
+            ->where('data_filters_rules_id', $dataFiltersRulesId)
             ->firstOrFail();
     }
 
