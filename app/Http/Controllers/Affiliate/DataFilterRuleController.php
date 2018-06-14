@@ -36,7 +36,6 @@ class DataFilterRuleController extends Controller
 
     public function index(Request $request)
     {
-
         $dataFiltersRules = DataFiltersRules::all();
         if (!empty($dataFiltersRules)) {
 
@@ -80,10 +79,9 @@ class DataFilterRuleController extends Controller
      */
     public function connection(Request $request)
     {
+        $settingsOfDataBase = $this->settingOfDataBaseModel->all()->toArray();
         $dataFiltersRulesId = $request->data_filters_rules_id;
         $dataFiltersRulesDescription = $request->data_filters_rules_description;
-        $settingsOfDataBase = $this->settingOfDataBaseModel->all()->where( 'data_filters_rules_id', $dataFiltersRulesId);
-
         return view('affiliate.data-filters-rules.connection', compact(
                 'settingsOfDataBase',
                 'dataFiltersRulesId',
@@ -129,10 +127,11 @@ class DataFilterRuleController extends Controller
      *
      *  Action
      */
-    public function formBuilder(Request $request, $dataFiltersRulesId, $dataFiltersRulesDescription)
+    public function formBuilder(Request $request, $dataFiltersRulesDescription)
     {
+
         $this->affiliateService->connectionToDataBase();
-      $forms =  $this->quformRepository->getForms();
+      $forms =  $this->quformRepository->getForms(array('limit' => 9));
 
 
 
