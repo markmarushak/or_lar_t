@@ -140,7 +140,7 @@
                                                         <option value="bottom">Bottom</option>
                                                     </select>
                                                 </div>
-                                                <input type="text" class="form-control col-3">
+                                                <input type="text" class="form-control col-3 ml-3">
                                             </div>
                                             <div class="form-group">
                                                 <div class=" form-group">
@@ -149,7 +149,7 @@
                                                         <option value="bottom">Bottom</option>
                                                     </select>
                                                 </div>
-                                                <input type="text" class="form-control col-3">
+                                                <input type="text" class="form-control col-3 ml-3">
                                                 <button class="form-control ml-3 btn btn-success">Add</button>
                                             </div>
                                         </div>
