@@ -101,7 +101,7 @@
 
                                             <td>
                                <span style="overflow: visible; width: 70px;">
-                                    <span class="m-badge  m-badge--success m-badge--wide">status</span>
+                                    <span class="m-badge  m-badge--success m-badge--wide mt-3">status</span>
                                </span>
                                             </td>
 
