@@ -36,6 +36,7 @@ class DataFilterRuleController extends Controller
 
     public function index()
     {
+
         $dataFiltersRules = DataFiltersRules::all();
         if (!empty($dataFiltersRules)) {
 
