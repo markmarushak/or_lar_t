@@ -4,12 +4,9 @@
 @section('content')
 
     <div class="row">
-
         <div class="clearfix"></div>
-
         <div class="col-xl-4">
         </div>
-
     </div>
 
     <div class="col-xl-12" style="margin-top: 20px;">
