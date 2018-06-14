@@ -35,9 +35,6 @@
                                         <div class="mr-auto">
                                             <input id="m_search_input" placeholder="Search" type="text"/>
                                         </div>
-                                        <div class="mr-auto">
-                                            <button class=" btn btn-success">Add</button>
-                                        </div>
                                     </div>
 
                                     <table class="table table-striped- table-bordered table-hover table-checkable cell-border table m-table m-table--head-bg-success"
