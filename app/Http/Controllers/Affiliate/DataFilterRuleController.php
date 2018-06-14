@@ -142,7 +142,7 @@ class DataFilterRuleController extends Controller
            )->withErrors($connectionToDataBase->getMessage() );
        } else {
            $forms =  $this->quformRepository->getForms();
-           //send params
+           
            return view('affiliate.data-filters-rules.form-builder',
                [
                    'menu' => 'affiliate-service',
