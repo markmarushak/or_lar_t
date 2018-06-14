@@ -6,7 +6,6 @@
         <div class="clearfix"></div>
 
             <div class="col-xl-4">
-                {{--<strong>{!!$dataFiltersRuleRow->description!!} -  Form Frontpage</strong>--}}
             </div>
         </div>
 
@@ -21,9 +20,14 @@
                 <div class="qfb-dashboard qfb-cf">
                     <div class="qfb-db-row qfb-cf">
                         <div class="qfb-db-col-xl-12">
+                            @include('errors')
+                            @if(isset($forms) && !empty($forms) )
                             <div class="qfb-box">
+
                                 <div class="qfb-cf">
+
                                     <h3 class="qfb-box-heading qfb-db-heading">
+
                                         <i class="mdi mdi-view_stream"></i>
                                         Forms                        </h3>
                                 </div>
@@ -38,14 +42,17 @@
                                         </span>
                                         </li>
                                         @endforeach
-
                                         <li class="qfb-cf qfb-form-switcher-add-form-button qfb-form-switcher-two-buttons">
                                             <a href="http://garasje-tilbud.no/wp-admin/admin.php?page=quform.forms&amp;sp=add">Add New</a>
                                         </li>
+
                                     </ul>
 
                                 </div>
+
                             </div>
+                            @endif
+
                         </div>
                     </div>
 

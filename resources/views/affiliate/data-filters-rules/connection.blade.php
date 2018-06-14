@@ -133,7 +133,7 @@
 
                     <div class="offset-10 col-lg-2 col-md-9 col-sm-12">
 
-                        <input type="submit" class="form-control m-input btn-primary text-white" value="Submit">
+                        <input type="submit" class="form-control m-input btn-primary text-white" value="Save">
                     </div>
                 </div>
             </form>

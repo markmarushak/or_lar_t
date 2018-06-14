@@ -110,6 +110,7 @@ class DataFilterRuleController extends Controller
             'charset' => 'required',
             'collation' => 'required'
         ]);
+
         if($request->id) {
             $dataFiltersRulesObject = $this->affiliateRepository->getDataFiltersRulesById($dataFiltersRulesId);
             $this->settingOfDataBaseModel->edit($request, $dataFiltersRulesObject);
@@ -122,26 +123,33 @@ class DataFilterRuleController extends Controller
 
 
     /**
-     * @param Request $r0equest
+     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      *
      *  Action
      */
     public function formBuilder(Request $request, $dataFiltersRulesId, $dataFiltersRulesDescription)
     {
-        $this->affiliateService->connectionToDataBase();
-      $forms =  $this->quformRepository->getForms();
+       $connectionToDataBase= $this->affiliateService->connectionToDataBase($dataFiltersRulesId);
+       if (is_a($connectionToDataBase, 'ErrorException')) {
 
-
-
-        //send params
-        return view('affiliate.data-filters-rules.form-builder',
-            [
-                'menu' => 'affiliate-service',
-                'forms' => $forms,
-                'params' => $request,
-                'dataFiltersRulesDescription' => $dataFiltersRulesDescription
-            ]
-        );
+           return view('affiliate.data-filters-rules.form-builder',
+               [
+                   'menu' => 'affiliate-service',
+                   'dataFiltersRulesDescription' => $dataFiltersRulesDescription
+               ]
+           )->withErrors($connectionToDataBase->getMessage() );
+       } else {
+           $forms =  $this->quformRepository->getForms();
+           //send params
+           return view('affiliate.data-filters-rules.form-builder',
+               [
+                   'menu' => 'affiliate-service',
+                   'forms' => $forms,
+                   'params' => $request,
+                   'dataFiltersRulesDescription' => $dataFiltersRulesDescription
+               ]
+           );
+       }
     }
 }

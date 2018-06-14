@@ -4,12 +4,21 @@
 namespace App\Services;
 
 use App\Plugins\WordPress\Wpdb;
+use App\Repositories\AffiliateRepository;
 use App\Services\BaseService;
-
+use Exception;
 
 
 class AffiliateService extends BaseService
 {
+    private $affiliateRepository;
+
+
+    public function __construct(AffiliateRepository $affiliateRepository)
+    {
+        $this->affiliateRepository = $affiliateRepository;
+    }
+
     public function decryptionConfig($data, $description)
     {
          return unserialize(base64_decode($data));
@@ -24,11 +33,33 @@ class AffiliateService extends BaseService
             return $var;
     }
 
-    public function connectionToDataBase()
+    public function connectionToDataBase($dataFiltersRulesId)
     {
+        $settingOfDataBaseById = $this->affiliateRepository->getSettingOfDataBaseById($dataFiltersRulesId);
+
         global $wpdb;
 
-        return $wpdb = new Wpdb( 'root', 'q', 'weeklyex_wp126', 'localhost' );
+        try
+        {
+            if ($wpdb = new Wpdb(
+                $settingOfDataBaseById->username,
+                $settingOfDataBaseById->password,
+                $settingOfDataBaseById->database,
+                $settingOfDataBaseById->host
+            ))
+            {
+                return true;
+            }
+            else
+            {
+                throw new Exception('Unable to connect');
+            }
+        }
+        catch(Exception $e)
+        {
+            return $e;
+        }
+
     }
 
 
