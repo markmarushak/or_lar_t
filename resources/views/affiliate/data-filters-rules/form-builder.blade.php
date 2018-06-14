@@ -16,11 +16,12 @@
 
 
         <div class="row">
+            @include('errors')
             <div class="col-xl-8">
                 <div class="qfb-dashboard qfb-cf">
                     <div class="qfb-db-row qfb-cf">
                         <div class="qfb-db-col-xl-12">
-                            @include('errors')
+
                             @if(isset($forms) && !empty($forms) )
                             <div class="qfb-box">
 
