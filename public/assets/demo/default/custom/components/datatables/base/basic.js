@@ -1,8 +1,6 @@
 var DatatablesBasicBasic = function () {
-
     var initTable1 = function () {
-        var table = $('#m_table_1, #m_table_2');
-
+        var table = $('#m_table_1, #m_table_2, #m_table_3');
         // begin first table
         table.DataTable({
             retrieve: true,
@@ -152,12 +150,58 @@ var DatatablesBasicBasic = function () {
 //
 // } );
 
+$('#m_search_input').keyup(function(){
+    $('#m_table_2').DataTable().search($(this).val()).draw() ;
+});
 $(document).ready(function () {
     $('#m_table_2').DataTable({
         paging: false,
-        searching: true,
         ordering: true,
         responsive: true,
+        searching:true,
+        info: false,
+        sDom:"",
+
+
+        order: [[1, 'desc']],
+
+        headerCallback: function (thead, data, start, end, display) {
+            thead.getElementsByTagName('th')[0].innerHTML = `
+                    <label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">
+                        <input type="checkbox" value="" class="m-group-checkable">
+                        <span></span>
+                    </label>`;
+        },
+        columnDefs: [
+            {
+                targets: 0,
+                width: '30px',
+                className: 'dt-right',
+                orderable: false,
+                render: function (data, type, full, meta) {
+                    return `
+                        <label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">
+                            <input type="checkbox" value="" class="m-checkable">
+                            <span></span>
+                        </label>`;
+                },
+            },
+
+
+
+        ],
+
+
+    })
+});
+
+$(document).ready(function () {
+    $('#m_table_3').DataTable({
+        paging: false,
+        searching: false,
+        ordering: true,
+        responsive: true,
+        info: false,
 
 
         order: [[1, 'desc']],
