@@ -2,6 +2,7 @@
 
 namespace App\Plugins\QformLibrary\Quform;
 
+use App\Plugins\QformLibrary\Quform;
 
 
 /**
@@ -115,7 +116,7 @@ class Quform_Options
             'cacheBuster' => time()
         );
 
-//
+
 //        return array(
 //            'defaultEmailAddress' => get_bloginfo('admin_email'),
 //            'defaultEmailName' => '',

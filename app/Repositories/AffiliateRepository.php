@@ -94,7 +94,7 @@ GROUP BY `data`.`entry_id`";
 
 
 
-    //TODO fix limit
+
     public function getRecentEntries($count = null)
     {
         if (is_numeric($count)) {

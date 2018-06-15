@@ -200,18 +200,6 @@ class AffiliateController extends Controller
         }
 
 
-        public function affiliatesPartners(Request $request)
-        {
-
-            return view('affiliate.affiliates-partners',
-                [
-                    'menu' => 'affiliate-service',
-                    'data' => []
-                ]
-            );
-        }
-
-
         public function dataFiltersRulesData(Request $request)
         {
             $data = "dataFiltersRulesData";
@@ -236,6 +224,29 @@ class AffiliateController extends Controller
                 ]
             );
         }
+
+
+    public function outputOverview(Request $request)
+    {
+        $result = $this->affiliateRepository->getRecentEntries(10);
+        $recentEntries = $this->repository->getRecentEntries(10);
+        //TODO will make service
+        $recentEntries = json_decode(json_encode($result), true);
+        $unreadCount = 0;
+        foreach ($recentEntries as $recentEntry) {
+            if ($recentEntry['unread'] == '1') {
+                $unreadCount++;
+            }
+        }
+
+        $dataFiltersRulesId = $request->data_filters_rules_id;
+        $dataFiltersRulesDescription = $request->data_filters_rules_description;
+        return view('affiliate.output-overview', ['menu' => 'affiliate-service',
+            'recentEntries' => $recentEntries,
+            'dataFiltersRulesId' =>$dataFiltersRulesId,
+            'dataFiltersRulesDescription' => $dataFiltersRulesDescription
+        ]);
+    }
 
         public function outputOverviewSingle(Request $request)
         {
@@ -318,26 +329,7 @@ class AffiliateController extends Controller
         }
 
 
-        public function outputOverview(Request $request)
-        {
-            $result = $this->affiliateRepository->getRecentEntries(10);
-            //TODO will make service
-            $recentEntries = json_decode(json_encode($result), true);
-            $unreadCount = 0;
-            foreach ($recentEntries as $recentEntry) {
-                if ($recentEntry['unread'] == '1') {
-                    $unreadCount++;
-                }
-            }
 
-            $dataFiltersRulesId = $request->data_filters_rules_id;
-            $dataFiltersRulesDescription = $request->data_filters_rules_description;
-            return view('affiliate.output-overview', ['menu' => 'affiliate-service',
-                'recentEntries' => $recentEntries,
-                'dataFiltersRulesId' =>$dataFiltersRulesId,
-                'dataFiltersRulesDescription' => $dataFiltersRulesDescription
-            ]);
-        }
 
 
 
@@ -362,5 +354,16 @@ class AffiliateController extends Controller
 
             return $config;
         }
+
+    public function affiliatesPartners(Request $request)
+    {
+
+        return view('affiliate.affiliates-partners',
+            [
+                'menu' => 'affiliate-service',
+                'data' => []
+            ]
+        );
+    }
 
 }

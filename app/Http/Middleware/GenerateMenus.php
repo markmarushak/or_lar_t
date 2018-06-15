@@ -65,7 +65,7 @@ class GenerateMenus
             //output-overview
             $menu->add('Output Overview',
                 ['action' =>
-                    ['\App\Http\Controllers\Affiliate\AffiliateController@outputOverview',
+                    ['\App\Http\Controllers\Affiliate\DataFilterRuleController@outputOverview',
                         'data_filters_rules_id' => $this->request->data_filters_rules_id,
                         'data_filters_rules_description' => $this->request->data_filters_rules_description
                     ]]);

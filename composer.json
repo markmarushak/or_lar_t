@@ -28,6 +28,7 @@
             "app/Helpers/load.php",
             "app/Helpers/cache.php",
             "app/Helpers/functions.php"
+
         ],
         "classmap": [
             "database"

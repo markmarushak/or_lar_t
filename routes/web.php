@@ -52,7 +52,6 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service'], func
         //form-builder
         Route::get('/form-builder', 'DataFilterRuleController@formbuilder')->name('form-builder');
 
-
         // Data Filters Edit page
         Route::get('', 'AffiliateController@dataFiltersRules')->name('data-filters-rules-edit');
 
@@ -65,7 +64,7 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service'], func
         Route::get('/data-filters-rules-data', 'AffiliateController@dataFiltersRulesData')->name('data-filters-rules-data');
 
         //outputOverview
-        Route::get('/output-overview', 'AffiliateController@outputOverview')->name('output-overview');
+        Route::get('/output-overview', 'DataFilterRuleController@outputOverview')->name('output-overview');
 
         //outputOverviews
         Route::get('/output-overview-single/{single_id?}', 'AffiliateController@outputOverviewSingle')->name('output-overview-single');

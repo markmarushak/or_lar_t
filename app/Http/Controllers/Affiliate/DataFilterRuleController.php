@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Affiliate;
 use App\Http\Controllers\Controller;
 use App\Models\DataFiltersRules;
 use App\Models\SettingOfDataBase;
+use App\Plugins\QformLibrary\Quform\Quform_Options;
 use App\Plugins\QformLibrary\Quform\Quform_Repository;
 use App\Repositories\AffiliateRepository;
 use App\Services\AffiliateService;
@@ -19,6 +20,7 @@ class DataFilterRuleController extends Controller
     private $settingOfDataBaseModel;
     private $affiliateService;
     private $quformRepository;
+    private $quformOptions;
 
     public function __construct(AffiliateRepository $affiliateRepository,
                                 DataFiltersRules $dataFiltersRulesModel,
@@ -31,7 +33,7 @@ class DataFilterRuleController extends Controller
         $this->dataFiltersRulesModel = $dataFiltersRulesModel;
         $this->settingOfDataBaseModel = $settingOfDataBaseModel;
         $this->affiliateService = $affiliateService;
-        $this->quformRepository =$quformRepository;
+        $this->quformRepository = $quformRepository;
     }
 
     public function index()
@@ -99,8 +101,10 @@ class DataFilterRuleController extends Controller
      * @param $dataFiltersRulesDescription
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateConnectDb(Request $request,  $dataFiltersRulesId, $dataFiltersRulesDescription)
+    public function updateConnectDb(Request $request)
     {
+        $dataFiltersRulesId = $request->data_filters_rules_id;
+        $dataFiltersRulesDescription = $request->data_filters_rules_description;
         $this->validate($request, [
             'domain' => 'required',
             'form' => 'required',
@@ -130,8 +134,10 @@ class DataFilterRuleController extends Controller
      *
      *  Action
      */
-    public function formBuilder(Request $request, $dataFiltersRulesId, $dataFiltersRulesDescription)
+    public function formBuilder(Request $request)
     {
+        $dataFiltersRulesId = $request->data_filters_rules_id;
+        $dataFiltersRulesDescription = $request->data_filters_rules_description;
        $connectionToDataBase= $this->affiliateService->connectionToDataBase($dataFiltersRulesId);
        if (is_a($connectionToDataBase, 'ErrorException')) {
            return view('affiliate.data-filters-rules.form-builder',
@@ -153,4 +159,31 @@ class DataFilterRuleController extends Controller
            );
        }
     }
+
+    public function outputOverview(Request $request)
+    {
+        $dataFiltersRulesId = $request->data_filters_rules_id;
+        $dataFiltersRulesDescription = $request->data_filters_rules_description;
+        $connectionToDataBase= $this->affiliateService->connectionToDataBase($dataFiltersRulesId);
+        if (is_a($connectionToDataBase, 'ErrorException')) {
+            return view('affiliate.data-filters-rules.output-overview',
+                [
+                    'menu' => 'affiliate-service',
+                    'dataFiltersRulesDescription' => $dataFiltersRulesDescription
+                ]
+            )->withErrors($connectionToDataBase->getMessage() );
+        } else {
+            $recentEntries = $this->quformRepository->getRecentEntries();
+            return view('affiliate.data-filters-rules.output-overview',
+                [
+                'menu' => 'affiliate-service',
+                    'options' => $this->quformOptions,
+                'recentEntries' => $recentEntries,
+                'dataFiltersRulesId' =>$dataFiltersRulesId,
+                'dataFiltersRulesDescription' => $dataFiltersRulesDescription
+                ]
+            );
+        }
+    }
+
 }

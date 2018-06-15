@@ -10,11 +10,7 @@
         </div>
 
     <div class="col-xl-12" style="margin-top: 20px;">
-        {{--Call Tab Menu--}}
         @include('affiliate.tabs-menu.top-menu')
-
-
-
         <div class="row">
             @include('errors')
             <div class="col-xl-8">
@@ -25,7 +21,6 @@
                                 <div class="qfb-box">
                                     <div class="qfb-cf">
                                         <h3 class="qfb-box-heading qfb-db-heading">
-
                                             <i class="mdi mdi-view_stream"></i>
                                             Forms                        </h3>
                                     </div>
