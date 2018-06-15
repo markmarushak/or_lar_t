@@ -64,7 +64,7 @@ class AffiliateService extends BaseService
     public function createUrls($forms, $dataFiltersRulesDescription )
     {
         foreach ($forms as $singleForm) {
-            $urls[$singleForm['name']] = 'http://'.$dataFiltersRulesDescription.'/wp-admin/admin.php?page=quform.forms&sp=edit&id='.$singleForm['id'].'';
+            $urls[$singleForm['name']] = 'http://www.'.$dataFiltersRulesDescription.'/wp-admin/admin.php?page=quform.forms&sp=edit&id='.$singleForm['id'].'';
         }
         return $urls;
     }
