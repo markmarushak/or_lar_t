@@ -40,7 +40,6 @@ class DataFilterRuleController extends Controller
         $dataFiltersRules = DataFiltersRules::all();
         if (!empty($dataFiltersRules)) {
 
-            //$dataFiltersRuleRow = $this->affiliateRepository->allGetFiltersRulesById($dataFiltersRulesId);
             return view('affiliate.data-filters-rules.index',
                 [
                     'menu' => 'affiliate-service',
@@ -148,7 +147,7 @@ class DataFilterRuleController extends Controller
                [
                    'menu' => 'affiliate-service',
                    'forms' => $forms,
-                   'params' => $request,
+                   'urls' => $urls,
                    'dataFiltersRulesDescription' => $dataFiltersRulesDescription
                ]
            );
