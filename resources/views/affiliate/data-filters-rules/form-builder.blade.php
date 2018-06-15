@@ -23,9 +23,7 @@
                         <div class="qfb-db-col-xl-12">
                             @if(isset($urls) && !empty($urls) )
                                 <div class="qfb-box">
-
                                     <div class="qfb-cf">
-
                                         <h3 class="qfb-box-heading qfb-db-heading">
 
                                             <i class="mdi mdi-view_stream"></i>
