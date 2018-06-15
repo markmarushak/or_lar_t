@@ -80,9 +80,9 @@ class DataFilterRuleController extends Controller
      */
     public function connection(Request $request)
     {
-        $settingsOfDataBase = $this->settingOfDataBaseModel->all()->toArray();
         $dataFiltersRulesId = $request->data_filters_rules_id;
         $dataFiltersRulesDescription = $request->data_filters_rules_description;
+        $settingsOfDataBase = $this->affiliateRepository->getSettingOfDataBaseById($dataFiltersRulesId);
         return view('affiliate.data-filters-rules.connection', compact(
                 'settingsOfDataBase',
                 'dataFiltersRulesId',
@@ -102,6 +102,7 @@ class DataFilterRuleController extends Controller
     {
         $this->validate($request, [
             'domain' => 'required',
+            'form' => 'required',
             'host_name' => 'required',
             'host' => 'required',
             'port' => 'required',
@@ -111,7 +112,6 @@ class DataFilterRuleController extends Controller
             'charset' => 'required',
             'collation' => 'required'
         ]);
-
         if($request->id) {
             $dataFiltersRulesObject = $this->affiliateRepository->getDataFiltersRulesById($dataFiltersRulesId);
             $this->settingOfDataBaseModel->edit($request, $dataFiltersRulesObject);
@@ -133,7 +133,6 @@ class DataFilterRuleController extends Controller
     {
        $connectionToDataBase= $this->affiliateService->connectionToDataBase($dataFiltersRulesId);
        if (is_a($connectionToDataBase, 'ErrorException')) {
-
            return view('affiliate.data-filters-rules.form-builder',
                [
                    'menu' => 'affiliate-service',
@@ -142,12 +141,12 @@ class DataFilterRuleController extends Controller
            )->withErrors($connectionToDataBase->getMessage() );
        } else {
            $forms =  $this->quformRepository->getForms();
-
+           $urls = $this->affiliateService->createUrls($forms, $dataFiltersRulesDescription);
            return view('affiliate.data-filters-rules.form-builder',
                [
                    'menu' => 'affiliate-service',
+                   'urls' => $urls,
                    'forms' => $forms,
-                   'params' => $request,
                    'dataFiltersRulesDescription' => $dataFiltersRulesDescription
                ]
            );
