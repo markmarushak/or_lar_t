@@ -160,7 +160,8 @@ $(document).ready(function () {
         responsive: true,
         searching:true,
         info: false,
-        sDom:"",
+         sDom:   `<'row'<'col-sm-12'tr>>
+			<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
 
 
         order: [[1, 'desc']],

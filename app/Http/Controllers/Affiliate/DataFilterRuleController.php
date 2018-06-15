@@ -83,11 +83,13 @@ class DataFilterRuleController extends Controller
         $dataFiltersRulesId = $request->data_filters_rules_id;
         $dataFiltersRulesDescription = $request->data_filters_rules_description;
         $settingsOfDataBase = $this->affiliateRepository->getSettingOfDataBaseById($dataFiltersRulesId);
-        return view('affiliate.data-filters-rules.connection', compact(
-                'settingsOfDataBase',
-                'dataFiltersRulesId',
-                'dataFiltersRulesDescription'
-            )
+        return view('affiliate.data-filters-rules.connection',
+            [
+                'menu' => 'affiliate-service',
+                'dataFiltersRulesDescription' => $dataFiltersRulesDescription,
+                'settingsOfDataBase' => $settingsOfDataBase,
+                'dataFiltersRulesId' => $dataFiltersRulesId
+            ]
         );
     }
 
@@ -145,8 +147,8 @@ class DataFilterRuleController extends Controller
            return view('affiliate.data-filters-rules.form-builder',
                [
                    'menu' => 'affiliate-service',
-                   'urls' => $urls,
                    'forms' => $forms,
+                   'params' => $request,
                    'dataFiltersRulesDescription' => $dataFiltersRulesDescription
                ]
            );

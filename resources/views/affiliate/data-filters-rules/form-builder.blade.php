@@ -45,9 +45,7 @@
                                             <li class="qfb-cf qfb-form-switcher-add-form-button qfb-form-switcher-two-buttons">
                                                 <a href="http://garasje-tilbud.no/wp-admin/admin.php?page=quform.forms&amp;sp=add">Add New</a>
                                             </li>
-
                                         </ul>
-
                                     </div>
 
                                 </div>
