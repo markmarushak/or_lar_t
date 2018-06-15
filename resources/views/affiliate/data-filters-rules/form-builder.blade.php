@@ -48,7 +48,6 @@
                                                 <a href="http://garasje-tilbud.no/wp-admin/admin.php?page=quform.forms&amp;sp=add">Add New</a>
                                             </li>
                                         </ul>
-
                                     </div>
 
                                 </div>
