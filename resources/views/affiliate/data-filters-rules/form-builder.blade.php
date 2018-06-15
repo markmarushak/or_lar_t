@@ -21,8 +21,6 @@
                 <div class="qfb-dashboard qfb-cf">
                     <div class="qfb-db-row qfb-cf">
                         <div class="qfb-db-col-xl-12">
-
-
                             @if(isset($urls) && !empty($urls) )
                                 <div class="qfb-box">
 
