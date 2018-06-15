@@ -8,7 +8,6 @@
         <div class="clearfix"></div>
 
         <div class="col-xl-4">
-            {{--<strong>{!!$dataFiltersRuleRow->description!!} -  Form Frontpage</strong>--}}
         </div>
     </div>
     <div class="col-xl-12" style="margin-top: 20px;">
