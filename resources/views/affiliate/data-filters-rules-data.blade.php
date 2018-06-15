@@ -1,9 +1,10 @@
 
 @extends('layouts.admin.app')
-<link rel='stylesheet' id='quform-css'  href='http://garasje-tilbud.no/modules/quform/cache/quform.css?ver=1521656337' type='text/css' media='all' />
+<!--<link rel='stylesheet' id='quform-css'  href='http://garasje-tilbud.no/modules/quform/cache/quform.css?ver=1521656337' type='text/css' media='all' />-->
 @section('content')
 
-    <div class="row">
+
+    <div>
 
         <div class="clearfix"></div>
 
@@ -16,24 +17,17 @@
     <div class="col-xl-12" style="margin-top: 20px;">
         {{--Call Tab Menu--}}
         @include('affiliate.tabs-menu.top-menu')
+            <div class="m-portlet m-portlet--mobile">
+                <div class="m-portlet__body">
 
-        <div class="tab-content">
-            <div class="tab-pane active show" id="m_tabs_1_1" role="tabpanel">
-                <div class="row m_datatable m-datatable m-datatable--default m-datatable--loaded" id="local_data" style="">
-                    <table class="m-datatable__table" style="display: block; min-height: 300px; overflow-x: auto;">
-                        <thead class="m-datatable__head">
-                        <tr class="m-datatable__row" style="left: 0px;">
-                            <th data-field="RecordID" class="m-datatable__cell--center m-datatable__cell m-datatable__cell--check">
-                                <span style="width: 10px;">
-                                    <label class="m-checkbox m-checkbox--single m-checkbox--all m-checkbox--solid m-checkbox--brand">
-                                        <input type="checkbox">
-                                        <span>
-                                        </span>
-                                    </label>
-                                </span>
+                    <table class="table m-table m-table--head-separator-primary" id="m_table_4">
+                        <thead>
+                        <tr>
+                            <th>
+
                             </th>
                             <th data-field="ID" class="m-datatable__cell m-datatable__cell--sort" data-sort="desc">
-                                <span style="width: 30px;">ID<i class="la la-arrow-down"></i></span>
+                                <span style="width: 130px;">ID<i class="la la-arrow-down"></i></span>
                             </th>
                             <th data-field="FormID" class="m-datatable__cell m-datatable__cell--sort">
                                 <span style="width: 50px;">Form ID</span>
@@ -77,7 +71,7 @@
                             </th>
                         </tr>
                         </thead>
-                        <tbody class="m-datatable__body" style="">
+                        <tbody>
 
 
                         @foreach($data as $row)
@@ -111,7 +105,7 @@
                                 @endif
                                 </span>
                             </td>
-                            <td data-field="CreatedBY" class="m-datatable__cell--sorted m-datatable__cell"
+                            <td data-field="CreatedBY" class="m-datatable__cell--sorted m-datatable__cell">
                                 <span style="width: 50px;">
                                 {{$row->created_by}}
                                 </span>
@@ -140,8 +134,6 @@
                     </table>
                 </div>
             </div>
-        </div>
-
 
     </div>
 

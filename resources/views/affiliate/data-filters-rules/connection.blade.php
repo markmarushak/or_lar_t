@@ -103,7 +103,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="password" type="text" class="form-control m-input"
-                                   value="@if(!empty($settingsOfDataBase->host)){{$settingsOfDataBase->host}}@endif">
+                                   value="@if(!empty($settingsOfDataBase->password)){{$settingsOfDataBase->password}}@endif">
                         </div>
                     </div>
 
