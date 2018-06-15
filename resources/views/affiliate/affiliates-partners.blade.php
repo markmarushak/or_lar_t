@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
-<link rel='stylesheet' id='quform-css'
-      type='text/css' media='all'/>
+<!--<link rel='stylesheet' id='quform-css'
+      type='text/css' media='all'/>-->
 @section('content')
 
     <div class="row">
@@ -37,7 +37,7 @@
                                         </div>
                                     </div>
 
-                                    <table class="table table-striped- table-bordered table-hover table-checkable cell-border table m-table m-table--head-bg-success"
+                                    <table class="table m-table m-table--head-separator-primary"
                                            id="m_table_2">
                                         <thead>
                                         <tr>
@@ -184,7 +184,7 @@
                                     <div>
                                         <button class="btn btn-success">Add Rule</button>
                                     </div>
-                                <table class="table table-striped- table-bordered table-hover table-checkable cell-border "
+                                <table class="table m-table m-table--head-separator-primary"
                                        id="m_table_3">
                                     <thead>
                                     <tr>

@@ -4,7 +4,7 @@
 
     <div class="m-portlet m-portlet--mobile">
         <div class="m-portlet__body">
-            <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
+            <table class="table m-table m-table--head-separator-primary" id="m_table_1">
                 <thead>
                 <tr>
 
