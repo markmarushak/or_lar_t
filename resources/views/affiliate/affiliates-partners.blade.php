@@ -3,23 +3,10 @@
       type='text/css' media='all'/>-->
 @section('content')
 
-    <div class="row">
-        <div class="clearfix"></div>
-        <div class="col-xl-4">
-        </div>
-    </div>
-
-    <div class="col-xl-12" style="margin-top: 20px;">
-
-        <div class="tab-content">
-            <div class="tab-pane active show" id="m_tabs_1_1" role="tabpanel">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="m-content">
                             <div class="m-portlet m-portlet--mobile">
                                 <div class="m-portlet__body">
 
-                                    <div class="input-group-prepend">
+                                    <div class="input-group">
                                         <div class="m-radio-inline col-xl-5">
                                             <label class="m-radio">
                                                 <input type="radio" name="example_8" value="1">
@@ -32,7 +19,7 @@
                                                 <span></span>
                                             </label>
                                         </div>
-                                        <div class="mr-auto">
+                                        <div class="ml-auto">
                                             <input id="m_search_input" placeholder="Search" type="text"/>
                                         </div>
                                     </div>
@@ -114,7 +101,7 @@
 
                                     <div class="form-group m-form__group row">
                                         <label class="col-form-label col-lg-3 col-sm-12 m--font-bolder">Enable conditional logic rules</label>
-                                        <div class="col-lg-4 col-md-9 col-sm-12 mt-3">
+                                        <div class="col-lg-4 col-md-9 col-sm-12 mt-2">
 
 
                                                     <input data-switch="true"
@@ -128,7 +115,7 @@
                                         <div class="form-group m-form__group">
 
                                             <div class=" form-group">
-                                                <select class="form-control" id="m_notify_placement_from">
+                                                <select class="form-control" style="width:110px" id="m_notify_placement_from">
                                                     <option value="top">ZipCode</option>
                                                     <option value="bottom">Bottom</option>
                                                 </select>
@@ -155,10 +142,10 @@
                                         </div>
                                     </form>
                                     <form class="form-inline">
-                                        <div class="form-group m-form__group">
+                                        <div class="form-group m-form__group pt-2">
 
                                             <div class=" form-group">
-                                                <select class="form-control" id="m_notify_placement_from">
+                                                <select class="form-control" style="width:110px" id="m_notify_placement_from">
                                                     <option value="top">Material</option>
                                                     <option value="bottom">Bottom</option>
                                                 </select>
@@ -181,7 +168,7 @@
                                             </div>
                                         </div>
                                     </form>
-                                    <div>
+                                    <div class="pt-2">
                                         <button class="btn btn-success">Add Rule</button>
                                     </div>
                                 <table class="table m-table m-table--head-separator-primary"
@@ -262,16 +249,6 @@
                                 </div>
                                 </div>
                                 </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-
-        </div>
 
 
 

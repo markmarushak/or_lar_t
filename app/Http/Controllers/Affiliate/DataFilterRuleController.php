@@ -82,7 +82,8 @@ class DataFilterRuleController extends Controller
         $settingsOfDataBase = $this->settingOfDataBaseModel->all()->toArray();
         $dataFiltersRulesId = $request->data_filters_rules_id;
         $dataFiltersRulesDescription = $request->data_filters_rules_description;
-        return view('affiliate.data-filters-rules.connection', compact(
+        return view('affiliate.data-filters-rules.connection',
+                     ['menu' => 'affiliate-service'], compact(
                 'settingsOfDataBase',
                 'dataFiltersRulesId',
                 'dataFiltersRulesDescription'
