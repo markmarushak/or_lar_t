@@ -23,8 +23,7 @@
                 </div>
             </div>
 
-            <form action="{{route('connection-update', [  'dataFiltersRulesId' => $dataFiltersRulesId, 'dataFiltersRulesDescription' => $dataFiltersRulesDescription, 'id' => !empty($settingsOfDataBase[0]['id']) ? $settingsOfDataBase[0]['id'] : null ])}}" method="post">
-
+            <form action="{{route('connection-update', [  'dataFiltersRulesId' => $dataFiltersRulesId, 'dataFiltersRulesDescription' => $dataFiltersRulesDescription, 'id' => !empty($settingsOfDataBase->id) ? $settingsOfDataBase->id : null ])}}" method="post">
                 <input type="hidden" name="_method" value="PUT">
                 {{ csrf_field() }}
                 @include('errors')
@@ -33,7 +32,7 @@
                             Domain:
                         </label>
                         <div class="col-lg-4 col-md-9 col-sm-12">
-                            <input type="text" name="domain" class="form-control m-input" value="<?php if(!empty($dataFiltersRulesDescription)) {  echo $dataFiltersRulesDescription; } ?>">
+                            <input type="text" name="domain" class="form-control m-input" value="@if(!empty($settingsOfDataBase->domain)){{$settingsOfDataBase->domain}}@endif">
                         </div>
                     </div>
 
@@ -43,7 +42,7 @@
                         </label>
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
-                            <input type="text" class="form-control m-input" value="Form Frontpage">
+                            <input type="text" name="form" class="form-control m-input" value="@if(!empty($settingsOfDataBase->form)){{$settingsOfDataBase->form}}@endif">
                         </div>
                     </div>
                     <div class="form-group m-form__group row">
@@ -53,7 +52,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="host_name" type="text" class="form-control m-input"
-                                   value="<?php if(!empty($settingsOfDataBase[0]['host_name'])) {  echo $settingsOfDataBase[0]['host_name']; } ?>">
+                                   value="@if(!empty($settingsOfDataBase->host_name)){{$settingsOfDataBase->host_name}}@endif">
                         </div>
                     </div>
                     <div class="form-group m-form__group row">
@@ -63,7 +62,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="host" type="text" class="form-control m-input"
-                                   value="<?php if(!empty($settingsOfDataBase[0]['host'])) {  echo $settingsOfDataBase[0]['host']; } ?>">
+                                   value="@if(!empty($settingsOfDataBase->host)){{$settingsOfDataBase->host}}@endif">
                         </div>
                     </div>
                     <div class="form-group m-form__group row">
@@ -73,7 +72,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="port" type="text" class="form-control m-input"
-                                   value="<?php if(!empty($settingsOfDataBase[0]['port'])) {  echo $settingsOfDataBase[0]['port']; } ?>">
+                                   value="@if(!empty($settingsOfDataBase->port)){{$settingsOfDataBase->port}}@endif">
                         </div>
                     </div>
                     <div class="form-group m-form__group row">
@@ -83,7 +82,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="database" type="text" class="form-control m-input"
-                                   value="<?php if(!empty($settingsOfDataBase[0]['database'])) {  echo $settingsOfDataBase[0]['database']; } ?>">
+                                   value="@if(!empty($settingsOfDataBase->database)){{$settingsOfDataBase->database}}@endif">
                         </div>
                     </div>
                     <div class="form-group m-form__group row">
@@ -93,7 +92,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="username" type="text" class="form-control m-input"
-                                   value="<?php if(!empty($settingsOfDataBase[0]['username'])) {  echo $settingsOfDataBase[0]['username']; } ?>">
+                                   value="@if(!empty($settingsOfDataBase->username)){{$settingsOfDataBase->username}}@endif">
                         </div>
                     </div>
 
@@ -104,7 +103,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="password" type="text" class="form-control m-input"
-                                   value="<?php if(!empty($settingsOfDataBase[0]['password'])) {  echo $settingsOfDataBase[0]['password']; } ?>">
+                                   value="@if(!empty($settingsOfDataBase->host)){{$settingsOfDataBase->host}}@endif">
                         </div>
                     </div>
 
@@ -115,7 +114,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="charset" type="text" class="form-control m-input"
-                                   value="<?php if(!empty($settingsOfDataBase[0]['charset'])) {  echo $settingsOfDataBase[0]['charset']; } ?>">
+                                   value="@if(!empty($settingsOfDataBase->charset)){{$settingsOfDataBase->charset}}@endif">
                         </div>
                     </div>
                     <div class="form-group m-form__group row">
@@ -125,7 +124,7 @@
                         <div class="col-lg-4 col-md-9 col-sm-12">
 
                             <input id="host" name="collation" type="text" class="form-control m-input"
-                                   value="<?php if(!empty($settingsOfDataBase[0]['collation'])) {  echo $settingsOfDataBase[0]['collation']; } ?>">
+                                   value="@if(!empty($settingsOfDataBase->collation)){{$settingsOfDataBase->collation}}@endif">
                         </div>
                     </div>
 
