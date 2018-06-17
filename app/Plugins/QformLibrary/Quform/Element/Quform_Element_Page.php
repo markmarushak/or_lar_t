@@ -157,7 +157,7 @@ class Quform_Element_Page extends Quform_Element_Group
      */
     public static function getDefaultConfig()
     {
-        /*$config = apply_filters('quform_default_config_page', array(
+        $config = apply_filters('quform_default_config_page', array(
             'label' => '',
             'title' => '',
             'titleTag' => 'h3',
@@ -181,33 +181,7 @@ class Quform_Element_Page extends Quform_Element_Group
             'logicRules' => array(),
             'styles' => array(),
             'elements' => array()
-        ));*/
-
-        $config = array(
-            'label' => '',
-            'title' => '',
-            'titleTag' => 'h3',
-            'description' => '',
-            'descriptionAbove' => '',
-            'fieldSize' => 'inherit',
-            'fieldWidth' => 'inherit',
-            'fieldWidthCustom' => '',
-            'groupStyle' => 'plain',
-            'borderColor' => '',
-            'backgroundColor' => '',
-            'labelPosition' => 'inherit',
-            'labelWidth' => '',
-            'showLabelInEmail' => false,
-            'showLabelInEntry' => false,
-            'tooltipType' => 'inherit',
-            'tooltipEvent' => 'inherit',
-            'logicEnabled' => false,
-            'logicAction' => true,
-            'logicMatch' => 'all',
-            'logicRules' => array(),
-            'styles' => array(),
-            'elements' => array()
-        );
+        ));
 
         $config['type'] = 'page';
 

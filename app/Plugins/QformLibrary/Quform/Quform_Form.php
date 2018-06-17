@@ -15,7 +15,7 @@ use App\Plugins\QformLibrary\Quform\Quform_Options;
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
  */
-class Quform_Form extends Model
+class Quform_Form
 {
     /**
      * @var int
@@ -37,7 +37,7 @@ class Quform_Form extends Model
     /**
      * @var array
      */
-    public $config = array();
+    protected $config = array();
 
     /**
      * Notifications to send
@@ -131,15 +131,14 @@ class Quform_Form extends Model
      * @param  Quform_TokenReplacer  $tokenReplacer
      * @param  Quform_Options        $options
      */
-
-     public function __construct($id, $uniqueId, Quform_Session $session = null, Quform_TokenReplacer $tokenReplacer = null, Quform_Options $options)
-     {
-         $this->setId($id);
-         $this->setUniqueId($uniqueId);
-         $this->session = $session;
-         $this->tokenReplacer = $tokenReplacer;
-         $this->options = $options;
-     }
+    public function __construct($id, $uniqueId, Quform_Session $session, Quform_TokenReplacer $tokenReplacer, Quform_Options $options)
+    {
+        $this->setId($id);
+        $this->setUniqueId($uniqueId);
+        $this->session = $session;
+        $this->tokenReplacer = $tokenReplacer;
+        $this->options = $options;
+    }
 
     /**
      * Set the ID of the form
@@ -208,25 +207,18 @@ class Quform_Form extends Model
      */
     public function render(array $options = array())
     {
-        /*$options = wp_parse_args($options, array(
+        $options = wp_parse_args($options, array(
             'show_title' => true,
             'show_description' => true
-        ));*/
+        ));
 
-
-        $options = array(
-            'show_title' => true,
-            'show_description' => true
-        );
 
 
 
         ob_start();
-//        do_action('quform_pre_display', $this);
-//        do_action('quform_pre_display_' . $this->getId(), $this);
+        do_action('quform_pre_display', $this);
+        do_action('quform_pre_display_' . $this->getId(), $this);
         $output = ob_get_clean();
-
-        $output .= "<link rel='stylesheet' id='quform-css'  href='http://garasje-tilbud.no/modules/quform/cache/quform.css?ver=1521656337' type='text/css' media='all' />";
 
         $output .= sprintf('<div id="quform-%s" class="%s">', Quform::escape($this->getUniqueId()), Quform::escape(Quform::sanitizeClass($this->getContainerClasses())));
 
@@ -234,26 +226,26 @@ class Quform_Form extends Model
             '<form id="quform-form-%s" class="quform-form quform-form-%d" action="%s" method="post" enctype="multipart/form-data" novalidate="novalidate" data-options="%s">',
             Quform::escape($this->getUniqueId()),
             Quform::escape($this->getId()),
-            $this->getAction(),
-            'test'
+            esc_url($this->getAction()),
+            Quform::escape($this->getJsConfig())
         );
-
-
 
         $output .= '<button class="quform-default-submit" name="quform_submit" type="submit" value="submit"></button>';
 
         $output .= sprintf('<div class="quform-form-inner quform-form-inner-%d">', Quform::escape($this->getId()));
-        //$output .= $this->getHiddenInputHtml();
 
-        //$output .= $this->getTitleDescriptionHtml($options['show_title'], $options['show_description']);
+        $output .= $this->getHiddenInputHtml();
 
-        //$output .= $this->getSuccessMessageHtml('above');
+        $output .= $this->getTitleDescriptionHtml($options['show_title'], $options['show_description']);
 
-        //$output .= $this->getPageProgressHtml();
+        $output .= $this->getSuccessMessageHtml('above');
+
+        $output .= $this->getPageProgressHtml();
 
         $output .= sprintf('<div class="%s">', Quform::escape(Quform::sanitizeClass($this->getElementsClasses())));
 
-        //$output .= $this->getGlobalErrorHtml();
+        $output .= $this->getGlobalErrorHtml();
+
 
 
         foreach ($this->pages as $page) {
@@ -278,7 +270,7 @@ class Quform_Form extends Model
 
         $output .= '</div>';
 
-        //$output .= $this->getEditFormLinkHtml();
+        $output .= $this->getEditFormLinkHtml();
 
         $output .= '</form></div>';
 
@@ -394,9 +386,9 @@ class Quform_Form extends Model
             $classes[] = 'quform-rtl';
         }
 
-        /*if ($this->options->get('preventFouc')) {
+        if ($this->options->get('preventFouc')) {
             $classes[] = 'quform-prevent-fouc';
-        }*/
+        }
 
         if ( ! $this->config('ajax')) {
             $classes[] = 'quform-no-ajax';
@@ -416,14 +408,14 @@ class Quform_Form extends Model
      */
     public function isRtl()
     {
-        /*if ($this->config('rtl') == 'enabled') {
+        if ($this->config('rtl') == 'enabled') {
             return true;
         }
 
         if ($this->config('rtl') == 'global') {
             if ($this->options->get('rtl') == 'enabled' || ($this->options->get('rtl') === '' && is_rtl()))
-            return true;
-        }*/
+                return true;
+        }
 
         return false;
     }
@@ -465,16 +457,10 @@ class Quform_Form extends Model
      */
     protected function getAction()
     {
-        /*
         $useAnchor = apply_filters('quform_use_anchor', true);
         $useAnchor = apply_filters("quform_use_anchor_{$this->getId()}", $useAnchor);
-        */
 
-        $useAnchor = 'quform_use_anchor';
-        $useAnchor = "quform_use_anchor_{$this->getId()}";
-
-        //return add_query_arg(array()) . ($useAnchor ? "#quform-{$this->getUniqueId()}" : '');
-        return "#quform-{$this->getUniqueId()}";
+        return add_query_arg(array()) . ($useAnchor ? "#quform-{$this->getUniqueId()}" : '');
     }
 
     /**
@@ -539,8 +525,21 @@ class Quform_Form extends Model
      */
     protected function getReferralLinkHtml()
     {
+        $output = '';
 
+        if ($this->options->get('referralEnabled')) {
+            $output .= '<div class="quform-referral-link">';
 
+            $referralUrl = 'https://codecanyon.net/item/quform-wordpress-form-builder/706149';
+            $referralUsername = Quform::isNonEmptyString($this->options->get('referralUsername')) ? $this->options->get('referralUsername') : 'ThemeCatcher';
+            $referralUrl .= '?ref=' . urlencode($referralUsername);
+
+            $output .= sprintf('<a href="%s">%s</a>', esc_url($referralUrl), $this->options->get('referralText'));
+
+            $output .= '</div>';
+        }
+
+        return $output;
     }
 
     /**
@@ -637,7 +636,6 @@ class Quform_Form extends Model
      */
     public function replaceVariablesPreProcess($text, $format = 'text')
     {
-
         return $this->tokenReplacer->replaceVariablesPreProcess($text, $format, $this);
     }
 
@@ -891,8 +889,7 @@ class Quform_Form extends Model
             'logic' => $this->getLogicConfig(),
             'currentPageId' => $this->getCurrentPage()->getId(),
             'errorsIcon' => $this->config('errorsIcon'),
-            //'updateFancybox' => apply_filters('quform_update_fancybox', true, $this),
-            'updateFancybox' => null,
+            'updateFancybox' => apply_filters('quform_update_fancybox', true, $this),
             'hasPages' => $this->hasPages(),
             'pages' => $this->getPageIds(),
             'pageProgressType' => $this->config('pageProgressType'),
@@ -901,7 +898,6 @@ class Quform_Form extends Model
             'tooltipMy' => $this->config('tooltipMy'),
             'tooltipAt' => $this->config('tooltipAt')
         );
-
 
         if (is_numeric($this->options->get('scrollOffset'))) {
             $config['scrollOffset'] = ((int) $this->options->get('scrollOffset')) * -1;
@@ -1091,7 +1087,6 @@ class Quform_Form extends Model
      */
     public function getElement($nameOrId)
     {
-
         return is_numeric($nameOrId) ? $this->getElementById($nameOrId) : $this->getElementByName($nameOrId);
     }
 
@@ -1105,6 +1100,7 @@ class Quform_Form extends Model
     public function setValue($nameOrId, $value)
     {
         $element = $this->getElement($nameOrId);
+
         if ($element instanceof Quform_Element_Field) {
             $element->setValue($value);
         }
@@ -1122,9 +1118,11 @@ class Quform_Form extends Model
     public function setValueFromStorage($nameOrId, $value)
     {
         $element = $this->getElement($nameOrId);
+
         if ($element instanceof Quform_Element_Field) {
             $element->setValueFromStorage($value);
         }
+
         return $this;
     }
 
@@ -1196,7 +1194,6 @@ class Quform_Form extends Model
      */
     public function getElementById($id)
     {
-
         foreach ($this->getRecursiveIterator(RecursiveIteratorIterator::SELF_FIRST) as $element) {
             if ($element->getId() == $id) {
                 return $element;
@@ -1440,7 +1437,7 @@ class Quform_Form extends Model
                     '.quform-%1$d .quform-loading-type-spinner-7 .quform-loading-spinner-inner,
                     .quform-%1$d .quform-loading-type-spinner-7 .quform-loading-spinner-inner:before,
                     .quform-%1$d .quform-loading-type-spinner-7 .quform-loading-spinner-inner:after { background-color: %2$s; color: %2$s; }',
-                     $this->getId(),
+                    $this->getId(),
                     $this->config('loadingColor')
                 );
             } else if ($this->config('loadingType') == 'custom') {
@@ -2042,11 +2039,10 @@ class Quform_Form extends Model
      */
     public function getRecursiveIterator($mode = RecursiveIteratorIterator::LEAVES_ONLY)
     {
-        $quformIterator = new Quform_Form_Iterator($this);
-
-        $recursiveIterator = new RecursiveIteratorIterator($quformIterator , $mode);
-
-        return new RecursiveIteratorIterator($quformIterator ,$mode);
+        return new RecursiveIteratorIterator(
+            new Quform_Form_Iterator($this),
+            $mode
+        );
     }
 
     /**
@@ -2093,8 +2089,7 @@ class Quform_Form extends Model
      */
     public static function getDefaultConfig()
     {
-
-        return array(
+        return apply_filters('quform_default_config_form', array(
             'id' => 0,
             'name' => '',
             'active' => true,
@@ -2216,130 +2211,7 @@ class Quform_Form extends Model
             'hasEnhancedSelect' => false,
             'entriesTableColumns' => array(),
             'environment' => 'frontend'
-        );
-
-        /*return apply_filters('quform_default_config_form', array(
-            'id' => 0,
-            'name' => '',
-            'active' => true,
-            'trashed' => false,
-            'locale' => '',
-            'title' => '',
-            'titleTag' => 'h2',
-            'description' => '',
-            'inactiveMessage' => '',
-            'labelPosition' => '',
-            'labelWidth' => '150px',
-            'errorsPosition' => '',
-            'errorsIcon' => '',
-            'errorEnabled' => false,
-            'errorTitle' => '',
-            'errorContent' => '',
-            'rtl' => 'global',
-            'ajax' => true,
-            'honeypot' => true,
-            'logicAnimation' => true,
-            'theme' => '',
-            'responsiveElements' => 'phone-landscape',
-            'responsiveElementsCustom' => '',
-            'responsiveColumns' => 'phone-landscape',
-            'responsiveColumnsCustom' => '',
-            'width' => '',
-            'position' => '',
-            'fieldSize' => '',
-            'fieldWidth' => '',
-            'fieldWidthCustom' => '',
-            'previewColor' => '',
-            'buttonStyle' => 'theme',
-            'buttonSize' => '',
-            'buttonWidth' => '',
-            'buttonWidthCustom' => '',
-            'buttonAnimation' => '',
-            'buttonBackgroundColor' => '',
-            'buttonBackgroundColorHover' => '',
-            'buttonBackgroundColorActive' => '',
-            'buttonBorderColor' => '',
-            'buttonBorderColorHover' => '',
-            'buttonBorderColorActive' => '',
-            'buttonTextColor' => '',
-            'buttonTextColorHover' => '',
-            'buttonTextColorActive' => '',
-            'buttonIconColor' => '',
-            'buttonIconColorHover' => '',
-            'buttonIconColorActive' => '',
-            'submitType' => 'default',
-            'submitText' => '',
-            'submitIcon' => '',
-            'submitIconPosition' => 'right',
-            'submitImage' => '',
-            'submitHtml' => '',
-            'nextType' => 'default',
-            'nextText' => '',
-            'nextIcon' => '',
-            'nextIconPosition' => 'right',
-            'nextImage' => '',
-            'nextHtml' => '',
-            'backType' => 'default',
-            'backText' => '',
-            'backIcon' => '',
-            'backIconPosition' => 'left',
-            'backImage' => '',
-            'backHtml' => '',
-            'requiredText' => '*',
-            'requiredTextColor' => '',
-            'pageProgressType' => 'numbers',
-            'loadingType' => 'spinner-1',
-            'loadingCustom' => '',
-            'loadingPosition' => 'left',
-            'loadingColor' => '',
-            'loadingOverlay' => false,
-            'loadingOverlayColor' => '',
-            'tooltipsEnabled' => true,
-            'tooltipType' => 'icon',
-            'tooltipEvent' => 'hover',
-            'tooltipIcon' => 'qicon-question-circle',
-            'tooltipStyle' => 'qtip-quform-dark',
-            'tooltipCustom' => '',
-            'tooltipMy' => 'left center',
-            'tooltipAt' => 'right center',
-            'tooltipShadow' => true,
-            'tooltipRounded' => false,
-            'tooltipClasses' => 'qtip-quform-dark qtip-shadow',
-            'fieldBackgroundColor' => '',
-            'fieldBackgroundColorHover' => '',
-            'fieldBackgroundColorFocus' => '',
-            'fieldBorderColor' => '',
-            'fieldBorderColorHover' => '',
-            'fieldBorderColorFocus' => '',
-            'fieldTextColor' => '',
-            'fieldTextColorHover' => '',
-            'fieldTextColorFocus' => '',
-            'labelTextColor' => '',
-            'styles' => array(),
-            'saveEntry' => true,
-            'databaseEnabled' => false,
-            'databaseWordpress' => true,
-            'databaseHost' => 'localhost',
-            'databaseUsername' => '',
-            'databasePassword' => '',
-            'databaseDatabase' => '',
-            'databaseTable' => '',
-            'databaseColumns' => array(),
-            'nextElementId' => 1,
-            'elements' => array(),
-            'nextNotificationId' => 1,
-            'notifications' => array(),
-            'nextConfirmationId' => 1,
-            'confirmations' => array(),
-            'locales' => array(),
-            'messageRequired' => '',
-            'pageProgressNumbersText' => '',
-            'hasDatepicker' => false,
-            'hasTimepicker' => false,
-            'hasEnhancedUploader' => false,
-            'hasEnhancedSelect' => false,
-            'entriesTableColumns' => array(),
-            'environment' => 'frontend'
-        ));*/
+        ));
     }
 }
+

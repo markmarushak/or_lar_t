@@ -43,18 +43,39 @@ class Quform_Element_Factory
      * @param  Quform_Session     $session
      * @param  Quform_Repository  $repository
      */
-    public function __construct(Quform_Options $options = null, Quform_Session $session = null, Quform_Repository $repository = null)
+    public function __construct(Quform_Options $options, Quform_Session $session, Quform_Repository $repository)
     {
-
-        $this->options = new Quform_Options();
-        $this->session = new Quform_Session();
-        $this->repository = new Quform_Repository();
-//        $this->options = $options;
-//        $this->session = $session;
-//        $this->repository = $repository;
+        $this->options = $options;
+        $this->session = $session;
+        $this->repository = $repository;
     }
 
+    /**
+     * Create and configure a form element according to the given config
+     *
+     * @param   array                $config  The element configuration
+     * @param   Quform_Form          $form    The form instance
+     * @return  Quform_Element|null           The element instance or null if the config is invalid
+     */
+    public function create(array $config, Quform_Form $form)
+    {
+        if (isset($config['type'])) {
+            $type = $config['type'];
 
+            $method = 'create' . ucfirst($type) . 'Element';
+            if (method_exists($this, $method)) {
+                return call_user_func_array(array($this, $method), array($config, $form));
+            }
+
+            $element = apply_filters('quform_create_element_' . $type, null, $config, $form, $this);
+
+            if ( ! $element instanceof Quform_Element) {
+                throw new InvalidArgumentException(sprintf("Method not found to create element of type '%s'", $type));
+            }
+        }
+
+        return null;
+    }
 
     /**
      * @param   array                $config
@@ -223,8 +244,6 @@ class Quform_Element_Factory
      */
     protected function createPageElement(array $config, Quform_Form $form)
     {
-
-
         $element = new Quform_Element_Page($config['id'], $form);
 
         $this->configureContainer($element, $config, $form);
@@ -705,36 +724,6 @@ class Quform_Element_Factory
     }
 
     /**
-     * Create and configure a form element according to the given config
-     *
-     * @param   array                $config  The element configuration
-     * @param   Quform_Form          $form    The form instance
-     * @return  Quform_Element|null           The element instance or null if the config is invalid
-     */
-    public function create(array $config, Quform_Form $form)
-    {
-        if (isset($config['type'])) {
-
-            $type = $config['type'];
-
-            $method = 'create' . ucfirst($type) . 'Element';
-
-            if (method_exists($this, $method)) {
-                //createPageElement
-                return call_user_func_array(array($this, $method), array($config, $form));
-            }
-
-            //$element = apply_filters('quform_create_element_' . $type, null, $config, $form, $this);
-
-            /*if ( ! $element instanceof Quform_Element) {
-                throw new InvalidArgumentException(sprintf("Method not found to create element of type '%s'", $type));
-            }*/
-        }
-
-        return null;
-    }
-
-    /**
      * Configure container elements (Group, Page)
      *
      * @param   Quform_Element_Container  $container
@@ -756,7 +745,6 @@ class Quform_Element_Factory
                         // Ignore captcha when interacting with entries
                         continue;
                     }
-
                     $container->addElement($element);
                 }
             }
@@ -917,12 +905,9 @@ class Quform_Element_Factory
     {
         $value = Quform::get($config, $key);
 
-
-
         if ($value === null) {
             $value = Quform::get(call_user_func(array(get_class($element), 'getDefaultConfig')), $key);
         }
-
 
         return $value;
     }

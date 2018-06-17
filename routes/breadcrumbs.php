@@ -92,8 +92,9 @@ Breadcrumbs::register('output-overview', function($breadcrumbs) {
 //output-overview-single
 Breadcrumbs::register('output-overview-single', function($breadcrumbs, $nameEntry ) {
 
+
     $breadcrumbs->parent('output-overview');
-    $breadcrumbs->push($nameEntry ,route('output-overview-single', ['data_filters_rules_id', 'data_filters_rules_description', 'single_id']));
+    $breadcrumbs->push($nameEntry ,route('output-overview-single', [  'single_id', 'data_filters_rules_id', 'data_filters_rules_description']));
 });
 
 ?>

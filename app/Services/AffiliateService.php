@@ -3,6 +3,7 @@
 
 namespace App\Services;
 
+use App\Plugins\QformLibrary\Quform\Quform_Repository;
 use App\Plugins\WordPress\Wpdb;
 use App\Repositories\AffiliateRepository;
 use App\Services\BaseService;
@@ -12,11 +13,15 @@ use Exception;
 class AffiliateService extends BaseService
 {
     private $affiliateRepository;
+    private $quformRepository;
 
-
-    public function __construct(AffiliateRepository $affiliateRepository)
+    public function __construct(
+        AffiliateRepository $affiliateRepository,
+        Quform_Repository $quformRepository
+)
     {
         $this->affiliateRepository = $affiliateRepository;
+        $this->quformRepository = $quformRepository;
     }
 
     public function decryptionConfig($data, $description)
@@ -37,7 +42,6 @@ class AffiliateService extends BaseService
     {
         $settingOfDataBaseById = $this->affiliateRepository->getSettingOfDataBaseById($dataFiltersRulesId);
         global $wpdb;
-
         try
         {
             if ($wpdb = new Wpdb(
@@ -60,15 +64,6 @@ class AffiliateService extends BaseService
         }
 
     }
-
-    public function createUrls($forms, $dataFiltersRulesDescription )
-    {
-        foreach ($forms as $singleForm) {
-            $urls[$singleForm['name']] = 'http://www.'.$dataFiltersRulesDescription.'/wp-admin/admin.php?page=quform.forms&sp=edit&id='.$singleForm['id'].'';
-        }
-        return $urls;
-    }
-
 
 
 

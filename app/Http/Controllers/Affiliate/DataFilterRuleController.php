@@ -10,6 +10,7 @@ use App\Plugins\QformLibrary\Quform\Quform_Options;
 use App\Plugins\QformLibrary\Quform\Quform_Repository;
 use App\Repositories\AffiliateRepository;
 use App\Services\AffiliateService;
+use App\Services\DataFilterRuleService;
 use Illuminate\Http\Request;
 
 
@@ -19,21 +20,20 @@ class DataFilterRuleController extends Controller
     private $dataFiltersRulesModel;
     private $settingOfDataBaseModel;
     private $affiliateService;
-    private $quformRepository;
-    private $quformOptions;
+    private $dataFilterRuleService;
 
     public function __construct(AffiliateRepository $affiliateRepository,
                                 DataFiltersRules $dataFiltersRulesModel,
                                 SettingOfDataBase $settingOfDataBaseModel,
                                 AffiliateService $affiliateService,
-                                Quform_Repository $quformRepository
+                                DataFilterRuleService $dataFilterRuleService
     )
     {
         $this->affiliateRepository = $affiliateRepository;
         $this->dataFiltersRulesModel = $dataFiltersRulesModel;
         $this->settingOfDataBaseModel = $settingOfDataBaseModel;
         $this->affiliateService = $affiliateService;
-        $this->quformRepository = $quformRepository;
+        $this->dataFilterRuleService = $dataFilterRuleService;
     }
 
     public function index()
@@ -147,8 +147,8 @@ class DataFilterRuleController extends Controller
                ]
            )->withErrors($connectionToDataBase->getMessage() );
        } else {
-           $forms =  $this->quformRepository->getForms();
-           $urls = $this->affiliateService->createUrls($forms, $dataFiltersRulesDescription);
+           $forms =  $this->dataFilterRuleService->getForms();
+           $urls = $this->dataFilterRuleService->createUrls($forms, $dataFiltersRulesDescription);
            return view('affiliate.data-filters-rules.form-builder',
                [
                    'menu' => 'affiliate-service',
@@ -165,6 +165,7 @@ class DataFilterRuleController extends Controller
         $dataFiltersRulesId = $request->data_filters_rules_id;
         $dataFiltersRulesDescription = $request->data_filters_rules_description;
         $connectionToDataBase= $this->affiliateService->connectionToDataBase($dataFiltersRulesId);
+
         if (is_a($connectionToDataBase, 'ErrorException')) {
             return view('affiliate.data-filters-rules.output-overview',
                 [
@@ -173,11 +174,10 @@ class DataFilterRuleController extends Controller
                 ]
             )->withErrors($connectionToDataBase->getMessage() );
         } else {
-            $recentEntries = $this->quformRepository->getRecentEntries();
+            $recentEntries = $this->dataFilterRuleService->getRecentEntries();
             return view('affiliate.data-filters-rules.output-overview',
                 [
                 'menu' => 'affiliate-service',
-                    'options' => $this->quformOptions,
                 'recentEntries' => $recentEntries,
                 'dataFiltersRulesId' =>$dataFiltersRulesId,
                 'dataFiltersRulesDescription' => $dataFiltersRulesDescription
@@ -185,5 +185,107 @@ class DataFilterRuleController extends Controller
             );
         }
     }
+
+
+    public function outputOverviewSingle(Request $request)
+    {
+        $dataFiltersRulesId = $request->data_filters_rules_id;
+        $dataFiltersRulesDescription = $request->data_filters_rules_description;
+        $connectionToDataBase= $this->affiliateService->connectionToDataBase($dataFiltersRulesId);
+
+        if (is_a($connectionToDataBase, 'ErrorException')) {
+            return view('affiliate.data-filters-rules.output-overview-single',
+                [
+                    'menu' => 'affiliate-service',
+                    'dataFiltersRulesDescription' => $dataFiltersRulesDescription
+                ]
+            )->withErrors($connectionToDataBase->getMessage() );
+        } else {
+            $entryId = $request->single_id;
+            $form = $this->dataFilterRuleService->outputOverviewSingleService($entryId);
+            return view('affiliate.data-filters-rules.output-overview-single', [
+                'menu' => 'affiliate-service',
+                'dataFiltersRulesId' =>$dataFiltersRulesId,
+                'dataFiltersRulesDescription' => $dataFiltersRulesDescription,
+                'nameEntry' => $this->dataFilterRuleService->nameEntry,
+                'form' => $form
+            ]);
+
+        }
+
+//        //getConfig
+//        $formId =$this->affiliateRepository->getFormIdFromEntryId($entryId);
+//        $row = $this->affiliateRepository->getQuformFormsById($formId);
+//
+//        $config = maybe_unserialize(base64_decode($row['config']));
+//        if (is_array($config)) {
+//            $config = $this->addRowDataToConfig($row, $config);
+//        } else {
+//            $config = null;
+//        }
+//        //endFunction
+//
+//
+//        $config['environment'] = 'viewEntry';
+//
+//        $dataFiltersRulesId = $request->data_filters_rules_id;
+//        $dataFiltersRuleRow = $this->affiliateRepository->allGetFiltersRulesById($dataFiltersRulesId);
+//        $dataRemoteDB = $this->affiliateRepository->allGetGarageForms();
+//        $description = $dataFiltersRuleRow[0]->description;
+//
+//        $this->formFactory = new Quform_Form_Factory();
+//
+//        $form = $this->formFactory->create($config);
+//
+//        $entry = $this->affiliateRepository->findEntry($entryId, $form);
+//        foreach ($entry as $key => $value) {
+//            if (preg_match('/element_(\d+)/', $key, $matches)) {
+//                $elementId = $matches[1];
+//                $form->setValueFromStorage($elementId, $value);
+//                unset($entry[$key]);
+//
+//            }
+//        }
+//        // Calculate which elements are hidden by conditional logic and which groups are empty
+//        $form->calculateElementVisibility();
+//
+//
+//        // Mark as read
+//        if ($entry['unread'] == 1) {
+//            $this->affiliateRepository ->readEntries(array($entry['id']));
+//        }
+//
+//        // Get label data from label IDs
+//        $entry['labels'] = $this->affiliateRepository->getEntryLabels($entryId);
+//
+//
+//        foreach ($form->getRecursiveIterator(RecursiveIteratorIterator::SELF_FIRST) as $element) {
+//            if ($element->config('saveToDatabase')) {
+//
+//                $result[0][] = sprintf('<tr><th><div class="qfb-entry-element-label">%s</div></th></tr>', $element->getAdminLabel());
+//                $result[1][] = sprintf('<tr><td>%s</td></tr>', $element->getValueHtml());
+//            }
+//        }
+//
+//        $data = array(
+//
+//            'form' => $form,
+//            'entry' => $entry,
+//            'showEmptyFields' => Quform::get($_COOKIE, 'qfb-show-empty-fields') ? true : false,
+//        );
+//        $nameEntry =$config['name'];
+//
+//        $data = $this->view->with($data);
+//        return view('affiliate.output-overview-single', compact(
+//                'entry',
+//                'data',
+//                'form',
+//                'result',
+//                'nameEntry'
+//            )
+//        );
+
+    }
+
 
 }

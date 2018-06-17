@@ -22,13 +22,15 @@
                         </h3>
                     </div>
                     <div class="qfb-content qfb-form-switcher qfb-db-entry-list">
-
                         <?php if (count($recentEntries)) : ?>
                         <ul class="qfb-nav-menu qfb-cf">
                             <?php foreach ($recentEntries as $recentEntry) : ?>
-
                             <li class="qfb-cf<?php echo $recentEntry['unread'] == '1' ? ' qfb-unread' : ''; ?>">
-                                <a href="">
+                                <a href="{{route('output-overview-single', [
+                                'single_id' => $recentEntry['id'],
+                                'dataFiltersRulesId' => $dataFiltersRulesId,
+                                'dataFiltersRulesDescription' => $dataFiltersRulesDescription
+                                 ])}}">
                                     <?php if ($recentEntry['unread'] == '1') : ?>
                                     <i class="fa fa-envelope"></i>
                                     <?php else : ?>

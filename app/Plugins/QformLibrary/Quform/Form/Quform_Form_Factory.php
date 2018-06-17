@@ -48,17 +48,16 @@ class Quform_Form_Factory
      * @param  Quform_TokenReplacer    $tokenReplacer
      */
     public function __construct(
-        Quform_Element_Factory $elementFactory = null,
-        Quform_Options $options = null,
-        Quform_Session $session = null,
-        Quform_TokenReplacer $tokenReplacer = null
+        Quform_Element_Factory $elementFactory,
+        Quform_Options $options,
+        Quform_Session $session,
+        Quform_TokenReplacer $tokenReplacer
     ) {
         $this->elementFactory = $elementFactory;
         $this->options = $options;
         $this->session = $session;
         $this->tokenReplacer = $tokenReplacer;
     }
-
 
     /**
      * Create and configure the Quform_Form instance
@@ -72,12 +71,12 @@ class Quform_Form_Factory
             $config['uniqueId'] = Quform_Form::generateUniqueId();
         }
 
-        $this->options = new Quform_Options();
-        $this->session = new Quform_Session();
-        $this->tokenReplacer = new Quform_TokenReplacer();
-        $config['id'] = 1;
         $form = new Quform_Form($config['id'], $config['uniqueId'], $this->session, $this->tokenReplacer, $this->options);
- //       $form->setCharset(get_bloginfo('charset'));
+
+        //TODO fix Charset
+       // $form->setCharset(get_bloginfo('charset'));
+
+
 
         $form->setIsActive($this->getConfigValue($config, 'active'));
         if (array_key_exists('dynamicValues', $config)) {
@@ -96,15 +95,16 @@ class Quform_Form_Factory
 
         // Save config parts we need later
         $elements = $this->getConfigValue($config, 'elements');
+
         // Clean up the config & set it on the form
         unset($config['notifications'], $config['confirmations'], $config['elements']);
 
         $form->setConfig($config);
-        $this->elementFactory = new Quform_Element_Factory();
 
         // Add form elements
         foreach ($elements as $eConfig) {
             $page = $this->elementFactory->create($eConfig, $form);
+
             if ($page instanceof Quform_Element_Page) {
                 $form->addPage($page);
             }
@@ -113,9 +113,7 @@ class Quform_Form_Factory
         // Add honeypot element
         $lastPage = $form->getLastPage();
         if ($form->config('honeypot') && ! in_array($form->config('environment'), array('viewEntry', 'editEntry', 'listEntry')) && $lastPage instanceof Quform_Element_Page) {
-
-            $lastPage->addElement(
-                $this->elementFactory->create(array(
+            $lastPage->addElement($this->elementFactory->create(array(
                 'type' => 'honeypot',
                 'id' => 0
             ), $form));

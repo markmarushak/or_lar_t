@@ -66,7 +66,7 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service'], func
         //outputOverview
         Route::get('/output-overview', 'DataFilterRuleController@outputOverview')->name('output-overview');
 
-        //outputOverviews
-        Route::get('/output-overview-single/{single_id?}', 'AffiliateController@outputOverviewSingle')->name('output-overview-single');
+        //outputOverviewsSingle
+        Route::get('/output-overview-single/{single_id?}/', 'DataFilterRuleController@outputOverviewSingle')->name('output-overview-single');
     });
 });
