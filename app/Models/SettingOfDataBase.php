@@ -25,6 +25,8 @@ class SettingOfDataBase extends Model
         $dataFiltersRulesObject->settingOfDataBase()->update([
             'setting' => $settingOfDataBase
         ]);
+
+        
     }
 
 }
