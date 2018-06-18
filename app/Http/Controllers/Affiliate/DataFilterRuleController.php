@@ -6,8 +6,6 @@ namespace App\Http\Controllers\Affiliate;
 use App\Http\Controllers\Controller;
 use App\Models\DataFiltersRules;
 use App\Models\SettingOfDataBase;
-use App\Plugins\QformLibrary\Quform\Quform_Options;
-use App\Plugins\QformLibrary\Quform\Quform_Repository;
 use App\Repositories\AffiliateRepository;
 use App\Services\AffiliateService;
 use App\Services\DataFilterRuleService;
@@ -191,7 +189,6 @@ class DataFilterRuleController extends Controller
         $dataFiltersRulesId = $request->data_filters_rules_id;
         $dataFiltersRulesDescription = $request->data_filters_rules_description;
         $connectionToDataBase= $this->affiliateService->connectionToDataBase($dataFiltersRulesId);
-
         if (is_a($connectionToDataBase, 'ErrorException')) {
             return view('affiliate.data-filters-rules.output-overview-single',
                 [

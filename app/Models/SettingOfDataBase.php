@@ -26,7 +26,7 @@ class SettingOfDataBase extends Model
             'setting' => $settingOfDataBase
         ]);
 
-        
+
     }
 
 }
