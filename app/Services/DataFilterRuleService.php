@@ -4,22 +4,35 @@
 namespace App\Services;
 
 
+use App\Models\DataFiltersRules;
+use App\Models\SettingOfDataBase;
 use App\Plugins\QformLibrary\Quform\Form\Quform_Form_Factory;
 use App\Plugins\QformLibrary\Quform\Quform_Repository;
+use App\Repositories\AffiliateRepository;
 
 class DataFilterRuleService extends BaseService
 {
     public $quformRepository;
     public $quformFormFactory;
+    public $dataFiltersRulesModel;
+    public $settingOfDataBaseModel;
+    public $affiliateRepository;
+
     public $nameEntry;
 
     public function __construct(
         Quform_Repository $quformRepository,
-        Quform_Form_Factory $quformFormFactory
+        Quform_Form_Factory $quformFormFactory,
+        DataFiltersRules $dataFiltersRulesModel,
+        SettingOfDataBase $settingOfDataBaseModel,
+        AffiliateRepository $affiliateRepository
     )
     {
         $this->quformRepository = $quformRepository;
         $this->quformFormFactory = $quformFormFactory;
+        $this->dataFiltersRulesModel = $dataFiltersRulesModel;
+        $this->settingOfDataBaseModel = $settingOfDataBaseModel;
+        $this->affiliateRepository = $affiliateRepository;
     }
 
     public function createUrls($forms, $dataFiltersRulesDescription )
@@ -75,6 +88,19 @@ class DataFilterRuleService extends BaseService
 //            'labels' => $this->repository->getFormEntryLabels($form->getId())
 //        );
         return $form;
+    }
+
+    public function editConnectToDb($request, $dataFiltersRulesId)
+    {
+
+        $dataFiltersRulesObject = $this->affiliateRepository->getDataFiltersRulesById($dataFiltersRulesId);
+        $this->settingOfDataBaseModel->edit($request, $dataFiltersRulesObject);
+    }
+
+    public function addConnectToDb($request, $dataFiltersRulesId)
+    {
+        $dataFiltersRulesObject = $this->affiliateRepository->getDataFiltersRulesById($dataFiltersRulesId);
+        $this->settingOfDataBaseModel->add($request, $dataFiltersRulesObject);
     }
 
 

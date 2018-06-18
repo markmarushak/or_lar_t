@@ -8,6 +8,7 @@ use App\Plugins\WordPress\Wpdb;
 use App\Repositories\AffiliateRepository;
 use App\Services\BaseService;
 use Exception;
+use Illuminate\Support\Facades\Config;
 
 
 class AffiliateService extends BaseService
@@ -41,6 +42,13 @@ class AffiliateService extends BaseService
     public function connectionToDataBase($dataFiltersRulesId)
     {
         $settingOfDataBaseById = $this->affiliateRepository->getSettingOfDataBaseById($dataFiltersRulesId);
+
+        $var = $settingOfDataBaseById->toJson();
+        $var = encrypt($var);
+        $var = decrypt($var);
+        $obj = json_decode($var);
+        var_dump($obj); die;
+
         global $wpdb;
         try
         {

@@ -24,7 +24,6 @@ class SettingOfDataBase extends Model
 
     public function edit($request, $dataFiltersRulesObject)
     {
-
         $dataFiltersRulesObject->settingOfDataBase()->update($request->only( 'domain', 'form', 'host', 'host_name', 'port', 'database', 'username',
             'password', 'charset', 'collation'
         ));

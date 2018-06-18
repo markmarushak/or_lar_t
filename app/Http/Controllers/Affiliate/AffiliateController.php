@@ -120,52 +120,6 @@ class AffiliateController extends Controller
 
 
 
-    public function form(array $options = array())
-    {
-
-        $config = $this->config;
-
-        if (!is_array($config)) {
-            return;
-        }
-
-        $this->count++;
-        $config['count'] = $this->count;
-
-        $processingThisForm = Quform::isPostRequest() && Quform::get($_POST, 'quform_form_id') == $config['id'] && Quform::get($_POST, 'quform_count') == $this->count;
-
-        if ($processingThisForm && Quform_Form::isValidUniqueId(Quform::get($_POST, 'quform_form_uid'))) {
-            $uniqueId = Quform::get($_POST, 'quform_form_uid');
-        } else {
-            $uniqueId = Quform_Form::generateUniqueId();
-
-            //while (in_array($uniqueId, $this->uniqueIds) || $this->session->has(sprintf('quform-%s', $uniqueId))) {
-            $uniqueId = Quform_Form::generateUniqueId();
-            //}
-        }
-
-        $config['uniqueId'] = $uniqueId;
-        $this->uniqueIds[] = $uniqueId;
-
-        /*if (is_string($options['values'])) {
-            $options['values'] = join('&', explode('&amp;', $options['values']));
-        }*/
-
-        //$config['dynamicValues'] = $options['values'];
-
-        $this->formFactory = new Quform_Form_Factory();
-
-        $form = $this->formFactory->create($config);
-
-        if (!($form instanceof Quform_Form) || $form->config('trashed')) {
-            return;
-        }
-
-
-        $output = $form->render($options);
-        return $output;
-    }
-
         public function dataBaseFields()
         {
 
@@ -223,46 +177,6 @@ class AffiliateController extends Controller
                     'data' => $data
                 ]
             );
-        }
-
-
-    public function outputOverview(Request $request)
-    {
-        $result = $this->affiliateRepository->getRecentEntries(10);
-        $recentEntries = $this->repository->getRecentEntries(10);
-        //TODO will make service
-        $recentEntries = json_decode(json_encode($result), true);
-        $unreadCount = 0;
-        foreach ($recentEntries as $recentEntry) {
-            if ($recentEntry['unread'] == '1') {
-                $unreadCount++;
-            }
-        }
-
-        $dataFiltersRulesId = $request->data_filters_rules_id;
-        $dataFiltersRulesDescription = $request->data_filters_rules_description;
-        return view('affiliate.output-overview', ['menu' => 'affiliate-service',
-            'recentEntries' => $recentEntries,
-            'dataFiltersRulesId' =>$dataFiltersRulesId,
-            'dataFiltersRulesDescription' => $dataFiltersRulesDescription
-        ]);
-    }
-
-
-
-
-
-
-
-
-        public function with($key, $value = null)
-        {
-            if (is_array($key)) {
-                $this->data = array_merge($this->data, $key);
-            } else {
-                $this->data[$key] = $value;
-            }
-            return $this;
         }
 
 

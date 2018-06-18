@@ -84,6 +84,7 @@ class DataFilterRuleController extends Controller
         $dataFiltersRulesId = $request->data_filters_rules_id;
         $dataFiltersRulesDescription = $request->data_filters_rules_description;
         $settingsOfDataBase = $this->affiliateRepository->getSettingOfDataBaseById($dataFiltersRulesId);
+
         return view('affiliate.data-filters-rules.connection',
             [
                 'menu' => 'affiliate-service',
@@ -118,11 +119,9 @@ class DataFilterRuleController extends Controller
             'collation' => 'required'
         ]);
         if($request->id) {
-            $dataFiltersRulesObject = $this->affiliateRepository->getDataFiltersRulesById($dataFiltersRulesId);
-            $this->settingOfDataBaseModel->edit($request, $dataFiltersRulesObject);
+            $this->dataFilterRuleService->editConnectToDb($request, $dataFiltersRulesId);
         } else {
-            $dataFiltersRulesObject = $this->affiliateRepository->getDataFiltersRulesById($dataFiltersRulesId);
-            $this->settingOfDataBaseModel->add($request, $dataFiltersRulesObject);
+            $this->dataFilterRuleService->addConnectToDb($request, $dataFiltersRulesId);
         }
         return redirect()->route('connection', [ 'data_filters_rules_id' => $dataFiltersRulesId, 'data_filters_rules_description' => $dataFiltersRulesDescription]);
     }
@@ -212,79 +211,6 @@ class DataFilterRuleController extends Controller
             ]);
 
         }
-
-//        //getConfig
-//        $formId =$this->affiliateRepository->getFormIdFromEntryId($entryId);
-//        $row = $this->affiliateRepository->getQuformFormsById($formId);
-//
-//        $config = maybe_unserialize(base64_decode($row['config']));
-//        if (is_array($config)) {
-//            $config = $this->addRowDataToConfig($row, $config);
-//        } else {
-//            $config = null;
-//        }
-//        //endFunction
-//
-//
-//        $config['environment'] = 'viewEntry';
-//
-//        $dataFiltersRulesId = $request->data_filters_rules_id;
-//        $dataFiltersRuleRow = $this->affiliateRepository->allGetFiltersRulesById($dataFiltersRulesId);
-//        $dataRemoteDB = $this->affiliateRepository->allGetGarageForms();
-//        $description = $dataFiltersRuleRow[0]->description;
-//
-//        $this->formFactory = new Quform_Form_Factory();
-//
-//        $form = $this->formFactory->create($config);
-//
-//        $entry = $this->affiliateRepository->findEntry($entryId, $form);
-//        foreach ($entry as $key => $value) {
-//            if (preg_match('/element_(\d+)/', $key, $matches)) {
-//                $elementId = $matches[1];
-//                $form->setValueFromStorage($elementId, $value);
-//                unset($entry[$key]);
-//
-//            }
-//        }
-//        // Calculate which elements are hidden by conditional logic and which groups are empty
-//        $form->calculateElementVisibility();
-//
-//
-//        // Mark as read
-//        if ($entry['unread'] == 1) {
-//            $this->affiliateRepository ->readEntries(array($entry['id']));
-//        }
-//
-//        // Get label data from label IDs
-//        $entry['labels'] = $this->affiliateRepository->getEntryLabels($entryId);
-//
-//
-//        foreach ($form->getRecursiveIterator(RecursiveIteratorIterator::SELF_FIRST) as $element) {
-//            if ($element->config('saveToDatabase')) {
-//
-//                $result[0][] = sprintf('<tr><th><div class="qfb-entry-element-label">%s</div></th></tr>', $element->getAdminLabel());
-//                $result[1][] = sprintf('<tr><td>%s</td></tr>', $element->getValueHtml());
-//            }
-//        }
-//
-//        $data = array(
-//
-//            'form' => $form,
-//            'entry' => $entry,
-//            'showEmptyFields' => Quform::get($_COOKIE, 'qfb-show-empty-fields') ? true : false,
-//        );
-//        $nameEntry =$config['name'];
-//
-//        $data = $this->view->with($data);
-//        return view('affiliate.output-overview-single', compact(
-//                'entry',
-//                'data',
-//                'form',
-//                'result',
-//                'nameEntry'
-//            )
-//        );
-
     }
 
 

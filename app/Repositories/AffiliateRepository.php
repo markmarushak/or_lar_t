@@ -9,6 +9,7 @@ use App\Plugins\QformLibrary\Quform;
 use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Field;
 
 use App\Plugins\QformLibrary\Quform\Quform_Form;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\wpdb;
@@ -205,9 +206,18 @@ GROUP BY `data`.`entry_id`";
 
     public function getSettingOfDataBaseById($dataFiltersRulesId)
     {
-        return $this->settingOfDataBaseModel
-            ->where('data_filters_rules_id', $dataFiltersRulesId)
-            ->firstOrFail();
+        try
+        {
+            return $this->settingOfDataBaseModel
+                ->where('data_filters_rules_id', $dataFiltersRulesId)
+                ->firstOrFail();
+        }
+
+        catch(ModelNotFoundException $e)
+        {
+           return false;
+        }
+
     }
 
 }
