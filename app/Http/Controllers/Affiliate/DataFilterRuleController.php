@@ -83,7 +83,7 @@ class DataFilterRuleController extends Controller
     {
         $dataFiltersRulesId = $request->data_filters_rules_id;
         $dataFiltersRulesDescription = $request->data_filters_rules_description;
-        $settingsOfDataBase = $this->affiliateRepository->getSettingOfDataBaseById($dataFiltersRulesId);
+        $settingsOfDataBase = $this->affiliateService->getSettingOfDataBaseById($dataFiltersRulesId);
 
         return view('affiliate.data-filters-rules.connection',
             [
@@ -118,10 +118,11 @@ class DataFilterRuleController extends Controller
             'charset' => 'required',
             'collation' => 'required'
         ]);
+
         if($request->id) {
-            $this->dataFilterRuleService->editConnectToDb($request, $dataFiltersRulesId);
+            $this->affiliateService->editConnectToDb($request, $dataFiltersRulesId);
         } else {
-            $this->dataFilterRuleService->addConnectToDb($request, $dataFiltersRulesId);
+            $this->affiliateService->addConnectToDb($request, $dataFiltersRulesId);
         }
         return redirect()->route('connection', [ 'data_filters_rules_id' => $dataFiltersRulesId, 'data_filters_rules_description' => $dataFiltersRulesDescription]);
     }
@@ -164,7 +165,6 @@ class DataFilterRuleController extends Controller
         $dataFiltersRulesId = $request->data_filters_rules_id;
         $dataFiltersRulesDescription = $request->data_filters_rules_description;
         $connectionToDataBase= $this->affiliateService->connectionToDataBase($dataFiltersRulesId);
-
         if (is_a($connectionToDataBase, 'ErrorException')) {
             return view('affiliate.data-filters-rules.output-overview',
                 [
