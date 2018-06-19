@@ -15,11 +15,7 @@
         @include('affiliate.tabs-menu.top-menu')
         <div class="tab-content">
             <div class="tab-pane active show" id="m_tabs_1_1" role="tabpanel">
-                <div class="col-xl-3">
-                    <div class="form-group m-form__group">
 
-                    </div>
-                </div>
             </div>
             <form action="{{route('connection-update', [  'dataFiltersRulesId' => $dataFiltersRulesId, 'dataFiltersRulesDescription' => $dataFiltersRulesDescription, 'id' => !empty($settingsOfDataBase->id) ? $settingsOfDataBase->id : null ])}}" method="post">
                 <input type="hidden" name="_method" value="PUT">

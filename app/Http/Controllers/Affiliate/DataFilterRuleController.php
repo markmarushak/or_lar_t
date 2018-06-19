@@ -153,6 +153,60 @@ class DataFilterRuleController extends Controller
        }
     }
 
+    public function dataBaseFields(Request $request)
+    {
+        $dataFiltersRulesId = $request->data_filters_rules_id;
+        $connectionToDataBase= $this->affiliateService->connectionToDataBase($dataFiltersRulesId);
+        $dataFiltersRulesDescription = $request->data_filters_rules_description;
+        $dataFiltersRules = DataFiltersRules::all();
+
+        if (is_a($connectionToDataBase, 'ErrorException')) {
+            return view('affiliate.database-fields',
+                [
+                    'menu' => 'affiliate-service',
+                    'dataFiltersRulesDescription' => $dataFiltersRulesDescription
+                ]
+            )->withErrors($connectionToDataBase->getMessage());
+        }else {
+            $data = array(
+                'description' => $dataFiltersRulesDescription
+            );
+            return view('affiliate.database-fields',
+                [
+                    'menu' => 'affiliate-service',
+                    'dataFiltersRules' => $dataFiltersRules,
+                    'data' => $data
+                ]
+            );
+        }
+    }
+
+    public function dataFiltersRulesData(Request $request)
+    {
+        $dataFiltersRulesId = $request->data_filters_rules_id;
+        $connectionToDataBase= $this->affiliateService->connectionToDataBase($dataFiltersRulesId);
+        $dataFiltersRulesDescription = $request->data_filters_rules_description;
+
+        $dataFiltersRules = DataFiltersRules::all();
+        if (is_a($connectionToDataBase, 'ErrorException')) {
+            return view('affiliate.data-filters-rules-data',
+                [
+                    'menu' => 'affiliate-service',
+                    'dataFiltersRulesDescription' => $dataFiltersRulesDescription
+                ]
+            )->withErrors($connectionToDataBase->getMessage());
+        }else {
+            $data = $this->affiliateRepository->getGarageFormsEntryById($dataFiltersRulesId);
+            return view('affiliate.data-filters-rules-data',
+                [
+                    'menu' => 'affiliate-service',
+                    'dataFiltersRules' => $dataFiltersRules,
+                    'data' => $data
+                ]
+            );
+        }
+    }
+
     public function outputOverview(Request $request)
     {
         $dataFiltersRulesId = $request->data_filters_rules_id;

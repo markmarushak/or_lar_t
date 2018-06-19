@@ -16,10 +16,10 @@
         {{--Call Tab Menu--}}
         @include('affiliate.tabs-menu.top-menu')
 
-        <div class="tab-content">
-            <div class="qfb-cf qfb-entry-wrap">
+        <div class="row">
+            <div class="qfb-db-col">
                 <div class="qfb-entry-left">
-                    <div class="qfb-box">
+                    <div class="qfb-box" style="width: 713px">
                         <h3 class="qfb-entry-heading qfb-settings-heading"><i class="mdi mdi-message"></i>Submitted form data</h3>
                         <table class="qfb-entry-table">
                             <?php

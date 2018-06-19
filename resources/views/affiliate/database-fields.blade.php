@@ -16,10 +16,9 @@
     <div class="col-xl-12" style="margin-top: 20px;">
         {{--Call Tab Menu--}}
         @include('affiliate.tabs-menu.top-menu')
-
-        <div class="tab-content">
-            <div class="tab-pane active show" id="m_tabs_1_1" role="tabpanel">
-                <div class="col-xl-3">
+        @include('errors')
+        @if(isset($data) && !empty($data) )
+                <!--<div class="col-xl-3">
                     <div class="form-group m-form__group">
                         <label>
 
@@ -33,29 +32,25 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
 
                 <div class="form-group m-form__group row">
 
                     <div class="col-lg-4 col-md-9 col-sm-12">
-                        {{$dataFiltersRules[0]->description}} - <strong>Form Frontpage</strong>
+                        {{$data['description']}} - <strong>Form Frontpage</strong>
                     </div>
 
                     <div class="col-lg-4 col-md-9 col-sm-12">
-                        Table Name - <strong>{{$data['db_table']}}</strong>
+                        Table Name - <strong></strong>
                     </div>
                     <div class="col-lg-4 col-md-9 col-sm-12">
-                        Data Fields - <strong>{{$data['data_fields_number']}}</strong>
+                        Data Fields - <strong></strong>
                     </div>
                 </div>
 
-
-
-            </div>
-        </div>
-
-
+        @endif
     </div>
+
 
 
 
