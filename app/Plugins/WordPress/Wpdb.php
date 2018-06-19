@@ -220,7 +220,7 @@ class Wpdb {
      * @since 2.5.0
      * @var string
      */
-    public $prefix = '';
+    public $prefix = 'wpau_';
 
     /**
      * WordPress base table prefix.

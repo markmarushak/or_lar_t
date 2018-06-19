@@ -49,7 +49,7 @@ class GenerateMenus
 
             $menu->add('Database Fields',
                 ['action' =>
-                    ['\App\Http\Controllers\Affiliate\AffiliateController@dataBaseFields',
+                    ['\App\Http\Controllers\Affiliate\DataFilterRuleController@dataBaseFields',
                         'data_filters_rules_id' => $this->request->data_filters_rules_id,
                         'data_filters_rules_description' => $this->request->data_filters_rules_description
                     ]]);
@@ -57,7 +57,7 @@ class GenerateMenus
 
             $menu->add('Data Filters & Rules',
                 ['action' =>
-                    ['\App\Http\Controllers\Affiliate\AffiliateController@dataFiltersRulesData',
+                    ['\App\Http\Controllers\Affiliate\DataFilterRuleController@dataFiltersRulesData',
                         'data_filters_rules_id' => $this->request->data_filters_rules_id,
                         'data_filters_rules_description' => $this->request->data_filters_rules_description
                     ]]);

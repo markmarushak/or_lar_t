@@ -4,7 +4,6 @@
 		<!-- Get Name of the current Route -->
 		<?php $nameRoute = \Request::route()->getName(); ?>
 		<!--Must be dynamic changed -->
-
 			@if('data-filters-rules' == $nameRoute)
 				{!! Breadcrumbs::render($nameRoute) !!}
 			@elseif('output-overview-single' == $nameRoute)

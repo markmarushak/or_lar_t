@@ -18,7 +18,7 @@ class Quform_Repository
     {
         global $wpdb;
 
-        return  'wpau_quform_forms';
+        return $wpdb->prefix . 'quform_forms';
     }
 
     /**
@@ -30,7 +30,7 @@ class Quform_Repository
     {
         global $wpdb;
 
-        return 'wpau_quform_entries';
+        return $wpdb->prefix . 'quform_entries';
     }
 
     /**
@@ -42,7 +42,7 @@ class Quform_Repository
     {
         global $wpdb;
 
-        return 'wpau_quform_entry_data';
+        return $wpdb->prefix . 'quform_entry_data';
     }
 
     /**
@@ -54,7 +54,7 @@ class Quform_Repository
     {
         global $wpdb;
 
-        return 'wpau_quform_entry_labels';
+        return $wpdb->prefix . 'quform_entry_labels';
     }
 
     /**
@@ -66,7 +66,7 @@ class Quform_Repository
     {
         global $wpdb;
 
-        return 'wpau_quform_entry_entry_labels';
+        return $wpdb->prefix . 'quform_entry_entry_labels';
     }
 
     /**
@@ -113,6 +113,7 @@ class Quform_Repository
     public function getForms(array $args = array())
     {
         global $wpdb;
+
         $args = wp_parse_args($args, array(
             'active' => null,
             'orderby' => 'updated_at',
@@ -142,6 +143,7 @@ class Quform_Repository
             $args['search'] = $wpdb->esc_like($args['search']);
             $where[] = $wpdb->prepare("name LIKE '%s'", '%' . $args['search'] . '%');
         }
+
         $sql .= " WHERE " . join(' AND ', $where);
 
         // Sanitise order/limit
@@ -152,6 +154,7 @@ class Quform_Repository
         $args['offset'] = (int) $args['offset'];
 
         $sql .= " ORDER BY `{$args['orderby']}` {$args['order']} LIMIT {$args['limit']} OFFSET {$args['offset']}";
+
         return $wpdb->get_results($sql, ARRAY_A);
     }
 
@@ -971,6 +974,7 @@ GROUP BY entries.id";
 
         // Maximum display length of a single field value
         $wpdb->query('SET @@GROUP_CONCAT_MAX_LEN = 65535');
+
         return $wpdb->get_results($sql, ARRAY_A);
     }
 
@@ -1150,9 +1154,7 @@ GROUP BY entries.id";
         global $wpdb;
 
         $entryId = (int) $entryId;
-
         $formId = $wpdb->get_var($wpdb->prepare("SELECT form_id FROM " . $this->getEntriesTableName() . " WHERE `id` = %d", $entryId));
-
         return (int) $formId;
     }
 
@@ -1165,7 +1167,6 @@ GROUP BY entries.id";
      */
     public function findEntry($entryId, Quform_Form $form)
     {
-
         global $wpdb;
 
         $sql = "SELECT `entries`.*";
@@ -1173,9 +1174,8 @@ GROUP BY entries.id";
         $columns = array();
 
         foreach ($form->getRecursiveIterator() as $element) {
-            if (11) {
-
-                $sql .= ", GROUP_CONCAT(IF (`data`.`element_id` = %d, `data`.`value`, NULL)) AS `element_%d`". $element->getId(). $element->getId();
+            if ($element->config('saveToDatabase')) {
+                $sql .= $wpdb->prepare(", GROUP_CONCAT(IF (`data`.`element_id` = %d, `data`.`value`, NULL)) AS `element_%d`", $element->getId(), $element->getId());
                 $columns['element_' . $element->getId()] = $element;
             }
         }

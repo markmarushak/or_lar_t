@@ -1,5 +1,7 @@
 
 @extends('layouts.admin.app')
+<link rel='stylesheet' id='quform-css' href='http://garasje-tilbud.no/modules/quform/cache/quform.css?ver=1521656337'
+      type='text/css' media='all'/>
 @section('content')
     <div class="row">
         <div class="clearfix"></div>
@@ -9,10 +11,10 @@
     </div>
     <div class="col-xl-12" style="margin-top: 20px;">
         @include('affiliate.tabs-menu.top-menu')
-        <div class="row">
             @include('errors')
-            <div class="qfb-db-col">
-                <div class="qfb-box">
+            @if(isset($recentEntries) && !empty($recentEntries) )
+            <div class="qfb-entry-left">
+                <div class="qfb-box " style="width: 700px">
                     <div class="qfb-cf">
                         <h3 class="qfb-box-heading qfb-db-heading">
                             <i class="mdi mdi-chat"></i>
@@ -22,13 +24,15 @@
                         </h3>
                     </div>
                     <div class="qfb-content qfb-form-switcher qfb-db-entry-list">
-
                         <?php if (count($recentEntries)) : ?>
                         <ul class="qfb-nav-menu qfb-cf">
                             <?php foreach ($recentEntries as $recentEntry) : ?>
-
                             <li class="qfb-cf<?php echo $recentEntry['unread'] == '1' ? ' qfb-unread' : ''; ?>">
-                                <a href="">
+                                <a href="{{route('output-overview-single', [
+                                'single_id' => $recentEntry['id'],
+                                'dataFiltersRulesId' => $dataFiltersRulesId,
+                                'dataFiltersRulesDescription' => $dataFiltersRulesDescription
+                                 ])}}">
                                     <?php if ($recentEntry['unread'] == '1') : ?>
                                     <i class="fa fa-envelope"></i>
                                     <?php else : ?>
@@ -48,8 +52,8 @@
                 </div>
 
             </div>
+        @endif
         </div>
-    </div>
 
 
 @endsection

@@ -33,9 +33,9 @@ class Quform_TokenReplacer
     /**
      * @param Quform_Options $options
      */
-    public function __construct(Quform_Options $options = null)
+    public function __construct(Quform_Options $options)
     {
-        $this->options = new Quform_Options();
+        $this->options = $options;
     }
 
     /**

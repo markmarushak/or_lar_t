@@ -3,41 +3,38 @@
 
 namespace App\Services;
 
+use App\Models\DataFiltersRules;
+use App\Models\SettingOfDataBase;
+use App\Plugins\QformLibrary\Quform\Quform_Repository;
 use App\Plugins\WordPress\Wpdb;
-use App\Repositories\AffiliateRepository;
+use App\Repository\AffiliateRepository;
 use App\Services\BaseService;
 use Exception;
+use Illuminate\Support\Facades\Config;
 
 
 class AffiliateService extends BaseService
 {
     private $affiliateRepository;
 
-
-    public function __construct(AffiliateRepository $affiliateRepository)
+    public function __construct(
+        AffiliateRepository $affiliateRepository
+        )
     {
         $this->affiliateRepository = $affiliateRepository;
     }
 
-    public function decryptionConfig($data, $description)
-    {
-         return unserialize(base64_decode($data));
-    }
 
-    public function objectToArray($value)
-    {
-            foreach($value[0] as $object)
-            {
-                $var =  $object;
-            }
-            return $var;
-    }
+
+    
 
     public function connectionToDataBase($dataFiltersRulesId)
     {
         $settingOfDataBaseById = $this->affiliateRepository->getSettingOfDataBaseById($dataFiltersRulesId);
-        global $wpdb;
 
+        $settingOfDataBaseById = $this->decryptSettingToDb($settingOfDataBaseById->setting);
+
+        global $wpdb;
         try
         {
             if ($wpdb = new Wpdb(
@@ -61,50 +58,50 @@ class AffiliateService extends BaseService
 
     }
 
-    public function createUrls($forms, $dataFiltersRulesDescription )
+    public function editConnectToDb($request, $dataFiltersRulesId)
     {
-        foreach ($forms as $singleForm) {
-            $urls[$singleForm['name']] = 'http://www.'.$dataFiltersRulesDescription.'/wp-admin/admin.php?page=quform.forms&sp=edit&id='.$singleForm['id'].'';
+        $dataFiltersRulesObject = $this->affiliateRepository->getDataFiltersRulesById($dataFiltersRulesId);
+        $settingOfDataBase = $this->encryptSettingToDb($request);
+        $this->affiliateRepository->editConnectToDb($settingOfDataBase, $dataFiltersRulesObject);
+    }
+
+    public function addConnectToDb($request, $dataFiltersRulesId)
+    {
+        $dataFiltersRulesObject = $this->affiliateRepository->getDataFiltersRulesById($dataFiltersRulesId);
+        $settingOfDataBase = $this->encryptSettingToDb($request);
+        $this->affiliateRepository->addConnectToDb($settingOfDataBase, $dataFiltersRulesObject);
+    }
+
+    private function encryptSettingToDb($request)
+    {
+        $settingOfDataBase =  $request->only( 'domain', 'form', 'host', 'host_name', 'port', 'database', 'username',
+            'password', 'charset', 'collation'
+        );
+        $settingOfDataBase = json_encode($settingOfDataBase);
+        return encrypt($settingOfDataBase);
+    }
+
+    private function decryptSettingToDb($settingOfDataBase)
+    {
+        $settingOfDataBase =  decrypt($settingOfDataBase);
+        return json_decode($settingOfDataBase);
+    }
+
+    public function getSettingOfDataBaseById($dataFiltersRulesId)
+    {
+        $settingsOfDataBase = $this->affiliateRepository->getSettingOfDataBaseById($dataFiltersRulesId);
+        if ($settingsOfDataBase == true) {
+            if (isset($settingsOfDataBase->setting) && !empty($settingsOfDataBase->setting)) {
+                $settingsOfDataBase->setting = decrypt($settingsOfDataBase->setting);
+                $settingsOfDataBase->setting = json_decode($settingsOfDataBase->setting);
+                return $settingsOfDataBase;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
         }
-        return $urls;
     }
-
-
-
-
-
-    public function encrypt()
-    {
-        define('ENCRYPTION_KEY', 'ab86d144e3f080b61c7c2e43');
-
-        // Encrypt
-        $plaintext = "Тестируем обратимое шифрование на php 7";
-        $ivlen = openssl_cipher_iv_length($cipher="AES-128-CBC");
-        $iv = openssl_random_pseudo_bytes($ivlen);
-        $ciphertext_raw = openssl_encrypt($plaintext, $cipher, ENCRYPTION_KEY, $options=OPENSSL_RAW_DATA, $iv);
-        $hmac = hash_hmac('sha256', $ciphertext_raw, ENCRYPTION_KEY, $as_binary=true);
-        $ciphertext = base64_encode( $iv.$hmac.$ciphertext_raw );
-        echo $ciphertext.'<br>';
-    }
-
-    public function decrypt()
-    {
-        $c = base64_decode($ciphertext);
-        $ivlen = openssl_cipher_iv_length($cipher="AES-128-CBC");
-        $iv = substr($c, 0, $ivlen);
-        $hmac = substr($c, $ivlen, $sha2len=32);
-        $ciphertext_raw = substr($c, $ivlen+$sha2len);
-        $plaintext = openssl_decrypt($ciphertext_raw, $cipher, ENCRYPTION_KEY, $options=OPENSSL_RAW_DATA, $iv);
-        $calcmac = hash_hmac('sha256', $ciphertext_raw, ENCRYPTION_KEY, $as_binary=true);
-        if (hash_equals($hmac, $calcmac))
-        {
-            echo $plaintext;
-        }
-    }
-
-
-
-
 
 
 }
