@@ -20,11 +20,12 @@ class DataFilterRuleController extends Controller
     private $affiliateService;
     private $dataFilterRuleService;
 
-    public function __construct(AffiliateRepository $affiliateRepository,
-                                DataFiltersRules $dataFiltersRulesModel,
-                                SettingOfDataBase $settingOfDataBaseModel,
-                                AffiliateService $affiliateService,
-                                DataFilterRuleService $dataFilterRuleService
+    public function __construct(
+        AffiliateRepository $affiliateRepository,
+        DataFiltersRules $dataFiltersRulesModel,
+        SettingOfDataBase $settingOfDataBaseModel,
+        AffiliateService $affiliateService,
+        DataFilterRuleService $dataFilterRuleService
     )
     {
         $this->affiliateRepository = $affiliateRepository;
