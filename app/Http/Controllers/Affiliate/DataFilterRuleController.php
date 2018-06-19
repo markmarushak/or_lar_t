@@ -50,12 +50,10 @@ class DataFilterRuleController extends Controller
         return view('affiliate.data-filters-rules.index', ['menu' => 'affiliate-service', 'dataFiltersRules' => $dataFiltersRules]);
     }
 
-
     public function add()
     {
         return view('affiliate.data-filters-rules.add');
     }
-
 
     public function store(Request $request)
     {
@@ -68,7 +66,6 @@ class DataFilterRuleController extends Controller
         $this->dataFiltersRulesModel->add($request->all());
         return redirect()->route('data-filters-rules');
     }
-
 
     /**
      * @param Request $request
@@ -92,7 +89,6 @@ class DataFilterRuleController extends Controller
             ]
         );
     }
-
 
     /**
      * @param Request $request
@@ -124,7 +120,6 @@ class DataFilterRuleController extends Controller
         }
         return redirect()->route('connection', [ 'data_filters_rules_id' => $dataFiltersRulesId, 'data_filters_rules_description' => $dataFiltersRulesDescription]);
     }
-
 
     /**
      * @param Request $request
@@ -182,7 +177,6 @@ class DataFilterRuleController extends Controller
             );
         }
     }
-
 
     public function outputOverviewSingle(Request $request)
     {

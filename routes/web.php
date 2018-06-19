@@ -21,15 +21,17 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-
-
 Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service'], function(){
 
     Route::get('/', 'AffiliateController@index')->name('affiliate-service');
     Route::get('/compaigns', 'AffiliateController@compaigns')->name('compaigns');
-    //affiliates-partners
-    Route::get('/affiliates-partners', 'AffiliateController@affiliatesPartners')->name('affiliates-partners');
 
+    //affiliates-partners
+    Route::group( ['prefix' => 'affiliates-partners'] , function() {
+
+        Route::get('/', 'AffiliatePartnerController@index')->name('affiliates-partners');
+        Route::get('/add-affiliates-partners', 'AffiliatePartnerController@add')->name('add-affiliates-partners');
+    });
 
     //Email BulkSplit
     Route::get('/email-bulk-split', 'AffiliateController@emailBulkSplit')
@@ -54,7 +56,6 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service'], func
 
         // Data Filters Edit page
         Route::get('', 'AffiliateController@dataFiltersRules')->name('data-filters-rules-edit');
-
 
 
         //dataBaseFields

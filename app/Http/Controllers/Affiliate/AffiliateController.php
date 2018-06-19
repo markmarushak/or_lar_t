@@ -163,7 +163,6 @@ class AffiliateController extends Controller
             $tableName = "wpau_quform_entries";
 
             $data = $this->affiliateRepository->getGarageFormsEntryById(1);
-
             //get data_filters_rules_id from get Request
             $dataFiltersRulesId = $request->data_filters_rules_id;
             $dataFiltersRulesDescription = $request->data_filters_rules_description;
@@ -190,15 +189,5 @@ class AffiliateController extends Controller
             return $config;
         }
 
-    public function affiliatesPartners(Request $request)
-    {
-
-        return view('affiliate.affiliates-partners',
-            [
-                'menu' => 'affiliate-service',
-                'data' => []
-            ]
-        );
-    }
 
 }

@@ -1,6 +1,5 @@
 @extends('layouts.admin.app')
-<!--<link rel='stylesheet' id='quform-css'
-      type='text/css' media='all'/>-->
+
 @section('content')
 
     <div class="m-portlet m-portlet--mobile">
