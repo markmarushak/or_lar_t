@@ -5,7 +5,7 @@ namespace App\Repositories;
 
 use App\Models\DataFiltersRules;
 use App\Models\SettingOfDataBase;
-
+use App\Plugins\QformLibrary\Quform\Quform_Repository;
 use App\Plugins\QformLibrary\Quform\Quform_Form;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +19,7 @@ class AffiliateRepository
     protected $dataFiltersRulesModel;
     protected $settingOfDataBaseModel;
 
-    public function __construct(DataFiltersRules $dataFiltersRulesModel, SettingOfDataBase $settingOfDataBaseModel, Quform\Quform_Repository $quformRepository)
+    public function __construct(DataFiltersRules $dataFiltersRulesModel, SettingOfDataBase $settingOfDataBaseModel, Quform_Repository $quformRepository)
     {
         $this->settingOfDataBaseModel = $settingOfDataBaseModel;
         $this->quformRepository = $quformRepository;

@@ -82,7 +82,7 @@
                         <span style="width: 70px;">Partner</span>
                     </td>
                     <td>
-                        <span style="width: 70px;">ZipCode=from 5000 to 5500 - Material = Stone </span>
+                        <span style="width: 70px;" id="rule_id">ZipCode=from 5000 to 5500 - Material = Stone </span>
                     </td>
 
                     <td>
@@ -93,7 +93,6 @@
 
 
                 </tr>
-
 
                 </tbody>
             </table>
@@ -172,14 +171,15 @@
                 <button class="btn btn-success">Add Rule</button>
             </div>
 
-            <div>
+            <div class="pt-2">
                 <button class="btn btn-outline-info active">Save</button>
             </div>
-            <div class="pt-2">
-                <button class="btn btn-success">Add Affiliates/Partners</button>
-            </div>
+                <div class="pt-2">
+                    <button class="btn btn-success" onclick="location.href=('{{route("add-affiliates-partners")}}')">Add Affiliates/Partners</button>
+                </div>
         </div>
     </div>
+    @include('modal')
 
 
 

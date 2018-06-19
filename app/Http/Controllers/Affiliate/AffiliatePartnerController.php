@@ -5,10 +5,20 @@ namespace App\Http\Controllers\Affiliate;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Repositories\AffiliateRepository;
+use App\Services\AffiliateService;
 
 class AffiliatePartnerController extends Controller
 {
 
+
+    public function __construct(
+        AffiliateRepository $affiliateRepository,
+        AffiliateService $affiliateService
+    ){
+        $this->affiliateRepository = $affiliateRepository;
+        $this->affiliateService = $affiliateService;
+    }
 
     public function index()
     {
@@ -20,13 +30,15 @@ class AffiliatePartnerController extends Controller
         );
     }
 
-    public function add()
+    public function add(Request $request)
     {
-        return view('affiliate.affiliates-partners.add-affiliate-partner',
+        return view('affiliate.affiliates-partners.add-affiliates-partners',
             [
                 'menu' => 'affiliate-service',
                 'data' => []
             ]
         );
     }
+
+
 }

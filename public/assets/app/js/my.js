@@ -56,6 +56,31 @@ $('#base_responsive_columns').mDatatable({
 
 });
 
+$(document).ready(function() {
+    $('#rule_id').click( function(e){
+        e.preventDefault();
+        $('#rule_text').text($('#rule_id').text());
+        $('#overlay').fadeIn(400,
+            function(){
+                $('#modal_form')
+                    .css('display', 'block')
+                    .animate({opacity: 1, top: '50%'}, 200);
+            });
+    });
+    $('#save_btn').click( function(){
+        console.log($('#rule_text').val());
+        $('#rule_id').append($('#rule_text').val());
+        $('#modal_form')
+            .animate({opacity: 0, top: '45%'}, 200,
+                function(){
+                    $(this).css('display', 'none');
+                    $('#overlay').fadeOut(400);
+                }
+            );
+        $('#rule_id').text($('#rule_text').text());
+    });
+});
+
 /*var DatatableResponsiveColumnsDemo={
     init:function(){
         $("#base_responsive_columns").mDatatable({
