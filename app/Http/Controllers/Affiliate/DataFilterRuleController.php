@@ -192,6 +192,8 @@ class DataFilterRuleController extends Controller
         }
     }
 
+
+    
     public function outputOverview(Request $request)
     {
         $dataFiltersRulesId = $request->data_filters_rules_id;
