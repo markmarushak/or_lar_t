@@ -4,44 +4,32 @@
 namespace App\Http\Controllers\Affiliate;
 
 use App\Http\Controllers\Controller;
-use App\Models\DataFiltersRules;
-use App\Models\SettingOfDataBase;
-use App\Plugins\QformLibrary\Quform\Quform_Options;
-use App\Plugins\QformLibrary\Quform\Quform_Repository;
-use App\Repositories\AffiliateRepository;
+use App\Repository\AffiliateRepository;
 use App\Services\AffiliateService;
+use App\Services\DataFilterRuleService;
 use Illuminate\Http\Request;
-
 
 class DataFilterRuleController extends Controller
 {
     private $affiliateRepository;
-    private $dataFiltersRulesModel;
-    private $settingOfDataBaseModel;
     private $affiliateService;
-    private $quformRepository;
-    private $quformOptions;
+    private $dataFilterRuleService;
 
-    public function __construct(AffiliateRepository $affiliateRepository,
-                                DataFiltersRules $dataFiltersRulesModel,
-                                SettingOfDataBase $settingOfDataBaseModel,
-                                AffiliateService $affiliateService,
-                                Quform_Repository $quformRepository
+    public function __construct(
+        AffiliateRepository $affiliateRepository,
+        AffiliateService $affiliateService,
+        DataFilterRuleService $dataFilterRuleService
     )
     {
         $this->affiliateRepository = $affiliateRepository;
-        $this->dataFiltersRulesModel = $dataFiltersRulesModel;
-        $this->settingOfDataBaseModel = $settingOfDataBaseModel;
         $this->affiliateService = $affiliateService;
-        $this->quformRepository = $quformRepository;
+        $this->dataFilterRuleService = $dataFilterRuleService;
     }
 
     public function index()
     {
-
-        $dataFiltersRules = DataFiltersRules::all();
+        $dataFiltersRules =  $this->dataFilterRuleService->getAllDataFiltersRules();
         if (!empty($dataFiltersRules)) {
-
             return view('affiliate.data-filters-rules.index',
                 [
                     'menu' => 'affiliate-service',
@@ -52,12 +40,10 @@ class DataFilterRuleController extends Controller
         return view('affiliate.data-filters-rules.index', ['menu' => 'affiliate-service', 'dataFiltersRules' => $dataFiltersRules]);
     }
 
-
     public function add()
     {
         return view('affiliate.data-filters-rules.add');
     }
-
 
     public function store(Request $request)
     {
@@ -67,10 +53,9 @@ class DataFilterRuleController extends Controller
             'source' => 'required',
             'country' => 'required'
         ]);
-        $this->dataFiltersRulesModel->add($request->all());
+        $this->dataFilterRuleService->addDataFilterRule($request);
         return redirect()->route('data-filters-rules');
     }
-
 
     /**
      * @param Request $request
@@ -83,7 +68,8 @@ class DataFilterRuleController extends Controller
     {
         $dataFiltersRulesId = $request->data_filters_rules_id;
         $dataFiltersRulesDescription = $request->data_filters_rules_description;
-        $settingsOfDataBase = $this->affiliateRepository->getSettingOfDataBaseById($dataFiltersRulesId);
+        $settingsOfDataBase = $this->affiliateService->getSettingOfDataBaseById($dataFiltersRulesId);
+
         return view('affiliate.data-filters-rules.connection',
             [
                 'menu' => 'affiliate-service',
@@ -93,7 +79,6 @@ class DataFilterRuleController extends Controller
             ]
         );
     }
-
 
     /**
      * @param Request $request
@@ -118,15 +103,12 @@ class DataFilterRuleController extends Controller
             'collation' => 'required'
         ]);
         if($request->id) {
-            $dataFiltersRulesObject = $this->affiliateRepository->getDataFiltersRulesById($dataFiltersRulesId);
-            $this->settingOfDataBaseModel->edit($request, $dataFiltersRulesObject);
+            $this->affiliateService->editConnectToDb($request, $dataFiltersRulesId);
         } else {
-            $dataFiltersRulesObject = $this->affiliateRepository->getDataFiltersRulesById($dataFiltersRulesId);
-            $this->settingOfDataBaseModel->add($request, $dataFiltersRulesObject);
+            $this->affiliateService->addConnectToDb($request, $dataFiltersRulesId);
         }
         return redirect()->route('connection', [ 'data_filters_rules_id' => $dataFiltersRulesId, 'data_filters_rules_description' => $dataFiltersRulesDescription]);
     }
-
 
     /**
      * @param Request $request
@@ -147,8 +129,8 @@ class DataFilterRuleController extends Controller
                ]
            )->withErrors($connectionToDataBase->getMessage() );
        } else {
-           $forms =  $this->quformRepository->getForms();
-           $urls = $this->affiliateService->createUrls($forms, $dataFiltersRulesDescription);
+           $forms =  $this->dataFilterRuleService->getForms();
+           $urls = $this->dataFilterRuleService->createUrls($forms, $dataFiltersRulesDescription);
            return view('affiliate.data-filters-rules.form-builder',
                [
                    'menu' => 'affiliate-service',
@@ -159,6 +141,58 @@ class DataFilterRuleController extends Controller
            );
        }
     }
+
+    public function dataBaseFields(Request $request)
+    {
+        $dataFiltersRulesId = $request->data_filters_rules_id;
+        $connectionToDataBase= $this->affiliateService->connectionToDataBase($dataFiltersRulesId);
+        $dataFiltersRulesDescription = $request->data_filters_rules_description;
+
+        if (is_a($connectionToDataBase, 'ErrorException')) {
+            return view('affiliate.database-fields',
+                [
+                    'menu' => 'affiliate-service',
+                    'dataFiltersRulesDescription' => $dataFiltersRulesDescription
+                ]
+            )->withErrors($connectionToDataBase->getMessage());
+        }else {
+            $data = array(
+                'description' => $dataFiltersRulesDescription
+            );
+            return view('affiliate.database-fields',
+                [
+                    'menu' => 'affiliate-service',
+                    'data' => $data
+                ]
+            );
+        }
+    }
+
+    public function dataFiltersRulesData(Request $request)
+    {
+        $dataFiltersRulesId = $request->data_filters_rules_id;
+        $connectionToDataBase= $this->affiliateService->connectionToDataBase($dataFiltersRulesId);
+        $dataFiltersRulesDescription = $request->data_filters_rules_description;
+
+        if (is_a($connectionToDataBase, 'ErrorException')) {
+            return view('affiliate.data-filters-rules-data',
+                [
+                    'menu' => 'affiliate-service',
+                    'dataFiltersRulesDescription' => $dataFiltersRulesDescription
+                ]
+            )->withErrors($connectionToDataBase->getMessage());
+        }else {
+            $data = $this->affiliateRepository->getGarageFormsEntryById($dataFiltersRulesId);
+            return view('affiliate.data-filters-rules-data',
+                [
+                    'menu' => 'affiliate-service',
+                    'data' => $data
+                ]
+            );
+        }
+    }
+
+
 
     public function outputOverview(Request $request)
     {
@@ -173,11 +207,12 @@ class DataFilterRuleController extends Controller
                 ]
             )->withErrors($connectionToDataBase->getMessage() );
         } else {
-            $recentEntries = $this->quformRepository->getRecentEntries();
+            $recentEntries = $this->dataFilterRuleService->getRecentEntries();
+            dd($recentEntries);
+
             return view('affiliate.data-filters-rules.output-overview',
                 [
                 'menu' => 'affiliate-service',
-                    'options' => $this->quformOptions,
                 'recentEntries' => $recentEntries,
                 'dataFiltersRulesId' =>$dataFiltersRulesId,
                 'dataFiltersRulesDescription' => $dataFiltersRulesDescription
@@ -186,4 +221,28 @@ class DataFilterRuleController extends Controller
         }
     }
 
+    public function outputOverviewSingle(Request $request)
+    {
+        $dataFiltersRulesId = $request->data_filters_rules_id;
+        $dataFiltersRulesDescription = $request->data_filters_rules_description;
+        $connectionToDataBase= $this->affiliateService->connectionToDataBase($dataFiltersRulesId);
+        if (is_a($connectionToDataBase, 'ErrorException')) {
+            return view('affiliate.data-filters-rules.output-overview-single',
+                [
+                    'menu' => 'affiliate-service',
+                    'dataFiltersRulesDescription' => $dataFiltersRulesDescription
+                ]
+            )->withErrors($connectionToDataBase->getMessage() );
+        } else {
+            $entryId = $request->single_id;
+            $form = $this->dataFilterRuleService->outputOverviewSingleService($entryId);
+            return view('affiliate.data-filters-rules.output-overview-single', [
+                'menu' => 'affiliate-service',
+                'dataFiltersRulesId' =>$dataFiltersRulesId,
+                'dataFiltersRulesDescription' => $dataFiltersRulesDescription,
+                'nameEntry' => $this->dataFilterRuleService->nameEntry,
+                'form' => $form
+            ]);
+        }
+    }
 }
