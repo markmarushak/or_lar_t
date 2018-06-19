@@ -21,9 +21,10 @@ class AffiliateRepository
     protected $dataFiltersRulesModel;
     protected $settingOfDataBaseModel;
 
-    public function __construct(DataFiltersRules $dataFiltersRulesModel, SettingOfDataBase $settingOfDataBaseModel)
+    public function __construct(DataFiltersRules $dataFiltersRulesModel, SettingOfDataBase $settingOfDataBaseModel, Quform\Quform_Repository $quformRepository)
     {
         $this->settingOfDataBaseModel = $settingOfDataBaseModel;
+        $this->quformRepository = $quformRepository;
         $this->dataFiltersRulesModel = $dataFiltersRulesModel;
         //Check if it's local domain assign local db credentials
         $this->garageDB = ($_SERVER['HTTP_HOST'] != 'admin.orbitleads.com')? "garage_dev": "garage";
@@ -42,11 +43,20 @@ class AffiliateRepository
 
     public function getGarageFormsEntryById($id = null)
     {
-       return DB::connection($this->garageDB)->select("SELECT * FROM weeklyex_wp126.wpau_quform_entries 
-                        INNER JOIN weeklyex_wp126.wpau_quform_entry_data 
-                        ON wpau_quform_entries.id = wpau_quform_entry_data.entry_id
-                        WHERE form_id='$id'                      
-                      ");
+        global $wpdb;
+        $forms = array();
+
+        if ($id == '') {
+            return $forms;
+        }
+        $sql = "SELECT * FROM " . $this->quformRepository->getEntriesTableName() . "
+         INNER JOIN ".$this->quformRepository->getEntryDataTableName()."
+         ON ".$this->quformRepository->getEntriesTableName().".id = ".$this->quformRepository->getEntryDataTableName().".entry_id
+         WHERE form_id = ($id)";
+
+        $forms = $wpdb->get_results($sql, ARRAY_A);
+
+        return $forms;
     }
 
     public function getFormIdFromEntryId($entryId)

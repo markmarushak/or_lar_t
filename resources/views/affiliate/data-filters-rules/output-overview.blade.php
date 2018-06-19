@@ -11,11 +11,10 @@
     </div>
     <div class="col-xl-12" style="margin-top: 20px;">
         @include('affiliate.tabs-menu.top-menu')
-        <div class="row">
             @include('errors')
             @if(isset($recentEntries) && !empty($recentEntries) )
-            <div class="qfb-db-col">
-                <div class="qfb-box" style="width: 713px">
+            <div class="qfb-entry-left">
+                <div class="qfb-box " style="width: 700px">
                     <div class="qfb-cf">
                         <h3 class="qfb-box-heading qfb-db-heading">
                             <i class="mdi mdi-chat"></i>
@@ -55,7 +54,6 @@
             </div>
         @endif
         </div>
-    </div>
 
 
 @endsection
