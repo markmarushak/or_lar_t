@@ -5,7 +5,6 @@ use App\Http\Controllers\Controller;
 
 class AffiliateController extends Controller
 {
-
     /**
      * Create a new controller instance.
      *

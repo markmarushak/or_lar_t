@@ -102,7 +102,6 @@ class DataFilterRuleController extends Controller
             'charset' => 'required',
             'collation' => 'required'
         ]);
-
         if($request->id) {
             $this->affiliateService->editConnectToDb($request, $dataFiltersRulesId);
         } else {
@@ -207,6 +206,8 @@ class DataFilterRuleController extends Controller
             )->withErrors($connectionToDataBase->getMessage() );
         } else {
             $recentEntries = $this->dataFilterRuleService->getRecentEntries();
+            dd($recentEntries);
+
             return view('affiliate.data-filters-rules.output-overview',
                 [
                 'menu' => 'affiliate-service',
