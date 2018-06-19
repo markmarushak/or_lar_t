@@ -1,5 +1,7 @@
 
 @extends('layouts.admin.app')
+<link rel='stylesheet' id='quform-css' href='http://garasje-tilbud.no/modules/quform/cache/quform.css?ver=1521656337'
+      type='text/css' media='all'/>
 @section('content')
     <div class="row">
         <div class="clearfix"></div>
@@ -11,8 +13,9 @@
         @include('affiliate.tabs-menu.top-menu')
         <div class="row">
             @include('errors')
+            @if(isset($recentEntries) && !empty($recentEntries) )
             <div class="qfb-db-col">
-                <div class="qfb-box">
+                <div class="qfb-box" style="width: 713px">
                     <div class="qfb-cf">
                         <h3 class="qfb-box-heading qfb-db-heading">
                             <i class="mdi mdi-chat"></i>
@@ -50,6 +53,7 @@
                 </div>
 
             </div>
+        @endif
         </div>
     </div>
 

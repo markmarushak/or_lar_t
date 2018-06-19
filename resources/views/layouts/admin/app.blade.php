@@ -56,7 +56,6 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- end::Body -->
 
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
-@include('layouts.admin._layout')
 <!--begin::Base Scripts -->
 
 {{--
@@ -79,7 +78,7 @@ License: You must have a valid license purchased only from themeforest(the above
 {!! Html::script('assets/app/js/dashboard.js') !!}
 {!! Html::script('assets/app/js/my.js') !!}
 
-
+@include('layouts.admin._layout')
 
 <!--end::Page Snippets -->
 </body>

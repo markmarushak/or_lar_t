@@ -58,10 +58,10 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service'], func
 
 
         //dataBaseFields
-        Route::get('/data-base-fields', 'AffiliateController@dataBaseFields')->name('data-base-fields');
+        Route::get('/data-base-fields', 'DataFilterRuleController@dataBaseFields')->name('data-base-fields');
 
         //data-filters and rules data
-        Route::get('/data-filters-rules-data', 'AffiliateController@dataFiltersRulesData')->name('data-filters-rules-data');
+        Route::get('/data-filters-rules-data', 'DataFilterRuleController@dataFiltersRulesData')->name('data-filters-rules-data');
 
         //outputOverview
         Route::get('/output-overview', 'DataFilterRuleController@outputOverview')->name('output-overview');

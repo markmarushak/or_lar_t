@@ -118,68 +118,6 @@ class AffiliateController extends Controller
     }
 
 
-
-
-        public function dataBaseFields()
-        {
-
-            $data = "DataBaseFields should be here";
-
-            $dataFiltersRules = DataFiltersRules::all();
-
-
-            $dbName = "weeklyex_wp126";
-            $tableName = "wpau_quform_forms";
-            $dataRemoteDB = $this->affiliateRepository->allGetGarageForms();
-            //fetch row corresponding data_filters_rules
-            $id = '1';
-            $dataFiltersRuleRow = $this->affiliateRepository->allGetFiltersRulesById($id);
-
-            //Get Description from current data_filters_rules
-            $description = $dataFiltersRuleRow[0]->description;
-
-            $data = array(
-                'db_name' => $dbName,
-                'db_table' => $tableName,
-                'data_fields_number' => 1
-            );
-
-            return view('affiliate.database-fields',
-                [
-                    'menu' => 'affiliate-service',
-                    'dataFiltersRules' => $dataFiltersRules,
-                    'data' => $data
-                ]
-            );
-        }
-
-
-        public function dataFiltersRulesData(Request $request)
-        {
-            $data = "dataFiltersRulesData";
-
-            //Connect to remote server in order to receive correspond form output
-            $dbName = "weeklyex_wp126";
-            $tableName = "wpau_quform_entries";
-
-            $data = $this->affiliateRepository->getGarageFormsEntryById(1);
-
-            //get data_filters_rules_id from get Request
-            $dataFiltersRulesId = $request->data_filters_rules_id;
-            $dataFiltersRulesDescription = $request->data_filters_rules_description;
-
-            $dataFiltersRules = DataFiltersRules::all();
-
-            return view('affiliate.data-filters-rules-data',
-                [
-                    'menu' => 'affiliate-service',
-                    'dataFiltersRules' => $dataFiltersRules,
-                    'data' => $data
-                ]
-            );
-        }
-
-
         protected function addRowDataToConfig(array $row, array $config)
         {
             $config['id'] = (int) $row['id'];
