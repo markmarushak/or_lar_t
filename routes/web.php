@@ -11,11 +11,28 @@
 |
 */
 
+
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Auth::routes();
+
+Route::get('/cache-clear', function() {
+    $exitCode = Artisan::call('cache:clear');
+    return "Cache is cleared";
+});
+
+Route::get('/view-clear', function() {
+    $exitCode = Artisan::call('view:clear');
+    return "View is cleared";
+});
+
+Route::get('/route-clear', function() {
+    $exitCode = Artisan::call('route:clear');
+    return "Route is cleared";
+});
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');

@@ -79,17 +79,10 @@ class AffiliateController extends Controller
      *
      * @return void
      */
-    public function __construct(AffiliateRepository $affiliateRepository,
-                                AffiliateService $affiliateService,
-                                Quform_Repository $repository,
-                                Quform_View $view
-    )
+    public function __construct( )
     {
         //  $this->middleware('auth');
-        $this->affiliateRepository = $affiliateRepository;
-        $this->affiliateService = $affiliateService;
-        $this->repository = $repository;
-        $this->view = $view;
+
     }
 
     /**
@@ -117,16 +110,6 @@ class AffiliateController extends Controller
         return view('affiliate.email-bulk-split', ['menu' => 'affiliate-service']);
     }
 
-
-        protected function addRowDataToConfig(array $row, array $config)
-        {
-            $config['id'] = (int) $row['id'];
-            $config['name'] = $row['name'];
-            $config['active'] = $row['active'] == 1;
-            $config['trashed'] = $row['trashed'] == 1;
-
-            return $config;
-        }
 
 
 }
