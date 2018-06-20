@@ -796,10 +796,8 @@ function is_user_admin() {
 function is_multisite() {
 	if ( defined( 'MULTISITE' ) )
 		return MULTISITE;
-
 	if ( defined( 'SUBDOMAIN_INSTALL' ) || defined( 'VHOST' ) || defined( 'SUNRISE' ) )
 		return true;
-
 	return false;
 }
 

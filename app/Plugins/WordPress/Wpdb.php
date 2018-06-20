@@ -679,8 +679,7 @@ class Wpdb {
 	public function init_charset() {
 		$charset = '';
 		$collate = '';
-
-		if ( function_exists('is_multisite') && is_multisite() ) {
+		if ( true ) {
 			$charset = 'utf8';
 			if ( defined( 'DB_COLLATE' ) && DB_COLLATE ) {
 				$collate = DB_COLLATE;
@@ -696,10 +695,6 @@ class Wpdb {
 		}
 
 		$charset_collate = $this->determine_charset( $charset, $collate );
-
-
-//        $this->charset = $charset_collate['charset'] = 'utf8mb4';
-//        $this->collate = $charset_collate['collate'] = 'utf8mb4_unicode_ci';
 
 		$this->charset = $charset_collate['charset'];
 		$this->collate = $charset_collate['collate'];
