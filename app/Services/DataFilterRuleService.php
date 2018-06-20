@@ -44,6 +44,11 @@ class DataFilterRuleService extends BaseService
         return $this->quformRepository->getForms();
     }
 
+    public function getFormById($form_id)
+    {
+        return $this->dataFilterRuleRepository->getFormsEntryById($form_id);
+    }
+
     public function outputOverviewSingleService($entryId)
     {
         $formId = $this->quformRepository->getFormIdFromEntryId($entryId);

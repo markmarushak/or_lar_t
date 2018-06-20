@@ -58,7 +58,6 @@ $('#base_responsive_columns').mDatatable({
 
 $(document).ready(function() {
     $('#rule_id').click( function(e){
-        e.preventDefault();
         $('#rule_text').text($('#rule_id').text());
         $('#overlay').fadeIn(400,
             function(){
@@ -66,9 +65,8 @@ $(document).ready(function() {
                     .css('display', 'block')
                     .animate({opacity: 1, top: '50%'}, 200);
             });
-    });
+    })
     $('#save_btn').click( function(){
-        console.log($('#rule_text').val());
         $('#rule_id').append($('#rule_text').val());
         $('#modal_form')
             .animate({opacity: 0, top: '45%'}, 200,
@@ -78,8 +76,42 @@ $(document).ready(function() {
                 }
             );
         $('#rule_id').text($('#rule_text').text());
-    });
+    })
+
+    $('#m_hide').change(function() {
+        if ($('#m_hide').is(":checked") === true) {
+            $('#div_hide').removeAttr("hidden");
+        }
+        else {
+            $('#div_hide').attr("hidden", true);
+        }
+    })
+
+
+    $('.la-scissors').click(function(e){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+
+            type:'POST',
+
+            url:'affiliates-partners',
+
+            data:{data: $(this).attr("name")},
+
+
+        });
+        window.location.href = window.location;
+    })
+
+
 });
+
+
 
 /*var DatatableResponsiveColumnsDemo={
     init:function(){

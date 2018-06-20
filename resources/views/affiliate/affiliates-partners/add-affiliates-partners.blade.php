@@ -8,8 +8,8 @@
             <div class="tab-pane active show" id="m_tabs_1_1" role="tabpanel">
 
             </div>
-            <form action="{{route('add-affiliates-partners')}}" method="get">
-                <input type="hidden" name="_method" value="PUT">
+            <form action="{{route('add-affiliates-partners-store')}}" method="post">
+                {{ csrf_field() }}
                 @include('errors')
                 <div class="form-group m-form__group row">
                     <label class="col-form-label col-lg-3 col-sm-12">
@@ -53,10 +53,13 @@
                     <label for="host" class="col-form-label col-lg-3 col-sm-12">
                         Status:
                     </label>
-                    <div class="col-lg-4 col-md-9 col-sm-12">
-
-                        <input id="host" name="status" type="text" class="form-control m-input"
-                               value="">
+                    <div class="col-lg-4 col-md-9 col-sm-12 mt-2">
+                        <input data-switch="true"
+                               type="checkbox"
+                               data-on-color="brand"
+                               id="m_notify_icon"
+                               name="status"
+                                value="{{TRUE}}">
                     </div>
                 </div>
                 <div class="form-group m-form__group row">

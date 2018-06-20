@@ -153,6 +153,7 @@ var DatatablesBasicBasic = function () {
 $('#m_search_input').keyup(function(){
     $('#m_table_2').DataTable().search($(this).val()).draw() ;
 });
+
 $(document).ready(function () {
     $('#m_table_2').DataTable({
         paging: false,

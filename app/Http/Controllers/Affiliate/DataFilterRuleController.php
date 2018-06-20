@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Affiliate;
 
 use App\Http\Controllers\Controller;
 use App\Repository\AffiliateRepository;
+use App\Repository\DataFilterRuleRepository;
 use App\Services\AffiliateService;
 use App\Services\DataFilterRuleService;
 use Illuminate\Http\Request;
@@ -14,16 +15,19 @@ class DataFilterRuleController extends Controller
     private $affiliateRepository;
     private $affiliateService;
     private $dataFilterRuleService;
+    private $dataFilterRuleRepository;
 
     public function __construct(
         AffiliateRepository $affiliateRepository,
         AffiliateService $affiliateService,
-        DataFilterRuleService $dataFilterRuleService
+        DataFilterRuleService $dataFilterRuleService,
+        DataFilterRuleRepository $dataFilterRuleRepository
     )
     {
         $this->affiliateRepository = $affiliateRepository;
         $this->affiliateService = $affiliateService;
         $this->dataFilterRuleService = $dataFilterRuleService;
+        $this->dataFilterRuleRepository = $dataFilterRuleRepository;
     }
 
     public function index()
@@ -183,7 +187,7 @@ class DataFilterRuleController extends Controller
                 ]
             )->withErrors($connectionToDataBase->getMessage());
         }else {
-            $data = $this->affiliateRepository->getGarageFormsEntryById($dataFiltersRulesId);
+            $data = $this->dataFilterRuleService->getFormById($dataFiltersRulesId);
             return view('affiliate.data-filters-rules-data',
                 [
                     'menu' => 'affiliate-service',
