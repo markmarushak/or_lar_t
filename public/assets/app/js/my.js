@@ -57,7 +57,7 @@ $('#base_responsive_columns').mDatatable({
 });
 
 $(document).ready(function() {
-    $('#rule_id').click( function(e){
+    $('#rule_id').dblclick( function(e){
         $('#rule_text').text($('#rule_id').text());
         $('#overlay').fadeIn(400,
             function(){

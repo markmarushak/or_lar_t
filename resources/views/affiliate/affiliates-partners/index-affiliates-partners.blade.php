@@ -4,7 +4,7 @@
 
     <div class="m-portlet m-portlet--mobile">
         <div class="m-portlet__body">
-            {{ csrf_field() }}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             @include('errors')
             @if(isset($affiliates_data) && !empty($affiliates_data) )
             <div class="input-group">
@@ -22,10 +22,6 @@
                 </div>
                 <div class="ml-auto">
                     <input id="m_search_input" placeholder="Search" type="text"/>
-                    <input data-switch="true"
-                           type="checkbox"
-                           data-on-color="brand"
-                           id="m_notify_icon">
                 </div>
             </div>
 
@@ -123,9 +119,11 @@
             <div class="form-group m-form__group row">
                 <label class="col-form-label col-lg-3 col-sm-12 m--font-bolder">Enable conditional logic rules</label>
                 <div class="col-lg-4 col-md-9 col-sm-12 mt-2">
+                    <label class="m-checkbox m-checkbox--air m-checkbox--solid m-checkbox--state-brand">
+                        <input type="checkbox" id="m_hide">
+                        <span></span>
+                    </label>
 
-
-                    <input type="checkbox" id="m_hide">
                 </div>
 
             </div>

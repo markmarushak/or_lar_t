@@ -9,7 +9,7 @@
 
             </div>
             <form action="{{route('add-affiliates-partners-store')}}" method="post">
-                {{ csrf_field() }}
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 @include('errors')
                 <div class="form-group m-form__group row">
                     <label class="col-form-label col-lg-3 col-sm-12">
