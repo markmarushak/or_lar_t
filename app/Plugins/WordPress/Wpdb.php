@@ -691,7 +691,7 @@ class Wpdb {
         $collate = '';
 
         if ( function_exists('is_multisite') && is_multisite() ) {
-            $charset = 'utf8';
+            $charset = 'utf8mb4';
             if ( defined( 'DB_COLLATE' ) && DB_COLLATE ) {
                 $collate = DB_COLLATE;
             } else {
