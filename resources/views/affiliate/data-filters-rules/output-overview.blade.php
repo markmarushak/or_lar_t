@@ -20,9 +20,11 @@
                     <div class="qfb-cf">
                         <h3 class="qfb-box-heading qfb-db-heading">
                             <i class="mdi mdi-chat"></i>
+                            @if($unreadCount < 1)
 
-                            <span class="qfb-db-new-message-count"></span>
-
+                                @else
+                            <span class="qfb-db-new-message-count">{{$unreadCount}}</span>
+                                @endif
                         </h3>
                     </div>
                     <div class="qfb-content qfb-form-switcher qfb-db-entry-list">

@@ -207,11 +207,18 @@ class DataFilterRuleController extends Controller
             )->withErrors($connectionToDataBase->getMessage() );
         } else {
             $recentEntries = $this->dataFilterRuleService->getRecentEntries();
-            
+            $unreadCount = 0;
+            foreach ($recentEntries as $recentEntry) {
+
+                if ($recentEntry['unread'] == '1') {
+                    $unreadCount++;
+                }
+            }
             return view('affiliate.data-filters-rules.output-overview',
                 [
                 'menu' => 'affiliate-service',
                 'recentEntries' => $recentEntries,
+                'unreadCount' => $unreadCount,
                 'dataFiltersRulesId' =>$dataFiltersRulesId,
                 'dataFiltersRulesDescription' => $dataFiltersRulesDescription
                 ]

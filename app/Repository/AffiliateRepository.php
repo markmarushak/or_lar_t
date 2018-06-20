@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AffiliateRepository
 {
-
     protected $quformRepository;
     protected $settingOfDataBaseModel;
     protected $dataFiltersRulesModel;
