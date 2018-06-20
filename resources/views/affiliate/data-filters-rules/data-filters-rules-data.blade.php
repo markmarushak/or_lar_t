@@ -108,7 +108,7 @@
                                 </td>
                                 <td data-field="CreatedBY" class="m-datatable__cell--sorted m-datatable__cell">
                                     <span style="width: 50px;">
-                                    {{$row['created_by']}}
+                                        {{$row['created_by']}}
                                     </span>
                                 </td>
                                 <td data-field="CreatedAT" class="m-datatable__cell--sorted m-datatable__cell">

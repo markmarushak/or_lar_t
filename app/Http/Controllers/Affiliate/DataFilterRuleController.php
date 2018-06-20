@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Controllers\Affiliate;
 
 use App\Http\Controllers\Controller;
@@ -183,7 +182,7 @@ class DataFilterRuleController extends Controller
             )->withErrors($connectionToDataBase->getMessage());
         }else {
             $data = $this->affiliateRepository->getGarageFormsEntryById($dataFiltersRulesId);
-            return view('affiliate.data-filters-rules-data',
+            return view('affiliate.data-filters-rules.data-filters-rules-data',
                 [
                     'menu' => 'affiliate-service',
                     'data' => $data
