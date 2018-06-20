@@ -20,7 +20,7 @@
         @include('errors')
         @if(isset($data) && !empty($data) )
             <div class="m-portlet m-portlet--mobile">
-                <div class="m-portlet__body">
+                <div class="m-portlet__body qfb-box">
                         <table class="table m-table m-table--head-separator-primary" id="m_table_4">
                             <thead>
                             <tr>
@@ -82,25 +82,25 @@
                                             <input value="80" type="checkbox"><span></span></label></span>
                                 </td>
                                 <td data-field="ID" class="m-datatable__cell--sorted m-datatable__cell">
-                                    <span style="width: 30px;">{{$row->id}}</span>
+                                    <span style="width: 30px;">{{$row['id']}}</span>
                                 </td>
                                 <td data-field="FormID" class="m-datatable__cell--sorted m-datatable__cell">
-                                    <span style="width: 50px;">{{$row->form_id}}</span>
+                                    <span style="width: 50px;">{{$row['form_id']}}</span>
                                 </td>
                                 <td data-field="Unread" class="m-datatable__cell--sorted m-datatable__cell">
-                                    <span style="width: 60px;">{{$row->unread}}</span>
+                                    <span style="width: 60px;">{{$row['unread']}}</span>
                                 </td>
                                 <td data-field="IP" class="m-datatable__cell--sorted m-datatable__cell">
-                                    <span style="width: 100px;">{{$row->ip}}</span>
+                                    <span style="width: 100px;">{{$row['ip']}}</span>
                                 </td>
                                 <td data-field="FormUrl" class="m-datatable__cell--sorted m-datatable__cell">
-                                    <span style="width: 140px;">{{$row->form_url}}</span>
+                                    <span style="width: 140px;">{{$row['form_url']}}</span>
                                 </td>
                                 <td data-field="PostID" class="m-datatable__cell--sorted m-datatable__cell">
 
                                     <span style="width: 30px;">
-                                    @if(isset($row->post_id))
-                                        {{$row->post_id}}</span>
+                                    @if(isset($row['post_id']))
+                                        {{$row['post_id']}}</span>
                                     @else
                                         None
                                     @endif
@@ -108,26 +108,26 @@
                                 </td>
                                 <td data-field="CreatedBY" class="m-datatable__cell--sorted m-datatable__cell">
                                     <span style="width: 50px;">
-                                    {{$row->created_by}}
+                                        {{$row['created_by']}}
                                     </span>
                                 </td>
                                 <td data-field="CreatedAT" class="m-datatable__cell--sorted m-datatable__cell">
-                                    <span style="width: 50px;">{{$row->created_at}}</span>
+                                    <span style="width: 50px;">{{$row['created_at']}}</span>
                                 </td>
                                 <td data-field="UpdatedAT" class="m-datatable__cell--sorted m-datatable__cell">
-                                    <span style="width: 100px;">{{$row->updated_at}}</span>
+                                    <span style="width: 100px;">{{$row['updated_at']}}</span>
                                 </td>
                                 <td data-field="Status" class="m-datatable__cell--sorted m-datatable__cell">
-                                    <span style="width: 50px;">{{$row->status}}</span>
+                                    <span style="width: 50px;">{{$row['status']}}</span>
                                 </td>
                                 <td data-field="EntryID" class="m-datatable__cell--sorted m-datatable__cell">
-                                    <span style="width: 50px;">{{$row->entry_id}}</span>
+                                    <span style="width: 50px;">{{$row['entry_id']}}</span>
                                 </td>
                                 <td data-field="ElementID" class="m-datatable__cell--sorted m-datatable__cell">
-                                    <span style="width: 50px;">{{$row->element_id}}</span>
+                                    <span style="width: 50px;">{{$row['element_id']}}</span>
                                 </td>
                                 <td data-field="Value" class="m-datatable__cell--sorted m-datatable__cell">
-                                    <span style="width: 50px;">{{$row->value}}</span>
+                                    <span style="width: 50px;">{{$row['value']}}</span>
                                 </td>
                             </tr>
                             @endforeach

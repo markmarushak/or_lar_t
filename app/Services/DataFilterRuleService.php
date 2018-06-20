@@ -5,22 +5,25 @@ namespace App\Services;
 
 use App\Plugins\QformLibrary\Quform\Form\Quform_Form_Factory;
 use App\Plugins\QformLibrary\Quform\Quform_Repository;
+use App\Repository\DataFilterRuleRepository;
 
 class DataFilterRuleService extends BaseService
 {
-    public $quformRepository;
-    public $quformFormFactory;
-
+    protected $quformRepository;
+    protected $quformFormFactory;
+    protected $dataFilterRuleRepository;
 
     public $nameEntry;
 
     public function __construct(
         Quform_Repository $quformRepository,
-        Quform_Form_Factory $quformFormFactory
+        Quform_Form_Factory $quformFormFactory,
+        DataFilterRuleRepository $dataFilterRuleRepository
     )
     {
         $this->quformRepository = $quformRepository;
         $this->quformFormFactory = $quformFormFactory;
+        $this->dataFilterRuleRepository = $dataFilterRuleRepository;
     }
 
     public function createUrls($forms, $dataFiltersRulesDescription )
@@ -76,6 +79,16 @@ class DataFilterRuleService extends BaseService
 //            'labels' => $this->repository->getFormEntryLabels($form->getId())
 //        );
         return $form;
+    }
+
+    public function addDataFilterRule($request)
+    {
+        $this->dataFilterRuleRepository->addDataFilterRule($request);
+    }
+
+    public function getAllDataFiltersRules()
+    {
+        return $this->dataFilterRuleRepository->getAllDataFiltersRules();
     }
 
 

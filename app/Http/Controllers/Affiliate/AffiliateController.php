@@ -1,95 +1,19 @@
 <?php
 
 namespace App\Http\Controllers\Affiliate;
-
-use App\Models\SettingOfDataBase;
-use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Container;
-use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Field;
-use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Html;
-use App\Plugins\QformLibrary\Quform\Quform_Repository;
-use App\Plugins\QformLibrary\Quform\Quform_View;
-use App\Repositories\AffiliateRepository;
-use App\Services\AffiliateService;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\DataFiltersRules;
-use App\Models\RemoteDBaccess;
-use App\Plugins\QformLibrary\Quform;
-
-//Quform Library
-use App\Plugins\QformLibrary\Quform\Quform_Form;
-
-use App\Plugins\QformLibrary\Quform\Form\Quform_Form_Factory;
-use RecursiveIteratorIterator;
-
 
 class AffiliateController extends Controller
 {
-
-
-    protected $data;
-    /**
-     * @var Quform_Repository
-     */
-    protected $repository;
-
-    /**
-     * @var Quform_Form_Factory
-     */
-    protected $formFactory;
-
-    /**
-     * @var Quform_Form_Processor
-     */
-    protected $processor;
-
-    /**
-     * @var Quform_Session
-     */
-    protected $session;
-
-    /**
-     * @var Quform_Uploader
-     */
-    protected $uploader;
-
-    /*
-     * Form counter to differentiate multiple instances of the same form
-     *
-     * @var int
-     */
-    protected $count = 0;
-
-    /**
-     * Store used unique IDs to avoid conflicts
-     *
-     * @var array
-     */
-    protected $uniqueIds = array();
-
-    protected $view;
-
-    protected $affiliateRepository;
-    protected $affiliateService;
-    protected $quformElementField;
-
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(AffiliateRepository $affiliateRepository,
-                                AffiliateService $affiliateService,
-                                Quform_Repository $repository,
-                                Quform_View $view
-    )
+    public function __construct( )
     {
         //  $this->middleware('auth');
-        $this->affiliateRepository = $affiliateRepository;
-        $this->affiliateService = $affiliateService;
-        $this->repository = $repository;
-        $this->view = $view;
+
     }
 
     /**
@@ -117,16 +41,6 @@ class AffiliateController extends Controller
         return view('affiliate.email-bulk-split', ['menu' => 'affiliate-service']);
     }
 
-
-        protected function addRowDataToConfig(array $row, array $config)
-        {
-            $config['id'] = (int) $row['id'];
-            $config['name'] = $row['name'];
-            $config['active'] = $row['active'] == 1;
-            $config['trashed'] = $row['trashed'] == 1;
-
-            return $config;
-        }
 
 
 }

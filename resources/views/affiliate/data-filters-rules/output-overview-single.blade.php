@@ -1,6 +1,8 @@
 
 @extends('layouts.admin.app')
 <link rel='stylesheet' id='quform-css'  href='http://garasje-tilbud.no/modules/quform/cache/quform.css?ver=1521656337' type='text/css' media='all' />
+<meta charset="utf-8">
+<?php Blade::setEchoFormat('e(utf8_encode(%s))')  ?>
 @section('content')
 
     <div class="row">
@@ -16,10 +18,10 @@
         {{--Call Tab Menu--}}
         @include('affiliate.tabs-menu.top-menu')
 
-        <div class="row">
-            <div class="qfb-db-col">
+        <div class="tab-content">
+            <div class="qfb-cf qfb-entry-wrap">
                 <div class="qfb-entry-left">
-                    <div class="qfb-box" style="width: 713px">
+                    <div class="qfb-box" style="width: 700px">
                         <h3 class="qfb-entry-heading qfb-settings-heading"><i class="mdi mdi-message"></i>Submitted form data</h3>
                         <table class="qfb-entry-table">
                             <?php

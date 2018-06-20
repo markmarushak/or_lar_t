@@ -25,14 +25,4 @@ class DataFiltersRules extends Model
     }
 
 
-    public function add($fields)
-    {
-        $this->fill($fields);
-        $this->save();
-    }
-
-
-
-
-
 }
