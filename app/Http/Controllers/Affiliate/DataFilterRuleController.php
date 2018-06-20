@@ -174,7 +174,7 @@ class DataFilterRuleController extends Controller
         $dataFiltersRulesDescription = $request->data_filters_rules_description;
 
         if (is_a($connectionToDataBase, 'ErrorException')) {
-            return view('affiliate.data-filters-rules-data',
+            return view('affiliate.data-filters-rules.data-filters-rules-data',
                 [
                     'menu' => 'affiliate-service',
                     'dataFiltersRulesDescription' => $dataFiltersRulesDescription
@@ -182,7 +182,7 @@ class DataFilterRuleController extends Controller
             )->withErrors($connectionToDataBase->getMessage());
         }else {
             $data = $this->dataFilterRuleService->getFormById($dataFiltersRulesId);
-            return view('affiliate.data-filters-rules-data',
+            return view('affiliate.data-filters-rules.data-filters-rules-data',
                 [
                     'menu' => 'affiliate-service',
                     'data' => $data
