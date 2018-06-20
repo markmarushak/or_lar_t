@@ -181,7 +181,6 @@ class DataFilterRuleController extends Controller
                 ]
             )->withErrors($connectionToDataBase->getMessage());
         }else {
-            dd(111);
               $data = $this->affiliateRepository->getGarageFormsEntryById($dataFiltersRulesId);
             return view('affiliate.data-filters-rules.data-filters-rules-data',
                 [
