@@ -691,11 +691,11 @@ class Wpdb {
         $collate = '';
 
         if ( function_exists('is_multisite') && is_multisite() ) {
-            $charset = 'utf8';
+            $charset = 'utf8mb4';
             if ( defined( 'DB_COLLATE' ) && DB_COLLATE ) {
                 $collate = DB_COLLATE;
             } else {
-                $collate = 'utf8_general_ci';
+                $collate = 'utf8mb4_unicode_ci';
             }
         } elseif ( defined( 'DB_COLLATE' ) ) {
             $collate = DB_COLLATE;

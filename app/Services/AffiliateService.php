@@ -24,10 +24,6 @@ class AffiliateService extends BaseService
         $this->affiliateRepository = $affiliateRepository;
     }
 
-
-
-    
-
     public function connectionToDataBase($dataFiltersRulesId)
     {
         $settingOfDataBaseById = $this->affiliateRepository->getSettingOfDataBaseById($dataFiltersRulesId);
