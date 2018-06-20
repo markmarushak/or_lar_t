@@ -698,11 +698,11 @@ class Wpdb {
 		$charset_collate = $this->determine_charset( $charset, $collate );
 
 
-        $this->charset = $charset_collate['charset'] = 'utf8mb4';
-        $this->collate = $charset_collate['collate'] = 'utf8mb4_unicode_ci';
+//        $this->charset = $charset_collate['charset'] = 'utf8mb4';
+//        $this->collate = $charset_collate['collate'] = 'utf8mb4_unicode_ci';
 
-//		$this->charset = $charset_collate['charset'];
-//		$this->collate = $charset_collate['collate'];
+		$this->charset = $charset_collate['charset'];
+		$this->collate = $charset_collate['collate'];
 	}
 
 	/**
