@@ -3,24 +3,21 @@
 namespace App\Http\Controllers\Affiliate;
 
 use App\Http\Controllers\Controller;
-use App\Repository\AffiliateRepository;
 use App\Services\AffiliateService;
 use App\Services\DataFilterRuleService;
 use Illuminate\Http\Request;
 
 class DataFilterRuleController extends Controller
 {
-    private $affiliateRepository;
+
     private $affiliateService;
     private $dataFilterRuleService;
 
     public function __construct(
-        AffiliateRepository $affiliateRepository,
         AffiliateService $affiliateService,
         DataFilterRuleService $dataFilterRuleService
     )
     {
-        $this->affiliateRepository = $affiliateRepository;
         $this->affiliateService = $affiliateService;
         $this->dataFilterRuleService = $dataFilterRuleService;
     }
@@ -106,7 +103,10 @@ class DataFilterRuleController extends Controller
         } else {
             $this->affiliateService->addConnectToDb($request, $dataFiltersRulesId);
         }
-        return redirect()->route('connection', [ 'data_filters_rules_id' => $dataFiltersRulesId, 'data_filters_rules_description' => $dataFiltersRulesDescription]);
+        return redirect()->route('connection', [
+            'data_filters_rules_id' => $dataFiltersRulesId,
+            'data_filters_rules_description' => $dataFiltersRulesDescription
+        ]);
     }
 
     /**
@@ -135,10 +135,16 @@ class DataFilterRuleController extends Controller
                    'menu' => 'affiliate-service',
                    'forms' => $forms,
                    'urls' => $urls,
+                   'dataFiltersRulesId' => $dataFiltersRulesId,
                    'dataFiltersRulesDescription' => $dataFiltersRulesDescription
                ]
            );
        }
+    }
+
+    public function singleFormBuilder(Request $request)
+    {
+        dd($request->singleId);
     }
 
     public function dataBaseFields(Request $request)
@@ -220,7 +226,7 @@ class DataFilterRuleController extends Controller
         }
     }
 
-    public function outputOverviewSingle(Request $request)
+    public function singleOutputOverview(Request $request)
     {
         $dataFiltersRulesId = $request->data_filters_rules_id;
         $dataFiltersRulesDescription = $request->data_filters_rules_description;

@@ -27,7 +27,7 @@
                         <ul class="qfb-nav-menu qfb-cf">
                             <?php foreach ($recentEntries as $recentEntry) : ?>
                             <li class="qfb-cf<?php echo $recentEntry['unread'] == '1' ? ' qfb-unread' : ''; ?>">
-                                <a href="{{route('output-overview-single', [
+                                <a href="{{route('single-output-overview', [
                                 'single_id' => $recentEntry['id'],
                                 'dataFiltersRulesId' => $dataFiltersRulesId,
                                 'dataFiltersRulesDescription' => $dataFiltersRulesDescription
