@@ -99,6 +99,8 @@ class AffiliateService extends BaseService
         }
     }
 
+
+    
     public function addAffiliatePartner($request)
     {
        $this->affiliateRepository->addToDatabase($request);
