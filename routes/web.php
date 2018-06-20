@@ -19,6 +19,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+
 Route::get('/cache-clear', function() {
     $exitCode = Artisan::call('cache:clear');
     return "Cache is cleared";
@@ -33,10 +39,6 @@ Route::get('/route-clear', function() {
     $exitCode = Artisan::call('route:clear');
     return "Route is cleared";
 });
-
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service'], function(){
 
