@@ -181,8 +181,8 @@ class DataFilterRuleController extends Controller
                 ]
             )->withErrors($connectionToDataBase->getMessage());
         }else {
-              $data = $this->affiliateRepository->getGarageFormsEntryById($dataFiltersRulesId);
-            return view('affiliate.data-filters-rules.data-filters-rules-data',
+            $data = $this->dataFilterRuleService->getFormById($dataFiltersRulesId);
+            return view('affiliate.data-filters-rules-data',
                 [
                     'menu' => 'affiliate-service',
                     'data' => $data
@@ -207,18 +207,12 @@ class DataFilterRuleController extends Controller
             )->withErrors($connectionToDataBase->getMessage() );
         } else {
             $recentEntries = $this->dataFilterRuleService->getRecentEntries();
-            $unreadCount = 0;
-            foreach ($recentEntries as $recentEntry) {
 
-                if ($recentEntry['unread'] == '1') {
-                    $unreadCount++;
-                }
-            }
+
             return view('affiliate.data-filters-rules.output-overview',
                 [
                 'menu' => 'affiliate-service',
                 'recentEntries' => $recentEntries,
-                'unreadCount' => $unreadCount,
                 'dataFiltersRulesId' =>$dataFiltersRulesId,
                 'dataFiltersRulesDescription' => $dataFiltersRulesDescription
                 ]

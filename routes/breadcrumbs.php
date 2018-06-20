@@ -19,6 +19,12 @@ Breadcrumbs::register('affiliates-partners', function($breadcrumbs) {
     $breadcrumbs->parent('affiliate-service');
     $breadcrumbs->push('Affiliates/Partners', route('affiliates-partners'));
 });
+//add affiliates partners
+Breadcrumbs::register('add-affiliates-partners', function($breadcrumbs) {
+
+    $breadcrumbs->parent('affiliates-partners');
+    $breadcrumbs->push('Add Affiliates Partners', route('add-affiliates-partners'));
+});
 
 // Dashboard > Affiliate Service > compaigns
 Breadcrumbs::register('compaigns', function($breadcrumbs)

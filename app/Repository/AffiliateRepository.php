@@ -2,10 +2,12 @@
 
 namespace App\Repository;
 
+use App\Models\AffiliatePartner;
 use App\Models\DataFiltersRules;
 use App\Models\SettingOfDataBase;
 use App\Plugins\QformLibrary\Quform\Quform_Repository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\DB;
 
 
 class AffiliateRepository
@@ -13,32 +15,20 @@ class AffiliateRepository
     protected $quformRepository;
     protected $settingOfDataBaseModel;
     protected $dataFiltersRulesModel;
+    protected $affiliatePartnerModel;
 
     public function __construct(
         SettingOfDataBase $settingOfDataBaseModel,
         Quform_Repository $quformRepository,
-        DataFiltersRules  $dataFiltersRulesModel
+        DataFiltersRules  $dataFiltersRulesModel,
+        AffiliatePartner $affiliatePartnerModel
     )
     {
         $this->settingOfDataBaseModel = $settingOfDataBaseModel;
         $this->quformRepository = $quformRepository;
         $this->dataFiltersRulesModel = $dataFiltersRulesModel;
+        $this->affiliatePartnerModel = $affiliatePartnerModel;
 
-    }
-
-    public function getGarageFormsEntryById($id = null)
-    {
-        global $wpdb;
-        $forms = array();
-        if ($id == '') {
-            return $forms;
-        }
-        $sql = "SELECT * FROM " . $this->quformRepository->getEntriesTableName() . "
-         INNER JOIN ".$this->quformRepository->getEntryDataTableName()."
-         ON ".$this->quformRepository->getEntriesTableName().".id = ".$this->quformRepository->getEntryDataTableName().".entry_id
-         WHERE form_id = ($id)";
-        $forms = $wpdb->get_results($sql, ARRAY_A);
-        return $forms;
     }
 
     public function getSettingOfDataBaseById($dataFiltersRulesId)
@@ -74,6 +64,21 @@ class AffiliateRepository
         $dataFiltersRulesObject->settingOfDataBase()->updateOrCreate([
             'setting' => $settingOfDataBase
         ])->save();
+    }
+
+    public function addToDatabase($request)
+    {
+        $this->affiliatePartnerModel->insertGetId($request->only('description', 'country', 'type', 'rules','status'));
+    }
+
+    public function getData()
+    {
+        return $this->affiliatePartnerModel->select()->get();
+    }
+
+    public function deleteFromDatabase($request){
+        $this->affiliatePartnerModel->where('id', '=', $request->all())->delete();
+        dd($request);
     }
 
 
