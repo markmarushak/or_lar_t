@@ -181,8 +181,8 @@ class DataFilterRuleController extends Controller
                 ]
             )->withErrors($connectionToDataBase->getMessage());
         }else {
-            $data = $this->affiliateRepository->getGarageFormsEntryById($dataFiltersRulesId);
-            dd($data);
+            dd(111);
+              $data = $this->affiliateRepository->getGarageFormsEntryById($dataFiltersRulesId);
             return view('affiliate.data-filters-rules.data-filters-rules-data',
                 [
                     'menu' => 'affiliate-service',
@@ -206,7 +206,7 @@ class DataFilterRuleController extends Controller
             )->withErrors($connectionToDataBase->getMessage() );
         } else {
             $recentEntries = $this->dataFilterRuleService->getRecentEntries();
-            dd($recentEntries);
+
 
             return view('affiliate.data-filters-rules.output-overview',
                 [
