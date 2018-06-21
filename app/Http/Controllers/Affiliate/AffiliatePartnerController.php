@@ -78,6 +78,7 @@ class AffiliatePartnerController extends Controller
     }
 
     public function edit(Request $request){
+
         $this->affiliateService->editAffiliatesPartners($request);
         $affiliates_data = $this->affiliateService->getAffiliatesData();
         return response()->json($affiliates_data);

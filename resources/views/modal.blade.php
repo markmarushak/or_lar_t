@@ -60,7 +60,19 @@
                         </label>
                 </div>
             </div>
-    <div id="div_hide">
+    <div class="form-group m-form__group row">
+        <label for="host" class="col-form-label col-lg-3 col-sm-12">
+            Enable conditional logic rules:
+        </label>
+        <div class="col-lg-4 col-md-9 col-sm-12 mt-2">
+            <label class="m-checkbox m-checkbox--air m-checkbox--solid m-checkbox--state-brand">
+                <input type="checkbox" name="add_rule" id="add_rule">
+                <span></span>
+            </label>
+
+        </div>
+    </div>
+    <div id="div_hide" hidden="true">
         <form class="form-inline">
             <div class="form-group m-form__group">
 
@@ -121,10 +133,10 @@
         <div class="pt-2">
             <button class="btn btn-success">Add Rule</button>
         </div>
+    </div>
 
         <div class="pt-2">
             <button class="btn btn-outline-info active" id="save_btn">Save</button>
         </div>
-    </div>
 </div>
 <div id="overlay"></div>

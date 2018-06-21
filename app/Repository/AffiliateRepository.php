@@ -86,6 +86,11 @@ class AffiliateRepository
     }
 
     public function editDataById($request){
-        $this->affiliatePartnerModel->where('id', '=', $request->only('id'))->update(['visibility'=>$this->affiliatePartnerModel->raw($request)]);
+
+        $this->affiliatePartnerModel->where('id', '=', $request->id)->update(['description' => $request->description,
+            'country'=> $request->country,
+            'type'=>$request->type,
+            'rules'=>$request->rules,
+            'status'=>$request->status]);
     }
 }

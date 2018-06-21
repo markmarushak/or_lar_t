@@ -58,8 +58,6 @@ $('#base_responsive_columns').mDatatable({
 
 $(document).ready(function() {
 
-    var a_data = "123";
-
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -78,26 +76,6 @@ $(document).ready(function() {
 
         manageRow(data);
 
-        //Affiliate and Partners edit
-        //--------------------------------------------------------------
-        $('tr').dblclick(function (e) {
-            $('#overlay').fadeIn(400,
-                function () {
-                    $('#modal_form')
-                        .css('display', 'block')
-                        .animate({opacity: 1, top: '50%'}, 200);
-                });
-        })
-        $('#save_btn').click(function () {
-            $('#modal_form')
-                .animate({opacity: 0, top: '45%'}, 200,
-                    function () {
-                        $(this).css('display', 'none');
-                        $('#overlay').fadeOut(400);
-                    }
-                );
-            $('#rule_id').text($('#rule_text').text());
-        })
 
         //Hide and show additional rules logic
         //--------------------------------------------------------------
@@ -143,31 +121,26 @@ $(document).ready(function() {
                     });
                 $('#save_btn').click(function () {
                     var status = true;
-                    if($('#n_status').val() == 'on'){
-                        status = false;
+                    if($('#n_status').is(":checked")){
+                        status = 1;
                     }
                     else{
-                        status = true;
+                        status = 0;
                     }
-                    var e_data = {'id': id,
-                                'description': $('#n_description').val(),
-                                'country': $('#n_country').val(),
-                                'type': $('#n_type').val(),
-                                'rules': $('#n_rules').val(),
-                                'status': status};
+
                     $.ajax({
 
                         type: 'POST',
                         dataType: 'json',
                         url: laroute.action('edit-affiliate-partner'),
 
-                        data: {data: e_data},
-                        success: function(){
-                            console.log("success");
-                        },
-                        error: function () {
-                            console.log("error");
-                        }
+                        data: {id: id,
+                                description: $('#n_description').val(),
+                                country: $('#n_country').val(),
+                                type: $('#n_type').val(),
+                                rules: $('#n_rules').val(),
+                        status: status},
+
 
                     }).done(function (data) {
                         manageRow(data);
@@ -205,6 +178,14 @@ $(document).ready(function() {
         })
     });
 
+     $('#add_rule').click(function() {
+         if ($('#add_rule').is(":checked")) {
+             $('#div_hide').removeAttr('hidden');
+         }
+         else {
+             $('#div_hide').attr("hidden", true);
+         }
+     })
 
 });
 
