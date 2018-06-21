@@ -2,6 +2,7 @@
 
 namespace App\Plugins\QformLibrary\Quform;
 
+use App\Plugins\QformLibrary\Quform;
 use App\Plugins\QformLibrary\Quform\Form\Quform_Form_Factory;
 
 /**

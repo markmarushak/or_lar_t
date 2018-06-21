@@ -20,7 +20,6 @@
     },
     "autoload": {
         "files": [
-            "app/Helpers/class-wp-hook.php",
             "app/Helpers/formatting.php",
             "app/Helpers/option.php",
             "app/Helpers/plugin.php",

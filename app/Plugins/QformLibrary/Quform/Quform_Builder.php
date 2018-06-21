@@ -2,7 +2,30 @@
 
 namespace App\Plugins\QformLibrary\Quform;
 
+use App\Plugins\QformLibrary\Quform;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Captcha;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Checkbox;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Column;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Date;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Email;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_File;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Group;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Hidden;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Html;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Multiselect;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Name;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Page;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Password;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Radio;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Recaptcha;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Row;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Select;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Submit;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Text;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Textarea;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Time;
 use App\Plugins\QformLibrary\Quform\Form\Quform_Form_Factory;
+
 
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
@@ -1618,6 +1641,7 @@ class Quform_Builder
     public function getPageTabNavHtml($key = null, $elementId = null, $label = null)
     {
         $output = '<li class="qfb-page-tab-nav k-item' . ($key === 0 ? ' qfb-current-page k-state-active' : '') . '"' . (is_numeric($elementId) ? sprintf(' data-id="%d"', esc_attr($elementId)) : '') . '>';
+
         $output .= '<span class="qfb-page-tab-nav-label">';
 
         if (Quform::isNonEmptyString($label)) {

@@ -27,7 +27,7 @@
                                             @foreach($urls as $namePost => $url)
                                                 <li class="qfb-cf">
                                                     <a href="{{route('single-form-builder', [
-                                'singleId' => 10,
+                                'singleId' => 1,
                                 'dataFiltersRulesId' => $dataFiltersRulesId,
                                 'dataFiltersRulesDescription' => $dataFiltersRulesDescription
                                  ])}}">{{$namePost}}<span class="qfb-fade-overflow"></span></a>

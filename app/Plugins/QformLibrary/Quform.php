@@ -1,6 +1,8 @@
 <?php
 namespace App\Plugins\QformLibrary;
 
+use Illuminate\Support\Facades\URL;
+
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
  */
@@ -14,7 +16,9 @@ class Quform
      */
     public static function url($path = '')
     {
-        return Quform::pathExtra(plugins_url(QUFORM_NAME), $path);
+        //TODO fix if SSL
+        return URL::to("/").$path;
+        //return Quform::pathExtra(plugins_url(QUFORM_NAME), $path);
     }
 
     /**
