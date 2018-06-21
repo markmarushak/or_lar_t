@@ -27,7 +27,7 @@
 global $wp_filter, $wp_actions, $wp_current_filter;
 
 if ( $wp_filter ) {
-	$wp_filter = hook::build_preinitialized_hooks( $wp_filter );
+	$wp_filter = WpHook::build_preinitialized_hooks( $wp_filter );
 } else {
 	$wp_filter = array();
 }
@@ -105,7 +105,7 @@ if ( ! isset( $wp_current_filter ) )
 function add_filter( $tag, $function_to_add, $priority = 10, $accepted_args = 1 ) {
 	global $wp_filter;
 	if ( ! isset( $wp_filter[ $tag ] ) ) {
-		$wp_filter[ $tag ] = new hook();
+		$wp_filter[ $tag ] = new WpHook();
 	}
 	$wp_filter[ $tag ]->add_filter( $tag, $function_to_add, $priority, $accepted_args );
 	return true;
