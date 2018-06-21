@@ -2430,7 +2430,7 @@ class Wpdb {
 			return $this->last_result[$y] ? $this->last_result[$y] : null;
 		} elseif ( $output == ARRAY_A ) {
 		    $var = $this->last_result[$y] ? get_object_vars( $this->last_result[$y] ) : null;
-			return $var;
+		    return $var;
 		} elseif ( $output == ARRAY_N ) {
 			return $this->last_result[$y] ? array_values( get_object_vars( $this->last_result[$y] ) ) : null;
 		} elseif ( strtoupper( $output ) === OBJECT ) {

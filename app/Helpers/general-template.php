@@ -1,6 +1,4 @@
 <?php
-
-
 /**
  * Retrieves information about the current site.
  *

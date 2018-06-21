@@ -30,7 +30,7 @@
                                             <ul id="qfb-page-tabs-nav" class="qfb-cf">
                                                 <?php
                                                 foreach ($builder->getFormConfigValue($form, 'elements') as $key => $element) {
-                                                    echo $builder->getPageTabNavHtml($key, $element['id'], $element['label']);
+                                                        echo $builder->getPageTabNavHtml($key, $element['id'], $element['label']);
                                                 }
                                                 ?>
                                                 <li id="qfb-add-page-tab"><div id="qfb-add-page" title="<?php esc_attr_e('Add page', 'quform'); ?>"><i class="mdi mdi-add"></i></div></li>
