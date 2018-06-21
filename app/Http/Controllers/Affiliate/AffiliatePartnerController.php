@@ -22,13 +22,16 @@ class AffiliatePartnerController extends Controller
 
     public function index()
     {
-        $affiliates_data = $this->affiliateService->getAffiliatesData();
         return view('affiliate.affiliates-partners.index-affiliates-partners',
             [
                 'menu' => 'affiliate-service',
-                'affiliates_data' => $affiliates_data
             ]
         );
+    }
+
+    public function show(){
+        $affiliates_data = $this->affiliateService->getAffiliatesData();
+        return response()->json($affiliates_data);
     }
 
     public function add()
@@ -44,6 +47,9 @@ class AffiliatePartnerController extends Controller
     public function store(Request $request){
         if($request['status'] == null){
             $request['status'] = FALSE;
+        }
+        if($request['status'] == 'on'){
+            $request['status'] = TRUE;
         }
         $this->validate($request, [
             'description' => 'required',
@@ -61,6 +67,20 @@ class AffiliatePartnerController extends Controller
     public function delete(Request $request)
     {
         $this->affiliateService->deleteAffiliatesPartners($request);
+        $affiliates_data = $this->affiliateService->getAffiliatesData();
+        return response()->json($affiliates_data);
+    }
+
+    public function getAffiliatePartner(Request $request)
+    {
+        $result = $this->affiliateService->getAffiliatesPartnersData($request);
+        return response()->json($result);
+    }
+
+    public function edit(Request $request){
+        $this->affiliateService->editAffiliatesPartners($request);
+        $affiliates_data = $this->affiliateService->getAffiliatesData();
+        return response()->json($affiliates_data);
     }
 
 

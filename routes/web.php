@@ -49,7 +49,11 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service'], func
     Route::group( ['prefix' => 'affiliates-partners'] , function() {
 
         Route::get('/', 'AffiliatePartnerController@index')->name('affiliates-partners');
-        Route::post('/', 'AffiliatePartnerController@delete');
+        Route::post('/delete', 'AffiliatePartnerController@delete')->name('delete-affiliate-partner');
+        Route::post('/show', 'AffiliatePartnerController@show')->name('show-affiliates-partners');
+        Route::post('/get', 'AffiliatePartnerController@getAffiliatePartner')->name('get-affiliate-partner');
+        Route::post('/edit', 'AffiliatePartnerController@edit')->name('edit-affiliate-partner');
+
         Route::get('/add-affiliates-partners', 'AffiliatePartnerController@add')->name('add-affiliates-partners');
         Route::post('/add-affiliates-partners', 'AffiliatePartnerController@store')->name('add-affiliates-partners-store');
     });

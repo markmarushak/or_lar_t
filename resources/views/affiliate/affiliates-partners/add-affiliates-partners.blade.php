@@ -54,12 +54,11 @@
                         Status:
                     </label>
                     <div class="col-lg-4 col-md-9 col-sm-12 mt-2">
-                        <input data-switch="true"
-                               type="checkbox"
-                               data-on-color="brand"
-                               id="m_notify_icon"
-                               name="status"
-                                value="{{TRUE}}">
+                        <label class="m-checkbox m-checkbox--air m-checkbox--solid m-checkbox--state-brand">
+                            <input type="checkbox" name="status">
+                            <span></span>
+                        </label>
+
                     </div>
                 </div>
                 <div class="form-group m-form__group row">

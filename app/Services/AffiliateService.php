@@ -116,5 +116,13 @@ class AffiliateService extends BaseService
         $this->affiliateRepository->deleteFromDatabase($request);
     }
 
+    public function getAffiliatesPartnersData($request)
+    {
+        return $this->affiliateRepository->getDataById($request);
+    }
+
+    public function editAffiliatesPartners($request){
+        return $this->affiliateRepository->editDataById($request);
+    }
 
 }

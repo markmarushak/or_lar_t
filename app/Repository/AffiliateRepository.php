@@ -78,8 +78,14 @@ class AffiliateRepository
 
     public function deleteFromDatabase($request){
         $this->affiliatePartnerModel->where('id', '=', $request->all())->delete();
-        dd($request);
     }
 
+    public function getDataById($request)
+    {
+        return $this->affiliatePartnerModel->select()->where('id', '=', $request->all())->get();
+    }
 
+    public function editDataById($request){
+        $this->affiliatePartnerModel->where('id', '=', $request->only('id'))->update(['visibility'=>$this->affiliatePartnerModel->raw($request)]);
+    }
 }

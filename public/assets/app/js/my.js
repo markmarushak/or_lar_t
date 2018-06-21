@@ -57,59 +57,180 @@ $('#base_responsive_columns').mDatatable({
 });
 
 $(document).ready(function() {
-    $('#rule_id').dblclick( function(e){
-        $('#rule_text').text($('#rule_id').text());
-        $('#overlay').fadeIn(400,
-            function(){
-                $('#modal_form')
-                    .css('display', 'block')
-                    .animate({opacity: 1, top: '50%'}, 200);
-            });
-    })
-    $('#save_btn').click( function(){
-        $('#rule_id').append($('#rule_text').val());
-        $('#modal_form')
-            .animate({opacity: 0, top: '45%'}, 200,
-                function(){
-                    $(this).css('display', 'none');
-                    $('#overlay').fadeOut(400);
-                }
-            );
-        $('#rule_id').text($('#rule_text').text());
-    })
 
-    $('#m_hide').change(function() {
-        if ($('#m_hide').is(":checked") === true) {
-            $('#div_hide').removeAttr("hidden");
+    var a_data = "123";
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
-        else {
-            $('#div_hide').attr("hidden", true);
-        }
-    })
+    });
 
+    //Getting Affiliates and Partners from Database
+    //--------------------------------------------------------------
+    $.ajax({
+        method: 'POST',
+        dataType: 'json',
+        url: laroute.action('show-affiliates-partners'),
+        data: "",
 
-    $('.la-scissors').click(function(e){
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }).done(function (data) {
+
+        manageRow(data);
+
+        //Affiliate and Partners edit
+        //--------------------------------------------------------------
+        $('tr').dblclick(function (e) {
+            $('#overlay').fadeIn(400,
+                function () {
+                    $('#modal_form')
+                        .css('display', 'block')
+                        .animate({opacity: 1, top: '50%'}, 200);
+                });
+        })
+        $('#save_btn').click(function () {
+            $('#modal_form')
+                .animate({opacity: 0, top: '45%'}, 200,
+                    function () {
+                        $(this).css('display', 'none');
+                        $('#overlay').fadeOut(400);
+                    }
+                );
+            $('#rule_id').text($('#rule_text').text());
+        })
+
+        //Hide and show additional rules logic
+        //--------------------------------------------------------------
+        $('#m_hide').change(function () {
+            if ($('#m_hide').is(":checked") === true) {
+                $('#div_hide').removeAttr("hidden");
             }
-        });
-
-        $.ajax({
-
-            type:'POST',
-
-            url:'affiliates-partners',
-
-            data:{data: $(this).attr("name")},
+            else {
+                $('#div_hide').attr("hidden", true);
+            }
+        })
 
 
-        });
-        window.location.href = window.location;
-    })
+        //Affiliate and Partners edit
+        //--------------------------------------------------------------
+        $('tr').dblclick(function () {
+            var id = $(this).attr("id");
+            $.ajax({
+                method: 'POST',
+                dataType: 'json',
+                url: laroute.action('get-affiliate-partner'),
+                data: {data: id},
+
+            }).done(function (data) {
+                $.each( data, function( key, value ) {
+
+                    $('#n_description').val(value.description);
+                    $('#n_country').val(value.country);
+                    $('#n_type').val(value.type);
+                    $('#n_rules').val(value.rules);
+                    if(value.status == true){
+                        $('#n_status').attr("checked", "checked");
+                    }
+                    else{
+                        $('#n_status').removeAttr("checked");
+                    }
+                })
+                $('#overlay').fadeIn(400,
+                    function () {
+                        $('#modal_form')
+                            .css('display', 'block')
+                            .animate({opacity: 1, top: '50%'}, 200);
+                    });
+                $('#save_btn').click(function () {
+                    var status = true;
+                    if($('#n_status').val() == 'on'){
+                        status = false;
+                    }
+                    else{
+                        status = true;
+                    }
+                    var e_data = {'id': id,
+                                'description': $('#n_description').val(),
+                                'country': $('#n_country').val(),
+                                'type': $('#n_type').val(),
+                                'rules': $('#n_rules').val(),
+                                'status': status};
+                    $.ajax({
+
+                        type: 'POST',
+                        dataType: 'json',
+                        url: laroute.action('edit-affiliate-partner'),
+
+                        data: {data: e_data},
+                        success: function(){
+                            console.log("success");
+                        },
+                        error: function () {
+                            console.log("error");
+                        }
+
+                    }).done(function (data) {
+                        manageRow(data);
+                    });
+
+                    $('#modal_form')
+                        .animate({opacity: 0, top: '45%'}, 200,
+                            function () {
+                                $(this).css('display', 'none');
+                                $('#overlay').fadeOut(400);
+                            }
+                        );
+                })
+            })
+
+        })
+
+
+
+        //Delete Affiliate Partner from Database
+        $('.la-scissors').click(function (e) {
+
+            $.ajax({
+
+                type: 'POST',
+
+                url: laroute.action('delete-affiliate-partner'),
+
+                data: {data: $(this).attr("name")},
+
+
+            }).done(function (data) {
+                manageRow(data);
+            });
+        })
+    });
 
 
 });
+
+//Rendering table
+//--------------------------------------------------------------
+function manageRow(data) {
+    var	rows = '';
+    $.each( data, function( key, value ) {
+        rows = rows + '<tr id="'+value.id+'">';
+        rows = rows +'<td class="edit_data"><label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand"><input type="checkbox" value="" class="m-checkable"><span></span></label></td>';
+        rows = rows + '<td class="edit_data"><span style="width: 70px;">'+value.id+'</span></td>';
+        rows = rows + '<td class="edit_data"><span style="width: 70px;">'+value.description+'</span></td>';
+        rows = rows + '<td class="edit_data"><span style="width: 70px;">'+value.country+'</span></td>';
+        rows = rows + '<td class="edit_data"><span style="width: 70px;">'+value.type+'</span></td>';
+        rows = rows + '<td class="edit_data"><span style="width: 70px;">'+value.rules+'</span></td>';
+        if(value.status == true){
+            rows = rows + '<td class="edit_data"><span style="overflow: visible; width: 70px;"><span class="m-badge m-badge--success"><span hidden="true" id="e_status">'+value.status+'</span></span></span></td>';
+        }
+        else{
+            rows = rows + '<td class="edit_data"><span style="overflow: visible; width: 70px;"><span class="m-badge m-badge--danger"><span hidden="true" id="e_status">'+value.status+'</span></span></span></td>';
+        }
+        rows = rows + '<td><i class="la la-scissors" name="'+value.id+'"></i></td>';
+        rows = rows + '</tr>';
+    });
+    $("tbody").html(rows);
+}
 
 
 
