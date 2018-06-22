@@ -22,7 +22,6 @@
                     <input id="m_search_input" placeholder="Search" type="text"/>
                 </div>
             </div>
-
             <table class="table m-table m-table--head-separator-primary"
                    id="m_table_2">
                 <thead>
