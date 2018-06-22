@@ -25,7 +25,10 @@
                 <div class="form-group m-form__group row">
                     <label class="col-form-label col-lg-3 col-sm-12">Type:</label>
                     <div class="col-lg-8 col-md-9 col-sm-12">
-                        <input type="text" class="form-control m-input m-input--air m-input--pill" name="type" id="n_type">
+                        <select class="form-control m-input m-input--air m-input--pill" id="n_type">
+                            <option>Affiliate</option>
+                            <option>Partner</option>
+                        </select>
                     </div>
                 </div>
 
@@ -36,14 +39,14 @@
                     </div>
                 </div>
                 <div class="form-group m-form__group row">
-                    <label for="host" class="col-form-label col-lg-3 col-sm-12">
-                        Status:
-                    </label>
-                    <div class="col-lg-4 col-md-9 col-sm-12 mt-2">
-                        <label class="m-checkbox m-checkbox--air m-checkbox--solid m-checkbox--state-brand" checked="checked">
-                            <input type="checkbox" id="n_status">
-                            <span></span>
-                        </label>
+                    <label class="col-form-label col-lg-3 col-sm-12">Status:</label>
+                    <div class="col-3">
+                                                <span class="m-switch m-switch--icon">
+                                                    <label>
+                                                    <input type="checkbox" checked="checked" name="status" id="n_status">
+                                                    <span></span>
+                                                    </label>
+                                                </span>
                     </div>
                 </div>
 
