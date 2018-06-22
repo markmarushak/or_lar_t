@@ -1870,7 +1870,7 @@ class Wpdb {
 			if ( $this->insert_id && preg_match( '/^\s*(insert|replace)\s/i', $query ) )
 				$this->insert_id = 0;
 
-			//$this->print_error();
+			$this->print_error();
 			return false;
 		}
 
@@ -2430,6 +2430,7 @@ class Wpdb {
 			return $this->last_result[$y] ? $this->last_result[$y] : null;
 		} elseif ( $output == ARRAY_A ) {
 		    $var = $this->last_result[$y] ? get_object_vars( $this->last_result[$y] ) : null;
+
 		    return $var;
 		} elseif ( $output == ARRAY_N ) {
 			return $this->last_result[$y] ? array_values( get_object_vars( $this->last_result[$y] ) ) : null;
@@ -3010,7 +3011,6 @@ class Wpdb {
 
 				$sql[] = $query . " AS x_$column";
 			}
-
 			$this->check_current_query = false;
 			$row = $this->get_row( "SELECT " . implode( ', ', $sql ), ARRAY_A );
 			if ( ! $row ) {

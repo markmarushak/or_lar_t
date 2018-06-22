@@ -91,9 +91,11 @@ function get_option( $option, $default = false ) {
         if ( isset( $alloptions[$option] ) ) {
             $value = $alloptions[$option];
         } else {
+
             $value = wp_cache_get( $option, 'options' );
 
             if ( false === $value ) {
+
 
                 $row = $wpdb->get_row( $wpdb->prepare( "SELECT option_value FROM $wpdb->options WHERE option_name = %s LIMIT 1", $option ) );
 
