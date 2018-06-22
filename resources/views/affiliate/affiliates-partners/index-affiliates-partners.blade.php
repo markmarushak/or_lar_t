@@ -71,7 +71,6 @@
             </table>
 
 
-
                 <div class="pt-2">
                     <button class="btn btn-success" onclick="location.href=('{{route("add-affiliates-partners")}}')">Add Affiliates/Partners</button>
                 </div>
