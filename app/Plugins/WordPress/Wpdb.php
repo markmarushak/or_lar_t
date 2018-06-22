@@ -1870,7 +1870,7 @@ class Wpdb {
 			if ( $this->insert_id && preg_match( '/^\s*(insert|replace)\s/i', $query ) )
 				$this->insert_id = 0;
 
-			$this->print_error();
+			//$this->print_error();
 			return false;
 		}
 

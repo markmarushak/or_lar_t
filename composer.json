@@ -27,7 +27,8 @@
             "app/Helpers/load.php",
             "app/Helpers/cache.php",
             "app/Helpers/functions.php",
-            "app/Helpers/general-template.php"
+            "app/Helpers/general-template.php",
+            "app/Helpers/l10n.php"
 
         ],
         "classmap": [
