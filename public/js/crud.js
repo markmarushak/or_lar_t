@@ -83,7 +83,7 @@ $(document).ready(function() {
 
 
         //Delete Affiliate Partner from Database
-        $('.la-scissors').click(function (e) {
+        $('.flaticon-cancel').click(function (e) {
 
             $.ajax({
 
@@ -130,7 +130,7 @@ function manageRow(data) {
         else{
             rows = rows + '<td class="edit_data"><span style="overflow: visible; width: 70px;"><span class="m-badge m-badge--danger"><span hidden="true" id="e_status">'+value.status+'</span></span></span></td>';
         }
-        rows = rows + '<td><i class="la la-scissors" name="'+value.id+'"></i></td>';
+        rows = rows + '<td><i class="flaticon-cancel" style="color: red" name="'+value.id+'"></i></td>';
         rows = rows + '</tr>';
     });
     $("tbody").html(rows);
