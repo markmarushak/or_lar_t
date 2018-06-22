@@ -46,6 +46,7 @@ $(document).ready(function() {
                 })
                 $('#m_modal_5').removeAttr("hidden");
                 $('#save_btn').click(function () {
+                    console.log($('#n_description').val());
                     $('#m_modal_5').attr("hidden", true);
                     var status = true;
                     if($('#n_status').is(":checked")){
@@ -133,5 +134,5 @@ function manageRow(data) {
         rows = rows + '<td><i class="flaticon-cancel" style="color: red" name="'+value.id+'"></i></td>';
         rows = rows + '</tr>';
     });
-    $("tbody").html(rows);
+    $('#aff_table').html(rows);
 }

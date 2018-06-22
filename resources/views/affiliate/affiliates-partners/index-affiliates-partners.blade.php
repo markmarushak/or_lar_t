@@ -65,7 +65,7 @@
 
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="aff_table">
 
                 </tbody>
             </table>
