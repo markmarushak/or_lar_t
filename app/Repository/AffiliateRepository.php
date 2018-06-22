@@ -71,9 +71,9 @@ class AffiliateRepository
         $this->affiliatePartnerModel->insertGetId($request->only('description', 'country', 'type', 'rules','status'));
     }
 
-    public function getData()
+    public function getData($request)
     {
-        return $this->affiliatePartnerModel->select()->get();
+        return $this->affiliatePartnerModel->where('type', $request->all())->select()->get();
     }
 
     public function deleteFromDatabase($request){
@@ -87,10 +87,11 @@ class AffiliateRepository
 
     public function editDataById($request){
 
-        $this->affiliatePartnerModel->where('id', $request->id)->update(['description' => $request->description,
-            'country'=> $request->country,
-            'type'=>$request->type,
-            'rules'=>$request->rules,
-            'status'=>$request->status]);
+
+        $this->affiliatePartnerModel->where('id', '=', $request['id'])->update(['description' => $request['description'],
+            'country'=> $request['country'],
+            'type'=>$request['type'],
+            'rules'=>$request['rules'],
+            'status'=>$request['status']]);
     }
 }

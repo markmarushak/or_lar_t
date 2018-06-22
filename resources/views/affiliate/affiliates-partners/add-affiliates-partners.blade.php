@@ -12,61 +12,48 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 @include('errors')
                 <div class="form-group m-form__group row">
-                    <label class="col-form-label col-lg-3 col-sm-12">
-                        Description:
-                    </label>
+                    <label class="col-form-label col-lg-3 col-sm-12">Description:</label>
                     <div class="col-lg-4 col-md-9 col-sm-12">
-                        <input type="text" name="description" class="form-control m-input" value="">
+                        <input type="text" class="form-control m-input m-input--air m-input--pill" name="description">
                     </div>
                 </div>
 
                 <div class="form-group m-form__group row">
-                    <label class="col-form-label col-lg-3 col-sm-12">
-                        Country:
-                    </label>
+                    <label class="col-form-label col-lg-3 col-sm-12">Country:</label>
                     <div class="col-lg-4 col-md-9 col-sm-12">
-
-                        <input type="text" name="country" class="form-control m-input" value="">
+                        <input type="text" class="form-control m-input m-input--air m-input--pill" name="country">
                     </div>
                 </div>
+
                 <div class="form-group m-form__group row">
-                    <label for="host" class="col-form-label col-lg-3 col-sm-12">
-                        Type:
-                    </label>
+                    <label class="col-form-label col-lg-3 col-sm-12">Type:</label>
                     <div class="col-lg-4 col-md-9 col-sm-12">
-
-                        <input id="host" name="type" type="text" class="form-control m-input"
-                               value="">
+                        <select class="form-control m-input m-input--air m-input--pill" name="type">
+                            <option>Affiliate</option>
+                            <option>Partner</option>
+                        </select>
                     </div>
                 </div>
+
                 <div class="form-group m-form__group row">
-                    <label for="host" class="col-form-label col-lg-3 col-sm-12">
-                        Rules:
-                    </label>
+                    <label class="col-form-label col-lg-3 col-sm-12">Rules:</label>
                     <div class="col-lg-4 col-md-9 col-sm-12">
-
-                        <input id="host" name="rules" type="text" class="form-control m-input"
-                               value="">
+                        <input type="text" class="form-control m-input m-input--air m-input--pill" name="rules">
                     </div>
                 </div>
                 <div class="form-group m-form__group row">
-                    <label for="host" class="col-form-label col-lg-3 col-sm-12">
-                        Status:
-                    </label>
-                    <div class="col-lg-4 col-md-9 col-sm-12 mt-2">
-                        <label class="m-checkbox m-checkbox--air m-checkbox--solid m-checkbox--state-brand">
-                            <input type="checkbox" name="status">
-                            <span></span>
-                        </label>
-
+                    <label class="col-form-label col-lg-3 col-sm-12">Status:</label>
+                    <div class="col-3">
+                                                <span class="m-switch m-switch--icon">
+                                                    <label>
+                                                    <input type="checkbox" checked="checked" name="status" id="n_status">
+                                                    <span></span>
+                                                    </label>
+                                                </span>
                     </div>
                 </div>
-                <div class="form-group m-form__group row">
-
-                    <div class="offset-10 col-lg-2 col-md-9 col-sm-12">
-
-                        <input type="submit" class="form-control m-input btn-primary text-white" value="Save">
-                    </div>
+                <div class="form-group m-form__group row col-lg-2 col-md-9 col-sm-12">
+                    <input type="submit" class="form-control m-input btn-primary text-white" value="Save">
                 </div>
             </form>
         </div>

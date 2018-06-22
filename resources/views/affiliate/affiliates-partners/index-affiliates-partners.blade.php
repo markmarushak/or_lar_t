@@ -9,18 +9,18 @@
             <div class="input-group">
                 <div class="m-radio-inline col-xl-5">
                     <label class="m-radio">
-                        <input type="radio" name="example_8" value="1" checked="checked">
+                        <input type="radio" id="affiliate" name="a_type" value="Affiliate" checked="checked" onclick="showData()">
                         Affiliate
                         <span></span>
                     </label>
                     <label class="m-radio">
-                        <input type="radio" name="example_8" value="2">
+                        <input type="radio" id="partner" name="a_type" id="Partner" value="Partner" onclick="showData()">
                         Partner
                         <span></span>
                     </label>
                 </div>
                 <div class="ml-auto">
-                    <input id="m_search_input" placeholder="Search" type="text"/>
+                    <input id="m_search_input" placeholder="Search" type="text" onkeyup="searchData()"/>
                 </div>
             </div>
 
@@ -66,7 +66,6 @@
                 </tr>
                 </thead>
                 <tbody id="aff_table">
-
                 </tbody>
             </table>
 

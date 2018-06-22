@@ -29,8 +29,8 @@ class AffiliatePartnerController extends Controller
         );
     }
 
-    public function show(){
-        $affiliates_data = $this->affiliateService->getAffiliatesData();
+    public function show(Request $request){
+        $affiliates_data = $this->affiliateService->getAffiliatesData($request);
         return response()->json($affiliates_data);
     }
 
@@ -67,8 +67,7 @@ class AffiliatePartnerController extends Controller
     public function delete(Request $request)
     {
         $this->affiliateService->deleteAffiliatesPartners($request);
-        $affiliates_data = $this->affiliateService->getAffiliatesData();
-        return response()->json($affiliates_data);
+        return response()->json();
     }
 
     public function getAffiliatePartner(Request $request)
@@ -80,8 +79,7 @@ class AffiliatePartnerController extends Controller
     public function edit(Request $request){
 
         $this->affiliateService->editAffiliatesPartners($request);
-        $affiliates_data = $this->affiliateService->getAffiliatesData();
-        return response()->json($affiliates_data);
+        return response()->json();
     }
 
 
