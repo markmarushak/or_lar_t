@@ -1,7 +1,6 @@
 @extends('layouts.admin.app')
 
 @section('content')
-
     <div class="m-portlet m-portlet--mobile">
         <div class="m-portlet__body">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -23,7 +22,7 @@
                     <input id="m_search_input" placeholder="Search" type="text" onkeyup="searchData()"/>
                 </div>
             </div>
-
+            
             <table class="table m-table m-table--head-separator-primary"
                    id="m_table_2">
                 <thead>
