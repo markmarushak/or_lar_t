@@ -314,7 +314,7 @@ class Wpdb {
 	 * @since 1.5.0
 	 * @var string
 	 */
-	public $options;
+	public $options =  'wpau_options';
 
 	/**
 	 * WordPress Post Metadata table

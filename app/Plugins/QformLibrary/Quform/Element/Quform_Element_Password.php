@@ -2,6 +2,8 @@
 
 namespace App\Plugins\QformLibrary\Quform\Element;
 
+use App\Plugins\QformLibrary\Quform;
+
 
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
@@ -121,7 +123,7 @@ class Quform_Element_Password extends Quform_Element_Field implements Quform_Ele
     public static function getDefaultConfig()
     {
         $config = apply_filters('quform_default_config_password', array(
-            'label' => __('Password', 'quform'),
+            'label' => __tr('Password', 'quform'),
             'placeholder' => '',
             'subLabel' => '',
             'description' => '',

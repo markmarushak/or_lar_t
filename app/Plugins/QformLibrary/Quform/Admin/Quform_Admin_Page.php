@@ -2,9 +2,12 @@
 namespace App\Plugins\QformLibrary\Quform\Admin;
 
 use App\Plugins\QformLibrary\Quform;
+use App\Plugins\QformLibrary\Quform\Admin\Page\Entries\Quform_Admin_Page_Entries_View;
 use App\Plugins\QformLibrary\Quform\Quform_Repository;
 use App\Plugins\QformLibrary\Quform\Quform_View;
 use App\Plugins\QformLibrary\Quform\Quform_ViewFactory;
+use Quform_Admin_Page_Entries_Edit;
+use Quform_Admin_Page_Entries_List;
 
 
 /**

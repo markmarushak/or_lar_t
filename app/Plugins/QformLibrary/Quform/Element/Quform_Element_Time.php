@@ -2,6 +2,8 @@
 
 namespace App\Plugins\QformLibrary\Quform\Element;
 
+use App\Plugins\QformLibrary\Quform;
+
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
  */
@@ -230,7 +232,7 @@ class Quform_Element_Time extends Quform_Element_Field implements Quform_Element
     public static function getDefaultConfig($key = null)
     {
         $config = apply_filters('quform_default_config_time', array(
-            'label' => __('Time', 'quform'),
+            'label' => __tr('Time', 'quform'),
             'placeholder' => '',
             'subLabel' => '',
             'description' => '',

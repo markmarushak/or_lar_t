@@ -163,6 +163,7 @@ class DataFilterRuleController extends Controller
                     'menu' => 'affiliate-service',
                     'form' => $form->form,
                     'builder' => $form->builder,
+                    'page' => $form->page,
                     'dataFiltersRulesId' => $dataFiltersRulesId,
                     'dataFiltersRulesDescription' => $dataFiltersRulesDescription
                 ]

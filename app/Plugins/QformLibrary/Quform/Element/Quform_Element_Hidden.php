@@ -2,6 +2,8 @@
 
 namespace App\Plugins\QformLibrary\Quform\Element;
 
+use App\Plugins\QformLibrary\Quform;
+
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
  */
@@ -106,7 +108,7 @@ class Quform_Element_Hidden extends Quform_Element_Field implements Quform_Eleme
     public static function getDefaultConfig()
     {
         $config = apply_filters('quform_default_config_hidden', array(
-            'label' => __('Untitled', 'quform'),
+            'label' => __tr('Untitled', 'quform'),
             'showInEmail' => true,
             'saveToDatabase' => true,
             'defaultValue' => '',

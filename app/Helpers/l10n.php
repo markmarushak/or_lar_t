@@ -900,6 +900,7 @@ function _get_path_to_translation( $domain, $reset = false ) {
  */
 function _get_path_to_translation_from_lang_dir( $domain ) {
 
+    return false;
     static $cached_mofiles = null;
 
 	if ( null === $cached_mofiles ) {

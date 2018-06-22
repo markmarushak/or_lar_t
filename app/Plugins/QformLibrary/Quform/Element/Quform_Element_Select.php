@@ -64,7 +64,7 @@ class Quform_Element_Select extends Quform_Element_Multi implements  Quform_Elem
             $attributes['data-options'] = wp_json_encode(array(
                 'rtl' => $this->form->isRtl(),
                 'search' => $this->config('enhancedSelectSearch'),
-                'noResultsFound' => $this->getTranslation('enhancedSelectNoResultsFound', __('No results found.', 'quform'))
+                'noResultsFound' => $this->getTranslation('enhancedSelectNoResultsFound', __tr('No results found.', 'quform'))
             ));
 
             $attributes['style'] = 'width: 100%;';
@@ -74,8 +74,8 @@ class Quform_Element_Select extends Quform_Element_Multi implements  Quform_Elem
             $attributes['aria-labelledby'] = $this->config('aria-labelledby');
         }
 
-//        $attributes = apply_filters('quform_field_attributes', $attributes, $this, $this->form, $context);
-//        $attributes = apply_filters('quform_field_attributes_' . $this->getIdentifier(), $attributes, $this, $this->form, $context);
+        $attributes = apply_filters('quform_field_attributes', $attributes, $this, $this->form, $context);
+        $attributes = apply_filters('quform_field_attributes_' . $this->getIdentifier(), $attributes, $this, $this->form, $context);
 
         return $attributes;
     }
@@ -106,8 +106,8 @@ class Quform_Element_Select extends Quform_Element_Multi implements  Quform_Elem
             $classes[] = 'quform-submit-on-choice';
         }
 
-//        $classes = apply_filters('quform_field_classes', $classes, $this, $this->form, $context);
-//        $classes = apply_filters('quform_field_classes_' . $this->getIdentifier(), $classes, $this, $this->form, $context);
+        $classes = apply_filters('quform_field_classes', $classes, $this, $this->form, $context);
+        $classes = apply_filters('quform_field_classes_' . $this->getIdentifier(), $classes, $this, $this->form, $context);
 
         return $classes;
     }
@@ -134,9 +134,8 @@ class Quform_Element_Select extends Quform_Element_Multi implements  Quform_Elem
 
         if ($this->config('noneOption')) {
             $output .= $this->getOptionHtml(array(
-//                'label' => $this->getTranslation('noneOptionText', __('Please select', 'quform')),
-                'label' => 'test',
-                    'value' => ''
+                'label' => $this->getTranslation('noneOptionText', __tr('Please select', 'quform')),
+                'value' => ''
             ));
         }
 
@@ -203,7 +202,7 @@ class Quform_Element_Select extends Quform_Element_Multi implements  Quform_Elem
     public static function getDefaultOptgroupConfig()
     {
         return array(
-            'label' => __('Untitled', 'quform'),
+            'label' => __tr('Untitled', 'quform'),
             'options' => array()
         );
     }
@@ -234,11 +233,7 @@ class Quform_Element_Select extends Quform_Element_Multi implements  Quform_Elem
     public static function getDefaultConfig()
     {
         $options = array();
-
-        $defaults = array(
-            0 => 'quform',
-            1 => 'quform',
-            2 => 'quform');
+        $defaults = array(__tr('Option 1', 'quform'), __tr('Option 2', 'quform'), __tr('Option 3', 'quform'));
 
         foreach ($defaults as $key => $value) {
             $option = self::getDefaultOptionConfig();
@@ -247,8 +242,8 @@ class Quform_Element_Select extends Quform_Element_Multi implements  Quform_Elem
             $options[] = $option;
         }
 
-        $config = array(
-            'label' => array('Untitled' => 'quform'),
+        $config = apply_filters('quform_default_config_select', array(
+            'label' => __tr('Untitled', 'quform'),
             'subLabel' => '',
             'description' => '',
             'descriptionAbove' => '',
@@ -289,7 +284,7 @@ class Quform_Element_Select extends Quform_Element_Multi implements  Quform_Elem
             'visibility' => '',
             'filters' => array(),
             'validators' => array()
-        );
+        ));
 
         $config['type'] = 'select';
 

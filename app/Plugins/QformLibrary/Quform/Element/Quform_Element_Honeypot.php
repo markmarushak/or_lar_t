@@ -17,7 +17,7 @@ class Quform_Element_Honeypot extends Quform_Element_Field
     public function render(array $context = array())
     {
         $output = '<div class="quform-hidden"><label>';
-//        $output .= esc_html__('This field should be left blank', 'quform');
+        $output .= esc_html__('This field should be left blank', 'quform');
         $output .= $this->getFieldHtml($context);
         $output .= '</label></div>';
 
@@ -42,13 +42,9 @@ class Quform_Element_Honeypot extends Quform_Element_Field
      */
     public static function getDefaultConfig()
     {
-        /*return apply_filters('quform_default_config_honeypot', array(
+        return apply_filters('quform_default_config_honeypot', array(
             'showInEmail' => false,
             'saveToDatabase' => false
-        ));*/
-        return array(
-            'showInEmail' => false,
-            'saveToDatabase' => false
-        );
+        ));
     }
 }

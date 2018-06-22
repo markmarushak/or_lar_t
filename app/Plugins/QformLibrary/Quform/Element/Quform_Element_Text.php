@@ -16,8 +16,7 @@ class Quform_Element_Text extends Quform_Element_Field implements Quform_Element
      */
     public function setDefaultValue($value, $replacePlaceholders = true)
     {
-        //$this->defaultValue = $replacePlaceholders ? $this->getForm()->replaceVariablesPreProcess($value) : $value;
-        $this->defaultValue = $value;
+        $this->defaultValue = $replacePlaceholders ? $this->getForm()->replaceVariablesPreProcess($value) : $value;
     }
 
     /**
@@ -39,11 +38,10 @@ class Quform_Element_Text extends Quform_Element_Field implements Quform_Element
             $attributes['value'] = $this->getValue();
         }
 
-        //$placeholder = $this->form->replaceVariablesPreProcess($this->config('placeholder'));
-
-        /*if (Quform::isNonEmptyString($placeholder)) {
+        $placeholder = $this->form->replaceVariablesPreProcess($this->config('placeholder'));
+        if (Quform::isNonEmptyString($placeholder)) {
             $attributes['placeholder'] = $placeholder;
-        }*/
+        }
 
         if (Quform::isNonEmptyString($this->config('maxLength'))) {
             $attributes['maxlength'] = $this->config('maxLength');
@@ -57,8 +55,8 @@ class Quform_Element_Text extends Quform_Element_Field implements Quform_Element
             $attributes['aria-labelledby'] = $this->config('aria-labelledby');
         }
 
-//        $attributes = apply_filters('quform_field_attributes', $attributes, $this, $this->form, $context);
-//        $attributes = apply_filters('quform_field_attributes_' . $this->getIdentifier(), $attributes, $this, $this->form, $context);
+        $attributes = apply_filters('quform_field_attributes', $attributes, $this, $this->form, $context);
+        $attributes = apply_filters('quform_field_attributes_' . $this->getIdentifier(), $attributes, $this, $this->form, $context);
 
         return $attributes;
     }
@@ -85,8 +83,8 @@ class Quform_Element_Text extends Quform_Element_Field implements Quform_Element
             $classes[] = $this->config('customClass');
         }
 
-//        $classes = apply_filters('quform_field_classes', $classes, $this, $this->form, $context);
-//        $classes = apply_filters('quform_field_classes_' . $this->getIdentifier(), $classes, $this, $this->form, $context);
+        $classes = apply_filters('quform_field_classes', $classes, $this, $this->form, $context);
+        $classes = apply_filters('quform_field_classes_' . $this->getIdentifier(), $classes, $this, $this->form, $context);
 
         return $classes;
     }
@@ -137,8 +135,8 @@ class Quform_Element_Text extends Quform_Element_Field implements Quform_Element
      */
     public static function getDefaultConfig()
     {
-        /*$config = apply_filters('quform_default_config_text', array(
-            'label' => __('Untitled', 'quform'),
+        $config = apply_filters('quform_default_config_text', array(
+            'label' => __tr('Untitled', 'quform'),
             'subLabel' => '',
             'placeholder' => '',
             'description' => '',
@@ -176,49 +174,7 @@ class Quform_Element_Text extends Quform_Element_Field implements Quform_Element
                 array('type' => 'trim')
             ),
             'validators' => array()
-        ));*/
-
-        $config = array(
-            'label' => array('Untitled' => 'quform'),
-            'subLabel' => '',
-            'placeholder' => '',
-            'description' => '',
-            'descriptionAbove' => '',
-            'required' => false,
-            'labelIcon' => '',
-            'fieldIconLeft' => '',
-            'fieldIconRight' => '',
-            'fieldSize' => 'inherit',
-            'fieldWidth' => 'inherit',
-            'fieldWidthCustom' => '',
-            'customClass' => '',
-            'defaultValue' => '',
-            'dynamicDefaultValue' => false,
-            'dynamicKey' => '',
-            'maxLength' => '',
-            'readOnly' => false,
-            'tooltip' => '',
-            'adminLabel' => '',
-            'showInEmail' => true,
-            'saveToDatabase' => true,
-            'labelPosition' => 'inherit',
-            'labelWidth' => '',
-            'tooltipType' => 'inherit',
-            'tooltipEvent' => 'inherit',
-            'logicEnabled' => false,
-            'logicAction' => true,
-            'logicMatch' => 'all',
-            'logicRules' => array(),
-            'messageRequired' => '',
-            'messageLengthTooLong' => '',
-            'styles' => array(),
-            'visibility' => '',
-            'filters' => array(
-                array('type' => 'trim')
-            ),
-            'validators' => array()
-        );
-
+        ));
 
         $config['type'] = 'text';
 

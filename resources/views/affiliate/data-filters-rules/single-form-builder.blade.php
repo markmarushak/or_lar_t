@@ -2,6 +2,21 @@
 <link rel='stylesheet' id='quform-css'  href='http://garasje-tilbud.no/modules/quform/cache/quform.css?ver=1521656337' type='text/css' media='all' />
 @section('content')
 
+
+    {!! Html::style('/assets/admin/css/quform/css/jquery.qtip.min.css') !!}
+    {!! Html::style('/assets/admin/css/quform/css/select2.min.css') !!}
+    {!! Html::style('/assets/admin/css/quform/admin/css/spectrum.min.css') !!}
+    {!! Html::style('/assets/admin/css/quform/css/quform-icons.min.css') !!}
+    {!! Html::style('/assets/admin/css/quform/admin/fonts/material-icons.min.css') !!}
+    {!! Html::style('/assets/admin/css/quform/css/kendo.common-material.core.min.css') !!}
+    {!! Html::style('/assets/admin/css/quform/css/kendo.material.min.css') !!}
+    {!! Html::style('/assets/admin/css/quform/css/font-awesome.min.css') !!}
+    {!! Html::style('/assets/admin/css/quform/admin/fonts/material-icons.min.css') !!}
+    {!! Html::style('/assets/admin/css/quform/admin/css/admin.min.css') !!}
+    {!! Html::style('/assets/admin/css/quform/admin/css/builder.min.css') !!}
+
+
+
     <div class="row">
         <div class="clearfix"></div>
 
@@ -15,6 +30,10 @@
             @include('errors')
             <div class="col-xl-8">
                 <div id="qfb-top" class="qfb qfb-cf">
+                    <?php
+                    echo $page->getMessagesHtml();
+                    echo $page->getNavHtml($form);
+                    ?>
                     <form id="qfb-form" method="post" autocomplete="off">
                         <div id="qfb-wrap-outer">
                             <input type="submit" class="qfb-hidden"><!-- Prevent enter key submitting the form -->
@@ -29,6 +48,7 @@
                                         <div id="qfb-page-tabs-nav-wrap" class="qfb-cf">
                                             <ul id="qfb-page-tabs-nav" class="qfb-cf">
                                                 <?php
+                                                use App\Plugins\QformLibrary\Quform;
                                                 foreach ($builder->getFormConfigValue($form, 'elements') as $key => $element) {
                                                         echo $builder->getPageTabNavHtml($key, $element['id'], $element['label']);
                                                 }
@@ -122,7 +142,7 @@
                                                                                 <?php echo $builder->getTitleTagSelectHtml('qfb_form_title_tag', $builder->getFormConfigValue($form, 'titleTag')); ?>
                                                                             </div>
                                                                         </div>
-                                                                        <p class="qfb-description"><?php esc_html_e('Title to display above the form.', 'quform'); ?></p>
+                                                                        <p class="qfb-description"><?php  esc_html_e('Title to display above the form.', 'quform'); ?></p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -608,7 +628,7 @@
                                                                         </div>
                                                                         <div class="qfb-setting-inner">
                                                                             <div class="qfb-setting-input">
-                                                                                <?php echo $builder->getButtonStyleSelectHtml('qfb_form_button_style', $builder->getFormConfigValue($form, 'buttonStyle'), false, __('None', 'quform')); ?>
+                                                                                <?php echo $builder->getButtonStyleSelectHtml('qfb_form_button_style', $builder->getFormConfigValue($form, 'buttonStyle'), false, __tr('None', 'quform')); ?>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -791,7 +811,7 @@
                                                                         <div class="qfb-setting-inner">
                                                                             <div class="qfb-setting-input">
                                                                                 <input type="text" id="qfb_form_submit_button_text" value="<?php echo Quform::escape($builder->getFormConfigValue($form, 'submitText')); ?>">
-                                                                                <p class="qfb-description"><?php printf(esc_html__('Change the default text of the button which is "%s".', 'quform'), __('Send', 'quform')); ?></p>
+                                                                                <p class="qfb-description"><?php printf(esc_html__('Change the default text of the button which is "%s".', 'quform'), __tr('Send', 'quform')); ?></p>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -867,7 +887,7 @@
                                                                         <div class="qfb-setting-inner">
                                                                             <div class="qfb-setting-input">
                                                                                 <input type="text" id="qfb_form_next_button_text" value="<?php echo Quform::escape($builder->getFormConfigValue($form, 'nextText')); ?>">
-                                                                                <p class="qfb-description"><?php printf(esc_html__('Change the default text of the button which is "%s".', 'quform'), __('Next', 'quform')); ?></p>
+                                                                                <p class="qfb-description"><?php printf(esc_html__('Change the default text of the button which is "%s".', 'quform'), __tr('Next', 'quform')); ?></p>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -943,7 +963,7 @@
                                                                         <div class="qfb-setting-inner">
                                                                             <div class="qfb-setting-input">
                                                                                 <input type="text" id="qfb_form_back_button_text" value="<?php echo Quform::escape($builder->getFormConfigValue($form, 'backText')); ?>">
-                                                                                <p class="qfb-description"><?php printf(esc_html__('Change the default text of the button which is "%s".', 'quform'), __('Back', 'quform')); ?></p>
+                                                                                <p class="qfb-description"><?php printf(esc_html__('Change the default text of the button which is "%s".', 'quform'), __tr('Back', 'quform')); ?></p>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -1510,8 +1530,8 @@
                                                                             <div class="qfb-tooltip-title"><?php esc_html_e('Variables', 'quform'); ?></div>
                                                                             <pre><?php
                                                                                 echo esc_html($builder->formatVariables(array(
-                                                                                    '%1$s' => __('The current page', 'quform'),
-                                                                                    '%2$s' => __('The total number of pages', 'quform')
+                                                                                    '%1$s' => __tr('The current page', 'quform'),
+                                                                                    '%2$s' => __tr('The total number of pages', 'quform')
                                                                                 )));
                                                                                 ?></pre>
                                                                         </div>
@@ -1660,12 +1680,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div id="qfb-preview-panel"><iframe id="qfb-preview-frame" src="<?php echo esc_url(admin_url('admin.php?page=quform.preview')); ?>"></iframe></div>
+                                    <div id="qfb-preview-panel"><iframe id="qfb-preview-frame" src="    test "></iframe></div>
                                 </div>
                             </div>
-                            <?php include QUFORM_TEMPLATE_PATH . '/admin/element-settings.php'; ?>
-                            <?php include QUFORM_TEMPLATE_PATH . '/admin/confirmation-settings.php'; ?>
-                            <?php include QUFORM_TEMPLATE_PATH . '/admin/notification-settings.php'; ?>
+                            <?php include app_path() . '/Plugins/QformLibrary/templates/admin/element-settings.php'; ?>
+                            <?php include app_path()  . '/Plugins/QformLibrary/templates/admin/confirmation-settings.php'; ?>
+                            <?php include app_path() . '/Plugins/QformLibrary/templates/admin/notification-settings.php'; ?>
                             <div id="qfb-insert-variable" class="qfb-insert-variable-menu">
                                 <div class="qfb-insert-variable-heading"><?php esc_html_e('Submitted Form Value', 'quform'); ?></div>
                                 <div id="qfb-insert-variable-element"></div>
@@ -1742,7 +1762,7 @@
                                             <div class="qfb-setting-label"><label for="qfb-add-shortcode-popup"><?php esc_html_e('Popup form', 'quform'); ?></label></div>
                                             <div class="qfb-setting-inner">
                                                 <div class="qfb-setting-input">
-                                                    <input type="text" id="qfb-add-shortcode-popup" class="qfb-code-input" readonly value="<?php echo Quform::escape(sprintf('[quform_popup id="%s" name="%s"]%s[/quform_popup]', $builder->getFormConfigValue($form, 'id'), $builder->getFormConfigValue($form, 'name'), __('Click me', 'quform'))); ?>">
+                                                    <input type="text" id="qfb-add-shortcode-popup" class="qfb-code-input" readonly value="<?php echo Quform::escape(sprintf('[quform_popup id="%s" name="%s"]%s[/quform_popup]', $builder->getFormConfigValue($form, 'id'), $builder->getFormConfigValue($form, 'name'), __tr('Click me', 'quform'))); ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -1772,7 +1792,7 @@
                                                 <div class="qfb-setting-label"><label for="qfb-add-php-popup"><?php esc_html_e('Popup form', 'quform'); ?></label></div>
                                                 <div class="qfb-setting-inner">
                                                     <div class="qfb-setting-input">
-                                                        <input type="text" id="qfb-add-php-popup" class="qfb-code-input" readonly value="<?php /*echo Quform::escape(sprintf('<?php echo do_shortcode(\'[quform_popup id="%s" name="%s"]%s[/quform_popup]\'); ?>', $builder->getFormConfigValue($form, 'id'), $builder->getFormConfigValue($form, 'name'), __('Click me', 'quform'))); */?>">
+                                                        <input type="text" id="qfb-add-php-popup" class="qfb-code-input" readonly value="<?php /*echo Quform::escape(sprintf('<?php echo do_shortcode(\'[quform_popup id="%s" name="%s"]%s[/quform_popup]\'); ?>', $builder->getFormConfigValue($form, 'id'), $builder->getFormConfigValue($form, 'name'), __tr('Click me', 'quform'))); */?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1952,6 +1972,28 @@
                         });
                         //]]>
                     </script>
+
+
+                    {!! Html::script('/assets/admin/css/quform/js/jquery.scrollTo.min.js') !!}
+                    {!! Html::script('/assets/admin/css/quform/admin/js/core.min.js') !!}
+
+                    {!! Html::script('/assets/admin/css/quform/admin/js/jquery.jeditable.min.js') !!}
+                    {!! Html::script('/assets/admin/css/quform/admin/js/spectrum.min.js') !!}
+                    {!! Html::script('/assets/admin/css/quform/js/jquery.qtip.min.js') !!}
+                    {!! Html::script('/assets/admin/css/quform/js/select2.min.js') !!}
+                    {!! Html::script('/assets/admin/css/quform/admin/js/tc.tabs.min.js') !!}
+                    {!! Html::script('/assets/admin/css/quform/js/kendo.core.min.js') !!}
+                    {!! Html::script('/assets/admin/css/quform/js/kendo.data.min.js') !!}
+                    {!! Html::script('/assets/admin/css/quform/js/kendo.tabstrip.min.js') !!}
+                    {!! Html::script('/assets/admin/css/quform/js/kendo.userevents.min.js') !!}
+                    {!! Html::script('/assets/admin/css/quform/js/kendo.draganddrop.min.js') !!}
+                    {!! Html::script('/assets/admin/css/quform/js/kendo.resizable.min.js') !!}
+                    {!! Html::script('/assets/admin/css/quform/js/kendo.splitter.min.js') !!}
+                    {!! Html::script('/assets/admin/css/quform/js/kendo.userevents.min.js') !!}
+                    {!! Html::script('/assets/admin/css/quform/admin/js/builder.all.min.js') !!}
+
+
+
                 </div>
 
 

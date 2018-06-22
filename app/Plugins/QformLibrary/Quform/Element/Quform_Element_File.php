@@ -227,13 +227,8 @@ class Quform_Element_File extends Quform_Element_Field implements Quform_Attacha
      */
     public function setValueFromStorage($value)
     {
-        //$this->setValue(is_serialized($value) ? unserialize($value) : $this->getEmptyValue());
+        $this->setValue(is_serialized($value) ? unserialize($value) : $this->getEmptyValue());
     }
-
-
-
-
-
 
     /**
      * Get the HTML attributes for the field
@@ -512,16 +507,16 @@ class Quform_Element_File extends Quform_Element_Field implements Quform_Attacha
     protected function getCssSelectors()
     {
         return parent::getCssSelectors() + array(
-            'uploadButton' => '%s .quform-input-%s .quform-upload-button',
-            'uploadButtonHover' => '%s .quform-input-%s .quform-upload-button:hover',
-            'uploadButtonActive' => '%s .quform-input-%s .quform-upload-button:active',
-            'uploadButtonText' => '%s .quform-input-%s .quform-upload-button .quform-upload-button-text',
-            'uploadButtonTextHover' => '%s .quform-input-%s .quform-upload-button:hover .quform-upload-button-text',
-            'uploadButtonTextActive' => '%s .quform-input-%s .quform-upload-button:active .quform-upload-button-text',
-            'uploadButtonIcon' => '%s .quform-input-%s .quform-upload-button .quform-upload-button-icon',
-            'uploadButtonIconHover' => '%s .quform-input-%s .quform-upload-button:hover .quform-upload-button-icon',
-            'uploadButtonIconActive' => '%s .quform-input-%s .quform-upload-button:active .quform-upload-button-icon'
-        );
+                'uploadButton' => '%s .quform-input-%s .quform-upload-button',
+                'uploadButtonHover' => '%s .quform-input-%s .quform-upload-button:hover',
+                'uploadButtonActive' => '%s .quform-input-%s .quform-upload-button:active',
+                'uploadButtonText' => '%s .quform-input-%s .quform-upload-button .quform-upload-button-text',
+                'uploadButtonTextHover' => '%s .quform-input-%s .quform-upload-button:hover .quform-upload-button-text',
+                'uploadButtonTextActive' => '%s .quform-input-%s .quform-upload-button:active .quform-upload-button-text',
+                'uploadButtonIcon' => '%s .quform-input-%s .quform-upload-button .quform-upload-button-icon',
+                'uploadButtonIconHover' => '%s .quform-input-%s .quform-upload-button:hover .quform-upload-button-icon',
+                'uploadButtonIconActive' => '%s .quform-input-%s .quform-upload-button:active .quform-upload-button-icon'
+            );
     }
 
     /**
@@ -553,7 +548,7 @@ class Quform_Element_File extends Quform_Element_Field implements Quform_Attacha
     public static function getDefaultConfig()
     {
         $config = apply_filters('quform_default_config_file', array(
-            'label' => __('Upload', 'quform'),
+            'label' => __tr('Upload', 'quform'),
             'subLabel' => '',
             'description' => '',
             'descriptionAbove' => '',
