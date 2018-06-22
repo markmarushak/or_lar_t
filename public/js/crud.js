@@ -32,7 +32,7 @@ $(document).ready(function() {
 
             }).done(function (data) {
                 $.each( data, function( key, value ) {
-
+                    console.log("1111");
                     $('#n_description').val(value.description);
                     $('#n_country').val(value.country);
                     $('#n_type').val(value.type);
