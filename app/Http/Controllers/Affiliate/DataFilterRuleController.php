@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 
 class DataFilterRuleController extends Controller
 {
-
     private $affiliateService;
     private $dataFilterRuleService;
 

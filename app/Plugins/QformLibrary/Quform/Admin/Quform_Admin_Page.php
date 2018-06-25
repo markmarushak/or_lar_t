@@ -6,8 +6,7 @@ use App\Plugins\QformLibrary\Quform\Admin\Page\Entries\Quform_Admin_Page_Entries
 use App\Plugins\QformLibrary\Quform\Quform_Repository;
 use App\Plugins\QformLibrary\Quform\Quform_View;
 use App\Plugins\QformLibrary\Quform\Quform_ViewFactory;
-use Quform_Admin_Page_Entries_Edit;
-use Quform_Admin_Page_Entries_List;
+
 
 
 /**
@@ -236,51 +235,51 @@ abstract class Quform_Admin_Page
         $links = array(
             array(
                 'cap' => 'quform_view_dashboard',
-                'href' => admin_url('admin.php?page=quform.dashboard'),
+                'href' => 'admin.php?page=quform.dashboard',
                 'class' => 'dashboard',
                 'icon' => '<i class="mdi mdi-dashboard"></i>',
-                'text' => __('Dashboard', 'quform')
+                'text' => __tr('Dashboard', 'quform')
             ),
             array(
                 'cap' => 'quform_list_forms',
-                'href' => admin_url('admin.php?page=quform.forms'),
+                'href' => 'admin.php?page=quform.forms',
                 'class' => 'forms',
                 'icon' => '<i class="mdi mdi-view_stream"></i>',
-                'text' => __('Forms', 'quform')
+                'text' => __tr('Forms', 'quform')
             ),
             array(
                 'cap' => 'quform_view_entries',
-                'href' => admin_url('admin.php?page=quform.entries'),
+                'href' => 'admin.php?page=quform.entries',
                 'class' => 'entries',
                 'icon' => '<i class="mdi mdi-message"></i>',
-                'text' => __('Entries', 'quform')
+                'text' => __tr('Entries', 'quform')
             ),
             array(
                 'cap' => 'quform_view_tools',
-                'href' => admin_url('admin.php?page=quform.tools'),
+                'href' => 'admin.php?page=quform.tools',
                 'class' => 'tools',
                 'icon' => '<i class="mdi mdi-build"></i>',
-                'text' => __('Tools', 'quform')
+                'text' => __tr('Tools', 'quform')
             ),
             array(
                 'cap' => 'quform_settings',
-                'href' => admin_url('admin.php?page=quform.settings'),
+                'href' => 'admin.php?page=quform.settings',
                 'class' => 'settings',
                 'icon' => '<i class="mdi mdi-settings"></i>',
-                'text' => __('Settings', 'quform')
+                'text' => __tr('Settings', 'quform')
             ),
             array(
                 'cap' => 'quform_help',
-                'href' => admin_url('admin.php?page=quform.help'),
+                'href' => 'admin.php?page=quform.help',
                 'class' => 'help',
                 'icon' => '<i class="mdi mdi-help_outline"></i>',
-                'text' => __('Help', 'quform')
+                'text' => __tr('Help', 'quform')
             )
         );
 
         $visible = array();
         foreach ($links as $link) {
-            if (current_user_can($link['cap'])) {
+            if (true) {
                 $visible[] = $link;
             }
         }
@@ -288,10 +287,15 @@ abstract class Quform_Admin_Page
         if ( ! count($visible)) {
             return '';
         }
+//
+//        $currentUserId = get_current_user_id();
+//        $userOrderBy = get_user_meta($currentUserId, 'quform_forms_order_by', true);
+//        $userOrder = get_user_meta($currentUserId, 'quform_forms_order', true);
+//
 
-        $currentUserId = get_current_user_id();
-        $userOrderBy = get_user_meta($currentUserId, 'quform_forms_order_by', true);
-        $userOrder = get_user_meta($currentUserId, 'quform_forms_order', true);
+        $currentUserId = 1;
+        $userOrderBy = '';
+        $userOrder = '';
 
         $forms = $this->repository->getForms(array(
             'orderby' => in_array($userOrderBy, array('id', 'name', 'entries', 'active', 'created_at', 'updated_at')) ? $userOrderBy : 'updated_at',
@@ -305,7 +309,7 @@ abstract class Quform_Admin_Page
             <?php
                 printf(
                     '<a class="qfb-logo"%s></a>',
-                    current_user_can('quform_view_dashboard') ? sprintf(' href="%s"', esc_url(admin_url('admin.php?page=quform.dashboard'))) : ''
+                   11111
                 );
             ?>
 
@@ -343,16 +347,16 @@ abstract class Quform_Admin_Page
                                 echo $this->getFormSwitcherItemHtml($form);
                             }
                         ?>
-                        <li class="qfb-cf qfb-form-switcher-add-form-button"><?php printf('<a href="%s">%s</a>', esc_url(admin_url('admin.php?page=quform.forms&sp=add')), esc_html__('Add New', 'quform')); ?></li>
+                        <li class="qfb-cf qfb-form-switcher-add-form-button"><?php printf('<a href="%s">%s</a>', esc_url('admin.php?page=quform.forms&sp=add'), esc_html__('Add New', 'quform')); ?></li>
                     </ul>
                 </div>
             </div>
 
             <?php echo $this->getExtraHtml(30, $extra); ?>
 
-            <?php if (current_user_can('quform_add_forms')) : ?>
+            <?php if (true) : ?>
                 <div class="qfb-nav-item qfb-nav-item-add">
-                    <a class="qfb-nav-item-link" title="<?php esc_attr_e('Create a new form', 'quform'); ?>" href="<?php echo esc_url(admin_url('admin.php?page=quform.forms&sp=add')); ?>"><i class="mdi mdi-add_circle"></i></a>
+                    <a class="qfb-nav-item-link" title="<?php esc_attr_e('Create a new form', 'quform'); ?>" href="<?php echo esc_url('admin.php?page=quform.forms&sp=add'); ?>"><i class="mdi mdi-add_circle"></i></a>
                 </div>
             <?php endif; ?>
 
@@ -396,7 +400,7 @@ abstract class Quform_Admin_Page
         ) {
             $linkUrl = sprintf(admin_url('admin.php?page=quform.entries&id=%d'), $form['id']);
         } else {
-            $linkUrl = sprintf(admin_url('admin.php?page=quform.forms&sp=edit&id=%d'), $form['id']);
+            $linkUrl = sprintf($form['id']);
         }
 
         $output = sprintf('<li class="qfb-cf%s">', $highlight ? ' qfb-highlight' : '');
@@ -404,15 +408,15 @@ abstract class Quform_Admin_Page
         $output .= Quform::escape($name);
         $output .= '<span class="qfb-fade-overflow"></span></a>';
 
-        if (current_user_can('quform_view_entries') || current_user_can('quform_edit_forms')) {
+        if (true) {
             $output .= '<span class="qfb-form-switcher-icons">';
 
-            if (current_user_can('quform_view_entries')) {
-                $output .= sprintf('<a href="%s"><i title="%s" class="mdi mdi-chat"></i></a>', esc_url(admin_url('admin.php?page=quform.entries&id=' . $form['id'])), esc_attr__('View Entries', 'quform'));
+            if (true) {
+                $output .= sprintf('<a href="%s"><i title="%s" class="mdi mdi-chat"></i></a>', esc_url('admin.php?page=quform.entries&id=' . $form['id']), esc_attr__('View Entries', 'quform'));
             }
 
-            if (current_user_can('quform_edit_forms')) {
-                $output .= sprintf('<a href="%s"><i title="%s" class="fa fa-pencil"></i></a>', esc_url(admin_url('admin.php?page=quform.forms&sp=edit&id=' . $form['id'])), esc_attr__('Edit', 'quform'));
+            if (true) {
+                $output .= sprintf('<a href="%s"><i title="%s" class="fa fa-pencil"></i></a>', esc_url('admin.php?page=quform.forms&sp=edit&id=' . $form['id']), esc_attr__('Edit', 'quform'));
             }
 
             $output .= '</span>';
