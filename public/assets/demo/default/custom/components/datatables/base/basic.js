@@ -1,6 +1,6 @@
 var DatatablesBasicBasic = function () {
     var initTable1 = function () {
-        var table = $('#m_table_1, #m_table_2, #m_table_3, #m_table_4');
+        var table = $('#m_table_1, #m_table_3, #m_table_4');
         // begin first table
         table.DataTable({
             retrieve: true,
@@ -150,11 +150,7 @@ var DatatablesBasicBasic = function () {
 //
 // } );
 
-$('#m_search_input').keyup(function(){
-    $('#m_table_2').DataTable().search($(this).val()).draw() ;
-});
-
-$(document).ready(function () {
+/*$(document).ready(function () {
     $('#m_table_2').DataTable({
         paging: false,
         ordering: true,
@@ -195,7 +191,7 @@ $(document).ready(function () {
 
 
     })
-});
+});*/
 
 $(document).ready(function () {
     $('#m_table_3').DataTable({

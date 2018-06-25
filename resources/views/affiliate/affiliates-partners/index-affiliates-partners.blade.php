@@ -66,6 +66,7 @@
                 </tr>
                 </thead>
                 <tbody id="aff_table">
+
                 </tbody>
             </table>
 
@@ -73,6 +74,19 @@
                 <div class="pt-2">
                     <button class="btn btn-success" onclick="location.href=('{{route("add-affiliates-partners")}}')">Add Affiliates/Partners</button>
                 </div>
+        </div>
+    </div>
+    <div class="modal fade show" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: block; padding-right: 15px; background: rgba(20, 20, 20, 0.9)" hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="deleteRow()">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeModal('modal_4')">Close</button>
+                </div>
+            </div>
         </div>
     </div>
     @include('modal')

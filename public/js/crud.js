@@ -6,12 +6,18 @@ $(document).ready(function() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+    $('#m_table_2').on('dblclick', 'tbody tr', function(){
+        editRow($(this).attr('id'));
+    })
     showData();
 
 })
 
 var type = "";
+var id = '';
 
+//Render Table
+//-------------------------------------------------------
 function showData(){
     if($('#affiliate').is(":checked")){
         type = $('#affiliate').val();
@@ -20,22 +26,136 @@ function showData(){
         type = $('#partner').val();
     }
 
+    var table = $('#m_table_2').DataTable();
+    table.destroy();
+
+    var n_arr=[];
+
     $.ajax({
-        method: 'POST',
-        dataType: 'json',
-        url: laroute.action('show-affiliates-partners'),
-        data: {data: type},
+       method: 'POST',
+       dataType: 'json',
+       url: laroute.action('show-affiliates-partners'),
+       data: {data: type},
+    }).done(function(data){
+        //table.destroy();
+        $('#m_table_2').DataTable({
+            paging: false,
+            ordering: true,
+            responsive: true,
+            searching:true,
+            info: false,
+            sDom:   `<'row'<'col-sm-12'tr>>
+			<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
 
-    }).done(function (data) {
 
-        manageRow(data);
+            order: [[1, 'desc']],
+            data: data,
+            rowId: "id",
+            headerCallback: function (thead, data, start, end, display) {
+                thead.getElementsByTagName('th')[0].innerHTML = `
+                    <label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">
+                        <input type="checkbox" value="" class="m-group-checkable">
+                        <span></span>
+                    </label>`;
+            },
+            columnDefs: [
+                {
+                    targets: 0,
+                    width: '30px',
+                    className: 'dt-right',
+                    orderable: false,
+                    render: function (data, type, full, meta) {
+                        return `
+                        <label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">
+                            <input type="checkbox" value="" class="m-checkable">
+                            <span></span>
+                        </label>`;
+                    },
+                },
+                {
+                    targets: 1,
+                    data: 'id',
+                    render: function (data, type, full, meta) {
+                        return `
+                        <span style="width: 70px;">`+data+`</span>`;
+                    },
+                },
+                {
+                    targets: 2,
+                    data: 'description',
+                    render: function (data, type, full, meta) {
+                        return `
+                        <span style="width: 70px;">`+data+`</span>`;
+                    },
+                },
+                {
+                    targets: 3,
+                    data: 'country',
+                    render: function (data, type, full, meta) {
+                        return `
+                        <span style="width: 70px;">`+data+`</span>`;
+                    },
+                },
+                {
+                    targets: 4,
+                    data: 'type',
+                    render: function (data, type, full, meta) {
+                        return `
+                        <span style="width: 70px;">`+data+`</span>`;
+                    },
+                },
+                {
+                    targets: 5,
+                    data: 'rules',
+                    render: function (data, type, full, meta) {
+                        return `
+                        <span style="width: 70px;">`+data+`</span>`;
+                    },
+                },
+                {
+                    targets: 6,
+                    data: 'status',
+                    render: function (data, type, full, meta) {
+                        if(data == 1) {
+                            return `
+                            <span style="overflow: visible; width: 70px;"><span class="m-badge m-badge--success"><span hidden="true" id="e_status">`+data+`</span></span></span>`;
+                        }
+                        else{
+                            return `
+                            <span style="overflow: visible; width: 70px;"><span class="m-badge m-badge--danger"><span hidden="true" id="e_status">`+data+`</span></span></span>`;
+                        }
+                    },
+                },
+                {
+                    targets: 7,
+                    width: '30px',
+                    orderable: false,
+                    data: 'id',
+                    render: function (data, type, full, meta) {
+                        return `
+                        <i class="flaticon-cancel" style="color: red" name="`+data+`" onclick="showModal(`+data+`)" onmouseover="changeIcon()" onmouseleave="changeBack()"></i>`;
+                    },
+                },
+            ],
+
+        });
     });
+
 }
+
+
 var aff_data = {};
 
+//Search in Table
+//--------------------------------------------------------------
+function searchData(){
+    $('#m_table_2').DataTable().search($(this).val()).draw() ;
+}
+
+
+//Edit record in Database
+//------------------------------------------------------------------
 function editRow (id) {
-    //Affiliate and Partners edit
-    //--------------------------------------------------------------
     $.ajax({
         method: 'POST',
         dataType: 'json',
@@ -61,7 +181,8 @@ function editRow (id) {
     })
 }
 
-
+//Save edited record to Database
+//------------------------------------------------
 function saveRow(){
 
     $('#m_modal_5').attr("hidden", true);
@@ -93,14 +214,23 @@ function saveRow(){
 }
 
 
-function closeModal(){
-    $('#m_modal_5').attr("hidden", true);
+function closeModal(n_id){
+    $('#m_'+n_id).attr("hidden", true);
+    id = '';
+}
+
+function changeIcon(e){
+    $(document.body).css({'cursor': 'pointer'});
+}
+
+function changeBack(){
+    $(document.body).css({'cursor': 'default'});
 }
 
 
 
 //Delete Affiliate Partner from Database
-function deleteRow(id) {
+function deleteRow() {
 
     $.ajax({
 
@@ -113,6 +243,8 @@ function deleteRow(id) {
 
     }).done(function () {
         showData();
+        id='';
+        $('#m_modal_4').attr("hidden", true);
     });
 }
 
@@ -120,29 +252,9 @@ function searchData(){
     $('#m_table_2').DataTable().search($('#m_search_input').val()).draw() ;
 }
 
-
-//Rendering table
-//--------------------------------------------------------------
-function manageRow(data) {
-    var	rows = '';
-    var myTable = $('#m_table_2').DataTable();
-    $.each( data, function( key, value ) {
-        rows = rows + '<tr id="'+value.id+'" ondblclick="editRow('+value.id+')">';
-        rows = rows +'<td class="edit_data"><label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand"><input type="checkbox" value="" class="m-checkable"><span></span></label></td>';
-        rows = rows + '<td class="edit_data"><span style="width: 70px;">'+value.id+'</span></td>';
-        rows = rows + '<td class="edit_data"><span style="width: 70px;">'+value.description+'</span></td>';
-        rows = rows + '<td class="edit_data"><span style="width: 70px;">'+value.country+'</span></td>';
-        rows = rows + '<td class="edit_data"><span style="width: 70px;">'+value.type+'</span></td>';
-        rows = rows + '<td class="edit_data"><span style="width: 70px;">'+value.rules+'</span></td>';
-        if(value.status == 1){
-            rows = rows + '<td class="edit_data text-center"><span style="overflow: visible; width: 70px;"><span class="m-badge m-badge--success"><span hidden="true" id="e_status">'+value.status+'</span></span></span></td>';
-        }
-        else{
-            rows = rows + '<td class="edit_data text-center"><span style="overflow: visible; width: 70px;"><span class="m-badge m-badge--danger"><span hidden="true" id="e_status">'+value.status+'</span></span></span></td>';
-        }
-        rows = rows + '<td><i class="flaticon-cancel" style="color: red" name="'+value.id+'" onclick="deleteRow('+value.id+')"></i></td>';
-        rows = rows + '</tr>';
-    });
-    $('#aff_table').html(rows);
-
+function showModal(n_id){
+    id = n_id;
+    $('#m_modal_4').removeAttr("hidden");
 }
+
+
