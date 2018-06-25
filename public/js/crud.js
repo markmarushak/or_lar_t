@@ -51,29 +51,16 @@ function showData(){
             order: [[1, 'desc']],
             data: data,
             rowId: "id",
-            headerCallback: function (thead, data, start, end, display) {
+            /*headerCallback: function (thead, data, start, end, display) {
                 thead.getElementsByTagName('th')[0].innerHTML = `
                     <label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">
                         <input type="checkbox" value="" class="m-group-checkable">
                         <span></span>
                     </label>`;
-            },
+            },*/
             columnDefs: [
                 {
                     targets: 0,
-                    width: '30px',
-                    className: 'dt-right',
-                    orderable: false,
-                    render: function (data, type, full, meta) {
-                        return `
-                        <label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">
-                            <input type="checkbox" value="" class="m-checkable">
-                            <span></span>
-                        </label>`;
-                    },
-                },
-                {
-                    targets: 1,
                     data: 'id',
                     render: function (data, type, full, meta) {
                         return `
@@ -81,7 +68,7 @@ function showData(){
                     },
                 },
                 {
-                    targets: 2,
+                    targets: 1,
                     data: 'description',
                     render: function (data, type, full, meta) {
                         return `
@@ -89,7 +76,7 @@ function showData(){
                     },
                 },
                 {
-                    targets: 3,
+                    targets: 2,
                     data: 'country',
                     render: function (data, type, full, meta) {
                         return `
@@ -97,7 +84,7 @@ function showData(){
                     },
                 },
                 {
-                    targets: 4,
+                    targets: 3,
                     data: 'type',
                     render: function (data, type, full, meta) {
                         return `
@@ -105,7 +92,7 @@ function showData(){
                     },
                 },
                 {
-                    targets: 5,
+                    targets: 4,
                     data: 'rules',
                     render: function (data, type, full, meta) {
                         return `
@@ -113,7 +100,7 @@ function showData(){
                     },
                 },
                 {
-                    targets: 6,
+                    targets: 5,
                     data: 'status',
                     render: function (data, type, full, meta) {
                         if(data == 1) {
@@ -127,13 +114,15 @@ function showData(){
                     },
                 },
                 {
-                    targets: 7,
+                    targets: 6,
                     width: '30px',
                     orderable: false,
-                    data: 'id',
+                    data:{id: 'id',
+                        type: 'type',
+                        description: 'description'},
                     render: function (data, type, full, meta) {
                         return `
-                        <i class="flaticon-cancel" style="color: red" name="`+data+`" onclick="showModal(`+data+`)" onmouseover="changeIcon()" onmouseleave="changeBack()"></i>`;
+                        <i class="flaticon-cancel" style="color: red" onclick="showModal(`+data.id+`, '`+data.description+`', '`+data.type+`')" onmouseover="changeIcon()" onmouseleave="changeBack()"></i>`;
                     },
                 },
             ],
@@ -252,8 +241,11 @@ function searchData(){
     $('#m_table_2').DataTable().search($('#m_search_input').val()).draw() ;
 }
 
-function showModal(n_id){
+function showModal(n_id, description, type){
     id = n_id;
+    $('#aff').text(type);
+    $('#aff_id').text(n_id);
+    $('#aff_descr').text(description);
     $('#m_modal_4').removeAttr("hidden");
 }
 

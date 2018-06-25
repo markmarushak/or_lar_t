@@ -28,10 +28,6 @@
                    id="m_table_2">
                 <thead>
                 <tr>
-
-                    <th>
-
-                    </th>
                     <th data-field="ID" class="m-datatable__cell m-datatable__cell--sort">
 
                         <span style="width: 130px;">ID</span>
@@ -77,14 +73,24 @@
         </div>
     </div>
     <div class="modal fade show" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: block; padding-right: 15px; background: rgba(20, 20, 20, 0.9)" hidden="true">
-        <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-dialog modal-sm" role="document" style="top:20%">
             <div class="modal-content">
                 <div class="modal-body">
-                    <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+                    <div>
+                        <h5 class="modal-title" id="exampleModalLabel">Delete <span id="aff"></span> with:
+                        </h5>
+                    </div>
+                    <div>
+                        <h5 class="modal-title" id="exampleModalLabel">id: <span style="color:red" id="aff_id"></span>
+                        </h5>
+                    </div>
+                    <div>
+                         <h5 class="modal-title" id="exampleModalLabel">description: <span style="color:red" id="aff_descr"></span>?</h5>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" onclick="deleteRow()">Delete</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeModal('modal_4')">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeModal('modal_4')">Cancel</button>
                 </div>
             </div>
         </div>
