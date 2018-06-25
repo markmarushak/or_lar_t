@@ -80,7 +80,7 @@ License: You must have a valid license purchased only from themeforest(the above
 {!! Html::script('assets/app/js/my.js') !!}
 {!! Html::script('js/laroute.js') !!}
 
-@include('layouts.admin._layout')
+@include('layouts.admin.layout')
 
 <!--end::Page Snippets -->
 </body>

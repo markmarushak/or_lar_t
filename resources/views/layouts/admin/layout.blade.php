@@ -2,15 +2,15 @@
 
 <div class="m-grid m-grid--hor m-grid--root m-page">
 	<!--[html-partial:include:{"file":"partials\/_header-base.html"}]/-->
-@include('layouts.admin.partials._header-base')
+@include('layouts.admin.partials.header-base')
 <!-- begin::Body -->
     <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
         <!-- BEGIN: Left Aside -->
-        @include('layouts.admin.partials._body-aside-menu-left')
+        @include('layouts.admin.partials.body-aside-menu-left')
         <!-- END: Left Aside -->
         <div class="m-grid__item m-grid__item--fluid m-wrapper">
             <!-- BEGIN: Subheader -->
-            @include('layouts.admin.partials._subheader-default')
+            @include('layouts.admin.partials.subheader-default')
             <!-- END: Subheader -->
             <div class="m-content">
                 @yield('content')
@@ -20,7 +20,7 @@
     <!-- end::Body -->
 
     <!-- begin::Footer -->
-    @include('layouts.admin.partials._footer-default')
+    @include('layouts.admin.partials.footer-default')
     <!-- end::Footer -->
 </div>
 <!-- end:: Page -->
