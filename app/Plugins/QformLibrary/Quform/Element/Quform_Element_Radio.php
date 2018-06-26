@@ -42,8 +42,8 @@ class Quform_Element_Radio extends Quform_Element_Multi implements Quform_Elemen
             $attributes['checked'] = true;
         }
 
-        //$attributes = apply_filters('quform_field_attributes', $attributes, $this, $this->form, $context, $option);
-        //$attributes = apply_filters('quform_field_attributes_' . $this->getIdentifier(), $attributes, $this, $this->form, $context, $option);
+        $attributes = apply_filters('quform_field_attributes', $attributes, $this, $this->form, $context, $option);
+        $attributes = apply_filters('quform_field_attributes_' . $this->getIdentifier(), $attributes, $this, $this->form, $context, $option);
 
         return $attributes;
     }
@@ -72,8 +72,8 @@ class Quform_Element_Radio extends Quform_Element_Multi implements Quform_Elemen
             $classes[] = 'quform-submit-on-choice';
         }
 
-        //$classes = apply_filters('quform_field_classes', $classes, $option, $this, $this->form, $context);
-        //$classes = apply_filters('quform_field_classes_' . $this->getIdentifier(), $classes, $option, $this, $this->form, $context);
+        $classes = apply_filters('quform_field_classes', $classes, $option, $this, $this->form, $context);
+        $classes = apply_filters('quform_field_classes_' . $this->getIdentifier(), $classes, $option, $this, $this->form, $context);
 
         return $classes;
     }
@@ -100,8 +100,8 @@ class Quform_Element_Radio extends Quform_Element_Multi implements Quform_Elemen
 
             $output .= sprintf(
                 '<label for="%s" class="quform-option-label quform-option-label-%s_%d">',
-                $attributes['id'],
-                $this->getIdentifier(),
+                esc_attr($attributes['id']),
+                esc_attr($this->getIdentifier()),
                 $this->getOptionValue($option, 'id')
             );
 
@@ -283,24 +283,18 @@ class Quform_Element_Radio extends Quform_Element_Multi implements Quform_Elemen
     public static function getDefaultConfig()
     {
         $options = array();
-        $defaults = array(
-            0 => 'quform',
-            1 => 'quform',
-            2 => 'quform');
-
+        $defaults = array(__tr('Option 1', 'quform'), __tr('Option 2', 'quform'), __tr('Option 3', 'quform'));
 
         foreach ($defaults as $key => $value) {
-
             $option = self::getDefaultOptionConfig();
             $option['id'] = $key + 1;
             $option['label'] = $option['value'] = $value;
             $options[] = $option;
         }
 
-
-        /*$config = apply_filters('quform_default_config_radio', array(
+        $config = apply_filters('quform_default_config_radio', array(
             'type' => 'radio',
-            'label' => __('Untitled', 'quform'),
+            'label' => __tr('Untitled', 'quform'),
             'subLabel' => '',
             'description' => '',
             'descriptionAbove' => '',
@@ -341,51 +335,7 @@ class Quform_Element_Radio extends Quform_Element_Multi implements Quform_Elemen
             'visibility' => '',
             'filters' => array(),
             'validators' => array()
-        ));*/
-        $config = array(
-            'type' => 'radio',
-            'label' => array('Untitled' => 'quform'),
-            'subLabel' => '',
-            'description' => '',
-            'descriptionAbove' => '',
-            'required' => false,
-            'options' => $options,
-            'nextOptionId' => 4,
-            'optionsLayout' => 'block',
-            'optionsLayoutResponsiveColumns' => 'phone-landscape',
-            'optionsLayoutResponsiveColumnsCustom' => '',
-            'optionsStyle' => '',
-            'optionsButtonStyle' => '',
-            'optionsButtonSize' => '',
-            'optionsButtonWidth' => '',
-            'optionsButtonWidthCustom' => '',
-            'optionsButtonIconPosition' => 'left',
-            'customiseValues' => false,
-            'defaultValue' => array(),
-            'dynamicDefaultValue' => false,
-            'dynamicKey' => '',
-            'tooltip' => '',
-            'labelIcon' => '',
-            'customClass' => '',
-            'adminLabel' => '',
-            'submitOnChoice' => false,
-            'showInEmail' => true,
-            'saveToDatabase' => true,
-            'labelPosition' => 'inherit',
-            'labelWidth' => '',
-            'tooltipType' => 'icon',
-            'tooltipEvent' => 'inherit',
-            'inArrayValidator' => true,
-            'logicEnabled' => false,
-            'logicAction' => true,
-            'logicMatch' => 'all',
-            'logicRules' => array(),
-            'messageRequired' => '',
-            'styles' => array(),
-            'visibility' => '',
-            'filters' => array(),
-            'validators' => array()
-        );
+        ));
 
         $config['type'] = 'radio';
 

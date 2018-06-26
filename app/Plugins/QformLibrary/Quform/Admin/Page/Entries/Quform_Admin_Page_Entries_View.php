@@ -1,7 +1,9 @@
 <?php
 namespace App\Plugins\QformLibrary\Quform\Admin\Page\Entries;
+
 use App\Plugins\QformLibrary\Quform\Admin\Page\Quform_Admin_Page_Entries;
 use App\Plugins\QformLibrary\Quform\Form\Quform_Form_Factory;
+use App\Plugins\QformLibrary\Quform\Quform_Options;
 use App\Plugins\QformLibrary\Quform\Quform_Repository;
 use App\Plugins\QformLibrary\Quform\Quform_ViewFactory;
 

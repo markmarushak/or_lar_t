@@ -3,6 +3,9 @@
 namespace App\Plugins\QformLibrary\Quform\Element;
 
 
+use App\Plugins\QformLibrary\Quform;
+
+
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
  */
@@ -171,8 +174,8 @@ class Quform_Element_Multiselect extends Quform_Element_Select
             $attributes['data-options'] = wp_json_encode(array(
                 'rtl' => $this->form->isRtl(),
                 'search' => ! $this->config('enhancedSelectSearch'),
-                'placeholder' => $this->getTranslation('enhancedSelectPlaceholder', __('Please select', 'quform')),
-                'noResultsFound' => $this->getTranslation('enhancedSelectNoResultsFound', __('No results found.', 'quform')),
+                'placeholder' => $this->getTranslation('enhancedSelectPlaceholder', __tr('Please select', 'quform')),
+                'noResultsFound' => $this->getTranslation('enhancedSelectNoResultsFound', __tr('No results found.', 'quform')),
             ));
 
             $attributes['style'] = 'width: 100%;';
@@ -272,7 +275,7 @@ class Quform_Element_Multiselect extends Quform_Element_Select
         }
 
         $config = apply_filters('quform_default_config_multi_select', array(
-            'label' => __('Untitled', 'quform'),
+            'label' => __tr('Untitled', 'quform'),
             'subLabel' => '',
             'description' => '',
             'descriptionAbove' => '',

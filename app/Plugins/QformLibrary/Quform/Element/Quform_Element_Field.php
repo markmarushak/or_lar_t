@@ -213,7 +213,7 @@ abstract class Quform_Element_Field extends Quform_Element
         }
 
         if ($this->form->config('tooltipsEnabled') && Quform::isNonEmptyString($this->form->config('tooltipIcon')) && Quform::isNonEmptyString($this->config('tooltip')) && $context['tooltipType'] == 'icon') {
-            $output .= sprintf('<div class="quform-tooltip-icon quform-tooltip-icon-%s">', $context['tooltipEvent']);
+            $output .= sprintf('<div class="quform-tooltip-icon quform-tooltip-icon-%s">', esc_attr($context['tooltipEvent']));
             $output .= sprintf('<i class="%s"></i>', $this->form->config('tooltipIcon'));
             $output .= sprintf('<div class="quform-tooltip-icon-content">%s</div>', $this->config('tooltip'));
             $output .= '</div>';
@@ -640,9 +640,7 @@ abstract class Quform_Element_Field extends Quform_Element
      */
     public function setValue($value)
     {
-
         $this->value = $this->isValidValue($value) ? $value : $this->getEmptyValue();
-
     }
 
     /**
@@ -697,9 +695,10 @@ abstract class Quform_Element_Field extends Quform_Element
      */
     public function getValueHtml()
     {
-        $value = $this->getValue();
+        $value = Quform::escape($this->getValue());
 
         $value = apply_filters('quform_get_value_html_' . $this->getIdentifier(), $value, $this, $this->getForm());
+
         return $value;
     }
 
@@ -717,42 +716,6 @@ abstract class Quform_Element_Field extends Quform_Element
 
         return $value;
     }
-
-
-    function apply_filters( $tag, $value ) {
-        global $wp_filter, $wp_current_filter;
-
-        $args = array();
-
-        // Do 'all' actions first.
-        if ( isset($wp_filter['all']) ) {
-            $wp_current_filter[] = $tag;
-            $args = func_get_args();
-            _wp_call_all_hook($args);
-        }
-
-        if ( !isset($wp_filter[$tag]) ) {
-            if ( isset($wp_filter['all']) )
-                array_pop($wp_current_filter);
-            return $value;
-        }
-
-        if ( !isset($wp_filter['all']) )
-            $wp_current_filter[] = $tag;
-
-        if ( empty($args) )
-            $args = func_get_args();
-
-        // don't pass the tag name to class-wp-hook
-        array_shift( $args );
-
-        $filtered = $wp_filter[ $tag ]->apply_filters( $value, $args );
-
-        array_pop( $wp_current_filter );
-
-        return $filtered;
-    }
-
 
     /**
      * Get the value for storage in the database

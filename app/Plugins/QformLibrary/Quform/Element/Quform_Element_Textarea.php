@@ -16,8 +16,7 @@ class Quform_Element_Textarea extends Quform_Element_Field implements Quform_Ele
      */
     public function setDefaultValue($value, $replacePlaceholders = true)
     {
-//        $this->defaultValue = $replacePlaceholders ? $this->getForm()->replaceVariablesPreProcess($value) : $value;
-        $this->defaultValue = $value;
+        $this->defaultValue = $replacePlaceholders ? $this->getForm()->replaceVariablesPreProcess($value) : $value;
     }
 
     /**
@@ -48,10 +47,10 @@ class Quform_Element_Textarea extends Quform_Element_Field implements Quform_Ele
             'class' => Quform::sanitizeClass($this->getFieldClasses($context))
         );
 
-/*        $placeholder = $this->form->replaceVariablesPreProcess($this->config('placeholder'));
+        $placeholder = $this->form->replaceVariablesPreProcess($this->config('placeholder'));
         if (Quform::isNonEmptyString($placeholder)) {
             $attributes['placeholder'] = $placeholder;
-        }*/
+        }
 
         if (Quform::isNonEmptyString($this->config('maxLength'))) {
             $attributes['maxlength'] = $this->config('maxLength');
@@ -61,8 +60,8 @@ class Quform_Element_Textarea extends Quform_Element_Field implements Quform_Ele
             $attributes['readonly'] = true;
         }
 
-//        $attributes = apply_filters('quform_field_attributes', $attributes, $this, $this->form, $context);
-//        $attributes = apply_filters('quform_field_attributes_' . $this->getIdentifier(), $attributes, $this, $this->form, $context);
+        $attributes = apply_filters('quform_field_attributes', $attributes, $this, $this->form, $context);
+        $attributes = apply_filters('quform_field_attributes_' . $this->getIdentifier(), $attributes, $this, $this->form, $context);
 
         return $attributes;
     }
@@ -89,8 +88,8 @@ class Quform_Element_Textarea extends Quform_Element_Field implements Quform_Ele
             $classes[] = $this->config('customClass');
         }
 
-//        $classes = apply_filters('quform_field_classes', $classes, $this, $this->form, $context);
-//        $classes = apply_filters('quform_field_classes_' . $this->getIdentifier(), $classes, $this, $this->form, $context);
+        $classes = apply_filters('quform_field_classes', $classes, $this, $this->form, $context);
+        $classes = apply_filters('quform_field_classes_' . $this->getIdentifier(), $classes, $this, $this->form, $context);
 
         return $classes;
     }
@@ -141,9 +140,9 @@ class Quform_Element_Textarea extends Quform_Element_Field implements Quform_Ele
      */
     public static function getDefaultConfig()
     {
-        /*$config = apply_filters('quform_default_config_textarea', array(
+        $config = apply_filters('quform_default_config_textarea', array(
             'type' => 'textarea',
-            'label' => __('Untitled', 'quform'),
+            'label' => __tr('Untitled', 'quform'),
             'placeholder' => '',
             'subLabel' => '',
             'description' => '',
@@ -181,51 +180,8 @@ class Quform_Element_Textarea extends Quform_Element_Field implements Quform_Ele
                 array('type' => 'trim')
             ),
             'validators' => array()
-        ));*/
+        ));
 
-
-
-        $config = array(
-            'type' => 'textarea',
-            'label' => array('Untitled' => 'quform'),
-            'placeholder' => '',
-            'subLabel' => '',
-            'description' => '',
-            'descriptionAbove' => '',
-            'required' => false,
-            'labelIcon' => '',
-            'fieldIconLeft' => '',
-            'fieldIconRight' => '',
-            'fieldSize' => 'inherit',
-            'fieldWidth' => 'inherit',
-            'fieldWidthCustom' => '',
-            'customClass' => '',
-            'defaultValue' => '',
-            'dynamicDefaultValue' => false,
-            'dynamicKey' => '',
-            'maxLength' => '',
-            'readOnly' => false,
-            'tooltip' => '',
-            'adminLabel' => '',
-            'showInEmail' => true,
-            'saveToDatabase' => true,
-            'labelPosition' => 'inherit',
-            'labelWidth' => '',
-            'tooltipType' => 'inherit',
-            'tooltipEvent' => 'inherit',
-            'logicEnabled' => false,
-            'logicAction' => true,
-            'logicMatch' => 'all',
-            'logicRules' => array(),
-            'messageRequired' => '',
-            'messageLengthTooLong' => '',
-            'styles' => array(),
-            'visibility' => '',
-            'filters' => array(
-                array('type' => 'trim')
-            ),
-            'validators' => array()
-        );
         $config['type'] = 'textarea';
 
         return $config;

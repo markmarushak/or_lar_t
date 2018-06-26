@@ -1,6 +1,10 @@
 <?php
 namespace App\Plugins\QformLibrary\Quform\Element;
 
+use App\Plugins\QformLibrary\Quform;
+use App\Plugins\QformLibrary\Quform\Quform_Form;
+use App\Plugins\QformLibrary\Quform\Quform_Session;
+
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
  */
@@ -32,7 +36,7 @@ class Quform_Element_Captcha extends Quform_Element_Field
     {
         $attributes = array(
             'src' => $this->generateImageData(),
-            'alt' => __('CAPTCHA image', 'quform'),
+            'alt' => __tr('CAPTCHA image', 'quform'),
             'data-form-id' => $this->form->getId(),
             'data-element-id' => $this->getId(),
             'data-unique-id' => $this->form->getUniqueId()
@@ -247,10 +251,10 @@ class Quform_Element_Captcha extends Quform_Element_Field
     protected function supportsDynamicImageGeneration()
     {
         return function_exists('imagecreate') &&
-               function_exists('imagecolorallocate') &&
-               function_exists('imagettftext') &&
-               function_exists('imagepng') &&
-               function_exists('imagedestroy');
+            function_exists('imagecolorallocate') &&
+            function_exists('imagettftext') &&
+            function_exists('imagepng') &&
+            function_exists('imagedestroy');
 
     }
 
@@ -369,10 +373,10 @@ class Quform_Element_Captcha extends Quform_Element_Field
     public static function getDefaultConfig($key = null)
     {
         $config = apply_filters('quform_default_config_captcha', array(
-            'label' => __('Please type the characters', 'quform'),
+            'label' => __tr('Please type the characters', 'quform'),
             'placeholder' => '',
             'subLabel' => '',
-            'description' => __('This helps us prevent spam, thank you.', 'quform'),
+            'description' => __tr('This helps us prevent spam, thank you.', 'quform'),
             'descriptionAbove' => '',
             'required' => true,
             'tooltip' => '',

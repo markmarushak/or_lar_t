@@ -27,16 +27,16 @@ class Quform_Element_Submit extends Quform_Element
 
         if ($this->form->hasPages()) {
             if ( ! $this->isOnFirstPage()) {
-                //$output .= $this->getButtonHtml('back', __('Back', 'quform'));
+                $output .= $this->getButtonHtml('back', __tr('Back', 'quform'));
             }
 
             if ( ! $this->isOnLastPage()) {
-                //$output .= $this->getButtonHtml('next', __('Next', 'quform'));
+                $output .= $this->getButtonHtml('next', __tr('Next', 'quform'));
             } else {
-                //$output .= $this->getButtonHtml('submit', __('Send', 'quform'));
+                $output .= $this->getButtonHtml('submit', __tr('Send', 'quform'));
             }
         } else {
-            //$output .= $this->getButtonHtml('submit', __('Send', 'quform'));
+            $output .= $this->getButtonHtml('submit', __tr('Send', 'quform'));
         }
 
         $output .= $this->getLoadingHtml();
@@ -175,9 +175,8 @@ class Quform_Element_Submit extends Quform_Element
             $classes[] = sprintf('quform-loading-type-%s', $this->form->config('loadingType'));
         }
 
-//        $output = sprintf('<div class="%s">', esc_attr(join(' ', $classes)));
+        $output = sprintf('<div class="%s">', esc_attr(join(' ', $classes)));
 
-        $output = sprintf('<div class="%s">', 'test');
         $output .= '<div class="quform-loading-inner">';
 
         if ($this->form->config('loadingType') == 'custom') {
@@ -296,8 +295,8 @@ class Quform_Element_Submit extends Quform_Element
      */
     public static function getDefaultConfig()
     {
-        $config = array(
-            'label' => array('Submit', 'quform'),
+        $config = apply_filters('quform_default_config_submit', array(
+            'label' => __tr('Submit', 'quform'),
             'submitType' => 'inherit',
             'submitText' => '',
             'submitIcon' => '',
@@ -325,7 +324,7 @@ class Quform_Element_Submit extends Quform_Element
             'buttonWidth' => 'inherit',
             'buttonWidthCustom' => '',
             'styles' => array()
-        );
+        ));
 
         $config['type'] = 'submit';
 

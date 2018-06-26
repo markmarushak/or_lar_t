@@ -140,7 +140,7 @@ class Quform_Element_Checkbox extends Quform_Element_Multi implements Quform_Ele
      */
     public function setValueFromStorage($value)
     {
-        //$this->setValue(is_serialized($value) ? unserialize($value) : $this->getEmptyValue());
+        $this->setValue(is_serialized($value) ? unserialize($value) : $this->getEmptyValue());
     }
 
     /**
@@ -187,8 +187,8 @@ class Quform_Element_Checkbox extends Quform_Element_Multi implements Quform_Ele
             $attributes['checked'] = true;
         }
 
-//        $attributes = apply_filters('quform_field_attributes', $attributes, $this, $this->form, $context, $option);
-//        $attributes = apply_filters('quform_field_attributes_' . $this->getIdentifier(), $attributes, $this, $this->form, $context, $option);
+        $attributes = apply_filters('quform_field_attributes', $attributes, $this, $this->form, $context, $option);
+        $attributes = apply_filters('quform_field_attributes_' . $this->getIdentifier(), $attributes, $this, $this->form, $context, $option);
 
         return $attributes;
     }
@@ -213,8 +213,8 @@ class Quform_Element_Checkbox extends Quform_Element_Multi implements Quform_Ele
             $classes[] = $this->config('customClass');
         }
 
-        //$classes = apply_filters('quform_field_classes', $classes, $option, $this, $this->form, $context);
-        //$classes = apply_filters('quform_field_classes_' . $this->getIdentifier(), $classes, $option, $this, $this->form, $context);
+        $classes = apply_filters('quform_field_classes', $classes, $option, $this, $this->form, $context);
+        $classes = apply_filters('quform_field_classes_' . $this->getIdentifier(), $classes, $option, $this, $this->form, $context);
 
         return $classes;
     }
@@ -241,8 +241,8 @@ class Quform_Element_Checkbox extends Quform_Element_Multi implements Quform_Ele
 
             $output .= sprintf(
                 '<label for="%s" class="quform-option-label quform-option-label-%s_%d">',
-                $attributes['id'],
-                $this->getIdentifier(),
+                esc_attr($attributes['id']),
+                esc_attr($this->getIdentifier()),
                 $this->getOptionValue($option, 'id')
             );
 
@@ -424,11 +424,7 @@ class Quform_Element_Checkbox extends Quform_Element_Multi implements Quform_Ele
     public static function getDefaultConfig()
     {
         $options = array();
-        $defaults = array(
-                        0 => 'quform',
-                        1 => 'quform',
-                        2 => 'quform'
-        );
+        $defaults = array(__tr('Option 1', 'quform'), __tr('Option 2', 'quform'), __tr('Option 3', 'quform'));
 
         foreach ($defaults as $key => $value) {
             $option = self::getDefaultOptionConfig();
@@ -437,8 +433,8 @@ class Quform_Element_Checkbox extends Quform_Element_Multi implements Quform_Ele
             $options[] = $option;
         }
 
-        $config = array(
-            'label' => array('Untitled', 'quform'),
+        $config = apply_filters('quform_default_config_checkbox', array(
+            'label' => __tr('Untitled', 'quform'),
             'subLabel' => '',
             'description' => '',
             'descriptionAbove' => '',
@@ -477,7 +473,7 @@ class Quform_Element_Checkbox extends Quform_Element_Multi implements Quform_Ele
             'styles' => array(),
             'filters' => array(),
             'validators' => array()
-        );
+        ));
 
         $config['type'] = 'checkbox';
 

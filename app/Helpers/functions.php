@@ -5129,7 +5129,6 @@ function wp_debug_backtrace_summary( $ignore_class = null, $skip_frames = 0, $pr
 		$trace = debug_backtrace( false );
 	else
 		$trace = debug_backtrace();
-
 	$caller = array();
 	$check_class = ! is_null( $ignore_class );
 	$skip_frames++; // skip this function
@@ -5145,8 +5144,9 @@ function wp_debug_backtrace_summary( $ignore_class = null, $skip_frames = 0, $pr
 		} else {
 			if ( in_array( $call['function'], array( 'do_action', 'apply_filters' ) ) ) {
 				$caller[] = "{$call['function']}('{$call['args'][0]}')";
+
 			} elseif ( in_array( $call['function'], array( 'include', 'include_once', 'require', 'require_once' ) ) ) {
-				$caller[] = $call['function'] . "('" . str_replace( array( WP_CONTENT_DIR, ABSPATH ) , '', $call['args'][0] ) . "')";
+			    $caller[] = $call['function'] . "('" . str_replace( array( WP_CONTENT_DIR, ABSPATH ) , '', $call['args'][0] ) . "')";
 			} else {
 				$caller[] = $call['function'];
 			}

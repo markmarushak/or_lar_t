@@ -59,12 +59,10 @@ class Quform_Element_Html extends Quform_Element
      *
      * @return array
      */
-
     public static function getDefaultConfig()
     {
         $config = apply_filters('quform_default_config_html', array(
-            //TODO will fix function '__'
-            //'label' => __('HTML', 'quform'),
+            'label' => __tr('HTML', 'quform'),
             'content' => '',
             'autoFormat' => false,
             'logicEnabled' => false,

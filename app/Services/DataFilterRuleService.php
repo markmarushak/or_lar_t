@@ -3,27 +3,36 @@
 
 namespace App\Services;
 
+use App\Plugins\QformLibrary\Quform\Admin\Page\Forms\Quform_Admin_Page_Forms_Edit;
 use App\Plugins\QformLibrary\Quform\Form\Quform_Form_Factory;
+use App\Plugins\QformLibrary\Quform\Quform_Builder;
 use App\Plugins\QformLibrary\Quform\Quform_Repository;
 use App\Repository\DataFilterRuleRepository;
+
 
 class DataFilterRuleService extends BaseService
 {
     protected $quformRepository;
     protected $quformFormFactory;
     protected $dataFilterRuleRepository;
+    protected $quformBuilder;
+    protected $Quform_Admin_Page_Forms_Edit;
 
     public $nameEntry;
 
     public function __construct(
         Quform_Repository $quformRepository,
         Quform_Form_Factory $quformFormFactory,
-        DataFilterRuleRepository $dataFilterRuleRepository
+        DataFilterRuleRepository $dataFilterRuleRepository,
+        Quform_Builder $quformBuilder,
+        Quform_Admin_Page_Forms_Edit $Quform_Admin_Page_Forms_Edit
     )
     {
         $this->quformRepository = $quformRepository;
         $this->quformFormFactory = $quformFormFactory;
         $this->dataFilterRuleRepository = $dataFilterRuleRepository;
+        $this->quformBuilder = $quformBuilder;
+        $this->Quform_Admin_Page_Forms_Edit = $Quform_Admin_Page_Forms_Edit;
     }
 
     public function createUrls($forms, $dataFiltersRulesDescription )
@@ -48,6 +57,15 @@ class DataFilterRuleService extends BaseService
     {
         return $this->dataFilterRuleRepository->getFormsEntryById($form_id);
     }
+
+    public function getSingleForm($singleId)
+    {
+        $singleForm['form'] = $this->quformRepository->getConfig($singleId);
+        $singleForm['builder'] = $this->quformBuilder;
+        $singleForm['page'] = $this->Quform_Admin_Page_Forms_Edit;
+        return (object) $singleForm;
+    }
+
 
     public function outputOverviewSingleService($entryId)
     {

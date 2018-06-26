@@ -74,16 +74,10 @@ class Quform_Element_Column extends Quform_Element_Container
      */
     public static function getDefaultConfig()
     {
-        /*$config = apply_filters('quform_default_config_column', array(
+        $config = apply_filters('quform_default_config_column', array(
             'width' => '',
             'elements' => array()
-        ));*/
-
-        $config = array(
-            'width' => '',
-            'elements' => array()
-        );
-
+        ));
 
         $config['type'] = 'column';
 

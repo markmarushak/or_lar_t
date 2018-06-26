@@ -3,24 +3,20 @@
 namespace App\Http\Controllers\Affiliate;
 
 use App\Http\Controllers\Controller;
-use App\Repository\AffiliateRepository;
 use App\Services\AffiliateService;
 use App\Services\DataFilterRuleService;
 use Illuminate\Http\Request;
 
 class DataFilterRuleController extends Controller
 {
-    private $affiliateRepository;
     private $affiliateService;
     private $dataFilterRuleService;
 
     public function __construct(
-        AffiliateRepository $affiliateRepository,
         AffiliateService $affiliateService,
         DataFilterRuleService $dataFilterRuleService
     )
     {
-        $this->affiliateRepository = $affiliateRepository;
         $this->affiliateService = $affiliateService;
         $this->dataFilterRuleService = $dataFilterRuleService;
     }
@@ -106,7 +102,10 @@ class DataFilterRuleController extends Controller
         } else {
             $this->affiliateService->addConnectToDb($request, $dataFiltersRulesId);
         }
-        return redirect()->route('connection', [ 'data_filters_rules_id' => $dataFiltersRulesId, 'data_filters_rules_description' => $dataFiltersRulesDescription]);
+        return redirect()->route('connection', [
+            'data_filters_rules_id' => $dataFiltersRulesId,
+            'data_filters_rules_description' => $dataFiltersRulesDescription
+        ]);
     }
 
     /**
@@ -124,6 +123,7 @@ class DataFilterRuleController extends Controller
            return view('affiliate.data-filters-rules.form-builder',
                [
                    'menu' => 'affiliate-service',
+                   'dataFiltersRulesId' => $dataFiltersRulesId,
                    'dataFiltersRulesDescription' => $dataFiltersRulesDescription
                ]
            )->withErrors($connectionToDataBase->getMessage() );
@@ -135,10 +135,40 @@ class DataFilterRuleController extends Controller
                    'menu' => 'affiliate-service',
                    'forms' => $forms,
                    'urls' => $urls,
+                   'dataFiltersRulesId' => $dataFiltersRulesId,
                    'dataFiltersRulesDescription' => $dataFiltersRulesDescription
                ]
            );
        }
+    }
+
+    public function singleFormBuilder(Request $request)
+    {
+        $dataFiltersRulesId = $request->data_filters_rules_id;
+        $dataFiltersRulesDescription = $request->data_filters_rules_description;
+        $connectionToDataBase= $this->affiliateService->connectionToDataBase($dataFiltersRulesId);
+        if (is_a($connectionToDataBase, 'ErrorException')) {
+            return view('affiliate.data-filters-rules.single-form-builder',
+                [
+                    'menu' => 'affiliate-service',
+                    'dataFiltersRulesId' => $dataFiltersRulesId,
+                    'dataFiltersRulesDescription' => $dataFiltersRulesDescription
+                ]
+            )->withErrors($connectionToDataBase->getMessage() );
+        } else {
+            $form = $this->dataFilterRuleService->getSingleForm($request->singleId);
+            return view('affiliate.data-filters-rules.single-form-builder',
+                [
+                    'menu' => 'affiliate-service',
+                    'form' => $form->form,
+                    'builder' => $form->builder,
+                    'page' => $form->page,
+                    'dataFiltersRulesId' => $dataFiltersRulesId,
+                    'dataFiltersRulesDescription' => $dataFiltersRulesDescription
+                ]
+            );
+        }
+
     }
 
     public function dataBaseFields(Request $request)
@@ -220,7 +250,7 @@ class DataFilterRuleController extends Controller
         }
     }
 
-    public function outputOverviewSingle(Request $request)
+    public function singleOutputOverview(Request $request)
     {
         $dataFiltersRulesId = $request->data_filters_rules_id;
         $dataFiltersRulesDescription = $request->data_filters_rules_description;

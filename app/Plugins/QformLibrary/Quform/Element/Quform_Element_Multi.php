@@ -80,17 +80,17 @@ abstract class Quform_Element_Multi extends Quform_Element_Field
     protected function getCssSelectors()
     {
         return parent::getCssSelectors() + array(
-            'options' => '%s .quform-input-%s .quform-options',
-            'option' => '%s .quform-input-%s .quform-option',
-            'optionRadioButton' => '%s .quform-input-%s .quform-option .quform-field-radio',
-            'optionCheckbox' => '%s .quform-input-%s .quform-option .quform-field-checkbox',
-            'optionLabel' => '%s .quform-input-%s .quform-option .quform-option-label',
-            'optionLabelSelected' => '%s .quform-input-%s .quform-option .quform-field:checked + .quform-option-label',
-            'optionIcon' => '%s .quform-input-%s .quform-option .quform-option-icon',
-            'optionIconSelected' => '%s .quform-input-%s .quform-option .quform-option-icon-selected',
-            'optionText' => '%s .quform-input-%s .quform-option .quform-option-text',
-            'optionTextSelected' => '%s .quform-input-%s .quform-option .quform-field:checked + .quform-option-label .quform-option-text'
-        );
+                'options' => '%s .quform-input-%s .quform-options',
+                'option' => '%s .quform-input-%s .quform-option',
+                'optionRadioButton' => '%s .quform-input-%s .quform-option .quform-field-radio',
+                'optionCheckbox' => '%s .quform-input-%s .quform-option .quform-field-checkbox',
+                'optionLabel' => '%s .quform-input-%s .quform-option .quform-option-label',
+                'optionLabelSelected' => '%s .quform-input-%s .quform-option .quform-field:checked + .quform-option-label',
+                'optionIcon' => '%s .quform-input-%s .quform-option .quform-option-icon',
+                'optionIconSelected' => '%s .quform-input-%s .quform-option .quform-option-icon-selected',
+                'optionText' => '%s .quform-input-%s .quform-option .quform-option-text',
+                'optionTextSelected' => '%s .quform-input-%s .quform-option .quform-field:checked + .quform-option-label .quform-option-text'
+            );
     }
 
     /**

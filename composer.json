@@ -21,7 +21,6 @@
     },
     "autoload": {
         "files": [
-            "app/Helpers/class-wp-hook.php",
             "app/Helpers/formatting.php",
             "app/Helpers/option.php",
             "app/Helpers/plugin.php",
@@ -29,7 +28,8 @@
             "app/Helpers/load.php",
             "app/Helpers/cache.php",
             "app/Helpers/functions.php",
-            "app/Helpers/general-template.php"
+            "app/Helpers/general-template.php",
+            "app/Helpers/l10n.php"
 
         ],
         "classmap": [

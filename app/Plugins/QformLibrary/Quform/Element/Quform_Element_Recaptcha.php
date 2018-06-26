@@ -3,6 +3,7 @@ namespace App\Plugins\QformLibrary\Quform\Element;
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
  */
+
 class Quform_Element_Recaptcha extends Quform_Element_Field
 {
     /**
@@ -136,7 +137,7 @@ class Quform_Element_Recaptcha extends Quform_Element_Field
     public static function getDefaultConfig()
     {
         $config = apply_filters('quform_default_config_recaptcha', array(
-            'label' => __('Are you human?', 'quform'),
+            'label' => __tr('Are you human?', 'quform'),
             'subLabel' => '',
             'description' => '',
             'descriptionAbove' => '',
