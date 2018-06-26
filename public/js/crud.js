@@ -37,7 +37,6 @@ function showData(){
        url: laroute.action('show-affiliates-partners'),
        data: {data: type},
     }).done(function(data){
-        //table.destroy();
         $('#m_table_2').DataTable({
             paging: false,
             ordering: true,

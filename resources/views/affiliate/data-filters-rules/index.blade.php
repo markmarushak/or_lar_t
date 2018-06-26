@@ -14,9 +14,9 @@
 
 
 
-                    <th>
+                    <!--<th>
                         RecordID
-                    </th>
+                    </th>-->
                     <th data-field="OrderID" class="m-datatable__cell m-datatable__cell--sort">
 
                         <span style="width: 130px;">Descriptions</span>
@@ -46,9 +46,9 @@
                 <tbody>
                 @foreach($dataFiltersRules as $row)
                     <tr>
-                        <td>
+                       <!-- <td>
                             1
-                        </td>
+                        </td>-->
                         <td>
                             <span style="width: 130px;">{{$row->description}}</span>
                         </td>
