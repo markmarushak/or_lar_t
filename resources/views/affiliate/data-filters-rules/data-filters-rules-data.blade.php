@@ -19,9 +19,9 @@
                         <table class="table m-table m-table--head-separator-primary" id="m_table_4">
                             <thead>
                             <tr>
-                                <th>
+                             <!--   <th>
 
-                                </th>
+                                </th>-->
                                 <th data-field="ID" class="m-datatable__cell m-datatable__cell--sort" data-sort="desc">
                                     <span style="width: 130px;">ID<i class="la la-arrow-down"></i></span>
                                 </th>
@@ -72,10 +72,10 @@
 
                             @foreach($data as $row)
                             <tr data-row="0" class="m-datatable__row" style="left: 0px;">
-                                <td data-field="RecordID" class="m-datatable__cell--center m-datatable__cell m-datatable__cell--check">
+                                <!--<td data-field="RecordID" class="m-datatable__cell--center m-datatable__cell m-datatable__cell--check">
                                     <span style="width: 10px;"><label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">
                                             <input value="80" type="checkbox"><span></span></label></span>
-                                </td>
+                                </td>-->
                                 <td data-field="ID" class="m-datatable__cell--sorted m-datatable__cell">
                                     <span style="width: 30px;">{{$row['id']}}</span>
                                 </td>
