@@ -326,55 +326,55 @@ class Quform_Builder
     {
         return apply_filters('quform_bulk_options', array(
             'countries' => array(
-                'name' => __('Countries', 'quform'),
+                'name' => __tr('Countries', 'quform'),
                 'options' => $this->getCountries()
             ),
             'usStates' => array(
-                'name' => __('U.S. States', 'quform'),
+                'name' => __tr('U.S. States', 'quform'),
                 'options' => $this->getUsStates()
             ),
             'canadianProvinces' => array(
-                'name' => __('Canadian Provinces', 'quform'),
+                'name' => __tr('Canadian Provinces', 'quform'),
                 'options' => $this->getCanadianProvinces()
             ),
             'ukCounties' => array(
-                'name' => __('UK Counties', 'quform'),
+                'name' => __tr('UK Counties', 'quform'),
                 'options' => $this->getUkCounties()
             ),
             'germanStates' => array(
-                'name' => __('German States', 'quform'),
+                'name' => __tr('German States', 'quform'),
                 'options' => array('Baden-Wurttemberg', 'Bavaria', 'Berlin', 'Brandenburg', 'Bremen', 'Hamburg', 'Hesse', 'Mecklenburg-West Pomerania', 'Lower Saxony', 'North Rhine-Westphalia', 'Rhineland-Palatinate', 'Saarland', 'Saxony', 'Saxony-Anhalt', 'Schleswig-Holstein', 'Thuringia')
             ),
             'dutchProvinces' => array(
-                'name' => __('Dutch Provinces', 'quform'),
+                'name' => __tr('Dutch Provinces', 'quform'),
                 'options' => array('Drente', 'Flevoland', 'Friesland', 'Gelderland', 'Groningen', 'Limburg', 'Noord-Brabant', 'Noord-Holland', 'Overijssel', 'Zuid-Holland', 'Utrecht', 'Zeeland')
             ),
             'continents' => array(
-                'name' => __('Continents', 'quform'),
-                'options' => array(__('Africa', 'quform'), __('Antarctica', 'quform'), __('Asia', 'quform'), __('Australia', 'quform'), __('Europe', 'quform'), __('North America', 'quform'), __('South America', 'quform'))
+                'name' => __tr('Continents', 'quform'),
+                'options' => array(__tr('Africa', 'quform'), __tr('Antarctica', 'quform'), __tr('Asia', 'quform'), __tr('Australia', 'quform'), __tr('Europe', 'quform'), __tr('North America', 'quform'), __tr('South America', 'quform'))
             ),
             'gender' => array(
-                'name' => __('Gender', 'quform'),
-                'options' => array(__('Male', 'quform'), __('Female', 'quform'))
+                'name' => __tr('Gender', 'quform'),
+                'options' => array(__tr('Male', 'quform'), __tr('Female', 'quform'))
             ),
             'age' => array(
-                'name' => __('Age', 'quform'),
-                'options' => array(__('Under 18', 'quform'), __('18-24', 'quform'), __('25-34', 'quform'), __('35-44', 'quform'), __('45-54', 'quform'), __('55-64', 'quform'), __('65 or over', 'quform'))
+                'name' => __tr('Age', 'quform'),
+                'options' => array(__tr('Under 18', 'quform'), __tr('18-24', 'quform'), __tr('25-34', 'quform'), __tr('35-44', 'quform'), __tr('45-54', 'quform'), __tr('55-64', 'quform'), __tr('65 or over', 'quform'))
             ),
             'maritalStatus' => array(
-                'name' => __('Marital Status', 'quform'),
-                'options' => array(__('Single', 'quform'), __('Married', 'quform'), __('Divorced', 'quform'), __('Widowed', 'quform'))
+                'name' => __tr('Marital Status', 'quform'),
+                'options' => array(__tr('Single', 'quform'), __tr('Married', 'quform'), __tr('Divorced', 'quform'), __tr('Widowed', 'quform'))
             ),
             'income' => array(
-                'name' => __('Income', 'quform'),
-                'options' => array(__('Under $20,000', 'quform'), __('$20,000 - $30,000', 'quform'), __('$30,000 - $40,000', 'quform'), __('$40,000 - $50,000', 'quform'), __('$50,000 - $75,000', 'quform'), __('$75,000 - $100,000', 'quform'), __('$100,000 - $150,000', 'quform'), __('$150,000 or more', 'quform'))
+                'name' => __tr('Income', 'quform'),
+                'options' => array(__tr('Under $20,000', 'quform'), __tr('$20,000 - $30,000', 'quform'), __tr('$30,000 - $40,000', 'quform'), __tr('$40,000 - $50,000', 'quform'), __tr('$50,000 - $75,000', 'quform'), __tr('$75,000 - $100,000', 'quform'), __tr('$100,000 - $150,000', 'quform'), __tr('$150,000 or more', 'quform'))
             ),
             'days' => array(
-                'name' => __('Days', 'quform'),
-                'options' => array(__('Monday', 'quform'), __('Tuesday', 'quform'), __('Wednesday', 'quform'), __('Thursday', 'quform'), __('Friday', 'quform'), __('Saturday', 'quform'), __('Sunday', 'quform'))
+                'name' => __tr('Days', 'quform'),
+                'options' => array(__tr('Monday', 'quform'), __tr('Tuesday', 'quform'), __tr('Wednesday', 'quform'), __tr('Thursday', 'quform'), __tr('Friday', 'quform'), __tr('Saturday', 'quform'), __tr('Sunday', 'quform'))
             ),
             'months' => array(
-                'name' => __('Months', 'quform'),
+                'name' => __tr('Months', 'quform'),
                 'options' => array_values($this->getAllMonths())
             )
         ));
@@ -388,18 +388,18 @@ class Quform_Builder
     protected function getCountries()
     {
         return apply_filters('quform_countries', array(
-            __('Afghanistan', 'quform'), __('Albania', 'quform'), __('Algeria', 'quform'), __('American Samoa', 'quform'), __('Andorra', 'quform'), __('Angola', 'quform'), __('Anguilla', 'quform'), __('Antarctica', 'quform'), __('Antigua And Barbuda', 'quform'), __('Argentina', 'quform'), __('Armenia', 'quform'), __('Aruba', 'quform'), __('Australia', 'quform'), __('Austria', 'quform'), __('Azerbaijan', 'quform'), __('Bahamas', 'quform'), __('Bahrain', 'quform'), __('Bangladesh', 'quform'), __('Barbados', 'quform'), __('Belarus', 'quform'), __('Belgium', 'quform'),
-            __('Belize', 'quform'), __('Benin', 'quform'), __('Bermuda', 'quform'), __('Bhutan', 'quform'), __('Bolivia', 'quform'), __('Bosnia And Herzegovina', 'quform'), __('Botswana', 'quform'), __('Bouvet Island', 'quform'), __('Brazil', 'quform'), __('British Indian Ocean Territory', 'quform'), __('Brunei Darussalam', 'quform'), __('Bulgaria', 'quform'), __('Burkina Faso', 'quform'), __('Burundi', 'quform'), __('Cambodia', 'quform'), __('Cameroon', 'quform'), __('Canada', 'quform'), __('Cape Verde', 'quform'), __('Cayman Islands', 'quform'), __('Central African Republic', 'quform'), __('Chad', 'quform'),
-            __('Chile', 'quform'), __('China', 'quform'), __('Christmas Island', 'quform'), __('Cocos (Keeling) Islands', 'quform'), __('Colombia', 'quform'), __('Comoros', 'quform'), __('Congo', 'quform'), __('Congo, The Democratic Republic Of The', 'quform'), __('Cook Islands', 'quform'), __('Costa Rica', 'quform'), __('Cote D\'Ivoire', 'quform'), __('Croatia (Local Name: Hrvatska)', 'quform'), __('Cuba', 'quform'), __('Cyprus', 'quform'), __('Czech Republic', 'quform'), __('Denmark', 'quform'), __('Djibouti', 'quform'), __('Dominica', 'quform'), __('Dominican Republic', 'quform'), __('East Timor', 'quform'), __('Ecuador', 'quform'),
-            __('Egypt', 'quform'), __('El Salvador', 'quform'), __('Equatorial Guinea', 'quform'), __('Eritrea', 'quform'), __('Estonia', 'quform'), __('Ethiopia', 'quform'), __('Falkland Islands (Malvinas)', 'quform'), __('Faroe Islands', 'quform'), __('Fiji', 'quform'), __('Finland', 'quform'), __('France', 'quform'), __('France, Metropolitan', 'quform'), __('French Guiana', 'quform'), __('French Polynesia', 'quform'), __('French Southern Territories', 'quform'), __('Gabon', 'quform'), __('Gambia', 'quform'), __('Georgia', 'quform'), __('Germany', 'quform'), __('Ghana', 'quform'), __('Gibraltar', 'quform'),
-            __('Greece', 'quform'), __('Greenland', 'quform'), __('Grenada', 'quform'), __('Guadeloupe', 'quform'), __('Guam', 'quform'), __('Guatemala', 'quform'), __('Guinea', 'quform'), __('Guinea-Bissau', 'quform'), __('Guyana', 'quform'), __('Haiti', 'quform'), __('Heard And Mc Donald Islands', 'quform'), __('Holy See (Vatican City State)', 'quform'), __('Honduras', 'quform'), __('Hong Kong', 'quform'), __('Hungary', 'quform'), __('Iceland', 'quform'), __('India', 'quform'), __('Indonesia', 'quform'), __('Iran (Islamic Republic Of)', 'quform'), __('Iraq', 'quform'), __('Ireland', 'quform'),
-            __('Israel', 'quform'), __('Italy', 'quform'), __('Jamaica', 'quform'), __('Japan', 'quform'), __('Jordan', 'quform'), __('Kazakhstan', 'quform'), __('Kenya', 'quform'), __('Kiribati', 'quform'), __('Korea, Democratic People\'s Republic Of', 'quform'), __('Korea, Republic Of', 'quform'), __('Kuwait', 'quform'), __('Kyrgyzstan', 'quform'), __('Lao People\'s Democratic Republic', 'quform'), __('Latvia', 'quform'), __('Lebanon', 'quform'), __('Lesotho', 'quform'), __('Liberia', 'quform'), __('Libyan Arab Jamahiriya', 'quform'), __('Liechtenstein', 'quform'), __('Lithuania', 'quform'), __('Luxembourg', 'quform'),
-            __('Macau', 'quform'), __('Macedonia, Former Yugoslav Republic Of', 'quform'), __('Madagascar', 'quform'), __('Malawi', 'quform'), __('Malaysia', 'quform'), __('Maldives', 'quform'), __('Mali', 'quform'), __('Malta', 'quform'), __('Marshall Islands', 'quform'), __('Martinique', 'quform'), __('Mauritania', 'quform'), __('Mauritius', 'quform'), __('Mayotte', 'quform'), __('Mexico', 'quform'), __('Micronesia, Federated States Of', 'quform'), __('Moldova, Republic Of', 'quform'), __('Monaco', 'quform'), __('Mongolia', 'quform'), __('Montserrat', 'quform'), __('Morocco', 'quform'), __('Mozambique', 'quform'),
-            __('Myanmar', 'quform'), __('Namibia', 'quform'), __('Nauru', 'quform'), __('Nepal', 'quform'), __('Netherlands', 'quform'), __('Netherlands Antilles', 'quform'), __('New Caledonia', 'quform'), __('New Zealand', 'quform'), __('Nicaragua', 'quform'), __('Niger', 'quform'), __('Nigeria', 'quform'), __('Niue', 'quform'), __('Norfolk Island', 'quform'), __('Northern Mariana Islands', 'quform'), __('Norway', 'quform'), __('Oman', 'quform'), __('Pakistan', 'quform'), __('Palau', 'quform'), __('Panama', 'quform'), __('Papua New Guinea', 'quform'), __('Paraguay', 'quform'),
-            __('Peru', 'quform'), __('Philippines', 'quform'), __('Pitcairn', 'quform'), __('Poland', 'quform'), __('Portugal', 'quform'), __('Puerto Rico', 'quform'), __('Qatar', 'quform'), __('Reunion', 'quform'), __('Romania', 'quform'), __('Russian Federation', 'quform'), __('Rwanda', 'quform'), __('Saint Kitts And Nevis', 'quform'), __('Saint Lucia', 'quform'), __('Saint Vincent And The Grenadines', 'quform'), __('Samoa', 'quform'), __('San Marino', 'quform'), __('Sao Tome And Principe', 'quform'), __('Saudi Arabia', 'quform'), __('Senegal', 'quform'), __('Seychelles', 'quform'), __('Sierra Leone', 'quform'),
-            __('Singapore', 'quform'), __('Slovakia (Slovak Republic)', 'quform'), __('Slovenia', 'quform'), __('Solomon Islands', 'quform'), __('Somalia', 'quform'), __('South Africa', 'quform'), __('South Georgia, South Sandwich Islands', 'quform'), __('Spain', 'quform'), __('Sri Lanka', 'quform'), __('St. Helena', 'quform'), __('St. Pierre And Miquelon', 'quform'), __('Sudan', 'quform'), __('Suriname', 'quform'), __('Svalbard And Jan Mayen Islands', 'quform'), __('Swaziland', 'quform'), __('Sweden', 'quform'), __('Switzerland', 'quform'), __('Syrian Arab Republic', 'quform'), __('Taiwan', 'quform'), __('Tajikistan', 'quform'), __('Tanzania, United Republic Of', 'quform'),
-            __('Thailand', 'quform'), __('Togo', 'quform'), __('Tokelau', 'quform'), __('Tonga', 'quform'), __('Trinidad And Tobago', 'quform'), __('Tunisia', 'quform'), __('Turkey', 'quform'), __('Turkmenistan', 'quform'), __('Turks And Caicos Islands', 'quform'), __('Tuvalu', 'quform'), __('Uganda', 'quform'), __('Ukraine', 'quform'), __('United Arab Emirates', 'quform'), __('United Kingdom', 'quform'), __('United States', 'quform'), __('United States Minor Outlying Islands', 'quform'), __('Uruguay', 'quform'), __('Uzbekistan', 'quform'), __('Vanuatu', 'quform'), __('Venezuela', 'quform'), __('Vietnam', 'quform'),
-            __('Virgin Islands (British)', 'quform'), __('Virgin Islands (U.S.)', 'quform'), __('Wallis And Futuna Islands', 'quform'), __('Western Sahara', 'quform'), __('Yemen', 'quform'), __('Yugoslavia', 'quform'), __('Zambia', 'quform'), __('Zimbabwe', 'quform')
+            __tr('Afghanistan', 'quform'), __tr('Albania', 'quform'), __tr('Algeria', 'quform'), __tr('American Samoa', 'quform'), __tr('Andorra', 'quform'), __tr('Angola', 'quform'), __tr('Anguilla', 'quform'), __tr('Antarctica', 'quform'), __tr('Antigua And Barbuda', 'quform'), __tr('Argentina', 'quform'), __tr('Armenia', 'quform'), __tr('Aruba', 'quform'), __tr('Australia', 'quform'), __tr('Austria', 'quform'), __tr('Azerbaijan', 'quform'), __tr('Bahamas', 'quform'), __tr('Bahrain', 'quform'), __tr('Bangladesh', 'quform'), __tr('Barbados', 'quform'), __tr('Belarus', 'quform'), __tr('Belgium', 'quform'),
+            __tr('Belize', 'quform'), __tr('Benin', 'quform'), __tr('Bermuda', 'quform'), __tr('Bhutan', 'quform'), __tr('Bolivia', 'quform'), __tr('Bosnia And Herzegovina', 'quform'), __tr('Botswana', 'quform'), __tr('Bouvet Island', 'quform'), __tr('Brazil', 'quform'), __tr('British Indian Ocean Territory', 'quform'), __tr('Brunei Darussalam', 'quform'), __tr('Bulgaria', 'quform'), __tr('Burkina Faso', 'quform'), __tr('Burundi', 'quform'), __tr('Cambodia', 'quform'), __tr('Cameroon', 'quform'), __tr('Canada', 'quform'), __tr('Cape Verde', 'quform'), __tr('Cayman Islands', 'quform'), __tr('Central African Republic', 'quform'), __tr('Chad', 'quform'),
+            __tr('Chile', 'quform'), __tr('China', 'quform'), __tr('Christmas Island', 'quform'), __tr('Cocos (Keeling) Islands', 'quform'), __tr('Colombia', 'quform'), __tr('Comoros', 'quform'), __tr('Congo', 'quform'), __tr('Congo, The Democratic Republic Of The', 'quform'), __tr('Cook Islands', 'quform'), __tr('Costa Rica', 'quform'), __tr('Cote D\'Ivoire', 'quform'), __tr('Croatia (Local Name: Hrvatska)', 'quform'), __tr('Cuba', 'quform'), __tr('Cyprus', 'quform'), __tr('Czech Republic', 'quform'), __tr('Denmark', 'quform'), __tr('Djibouti', 'quform'), __tr('Dominica', 'quform'), __tr('Dominican Republic', 'quform'), __tr('East Timor', 'quform'), __tr('Ecuador', 'quform'),
+            __tr('Egypt', 'quform'), __tr('El Salvador', 'quform'), __tr('Equatorial Guinea', 'quform'), __tr('Eritrea', 'quform'), __tr('Estonia', 'quform'), __tr('Ethiopia', 'quform'), __tr('Falkland Islands (Malvinas)', 'quform'), __tr('Faroe Islands', 'quform'), __tr('Fiji', 'quform'), __tr('Finland', 'quform'), __tr('France', 'quform'), __tr('France, Metropolitan', 'quform'), __tr('French Guiana', 'quform'), __tr('French Polynesia', 'quform'), __tr('French Southern Territories', 'quform'), __tr('Gabon', 'quform'), __tr('Gambia', 'quform'), __tr('Georgia', 'quform'), __tr('Germany', 'quform'), __tr('Ghana', 'quform'), __tr('Gibraltar', 'quform'),
+            __tr('Greece', 'quform'), __tr('Greenland', 'quform'), __tr('Grenada', 'quform'), __tr('Guadeloupe', 'quform'), __tr('Guam', 'quform'), __tr('Guatemala', 'quform'), __tr('Guinea', 'quform'), __tr('Guinea-Bissau', 'quform'), __tr('Guyana', 'quform'), __tr('Haiti', 'quform'), __tr('Heard And Mc Donald Islands', 'quform'), __tr('Holy See (Vatican City State)', 'quform'), __tr('Honduras', 'quform'), __tr('Hong Kong', 'quform'), __tr('Hungary', 'quform'), __tr('Iceland', 'quform'), __tr('India', 'quform'), __tr('Indonesia', 'quform'), __tr('Iran (Islamic Republic Of)', 'quform'), __tr('Iraq', 'quform'), __tr('Ireland', 'quform'),
+            __tr('Israel', 'quform'), __tr('Italy', 'quform'), __tr('Jamaica', 'quform'), __tr('Japan', 'quform'), __tr('Jordan', 'quform'), __tr('Kazakhstan', 'quform'), __tr('Kenya', 'quform'), __tr('Kiribati', 'quform'), __tr('Korea, Democratic People\'s Republic Of', 'quform'), __tr('Korea, Republic Of', 'quform'), __tr('Kuwait', 'quform'), __tr('Kyrgyzstan', 'quform'), __tr('Lao People\'s Democratic Republic', 'quform'), __tr('Latvia', 'quform'), __tr('Lebanon', 'quform'), __tr('Lesotho', 'quform'), __tr('Liberia', 'quform'), __tr('Libyan Arab Jamahiriya', 'quform'), __tr('Liechtenstein', 'quform'), __tr('Lithuania', 'quform'), __tr('Luxembourg', 'quform'),
+            __tr('Macau', 'quform'), __tr('Macedonia, Former Yugoslav Republic Of', 'quform'), __tr('Madagascar', 'quform'), __tr('Malawi', 'quform'), __tr('Malaysia', 'quform'), __tr('Maldives', 'quform'), __tr('Mali', 'quform'), __tr('Malta', 'quform'), __tr('Marshall Islands', 'quform'), __tr('Martinique', 'quform'), __tr('Mauritania', 'quform'), __tr('Mauritius', 'quform'), __tr('Mayotte', 'quform'), __tr('Mexico', 'quform'), __tr('Micronesia, Federated States Of', 'quform'), __tr('Moldova, Republic Of', 'quform'), __tr('Monaco', 'quform'), __tr('Mongolia', 'quform'), __tr('Montserrat', 'quform'), __tr('Morocco', 'quform'), __tr('Mozambique', 'quform'),
+            __tr('Myanmar', 'quform'), __tr('Namibia', 'quform'), __tr('Nauru', 'quform'), __tr('Nepal', 'quform'), __tr('Netherlands', 'quform'), __tr('Netherlands Antilles', 'quform'), __tr('New Caledonia', 'quform'), __tr('New Zealand', 'quform'), __tr('Nicaragua', 'quform'), __tr('Niger', 'quform'), __tr('Nigeria', 'quform'), __tr('Niue', 'quform'), __tr('Norfolk Island', 'quform'), __tr('Northern Mariana Islands', 'quform'), __tr('Norway', 'quform'), __tr('Oman', 'quform'), __tr('Pakistan', 'quform'), __tr('Palau', 'quform'), __tr('Panama', 'quform'), __tr('Papua New Guinea', 'quform'), __tr('Paraguay', 'quform'),
+            __tr('Peru', 'quform'), __tr('Philippines', 'quform'), __tr('Pitcairn', 'quform'), __tr('Poland', 'quform'), __tr('Portugal', 'quform'), __tr('Puerto Rico', 'quform'), __tr('Qatar', 'quform'), __tr('Reunion', 'quform'), __tr('Romania', 'quform'), __tr('Russian Federation', 'quform'), __tr('Rwanda', 'quform'), __tr('Saint Kitts And Nevis', 'quform'), __tr('Saint Lucia', 'quform'), __tr('Saint Vincent And The Grenadines', 'quform'), __tr('Samoa', 'quform'), __tr('San Marino', 'quform'), __tr('Sao Tome And Principe', 'quform'), __tr('Saudi Arabia', 'quform'), __tr('Senegal', 'quform'), __tr('Seychelles', 'quform'), __tr('Sierra Leone', 'quform'),
+            __tr('Singapore', 'quform'), __tr('Slovakia (Slovak Republic)', 'quform'), __tr('Slovenia', 'quform'), __tr('Solomon Islands', 'quform'), __tr('Somalia', 'quform'), __tr('South Africa', 'quform'), __tr('South Georgia, South Sandwich Islands', 'quform'), __tr('Spain', 'quform'), __tr('Sri Lanka', 'quform'), __tr('St. Helena', 'quform'), __tr('St. Pierre And Miquelon', 'quform'), __tr('Sudan', 'quform'), __tr('Suriname', 'quform'), __tr('Svalbard And Jan Mayen Islands', 'quform'), __tr('Swaziland', 'quform'), __tr('Sweden', 'quform'), __tr('Switzerland', 'quform'), __tr('Syrian Arab Republic', 'quform'), __tr('Taiwan', 'quform'), __tr('Tajikistan', 'quform'), __tr('Tanzania, United Republic Of', 'quform'),
+            __tr('Thailand', 'quform'), __tr('Togo', 'quform'), __tr('Tokelau', 'quform'), __tr('Tonga', 'quform'), __tr('Trinidad And Tobago', 'quform'), __tr('Tunisia', 'quform'), __tr('Turkey', 'quform'), __tr('Turkmenistan', 'quform'), __tr('Turks And Caicos Islands', 'quform'), __tr('Tuvalu', 'quform'), __tr('Uganda', 'quform'), __tr('Ukraine', 'quform'), __tr('United Arab Emirates', 'quform'), __tr('United Kingdom', 'quform'), __tr('United States', 'quform'), __tr('United States Minor Outlying Islands', 'quform'), __tr('Uruguay', 'quform'), __tr('Uzbekistan', 'quform'), __tr('Vanuatu', 'quform'), __tr('Venezuela', 'quform'), __tr('Vietnam', 'quform'),
+            __tr('Virgin Islands (British)', 'quform'), __tr('Virgin Islands (U.S.)', 'quform'), __tr('Wallis And Futuna Islands', 'quform'), __tr('Western Sahara', 'quform'), __tr('Yemen', 'quform'), __tr('Yugoslavia', 'quform'), __tr('Zambia', 'quform'), __tr('Zimbabwe', 'quform')
         ));
     }
 
@@ -472,18 +472,18 @@ class Quform_Builder
     protected function getAllMonths()
     {
         return apply_filters('quform_get_all_months', array(
-            1  => __('January', 'quform'),
-            2  => __('February', 'quform'),
-            3  => __('March', 'quform'),
-            4  => __('April', 'quform'),
-            5  => __('May', 'quform'),
-            6  => __('June', 'quform'),
-            7  => __('July', 'quform'),
-            8  => __('August', 'quform'),
-            9  => __('September', 'quform'),
-            10 => __('October', 'quform'),
-            11 => __('November', 'quform'),
-            12 => __('December', 'quform')
+            1  => __tr('January', 'quform'),
+            2  => __tr('February', 'quform'),
+            3  => __tr('March', 'quform'),
+            4  => __tr('April', 'quform'),
+            5  => __tr('May', 'quform'),
+            6  => __tr('June', 'quform'),
+            7  => __tr('July', 'quform'),
+            8  => __tr('August', 'quform'),
+            9  => __tr('September', 'quform'),
+            10 => __tr('October', 'quform'),
+            11 => __tr('November', 'quform'),
+            12 => __tr('December', 'quform')
         ));
     }
 
@@ -1489,9 +1489,9 @@ class Quform_Builder
         <div id="qfb-element-<?php echo esc_attr($element['id']); ?>" class="qfb-element qfb-element-page" data-id="<?php echo esc_attr($element['id']); ?>" data-type="page">
             <div id="qfb-child-elements-<?php echo esc_attr($element['id']); ?>" class="qfb-child-elements qfb-cf">
                 <?php
-                    foreach ($element['elements'] as $child) {
-                        echo $this->getElementHtml($child);
-                    }
+                foreach ($element['elements'] as $child) {
+                    echo $this->getElementHtml($child);
+                }
                 ?>
             </div>
         </div>
@@ -1521,9 +1521,9 @@ class Quform_Builder
             </div>
             <div id="qfb-child-elements-<?php echo esc_attr($element['id']); ?>" class="qfb-child-elements qfb-cf">
                 <?php
-                    foreach ($element['elements'] as $child) {
-                        echo $this->getElementHtml($child);
-                    }
+                foreach ($element['elements'] as $child) {
+                    echo $this->getElementHtml($child);
+                }
                 ?>
             </div>
             <div class="qfb-element-group-empty-indicator"><span class="qfb-element-group-empty-indicator-arrow"><i class="fa fa-arrow-down"></i></span><span class="qfb-element-group-empty-add-row" title="<?php esc_attr_e('Add column layout', 'quform'); ?>"><i class="fa fa-columns"></i><i class="mdi mdi-add_circle"></i></span></div>
@@ -1543,11 +1543,11 @@ class Quform_Builder
         ob_start(); ?>
         <div id="qfb-element-<?php echo esc_attr($element['id']); ?>" class="qfb-element qfb-element-row" data-id="<?php echo esc_attr($element['id']); ?>" data-type="row">
             <div id="qfb-child-elements-<?php echo esc_attr($element['id']); ?>" class="qfb-child-elements qfb-cf qfb-<?php echo esc_attr(count($element['elements'])); ?>-columns">
-            <?php
+                <?php
                 foreach ($element['elements'] as $child) {
                     echo $this->getElementHtml($child);
                 }
-            ?>
+                ?>
             </div>
             <div class="qfb-row-actions">
                 <span class="qfb-row-action-add-column" title="<?php esc_attr_e('Add column', 'quform'); ?>"><i class="mdi mdi-add_circle"></i></span>
@@ -1640,18 +1640,15 @@ class Quform_Builder
      */
     public function getPageTabNavHtml($key = null, $elementId = null, $label = null)
     {
-
         $output = '<li class="qfb-page-tab-nav k-item' . ($key === 0 ? ' qfb-current-page k-state-active' : '') . '"' . (is_numeric($elementId) ? sprintf(' data-id="%d"', esc_attr($elementId)) : '') . '>';
-
         $output .= '<span class="qfb-page-tab-nav-label">';
 
         if (Quform::isNonEmptyString($label)) {
-
             $output .= esc_html($label);
         } else if (is_numeric($key)) {
-
             $output .= esc_html(sprintf(__tr('Page %s', 'quform'), $key + 1));
         }
+
         $output .= '</span>';
         $output .= '<span class="qfb-page-actions">';
         $output .= '<span class="qfb-page-action-settings" title="' . esc_attr__('Settings', 'quform') . '"><i class="mdi mdi-settings"></i></span>';
@@ -2684,7 +2681,4 @@ class Quform_Builder
             'fa-superpowers', 'fa-wpexplorer', 'fa-meetup'
         );
     }
-
-
-
 }

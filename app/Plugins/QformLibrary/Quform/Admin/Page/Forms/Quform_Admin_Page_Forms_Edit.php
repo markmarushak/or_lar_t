@@ -96,7 +96,7 @@ class Quform_Admin_Page_Forms_Edit extends Quform_Admin_Page
      */
     protected function getAdminTitle()
     {
-        return __('Edit Form', 'quform');
+        return __tr('Edit Form', 'quform');
     }
 
     /**

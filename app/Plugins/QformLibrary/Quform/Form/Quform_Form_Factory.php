@@ -4,11 +4,8 @@ namespace App\Plugins\QformLibrary\Quform\Form;
 
 use App\Plugins\QformLibrary\Quform\Quform_Confirmation;
 use App\Plugins\QformLibrary\Quform\Quform_Form;
-
 use App\Plugins\QformLibrary\Quform;
-
 use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Factory;
-
 use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Page;
 use App\Plugins\QformLibrary\Quform\Quform_Notification;
 use App\Plugins\QformLibrary\Quform\Quform_Options;
