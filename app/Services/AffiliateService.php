@@ -26,11 +26,9 @@ class AffiliateService extends BaseService
 
     public function connectionToDataBase($dataFiltersRulesId)
     {
-        $settingOfDataBaseById = $this->affiliateRepository->getSettingOfDataBaseById($dataFiltersRulesId);
-
-        $settingOfDataBaseById = $this->decryptSettingToDb($settingOfDataBaseById->setting);
-
-        global $wpdb;
+            $settingOfDataBaseById = $this->affiliateRepository->getSettingOfDataBaseById($dataFiltersRulesId);
+            $settingOfDataBaseById = $this->decryptSettingToDb($settingOfDataBaseById->setting);
+            global $wpdb;
         try
         {
             if ($wpdb = new Wpdb(
