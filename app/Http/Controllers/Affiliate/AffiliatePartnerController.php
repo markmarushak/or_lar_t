@@ -84,5 +84,12 @@ class AffiliatePartnerController extends Controller
         return response()->json();
     }
 
+    public function acAffiliatesPartners(Request $request)
+    {
+        $result = $this->affiliateService->getAffiliatesDescriptions($request);
+        return response()->json($result);
+
+    }
+
 
 }

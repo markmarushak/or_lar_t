@@ -123,4 +123,8 @@ class AffiliateService extends BaseService
         return $this->affiliateRepository->editDataById($request);
     }
 
+    public function getAffiliatesDescriptions($request){
+        return $this->affiliateRepository->getAffiliatesDescriptions($request);
+    }
+
 }

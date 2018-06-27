@@ -14,8 +14,12 @@
         @include('affiliate.tabs-menu.top-menu')
         @include('errors')
         @if(isset($data) && !empty($data) )
+
             <div class="m-portlet m-portlet--mobile">
-                <div class="m-portlet__body qfb-box">
+                 <div class="m-portlet__body qfb-box">
+                     <div>
+                         <input id="query" placeholder="Search" type="text"/>
+                     </div>
                         <table class="table m-table m-table--head-separator-primary" id="m_table_4">
                             <thead>
                             <tr>
@@ -133,5 +137,5 @@
             @endif
 
     </div>
-
+    {!! Html::script('js/dataFRData.js') !!}
 @endsection

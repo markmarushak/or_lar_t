@@ -79,6 +79,7 @@ class DataFilterRuleController extends Controller
     {
         $dataFiltersRulesId = $request->data_filters_rules_id;
         $dataFiltersRulesDescription = $request->data_filters_rules_description;
+
         $settingsOfDataBase = $this->affiliateService->getSettingOfDataBaseById($dataFiltersRulesId);
 
         return view('affiliate.data-filters-rules.connection',

@@ -78,16 +78,16 @@ function showData(){
                 },
                 {
                     targets: 4,
-                    data: {id: 'id',
-                        description: 'description'},
+                    data: {id: 'data_filters_rules_id',
+                            description: 'description'},
                     render: function (data, type, full, meta) {
                         return `
-                        <span style="width: 70px;"><a href="" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
+                        <span style="width: 70px;"><a href="#" onclick="window.location = laroute.action('connection', {data_filters_rules_id:'`+data.data_filters_rules_id+`', data_filters_rules_description:'`+data.description+`'})" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
                                     <i class="la la-edit"></i>
                                 </a></span>`;
                     },
                 },
-         //       {{ route('connection', ['data_filters_rules_id' => `+data.id+`, 'data_filters_rules_description' => `+data.description+`]) }}
+         //
                 {
                     targets: 5,
                     data: 'status',
