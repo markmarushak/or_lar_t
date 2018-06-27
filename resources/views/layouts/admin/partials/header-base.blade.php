@@ -29,14 +29,14 @@
 	<div class="m-container m-container--fluid m-container--full-height">
 		<div class="m-stack m-stack--ver m-stack--desktop">
 			<!-- BEGIN: Brand -->
-			@include('layouts.admin.partials._header-brand')
+			@include('layouts.admin.partials.header-brand')
 			<!-- END: Brand -->
 			<div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
 				<!-- BEGIN: Horizontal Menu -->
-				@include('layouts.admin.partials._header-hor-menu')
+				@include('layouts.admin.partials.header-hor-menu')
 				<!-- END: Horizontal Menu -->
 				<!-- BEGIN: Topbar -->
-				@include('layouts.admin.partials._header-topbar')
+				@include('layouts.admin.partials.header-topbar')
 				<!-- END: Topbar -->
 			</div>
 		</div>

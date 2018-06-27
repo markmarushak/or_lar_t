@@ -40,7 +40,7 @@ Route::get('/route-clear', function() {
     return "Route is cleared";
 });
 
-Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service'], function(){
+Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'middleware' => 'auth'], function(){
 
     Route::get('/', 'AffiliateController@index')->name('affiliate-service');
     Route::get('/compaigns', 'AffiliateController@compaigns')->name('compaigns');

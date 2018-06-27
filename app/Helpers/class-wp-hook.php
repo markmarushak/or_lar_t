@@ -16,7 +16,7 @@
  * @see Iterator
  * @see ArrayAccess
  */
-final class hook  {
+final class WpHook  {
 
     /**
      * Hook callbacks.
