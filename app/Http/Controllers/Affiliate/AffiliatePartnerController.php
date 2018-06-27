@@ -54,9 +54,7 @@ class AffiliatePartnerController extends Controller
         $this->validate($request, [
             'description' => 'required',
             'country' => 'required',
-            'type' => 'required',
-            'rules' => 'required',
-            'status' => 'required'
+            'type' => 'required'
         ]);
 
         $this->affiliateService->addAffiliatePartner($request);
@@ -81,9 +79,7 @@ class AffiliatePartnerController extends Controller
         $this->validate($request, [
             'description' => 'required',
             'country' => 'required',
-            'type' => 'required',
-            'rules' => 'required',
-            'status' => 'required'
+            'type' => 'required'
         ]);
         $this->affiliateService->editAffiliatesPartners($request);
         return response()->json();

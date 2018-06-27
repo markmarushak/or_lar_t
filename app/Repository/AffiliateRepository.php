@@ -68,12 +68,18 @@ class AffiliateRepository
 
     public function addToDatabase($request)
     {
-        $this->affiliatePartnerModel->insertGetId($request->only('description', 'country', 'type', 'rules','status'));
+        $this->affiliatePartnerModel->insertGetId($request->only('description', 'country', 'type'));
     }
 
     public function getData($request)
     {
-        return $this->affiliatePartnerModel->where('type', $request->all())->select()->get();
+        if($request['data'] == 'All') {
+            return $this->affiliatePartnerModel->select()->get();
+        }
+        else{
+            return $this->affiliatePartnerModel->where('type', $request['data'])->select()->get();
+
+        }
     }
 
     public function deleteFromDatabase($request){
@@ -85,13 +91,10 @@ class AffiliateRepository
         return $this->affiliatePartnerModel->select()->where('id', '=', $request->all())->get();
     }
 
-    public function editDataById($request){
-
-
+    public function editDataById($request)
+    {
         $this->affiliatePartnerModel->where('id', '=', $request['id'])->update(['description' => $request['description'],
             'country'=> $request['country'],
-            'type'=>$request['type'],
-            'rules'=>$request['rules'],
-            'status'=>$request['status']]);
+            'type'=>$request['type']]);
     }
 }

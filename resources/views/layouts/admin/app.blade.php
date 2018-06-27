@@ -47,6 +47,8 @@ License: You must have a valid license purchased only from themeforest(the above
 {!! Html::style('assets/admin/css/simple-line-icons-webfont/simple-line-icons.css') !!}
 
 
+
+
 @yield('css')
 <!--end::Base Styles -->
     <link rel="shortcut icon" href="/assets/demo/default/media/img/logo/favicon.ico"/>
@@ -67,7 +69,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 {{--{!! Html::script('assets/demo/default/custom/components/base/util.js') !!}--}}
 {!! Html::script('assets/vendors/base/vendors.bundle.js') !!}
-{!! Html::script('js/crud.js') !!}
+
 {!! Html::script('assets/vendors/custom/datatables/datatables.bundle.js') !!}
 {!! Html::script('assets/demo/default/base/scripts.bundle.js') !!}
 {!! Html::script('assets/admin/js/script.js') !!}

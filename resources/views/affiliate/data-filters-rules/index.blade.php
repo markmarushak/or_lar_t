@@ -3,6 +3,7 @@
 
 
     <div class="m-portlet m-portlet--mobile">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="m-portlet__body">
             <table class="table m-table m-table--head-separator-primary" id="m_table_1">
                 <thead>
@@ -44,44 +45,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($dataFiltersRules as $row)
-                    <tr>
-                       <!-- <td>
-                            1
-                        </td>-->
-                        <td>
-                            <span style="width: 130px;">{{$row->description}}</span>
-                        </td>
 
-                        <td>
-                            <span style="width: 130px;">{{$row->category}}</span>
-                        </td>
-
-                        <td>
-                            <span style="width: 70px;">{{$row->source}}</span>
-                        </td>
-                        <td>
-                            <span style="width: 70px;">{{$row->type}}</span>
-                        </td>
-
-                        <td>
-                            <span style="width: 70px;"><a
-                                        href="{{ route('connection', ['data_filters_rules_id' => $row->data_filters_rules_id, 'data_filters_rules_description' => $row->description]) }}">
-                                    edit
-                                </a></span>
-                        </td>
-
-                        <td>
-                               <span style="overflow: visible; width: 70px;">
-                                    <span class="m-badge  m-badge--success m-badge--wide">{{$row->status}}</span>
-                               </span>
-                        </td>
-                        <td>
-                            {{$row->country}}
-                        </td>
-
-                    </tr>
-                @endforeach
 
                 </tbody>
             </table>
@@ -93,4 +57,6 @@
             </div>
         </div>
     </div>
+    {!! Html::script('js/dataFiltersRulesEdit.js') !!}
+    @include('affiliate.data-filters-rules.edit')
 @endsection

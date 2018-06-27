@@ -142,46 +142,46 @@ var DatatablesBasicBasic = function () {
 
 }();
 
-$(document).ready(function () {
-    $('#m_table_1').DataTable({
-        paging: false,
-        searching: false,
-        ordering: true,
-        info: false,
-        sScrollX: "100%",
-        sScrollInnerX: "100%",
-
-        order: [[1, 'desc']],
-
-        /* headerCallback: function (thead, data, start, end, display) {
-             thead.getElementsByTagName('th')[0].innerHTML = `
-                     <label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">
-                         <input type="checkbox" value="" class="m-group-checkable">
-                         <span></span>
-                     </label>`;
-         },*/
-        /*columnDefs: [
-            {
-                targets: 0,
-                width: '30px',
-                className: 'dt-right',
-                orderable: false,
-                render: function (data, type, full, meta) {
-                    return `
-                        <label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">
-                            <input type="checkbox" value="" class="m-checkable">
-                            <span></span>
-                        </label>`;
-                },
-            },
-
-
-
-        ],*/
-
-
-    });
-});
+// $(document).ready(function () {
+//     $('#m_table_1').DataTable({
+//         paging: false,
+//         searching: false,
+//         ordering: true,
+//         info: false,
+//         sScrollX: "100%",
+//         sScrollInnerX: "100%",
+//
+//         order: [[1, 'desc']],
+//
+//         /* headerCallback: function (thead, data, start, end, display) {
+//              thead.getElementsByTagName('th')[0].innerHTML = `
+//                      <label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">
+//                          <input type="checkbox" value="" class="m-group-checkable">
+//                          <span></span>
+//                      </label>`;
+//          },*/
+//         /*columnDefs: [
+//             {
+//                 targets: 0,
+//                 width: '30px',
+//                 className: 'dt-right',
+//                 orderable: false,
+//                 render: function (data, type, full, meta) {
+//                     return `
+//                         <label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">
+//                             <input type="checkbox" value="" class="m-checkable">
+//                             <span></span>
+//                         </label>`;
+//                 },
+//             },
+//
+//
+//
+//         ],*/
+//
+//
+//     });
+// });
 
 // $('#m_table_2').DataTable( {
 //     paging: false,

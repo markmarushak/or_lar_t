@@ -96,5 +96,15 @@ class DataFilterRuleService extends BaseService
         return $this->dataFilterRuleRepository->getAllDataFiltersRules();
     }
 
+    public function getDataFiltersRulesById($request)
+    {
+        return $this->dataFilterRuleRepository->getDataFiltersRulesById($request);
+    }
+
+    public function editDataFiltersRulesById($request)
+    {
+        return $this->dataFilterRuleRepository->editDataFiltersRulesById($request);
+    }
+
 
 }

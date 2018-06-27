@@ -25,33 +25,16 @@
                     </div>
                 </div>
 
-                <div class="form-group m-form__group row">
+                <div class="form-group m-form__group row" id="type_chose" hidden="true">
                     <label class="col-form-label col-lg-3 col-sm-12">Type:</label>
                     <div class="col-lg-4 col-md-9 col-sm-12">
-                        <select class="form-control m-input" name="type">
+                        <select class="form-control m-input" name="type" id="n_type">
                             <option>Affiliate</option>
                             <option>Partner</option>
                         </select>
                     </div>
                 </div>
 
-                <div class="form-group m-form__group row">
-                    <label class="col-form-label col-lg-3 col-sm-12">Rules:</label>
-                    <div class="col-lg-4 col-md-9 col-sm-12">
-                        <input type="text" class="form-control m-input" name="rules">
-                    </div>
-                </div>
-                <div class="form-group m-form__group row">
-                    <label class="col-form-label col-lg-3 col-sm-12">Status:</label>
-                    <div class="col-3">
-                                                <span class="m-switch m-switch--icon">
-                                                    <label>
-                                                    <input type="checkbox" checked="checked" name="status" id="n_status">
-                                                    <span></span>
-                                                    </label>
-                                                </span>
-                    </div>
-                </div>
                 <div class="form-group m-form__group row col-lg-2 col-md-9 col-sm-12">
                     <input type="submit" class="form-control m-input btn-primary text-white" value="Save">
                 </div>
@@ -60,10 +43,5 @@
 
 
     </div>
-
-
-
-
-
-
+        {!! Html::script('js/affiliatePartners.js') !!}
 @endsection
