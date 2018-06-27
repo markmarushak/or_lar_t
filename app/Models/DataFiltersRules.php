@@ -24,5 +24,9 @@ class DataFiltersRules extends Model
         return $this->hasOne(SettingOfDataBase::class, 'data_filters_rules_id', 'data_filters_rules_id');
     }
 
+    public function AffiliatesPartners()
+    {
+        return $this->hasOne(AffiliatePartner::class, 'affiliates_partners_id', 'affiliates_partners_id');
+    }
 
 }

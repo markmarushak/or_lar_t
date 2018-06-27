@@ -26,11 +26,9 @@ class AffiliateService extends BaseService
 
     public function connectionToDataBase($dataFiltersRulesId)
     {
-        $settingOfDataBaseById = $this->affiliateRepository->getSettingOfDataBaseById($dataFiltersRulesId);
-
-        $settingOfDataBaseById = $this->decryptSettingToDb($settingOfDataBaseById->setting);
-
-        global $wpdb;
+            $settingOfDataBaseById = $this->affiliateRepository->getSettingOfDataBaseById($dataFiltersRulesId);
+            $settingOfDataBaseById = $this->decryptSettingToDb($settingOfDataBaseById->setting);
+            global $wpdb;
         try
         {
             if ($wpdb = new Wpdb(
@@ -123,6 +121,10 @@ class AffiliateService extends BaseService
 
     public function editAffiliatesPartners($request){
         return $this->affiliateRepository->editDataById($request);
+    }
+
+    public function getAffiliatesDescriptions($request){
+        return $this->affiliateRepository->getAffiliatesDescriptions($request);
     }
 
 }

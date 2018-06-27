@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Affiliate;
 
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repository\AffiliateRepository;
@@ -83,6 +82,13 @@ class AffiliatePartnerController extends Controller
         ]);
         $this->affiliateService->editAffiliatesPartners($request);
         return response()->json();
+    }
+
+    public function acAffiliatesPartners(Request $request)
+    {
+        $result = $this->affiliateService->getAffiliatesDescriptions($request);
+        return response()->json($result);
+
     }
 
 

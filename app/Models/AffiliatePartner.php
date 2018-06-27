@@ -17,4 +17,6 @@ class AffiliatePartner extends Model
     {
         $this->belongsTo(DataFiltersRules::class, 'data_filters_rules_id');
     }
+
+
 }

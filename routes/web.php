@@ -40,7 +40,7 @@ Route::get('/route-clear', function() {
     return "Route is cleared";
 });
 
-Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service'], function(){
+Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'middleware' => 'auth'], function(){
 
     Route::get('/', 'AffiliateController@index')->name('affiliate-service');
     Route::get('/compaigns', 'AffiliateController@compaigns')->name('compaigns');
@@ -53,6 +53,7 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service'], func
         Route::post('/show', 'AffiliatePartnerController@show')->name('show-affiliates-partners');
         Route::post('/get', 'AffiliatePartnerController@getAffiliatePartner')->name('get-affiliate-partner');
         Route::post('/edit', 'AffiliatePartnerController@edit')->name('edit-affiliate-partner');
+        Route::get('/acaffiliates', 'AffiliatePartnerController@acAffiliatesPartners')->name('get-affiliates-partners-autocomplete');
 
         Route::get('/add-affiliates-partners', 'AffiliatePartnerController@add')->name('add-affiliates-partners');
         Route::post('/add-affiliates-partners', 'AffiliatePartnerController@store')->name('add-affiliates-partners-store');

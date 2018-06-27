@@ -97,4 +97,9 @@ class AffiliateRepository
             'country'=> $request['country'],
             'type'=>$request['type']]);
     }
+
+    public function getAffiliatesDescriptions($request)
+    {
+        return $this->affiliatePartnerModel->where('description', 'LIKE', '%'.$request->all().'%')->select('description')->get();
+    }
 }
