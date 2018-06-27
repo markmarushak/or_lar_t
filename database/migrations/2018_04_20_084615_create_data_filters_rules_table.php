@@ -19,12 +19,10 @@ class CreateDataFiltersRulesTable extends Migration
             $table->string('category', 100);
             $table->string('source', 100);
             $table->enum('type', ['email']);
-
-
             $table->enum('edit', ['edit']);
-
             $table->enum('status', ['active'], ['offline'], ['disabled']);
             $table->string('country', 100);
+            $table->timestamps();
         });
     }
 

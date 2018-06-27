@@ -13,5 +13,8 @@ class AffiliatePartner extends Model
     protected $table = 'affiliates_partners';
 
 
-
+    public function dataFiltersRules()
+    {
+        $this->belongsTo(DataFiltersRules::class, 'data_filters_rules_id');
+    }
 }
