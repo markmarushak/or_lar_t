@@ -32,24 +32,6 @@
                     </div>
                 </div>
 
-                <div class="form-group m-form__group row">
-                    <label class="col-form-label col-lg-3 col-sm-12">Rules:</label>
-                    <div class="col-lg-8 col-md-9 col-sm-12">
-                        <input type="text" class="form-control m-input" id="n_rules">
-                    </div>
-                </div>
-                <div class="form-group m-form__group row">
-                    <label class="col-form-label col-lg-3 col-sm-12">Status:</label>
-                    <div class="col-3">
-                                                <span class="m-switch m-switch--icon">
-                                                    <label>
-                                                    <input type="checkbox" checked="checked" name="status" id="n_status">
-                                                    <span></span>
-                                                    </label>
-                                                </span>
-                    </div>
-                </div>
-
                 <!--<div class="form-group m-form__group row">
                     <label for="host" class="col-form-label col-lg-3 col-sm-12">
                         Enable conditional logic rules:

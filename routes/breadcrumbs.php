@@ -70,6 +70,11 @@ Breadcrumbs::register('form-builder', function($breadcrumbs) {
     $breadcrumbs->push('Form Builder', route('form-builder', ['data_filters_rules_id', 'data_filters_rules_description']));
 });
 
+Breadcrumbs::register('single-form-builder', function($breadcrumbs) {
+
+    $breadcrumbs->parent('data-filters-rules-edit');
+    $breadcrumbs->push('Single Form Builder', route('single-form-builder', ['data_filters_rules_id', 'data_filters_rules_description']));
+});
 
 //data-base-fields
 Breadcrumbs::register('data-base-fields', function($breadcrumbs) {

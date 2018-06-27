@@ -27,16 +27,28 @@ class DataFilterRuleController extends Controller
 
     public function index()
     {
-        $dataFiltersRules =  $this->dataFilterRuleService->getAllDataFiltersRules();
-        if (!empty($dataFiltersRules)) {
             return view('affiliate.data-filters-rules.index',
                 [
-                    'menu' => 'affiliate-service',
-                    'dataFiltersRules' => $dataFiltersRules
+                    'menu' => 'affiliate-service'
+
                 ]
             );
-        }
-        return view('affiliate.data-filters-rules.index', ['menu' => 'affiliate-service', 'dataFiltersRules' => $dataFiltersRules]);
+    }
+
+    public function show(){
+        $dataFiltersRules =  $this->dataFilterRuleService->getAllDataFiltersRules();
+        return response()->json($dataFiltersRules);
+    }
+
+    public function get(Request $request){
+        $dataFilterRules = $this->dataFilterRuleService->getDataFiltersRulesById($request);
+        return response()->json($dataFilterRules);
+    }
+
+    public function edit(Request $request)
+    {
+        $this->dataFilterRuleService->editDataFiltersRulesById($request);
+        return response()->json();
     }
 
     public function add()

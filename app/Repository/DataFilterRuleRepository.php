@@ -24,7 +24,21 @@ class DataFilterRuleRepository
 
     public function getAllDataFiltersRules()
     {
-        return $this->dataFiltersRulesModel->all();
+        return $this->dataFiltersRulesModel->select()->get();
+    }
+
+    public function getDataFiltersRulesById($request)
+    {
+        return $this->dataFiltersRulesModel->where('data_filters_rules_id', '=', $request->all())->select()->get();
+    }
+
+    public function editDataFiltersRulesById($request)
+    {
+        $this->dataFiltersRulesModel->where('data_filters_rules_id', '=', $request['id'])->update(['description' => $request['description'],
+            'category'=> $request['category'],
+            'source'=>$request['source'],
+            'status'=>$request['status'],
+            'country'=>$request['country']]);
     }
 
     public function getFormsEntryById($id = null)

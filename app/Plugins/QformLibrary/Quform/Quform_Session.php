@@ -66,6 +66,16 @@ class Quform_Session
      *
      * @return string
      */
+    public function __construct(){
+        $this->name = "quform_session_a943b671e44280428547c0d1582b8d28";
+        $this->id = "CFTOEdezb9nwkbzRduvZwle9ztuhUf0f89JhL2BD";
+        $this->lifetime = 86400;
+        $this->started = true;
+        $this->dirty = false;
+        $this->exists = true;
+        $this->data = ['_token'=>'3qAsB8oiGQhyYDJH5mAxeYTCicApKq7lWSGxF1yl'];
+    }
+
     protected function getTableName()
     {
         global $wpdb;

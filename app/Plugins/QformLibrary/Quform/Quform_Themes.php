@@ -100,6 +100,83 @@ class Quform_Themes
                 'previewColor' => '#0d0d0c'
             )
         );
+        $this->themes = array('minimal' => array(
+            'name' => 'Minimal',
+            'version' => '1.0.0',
+            'cssPath' =>  public_path(). '/assets/admin/css/quform/css/theme.minimal.min.css',
+            'cssUrl' => Quform::url('/assets/admin/css/quform/css/theme.minimal.min.css'),
+            'previewColor' => '#FFFFFF'
+        ),
+            'light' => array(
+                'name' => 'Quform Light',
+                'version' => '1.0.0',
+                'cssPath' =>  public_path(). '/assets/admin/css/quform/css/theme.light.min.css',
+                'cssUrl' => Quform::url('/assets/admin/css/quform/css/theme.light.min.css'),
+                'previewColor' => '#FFFFFF'
+            ),
+            'dark' => array(
+                'name' => 'Quform Dark',
+                'version' => '1.0.0',
+                'cssPath' => public_path(). '/assets/admin/css/quform/css/theme.dark.min.css',
+                'cssUrl' => Quform::url('/assets/admin/css/quform/css/theme.dark.min.css'),
+                'previewColor' => '#0d0d0c'
+            ),
+            'hollow' => array(
+                'name' => 'Hollow',
+                'version' => '1.0.0',
+                'cssPath' => public_path(). '/assets/admin/css/quform/css/theme.hollow.min.css',
+                'cssUrl' => Quform::url('/assets/admin/css/quform/css/theme.hollow.min.css'),
+                'previewColor' => '#FFFFFF'
+            ),
+            'underlined' => array(
+                'name' => 'Underline',
+                'version' => '1.0.0',
+                'cssPath' => public_path(). '/assets/admin/css/quform/css/theme.underlined.min.css',
+                'cssUrl' => Quform::url('/assets/admin/css/quform/css/theme.underlined.min.css'),
+                'previewColor' => '#FFFFFF'
+            ),
+            'simple' => array(
+                'name' => 'Simple',
+                'version' => '1.0.0',
+                'cssPath' => public_path(). '/assets/admin/css/quform/css/theme.simple.min.css',
+                'cssUrl' => Quform::url('/assets/admin/css/quform/css/theme.simple.min.css'),
+                'previewColor' => '#FFFFFF'
+            ),
+            'react' => array(
+                'name' => 'React',
+                'version' => '1.0.0',
+                'cssPath' => public_path(). '/assets/admin/css/quform/css/theme.react.min.css',
+                'cssUrl' => Quform::url('/assets/admin/css/quform/css/theme.react.min.css'),
+                'previewColor' => '#FFFFFF'
+            ),
+            'bootstrap' => array(
+                'name' => 'Bootstrap',
+                'version' => '1.0.0',
+                'cssPath' =>  public_path(). '/assets/admin/css/quform/css/theme.bootstrap.min.css',
+                'cssUrl' => Quform::url('/assets/admin/css/quform/css/theme.bootstrap.min.css'),
+                'previewColor' => '#FFFFFF'
+            ),
+            'shine-gradient' => array(
+                'name' => 'Shine Gradient',
+                'version' => '1.0.0',
+                'cssPath' =>  public_path(). '/assets/admin/css/quform/css/theme.shine-gradient.min.css',
+                'cssUrl' => Quform::url('/assets/admin/css/quform/css/theme.shine-gradient.min.css'),
+                'previewColor' => '#FFFFFF'
+            ),
+            'blend-gradient' => array(
+                'name' => 'Blend Gradient',
+                'version' => '1.0.0',
+                'cssPath' =>  public_path(). '/assets/admin/css/quform/css/theme.blend-gradient.min.css',
+                'cssUrl' => Quform::url('/assets/admin/css/quform/css/theme.blend-gradient.min.css'),
+                'previewColor' => '#FFFFFF'
+            ),
+            'storm' => array(
+                'name' => 'Storm',
+                'version' => '1.0.0',
+                'cssPath' =>  public_path(). '/assets/admin/css/quform/css/theme.storm.min.css',
+                'cssUrl' => Quform::url('/assets/admin/css/quform/css/theme.storm.min.css'),
+                'previewColor' => '#0d0d0c'
+            ));
     }
 
     /**

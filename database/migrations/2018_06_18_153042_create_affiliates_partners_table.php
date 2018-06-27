@@ -19,8 +19,6 @@ class CreateAffiliatesPartnersTable extends Migration
             $table->string('country');
             $table->string('host');
             $table->string('type');
-            $table->string('rules');
-            $table->string('status');
             $table->timestamps();
         });
     }

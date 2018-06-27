@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class DataFiltersRules extends Model
 {
 
-    protected $fillable = ['description', 'category', 'source', 'country', ];
+    protected $fillable = ['description', 'category', 'source', 'status', 'country', ];
 
     /**
      * The table associated with the model.

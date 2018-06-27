@@ -5,19 +5,17 @@
     <div class="m-portlet m-portlet--mobile">
         <div class="m-portlet__body">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input type="hidden" id="index_id">
             @include('errors')
             <div class="input-group">
-                <div class="m-radio-inline col-xl-5">
-                    <label class="m-radio">
-                        <input type="radio" id="affiliate" name="a_type" value="Affiliate" checked="checked" onclick="showData()">
-                        Affiliate
-                        <span></span>
-                    </label>
-                    <label class="m-radio">
-                        <input type="radio" id="partner" name="a_type" id="Partner" value="Partner" onclick="showData()">
-                        Partner
-                        <span></span>
-                    </label>
+                <div class="dropdown">
+                    <button class="btn btn-success dropdown-toggle" style="width: 140px; text-align: left" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="All">All
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 35px, 0px);">
+                        <a class="dropdown-item" href="#" onclick="changeType('All')">All</a>
+                        <a class="dropdown-item" href="#" onclick="changeType('Affiliate')">Affiliate</a>
+                        <a class="dropdown-item" href="#" onclick="changeType('Partner')">Partner</a>
+                    </div>
                 </div>
                 <div class="ml-auto">
                     <input id="m_search_input" placeholder="Search" type="text" onkeyup="searchData()"/>
@@ -47,13 +45,6 @@
                         <span style="width: 70px;">Type</span>
                     </th>
 
-                    <th data-field="Rules" class="m-datatable__cell m-datatable__cell--sort">
-                        <span style="width: 130px;">Rules</span>
-                    </th>
-
-                    <th data-field="Actions" class="m-datatable__cell m-datatable__cell--sort">
-                        <span style="width: 70px;">Status</span>
-                    </th>
                     <th>
 
                     </th>
@@ -68,7 +59,12 @@
 
 
                 <div class="pt-2">
-                    <button class="btn btn-success" onclick="location.href=('{{route("add-affiliates-partners")}}')">Add Affiliates/Partners</button>
+                    <a href="#" onclick="window.location = laroute.action('add-affiliates-partners', {type: $('#dropdownMenuButton').text()})" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+						<span>
+							<i class="la la-plus"></i>
+							<span id="add_btn">Add</span>
+						</span>
+                    </a>
                 </div>
         </div>
     </div>
@@ -95,7 +91,8 @@
             </div>
         </div>
     </div>
-    @include('modal')
+    {!! Html::script('js/crud.js') !!}
+    @include('affiliate.affiliates-partners.modal')
 
 
 
