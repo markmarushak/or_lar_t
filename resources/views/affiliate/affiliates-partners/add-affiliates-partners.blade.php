@@ -14,21 +14,21 @@
                 <div class="form-group m-form__group row">
                     <label class="col-form-label col-lg-3 col-sm-12">Description:</label>
                     <div class="col-lg-4 col-md-9 col-sm-12">
-                        <input type="text" class="form-control m-input m-input--air m-input--pill" name="description">
+                        <input type="text" class="form-control m-input" name="description">
                     </div>
                 </div>
 
                 <div class="form-group m-form__group row">
                     <label class="col-form-label col-lg-3 col-sm-12">Country:</label>
                     <div class="col-lg-4 col-md-9 col-sm-12">
-                        <input type="text" class="form-control m-input m-input--air m-input--pill" name="country">
+                        <input type="text" class="form-control m-input" name="country">
                     </div>
                 </div>
 
                 <div class="form-group m-form__group row">
                     <label class="col-form-label col-lg-3 col-sm-12">Type:</label>
                     <div class="col-lg-4 col-md-9 col-sm-12">
-                        <select class="form-control m-input m-input--air m-input--pill" name="type">
+                        <select class="form-control m-input" name="type">
                             <option>Affiliate</option>
                             <option>Partner</option>
                         </select>
@@ -38,7 +38,7 @@
                 <div class="form-group m-form__group row">
                     <label class="col-form-label col-lg-3 col-sm-12">Rules:</label>
                     <div class="col-lg-4 col-md-9 col-sm-12">
-                        <input type="text" class="form-control m-input m-input--air m-input--pill" name="rules">
+                        <input type="text" class="form-control m-input" name="rules">
                     </div>
                 </div>
                 <div class="form-group m-form__group row">

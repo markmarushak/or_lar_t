@@ -332,7 +332,6 @@ class Quform_Repository
         }
 
         $config = maybe_unserialize(base64_decode($row['config']));
-
         if (is_array($config)) {
             $config = $this->addRowDataToConfig($row, $config);
         } else {

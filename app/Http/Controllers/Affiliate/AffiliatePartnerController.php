@@ -78,6 +78,13 @@ class AffiliatePartnerController extends Controller
 
     public function edit(Request $request){
 
+        $this->validate($request, [
+            'description' => 'required',
+            'country' => 'required',
+            'type' => 'required',
+            'rules' => 'required',
+            'status' => 'required'
+        ]);
         $this->affiliateService->editAffiliatesPartners($request);
         return response()->json();
     }
