@@ -124,7 +124,11 @@ class AffiliateService extends BaseService
     }
 
     public function getAffiliatesDescriptions($request){
-        return $this->affiliateRepository->getAffiliatesDescriptions($request);
+        $result['suggestions'] = $this->affiliateRepository->getAffiliatesDescriptions($request);
+
+        return json_encode($result);
+
+
     }
 
 }
