@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
     var search = location.search.substr(1)
         .split('&')
         .reduce(function (res, a) {

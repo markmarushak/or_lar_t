@@ -17,8 +17,9 @@
 
             <div class="m-portlet m-portlet--mobile">
                  <div class="m-portlet__body qfb-box">
+
                      <div>
-                         <input id="query" placeholder="Search" type="text"/>
+                         <input name="query" id="query" placeholder="Search" type="text"/>
                      </div>
                         <table class="table m-table m-table--head-separator-primary" id="m_table_4">
                             <thead>

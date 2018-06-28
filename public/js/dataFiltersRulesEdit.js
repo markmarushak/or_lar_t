@@ -9,7 +9,6 @@ $(document).ready(function() {
         editRow($(this).attr('id'));
     });
     showData();
-
 })
 
 

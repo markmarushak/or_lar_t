@@ -34,11 +34,13 @@ class DataFilterRuleRepository
 
     public function editDataFiltersRulesById($request)
     {
-        $this->dataFiltersRulesModel->where('data_filters_rules_id', '=', $request['id'])->update(['description' => $request['description'],
+        $this->dataFiltersRulesModel->where('data_filters_rules_id', '=', $request['id'])->update([
+            'description' => $request['description'],
             'category'=> $request['category'],
             'source'=>$request['source'],
             'status'=>$request['status'],
-            'country'=>$request['country']]);
+            'country'=>$request['country']
+        ]);
     }
 
     public function getFormsEntryById($id = null)
