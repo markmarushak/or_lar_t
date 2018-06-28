@@ -17,8 +17,9 @@ $(document).ready(function() {
         width: 300,
         zIndex: 9999,
         deferRequestBy: 300,
-
         onSelect: function (data, value) {
+
+            $(this).html("<button type='submit'>Add</button>");
         },
     });
 

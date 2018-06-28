@@ -101,6 +101,6 @@ class AffiliateRepository
     public function getAffiliatesDescriptions($request)
     {
         $request = $request->all();
-      return  $this->affiliatePartnerModel->where('description', 'LIKE', '%'.$request['query'].'%')->pluck('description');
+        return  $this->affiliatePartnerModel->where('description', 'LIKE', '%'.$request['query'].'%')->pluck('description');
     }
 }
