@@ -16,11 +16,15 @@ $(document).ready(function() {
         width: 300,
         zIndex: 9999,
         deferRequestBy: 300,
-        onSelect: function (data, value) {
-
-            $('input').on('click', function(){
-                $('form').append( "<button type='submit'>Hello</button>" );
-            });
+        onSelect: function (e) {
+             if(!($('*').is('#ac_btn'))) {
+                 $('#auto_complete').append(`<a href="#" onclick="" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air ml-4" id="ac_btn">
+                            <span>
+                                <i class="la la-plus"></i>
+                                <span id="add_btn">Add</span>
+                            </span>
+                        </a>`);
+             }
         },
     });
 

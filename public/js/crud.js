@@ -89,15 +89,36 @@ function showData(){
                         description: 'description'},
                     render: function (data, type, full, meta) {
                         return `
-                        <div class="dropdown ">
-                            <a href="#" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown">
-                                <i class="la la-ellipsis-h"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#" onclick="editRow(`+data.id+`)"><i class="la la-edit"></i> Edit</a>
-                                <a class="dropdown-item" href="#" onclick="showModal(`+data.id+`, '`+data.description+`', '`+data.type+`')"><i class="la la-delete flaticon-delete-1"></i> Delete</a>
-                            </div>
-                        </div>`;
+                                <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-left m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
+                                    <a href="#" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill">
+                                        <i class="la la-ellipsis-h"></i>
+                                    </a>
+                                    <div class="m-dropdown__wrapper" style="z-index: 101;">
+                                            <span class="m-dropdown__arrow m-dropdown__arrow--left m-dropdown__arrow--adjust" style="right: auto; left: 29.5px;"></span>
+                                            <div class="m-dropdown__inner">
+                                                <div class="m-dropdown__body">              
+                                                    <div class="m-dropdown__content">
+                                                        <ul class="m-nav">
+
+                                                            <li class="m-nav__item">
+                                                                <a href="#" onclick="editRow(`+data.id+`)" class="m-nav__link">
+                                                                    <i class="m-nav__link-icon flaticon-edit"></i>
+                                                                    <span class="m-nav__link-text">Edit</span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="m-nav__item">
+                                                                <a href="#" class="m-nav__link" onclick="showModal(`+data.id+`, '`+data.description+`', '`+data.type+`')">
+                                                                    <i class="m-nav__link-icon flaticon-delete-1"></i>
+                                                                    <span class="m-nav__link-text">Delete</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                        `;
                     },
                 },
             ],
@@ -107,6 +128,16 @@ function showData(){
 
 }
 
+
+// <div class="dropdown " dropdown-toggle="hover">
+//     <a href="#" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown">
+//     <i class="la la-ellipsis-h"></i>
+//     </a>
+//     <div class="dropdown-menu dropdown-menu-right">
+//     <a class="dropdown-item" href="#" onclick="editRow(`+data.id+`)"><i class="la la-edit"></i> Edit</a>
+// <a class="dropdown-item" href="#" onclick="showModal(`+data.id+`, '`+data.description+`', '`+data.type+`')"><i class="la la-delete flaticon-delete-1"></i> Delete</a>
+// </div>
+// </div>
 
 var aff_data = {};
 
@@ -185,7 +216,8 @@ function closeModal(n_id){
 
 function changeType(t){
     type = t;
-    $('#dropdownMenuButton').text(type);
+    var temp_t = t+'s';
+    $('#dropdownMenuButton').text(temp_t);
     if(type == 'Affiliate'){
         $('#add_btn').text("Add Affiliate");
     }
@@ -194,6 +226,7 @@ function changeType(t){
     }
     else if(type == 'All'){
         $('#add_btn').text("Add");
+        $('#dropdownMenuButton').text(type);
     }
     showData();
 }
