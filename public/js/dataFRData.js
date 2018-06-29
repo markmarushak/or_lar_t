@@ -7,7 +7,6 @@ $.ajaxSetup({
 $(document).ready(function() {
 
     var ac = $('#query').autocomplete({
-        source: [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby" ],
         serviceUrl: '/affiliate-service/affiliates-partners/acaffiliates',
         // serviceUrl: laroute.action('get-affiliates-partners-autocomplete'),
         type: "GET",
@@ -17,9 +16,15 @@ $(document).ready(function() {
         width: 300,
         zIndex: 9999,
         deferRequestBy: 300,
-        onSelect: function (data, value) {
-
-            $(this).html("<button type='submit'>Add</button>");
+        onSelect: function (e) {
+             if(!($('*').is('#ac_btn'))) {
+                 $('#auto_complete').append(`<a href="#" onclick="" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air" id="ac_btn">
+                            <span>
+                                <i class="la la-plus"></i>
+                                <span id="add_btn">Add</span>
+                            </span>
+                        </a>`);
+             }
         },
     });
 
