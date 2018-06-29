@@ -44,12 +44,12 @@
                 <div class="form-group m-form__group row">
                     <label class="col-form-label col-lg-3 col-sm-12">Status:</label>
                     <div class="col-3">
-                                                <span class="m-switch m-switch--icon m-switch--success">
-                                                    <label>
-                                                    <input type="checkbox" checked="checked" name="status" id="n_status">
-                                                    <span></span>
-                                                    </label>
-                                                </span>
+											<span class="m-switch m-switch--outline m-switch--icon m-switch--success">
+												<label>
+						                        <input type="checkbox" checked="checked" name="status" id="n_status">
+						                        <span></span>
+						                        </label>
+						                    </span>
                     </div>
                 </div>
 

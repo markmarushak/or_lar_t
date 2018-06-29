@@ -8,9 +8,9 @@
             @include('errors')
             <div class="input-group">
                 <div class="m-dropdown m-dropdown--inline m-dropdown--arrow" m-dropdown-toggle="hover" aria-expanded="true">
-                    <a href="#" class="m-dropdown__toggle btn btn-success dropdown-toggle-split" id="dropdownMenuButton" style="width: 140px; text-align: left">All
+                    <a href="#" class="m-dropdown__toggle btn btn-success dropdown-toggle-split" id="dropdownMenuButton" style="width: 120px; text-align: left">All
                     </a>
-                    <div class="m-dropdown__wrapper" style="z-index: 101;">
+                    <div class="m-dropdown__wrapper" style="z-index: 101; width: 120px">
                         <span class="m-dropdown__arrow m-dropdown__arrow--left"></span>
                         <div class="m-dropdown__inner">
                             <div class="m-dropdown__body">

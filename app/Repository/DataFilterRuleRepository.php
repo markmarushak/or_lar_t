@@ -3,19 +3,21 @@
 namespace App\Repository;
 
 
-use App\Models\AffiliatePartner;
 use App\Models\DataFiltersRules;
+use App\Models\AffiliatePartner;
 use App\Plugins\QformLibrary\Quform\Quform_Repository;
 
 class DataFilterRuleRepository
 {
     protected $dataFiltersRulesModel;
     protected $quformRepository;
+    protected $affiliatePartnerModel;
 
-    public function __construct(DataFiltersRules $dataFiltersRulesModel, Quform_Repository $quformRepository)
+    public function __construct(DataFiltersRules $dataFiltersRulesModel, Quform_Repository $quformRepository, AffiliatePartner $affiliatePartnerModel)
     {
         $this->dataFiltersRulesModel = $dataFiltersRulesModel;
         $this->quformRepository = $quformRepository;
+        $this->affiliatePartnerModel = $affiliatePartnerModel;
     }
 
     public function addDataFilterRule($request)
@@ -72,5 +74,26 @@ class DataFilterRuleRepository
                 ->firstOrFail()
             ->dataFiltersRules()->firstOrFail();
         dd($var2);
+    }
+
+    public function showPartners(){
+        return $this->affiliatePartnerModel->select()->get();
+    }
+
+    public function getPartners($request){
+
+    }
+
+    public function editPartners($request){
+
+    }
+
+    public function deletePartners($request){
+
+    }
+
+    public function addPartners($request)
+    {
+
     }
 }
