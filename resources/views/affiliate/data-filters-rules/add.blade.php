@@ -8,7 +8,7 @@
 
     <div class="col-xl-12" style="margin-top: 20px;">
         <div class="tab-content">
-            <form action="{{route('data-filters-rules-store')}}" method="post">
+            <form action="{{route('data-filters-rules-store')}}" method="post" name="add_form">
                 {{ csrf_field() }}
                 @include('errors')
                 <div class="form-group m-form__group row">
@@ -49,8 +49,13 @@
                 </div>
 
                 <div class="form-group m-form__group row">
-                    <div class="offset-10 col-lg-2 col-md-9 col-sm-12">
-                        <input type="submit" class="form-control m-input btn-primary text-white" value="Submit">
+                    <div class="pt-2">
+                        <a href="#" onClick="document.add_form.submit()" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+						<span>
+							<i class="la la-plus"></i>
+							<span id="add_btn">Add</span>
+						</span>
+                        </a>
                     </div>
                 </div>
             </form>

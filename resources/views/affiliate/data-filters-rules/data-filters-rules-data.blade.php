@@ -18,8 +18,9 @@
             <div class="m-portlet m-portlet--mobile">
                  <div class="m-portlet__body qfb-box">
 
-                     <div id="auto_complete">
-                         <input name="query" id="query" placeholder="Search" type="text"/>
+                     <div id="auto_complete" class="input-group m-input-icon m-input-icon--left">
+                         <input name="query" class="form-control col-4 m-input" id="query" placeholder="Search" type="text"/>
+                         <span class="m-input-icon__icon m-input-icon__icon--left"><span><i class="la la-map-marker"></i></span></span>
                      </div>
                         <table class="table m-table m-table--head-separator-primary" id="m_table_4">
                             <thead>

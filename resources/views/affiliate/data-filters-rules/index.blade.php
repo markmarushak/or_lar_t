@@ -5,9 +5,6 @@
             <table class="table m-table m-table--head-separator-primary" id="m_table_1">
                 <thead>
                 <tr>
-                    <th>
-                        RecordID
-                    </th>
                     <th data-field="OrderID" class="m-datatable__cell m-datatable__cell--sort">
                         <span style="width: 130px;">Descriptions</span>
                     </th>
@@ -32,46 +29,21 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($dataFiltersRules as $row)
-                    <tr>
-                        <td>
-                            1
-                        </td>
-                        <td>
-                            <span style="width: 130px;">{{$row->description}}</span>
-                        </td>
-                        <td>
-                            <span style="width: 130px;">{{$row->category}}</span>
-                        </td>
-                        <td>
-                            <span style="width: 70px;">{{$row->source}}</span>
-                        </td>
-                        <td>
-                            <span style="width: 70px;">{{$row->type}}</span>
-                        </td>
-                        <td>
-                            <span style="width: 70px;"><a
-                                        href="{{ route('connection', ['data_filters_rules_id' => $row->data_filters_rules_id, 'data_filters_rules_description' => $row->description]) }}">
-                                    edit
-                                </a></span>
-                        </td>
-                        <td>
-                               <span style="overflow: visible; width: 70px;">
-                                    <span class="m-badge  m-badge--success m-badge--wide">{{$row->status}}</span>
-                               </span>
-                        </td>
-                        <td>
-                            {{$row->country}}
-                        </td>
-                    </tr>
-                @endforeach
+
                 </tbody>
             </table>
             <div class="form-group m-form__group row">
-                <div class="offset-10 col-lg-2 col-md-9 col-sm-12">
-                    <a href="{{route('data-filters-rules-add')}}" class="form-control m-input btn-primary text-white btn-no-underline">Add</a>
+                <div class="pt-2">
+                    <a href="#" onclick="window.location = laroute.action('data-filters-rules-add')" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+						<span>
+							<i class="la la-plus"></i>
+							<span id="add_btn">Add</span>
+						</span>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
+    {!! Html::script('js/dataFiltersRulesEdit.js') !!}
+    @include('affiliate.data-filters-rules.edit')
 @endsection
