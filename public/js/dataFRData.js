@@ -7,7 +7,6 @@ $.ajaxSetup({
 $(document).ready(function() {
 
     var ac = $('#query').autocomplete({
-        source: [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby" ],
         serviceUrl: '/affiliate-service/affiliates-partners/acaffiliates',
         // serviceUrl: laroute.action('get-affiliates-partners-autocomplete'),
         type: "GET",
@@ -19,7 +18,9 @@ $(document).ready(function() {
         deferRequestBy: 300,
         onSelect: function (data, value) {
 
-            $(this).html("<button type='submit'>Add</button>");
+            $('input').on('click', function(){
+                $('form').append( "<button type='submit'>Hello</button>" );
+            });
         },
     });
 
