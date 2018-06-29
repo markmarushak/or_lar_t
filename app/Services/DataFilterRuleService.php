@@ -106,5 +106,27 @@ class DataFilterRuleService extends BaseService
         return $this->dataFilterRuleRepository->editDataFiltersRulesById($request);
     }
 
+    public function showPartners(){
+        return $this->dataFilterRuleRepository->showPartners();
+    }
+
+    public function getPartners($request){
+        return $this->dataFilterRuleRepository->getPartners($request);
+    }
+
+    public function editPartners($request){
+        $this->dataFilterRuleRepository->editPartners($request);
+    }
+
+    public function deletePartners($request)
+    {
+        $this->dataFilterRuleRepository->deletePartners($request);
+    }
+
+    public function addPartners($request)
+    {
+        $this->dataFilterRuleRepository->addPartners($request);
+    }
+
 
 }

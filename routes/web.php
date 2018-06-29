@@ -75,6 +75,11 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
     Route::get('/email-bulk-split/data-filters-rules/add', 'DataFilterRuleController@add')->name('data-filters-rules-add');
 
     Route::post('/email-bulk-split/data-filters-rules/add', 'DataFilterRuleController@store')->name('data-filters-rules-store');
+    Route::post('/email-bulk-split/data-filters-rules/data-filters-rules-data/show-partners', 'DataFilterRuleController@showPartners')->name('show-partners');
+    Route::post('/email-bulk-split/data-filters-rules/data-filters-rules-data/get-partners', 'DataFilterRuleController@getPartners')->name('get-partners');
+    Route::post('/email-bulk-split/data-filters-rules/data-filters-rules-data/edit-partners', 'DataFilterRuleController@editPartners')->name('edit-partners');
+    Route::post('/email-bulk-split/data-filters-rules/data-filters-rules-data/delete-partners', 'DataFilterRuleController@deletePartners')->name('delete-partners');
+    Route::post('/email-bulk-split/data-filters-rules/data-filters-rules-data/add-partners', 'DataFilterRuleController@addPartners')->name('add-partners');
 
     Route::group(['prefix' => '/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules_description}'], function (){
 
@@ -95,6 +100,7 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
 
         //data-filters and rules data
         Route::get('/data-filters-rules-data', 'DataFilterRuleController@dataFiltersRulesData')->name('data-filters-rules-data');
+
 
         //outputOverview
         Route::get('/output-overview', 'DataFilterRuleController@outputOverview')->name('output-overview');

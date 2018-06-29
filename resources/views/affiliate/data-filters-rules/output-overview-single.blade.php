@@ -1,7 +1,7 @@
 
 @extends('layouts.admin.app')
-<link rel='stylesheet' id='quform-css'  href='http://garasje-tilbud.no/modules/quform/cache/quform.css?ver=1521656337' type='text/css' media='all' />
-<meta charset="utf-8">
+{{--<link rel='stylesheet' id='quform-css'  href='http://garasje-tilbud.no/modules/quform/cache/quform.css?ver=1521656337' type='text/css' media='all' />--}}
+{{--<meta charset="utf-8">--}}
 <?php Blade::setEchoFormat('e(utf8_encode(%s))')  ?>
 @section('content')
 
@@ -14,7 +14,6 @@
 
         </div>
 
-    <div class="col-xl-12" style="margin-top: 20px;">
         {{--Call Tab Menu--}}
         @include('affiliate.tabs-menu.top-menu')
 
@@ -73,12 +72,5 @@
                 </div>
             </div>
         </div>
-
-    </div>
-
-
-
-
-
 
 @endsection

@@ -1,20 +1,20 @@
 
 @extends('layouts.admin.app')
+
 @section('content')
 
-    <div>
+    <div class="row">
         <div class="clearfix"></div>
             <div class="col-xl-4">
             </div>
 
         </div>
 
-    <div class="col-xl-12" style="margin-top: 20px;">
         {{--Call Tab Menu--}}
         @include('affiliate.tabs-menu.top-menu')
         @include('errors')
-        @if(isset($data) && !empty($data) )
-
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <input type="hidden" id="project_id" value="{{ $dataFilterRulesId }}">
             <div class="m-portlet m-portlet--mobile">
                  <div class="m-portlet__body qfb-box">
 
@@ -32,112 +32,148 @@
                                     <span style="width: 130px;">ID<i class="la la-arrow-down"></i></span>
                                 </th>
                                 <th data-field="FormID" class="m-datatable__cell m-datatable__cell--sort">
-                                    <span style="width: 50px;">Form ID</span>
+                                    <span style="width: 50px;">Description</span>
                                 </th>
                                 <th data-field="Unread" class="m-datatable__cell m-datatable__cell--sort">
-                                    <span style="width: 60px;">Unread</span>
+                                    <span style="width: 60px;">Country</span>
                                 </th>
                                 <th data-field="IP" class="m-datatable__cell m-datatable__cell--sort">
-                                    <span style="width: 100px;">IP</span>
+                                    <span style="width: 100px;">Type</span>
                                 </th>
                                 <th data-field="FormUrl" class="m-datatable__cell m-datatable__cell--sort">
-                                    <span style="width: 140px;">Form Url</span>
+                                    <span style="width: 140px;">Rules</span>
                                 </th>
-                                <th data-field="PostID" class="m-datatable__cell m-datatable__cell--sort">
-                                    <span style="width: 40px;">Post ID</span>
-                                </th>
-                                <th data-field="CreatedBY" class="m-datatable__cell m-datatable__cell--sort">
-                                    <span style="width: 60px;">Created By</span>
-                                </th>
-                                <th data-field="CreatedAT" class="m-datatable__cell m-datatable__cell--sort">
-                                    <span style="width: 60px;">Created At</span>
+                                <th>
+
                                 </th>
 
-                                <th data-field="UpdatedAT" class="m-datatable__cell m-datatable__cell--sort">
-                                    <span style="width: 100px;">Updated At</span>
-                                </th>
-                                <th data-field="Status" class="m-datatable__cell m-datatable__cell--sort">
-                                    <span style="width: 50px;">Status</span>
-                                </th>
-
-                                <th data-field="EntryID" class="m-datatable__cell m-datatable__cell--sort">
-                                    <span style="width: 50px;">Entry ID</span>
-                                </th>
-
-                                <th data-field="ElementID" class="m-datatable__cell m-datatable__cell--sort">
-                                    <span >Element ID</span>
-                                </th>
-
-                                <th data-field="Value" class="m-datatable__cell m-datatable__cell--sort">
-                                    <span>Value</span>
-                                </th>
                             </tr>
                             </thead>
                             <tbody>
 
 
-                            @foreach($data as $row)
-                            <tr data-row="0" class="m-datatable__row" style="left: 0px;">
-                                <!--<td data-field="RecordID" class="m-datatable__cell--center m-datatable__cell m-datatable__cell--check">
-                                    <span style="width: 10px;"><label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">
-                                            <input value="80" type="checkbox"><span></span></label></span>
-                                </td>-->
-                                <td data-field="ID" class="m-datatable__cell--sorted m-datatable__cell">
-                                    <span style="width: 30px;">{{$row['id']}}</span>
-                                </td>
-                                <td data-field="FormID" class="m-datatable__cell--sorted m-datatable__cell">
-                                    <span style="width: 50px;">{{$row['form_id']}}</span>
-                                </td>
-                                <td data-field="Unread" class="m-datatable__cell--sorted m-datatable__cell">
-                                    <span style="width: 60px;">{{$row['unread']}}</span>
-                                </td>
-                                <td data-field="IP" class="m-datatable__cell--sorted m-datatable__cell">
-                                    <span style="width: 100px;">{{$row['ip']}}</span>
-                                </td>
-                                <td data-field="FormUrl" class="m-datatable__cell--sorted m-datatable__cell">
-                                    <span style="width: 140px;">{{$row['form_url']}}</span>
-                                </td>
-                                <td data-field="PostID" class="m-datatable__cell--sorted m-datatable__cell">
-
-                                    <span style="width: 30px;">
-                                    @if(isset($row['post_id']))
-                                        {{$row['post_id']}}</span>
-                                    @else
-                                        None
-                                    @endif
-                                    </span>
-                                </td>
-                                <td data-field="CreatedBY" class="m-datatable__cell--sorted m-datatable__cell">
-                                    <span style="width: 50px;">
-                                        {{$row['created_by']}}
-                                    </span>
-                                </td>
-                                <td data-field="CreatedAT" class="m-datatable__cell--sorted m-datatable__cell">
-                                    <span style="width: 50px;">{{$row['created_at']}}</span>
-                                </td>
-                                <td data-field="UpdatedAT" class="m-datatable__cell--sorted m-datatable__cell">
-                                    <span style="width: 100px;">{{$row['updated_at']}}</span>
-                                </td>
-                                <td data-field="Status" class="m-datatable__cell--sorted m-datatable__cell">
-                                    <span style="width: 50px;">{{$row['status']}}</span>
-                                </td>
-                                <td data-field="EntryID" class="m-datatable__cell--sorted m-datatable__cell">
-                                    <span style="width: 50px;">{{$row['entry_id']}}</span>
-                                </td>
-                                <td data-field="ElementID" class="m-datatable__cell--sorted m-datatable__cell">
-                                    <span style="width: 50px;">{{$row['element_id']}}</span>
-                                </td>
-                                <td data-field="Value" class="m-datatable__cell--sorted m-datatable__cell">
-                                    <span style="width: 50px;">{{$row['value']}}</span>
-                                </td>
-                            </tr>
-                            @endforeach
                             </tbody>
                         </table>
+                {{--<div class="form-group m-form__group row pt-4">--}}
+                    {{--<label for="host" class="col-form-label col-lg-3 col-sm-12">--}}
+                        {{--Enable conditional logic rules:--}}
+                    {{--</label>--}}
+                    {{--<div class="col-3">--}}
+											{{--<span class="m-switch m-switch--outline m-switch--icon m-switch--success">--}}
+												{{--<label>--}}
+						                        {{--<input type="checkbox" name="" id="rules_switch" onclick="showConditionalLogic()">--}}
+						                        {{--<span></span>--}}
+						                        {{--</label>--}}
+						                    {{--</span>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div id="div_hide" hidden="true">--}}
+                    {{--<form class="form-inline">--}}
+                        {{--<div class="form-group m-form__group">--}}
+
+                            {{--<div class=" form-group">--}}
+                                {{--<select class="form-control" style="width:110px" id="m_notify_placement_from">--}}
+                                    {{--<option value="top">ZipCode</option>--}}
+                                    {{--<option value="bottom">Bottom</option>--}}
+                                {{--</select>--}}
+                            {{--</div>--}}
+                            {{--<div class="form-group">--}}
+                                {{--<div class="form-group">--}}
+                                    {{--<select class="form-control ml-3" id="m_notify_placement_from">--}}
+                                        {{--<option value="top">From</option>--}}
+                                        {{--<option value="bottom">Bottom</option>--}}
+                                    {{--</select>--}}
+                                {{--</div>--}}
+                                {{--<input type="text" class="form-control col-3 ml-3">--}}
+                            {{--</div>--}}
+                            {{--<div class="form-group">--}}
+                                {{--<div class=" form-group">--}}
+                                    {{--<select class="form-control" id="m_notify_placement_from">--}}
+                                        {{--<option value="top">To</option>--}}
+                                        {{--<option value="bottom">Bottom</option>--}}
+                                    {{--</select>--}}
+                                {{--</div>--}}
+                                {{--<input type="text" class="form-control col-3 ml-3">--}}
+                                {{--<div class="ml-3">--}}
+                                    {{--<a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">--}}
+						{{--<span>--}}
+							{{--<i class="la la-plus"></i>--}}
+							{{--<span id="add_btn">Add</span>--}}
+						{{--</span>--}}
+                                    {{--</a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</form>--}}
+                    {{--<form class="form-inline">--}}
+                        {{--<div class="form-group m-form__group pt-2">--}}
+
+                            {{--<div class=" form-group">--}}
+                                {{--<select class="form-control" style="width:110px" id="m_notify_placement_from">--}}
+                                    {{--<option value="top">Material</option>--}}
+                                    {{--<option value="bottom">Bottom</option>--}}
+                                {{--</select>--}}
+                            {{--</div>--}}
+                            {{--<div class="form-group">--}}
+                                {{--<select class="form-control ml-3" id="m_notify_placement_from">--}}
+                                    {{--<option value="top">Is</option>--}}
+                                    {{--<option value="bottom">Bottom</option>--}}
+                                {{--</select>--}}
+                            {{--</div>--}}
+
+                            {{--<div class="form-group">--}}
+                                {{--<div class=" form-group">--}}
+                                    {{--<select class="form-control ml-3" id="m_notify_placement_from">--}}
+                                        {{--<option value="top">Stone</option>--}}
+                                        {{--<option value="bottom">Bottom</option>--}}
+                                    {{--</select>--}}
+                                {{--</div>--}}
+                                {{--<div class="ml-3">--}}
+                                    {{--<a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">--}}
+						{{--<span>--}}
+							{{--<i class="la la-plus"></i>--}}
+							{{--<span id="add_btn">Add</span>--}}
+						{{--</span>--}}
+                                    {{--</a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</form>--}}
+                    {{--<div class="pt-2">--}}
+                        {{--<a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">--}}
+						{{--<span>--}}
+							{{--<i class="la la-plus"></i>--}}
+							{{--<span id="add_btn">Add Rule</span>--}}
+						{{--</span>--}}
+                        {{--</a>--}}
+                    {{--</div>--}}
+            {{--</div>--}}
+            {{--</div>--}}
+            {{--</div>--}}
+
+
+    <div class="modal fade show" id="m_modal_delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: block; padding-right: 15px; background: rgba(20, 20, 20, 0.9)" hidden="true">
+        <div class="modal-dialog modal-sm" role="document" style="top:20%">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div>
+                        <h5 class="modal-title" id="exampleModalLabel">Delete <span id="aff"></span> with:
+                        </h5>
+                    </div>
+                    <div>
+                        <h5 class="modal-title" id="exampleModalLabel">id: <span style="color:red" id="aff_id"></span>
+                        </h5>
+                    </div>
+                    <div>
+                        <h5 class="modal-title" id="exampleModalLabel">description: <span style="color:red" id="aff_descr"></span>?</h5>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="deleteRow()">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeModal('modal_delete')">Cancel</button>
                 </div>
             </div>
-            @endif
-
+        </div>
     </div>
     {!! Html::script('js/dataFRData.js') !!}
 @endsection

@@ -1,6 +1,6 @@
 
 @extends('layouts.admin.app')
-<link rel='stylesheet' id='quform-css'  href='http://garasje-tilbud.no/modules/quform/cache/quform.css?ver=1521656337' type='text/css' media='all' />
+{{--<link rel='stylesheet' id='quform-css'  href='http://garasje-tilbud.no/modules/quform/cache/quform.css?ver=1521656337' type='text/css' media='all' />--}}
 @section('content')
 
     <div class="row">
@@ -13,7 +13,6 @@
 
         </div>
 
-    <div class="col-xl-12" style="margin-top: 20px;">
         {{--Call Tab Menu--}}
         @include('affiliate.tabs-menu.top-menu')
         @include('errors')
@@ -49,7 +48,7 @@
                 </div>
 
         @endif
-    </div>
+
 
 
 

@@ -1,8 +1,6 @@
 
 @extends('layouts.admin.app')
-<link rel='stylesheet' id='quform-css' href='http://garasje-tilbud.no/modules/quform/cache/quform.css?ver=1521656337'
-      type='text/css' media='all'/>
-<meta charset="utf-8">
+
 
 @section('content')
     <div class="row">

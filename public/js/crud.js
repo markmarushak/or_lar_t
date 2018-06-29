@@ -18,8 +18,6 @@ function showData(){
     var table = $('#m_table_2').DataTable();
     table.destroy();
 
-    console.log(type);
-
     $.ajax({
        method: 'POST',
        dataType: 'json',
