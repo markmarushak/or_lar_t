@@ -10,7 +10,6 @@ use App\Services\AffiliateService;
 class AffiliatePartnerController extends Controller
 {
 
-
     public function __construct(
         AffiliateRepository $affiliateRepository,
         AffiliateService $affiliateService

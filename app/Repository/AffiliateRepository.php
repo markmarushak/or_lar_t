@@ -38,16 +38,18 @@ class AffiliateRepository
             return $this->settingOfDataBaseModel
                 ->where('data_filters_rules_id', $dataFiltersRulesId)
                 ->firstOrFail();
+
         }
         catch(ModelNotFoundException $e)
         {
            return false;
         }
     }
+
     public function getDataFiltersRulesById($dataFiltersRulesId)
     {
         return $this->dataFiltersRulesModel
-            ->where('data_filters_rules_id', $dataFiltersRulesId)
+            ->where('id', $dataFiltersRulesId)
             ->with('settingOfDataBase')
             ->firstOrFail();
     }

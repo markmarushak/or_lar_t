@@ -21,12 +21,12 @@ class DataFiltersRules extends Model
 
     public function settingOfDataBase()
     {
-        return $this->hasOne(SettingOfDataBase::class, 'data_filters_rules_id', 'data_filters_rules_id');
+        return $this->hasOne(SettingOfDataBase::class);
     }
 
-    public function AffiliatesPartners()
+    public function affiliatesPartners()
     {
-        return $this->hasOne(AffiliatePartner::class, 'affiliates_partners_id', 'affiliates_partners_id');
+        return $this->belongsToMany(AffiliatePartner::class, 'project_partners');
     }
 
 }

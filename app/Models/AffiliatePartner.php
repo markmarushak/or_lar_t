@@ -15,8 +15,7 @@ class AffiliatePartner extends Model
 
     public function dataFiltersRules()
     {
-        $this->belongsTo(DataFiltersRules::class, 'data_filters_rules_id');
+        return $this->belongsToMany(DataFiltersRules::class, 'project_partners');
     }
-
 
 }

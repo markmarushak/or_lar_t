@@ -94,8 +94,11 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
         Route::get('/data-base-fields', 'DataFilterRuleController@dataBaseFields')->name('data-base-fields');
 
         //data-filters and rules data
-        Route::get('/data-filters-rules-data', 'DataFilterRuleController@dataFiltersRulesData')->name('data-filters-rules-data');
+        Route::group( ['prefix' => 'data-filters-rules-data'] , function() {
+        Route::get('/', 'DataFilterRuleController@dataFiltersRulesData')->name('data-filters-rules-data');
+        Route::get('/bind-project-partner', 'DataFilterRuleController@bindProjectAndPartner')->name('bind-project-and-partner');
 
+        });
         //outputOverview
         Route::get('/output-overview', 'DataFilterRuleController@outputOverview')->name('output-overview');
 

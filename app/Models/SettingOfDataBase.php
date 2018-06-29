@@ -10,8 +10,7 @@ class SettingOfDataBase extends Model
 
     public function dataFiltersRules()
     {
-        $this->belongsTo(DataFiltersRules::class, 'data_filters_rules_id');
+        $this->belongsTo(DataFiltersRules::class);
     }
-
 
 }

@@ -106,5 +106,11 @@ class DataFilterRuleService extends BaseService
         return $this->dataFilterRuleRepository->editDataFiltersRulesById($request);
     }
 
+    public function bindProjectAndPartner($dataFiltersRulesId)
+    {
+        $this->dataFilterRuleRepository->bindProjectAndPartner($dataFiltersRulesId);
+
+    }
+
 
 }

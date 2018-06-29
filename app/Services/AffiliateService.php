@@ -63,6 +63,7 @@ class AffiliateService extends BaseService
     {
         $dataFiltersRulesObject = $this->affiliateRepository->getDataFiltersRulesById($dataFiltersRulesId);
         $settingOfDataBase = $this->encryptSettingToDb($request);
+
         $this->affiliateRepository->addConnectToDb($settingOfDataBase, $dataFiltersRulesObject);
     }
 
@@ -84,6 +85,7 @@ class AffiliateService extends BaseService
     public function getSettingOfDataBaseById($dataFiltersRulesId)
     {
         $settingsOfDataBase = $this->affiliateRepository->getSettingOfDataBaseById($dataFiltersRulesId);
+
         if ($settingsOfDataBase == true) {
             if (isset($settingsOfDataBase->setting) && !empty($settingsOfDataBase->setting)) {
                 $settingsOfDataBase->setting = decrypt($settingsOfDataBase->setting);

@@ -117,6 +117,7 @@ class DataFilterRuleController extends Controller
         if($request->id) {
             $this->affiliateService->editConnectToDb($request, $dataFiltersRulesId);
         } else {
+
             $this->affiliateService->addConnectToDb($request, $dataFiltersRulesId);
         }
         return redirect()->route('connection', [ 'data_filters_rules_id' => $dataFiltersRulesId, 'data_filters_rules_description' => $dataFiltersRulesDescription]);
@@ -256,5 +257,12 @@ class DataFilterRuleController extends Controller
                 'form' => $form
             ]);
         }
+    }
+
+    public function bindProjectAndPartner(Request $request)
+    {
+        $dataFiltersRulesId = $request->data_filters_rules_id;
+        $this->dataFilterRuleService->bindProjectAndPartner($dataFiltersRulesId);
+        dd(1111);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 
+use App\Models\AffiliatePartner;
 use App\Models\DataFiltersRules;
 use App\Plugins\QformLibrary\Quform\Quform_Repository;
 
@@ -29,12 +30,12 @@ class DataFilterRuleRepository
 
     public function getDataFiltersRulesById($request)
     {
-        return $this->dataFiltersRulesModel->where('data_filters_rules_id', '=', $request->all())->select()->get();
+        return $this->dataFiltersRulesModel->where('id', '=', $request->all())->select()->get();
     }
 
     public function editDataFiltersRulesById($request)
     {
-        $this->dataFiltersRulesModel->where('data_filters_rules_id', '=', $request['id'])->update([
+        $this->dataFiltersRulesModel->where('id', '=', $request['id'])->update([
             'description' => $request['description'],
             'category'=> $request['category'],
             'source'=>$request['source'],
@@ -56,5 +57,20 @@ class DataFilterRuleRepository
          WHERE form_id = ($id)";
         $forms = $wpdb->get_results($sql, ARRAY_A);
         return $forms;
+    }
+
+    public function bindProjectAndPartner($dataFiltersRulesId)
+    {
+        $model = new AffiliatePartner;
+//        $var = $this->dataFiltersRulesModel
+//            ->where('data_filters_rules_id' ,$dataFiltersRulesId)
+//            ->firstOrFail()
+//        ->affiliatesPartners()
+//            ->firstOrFail();
+            $var2 = $model
+                ->where('id', 34)
+                ->firstOrFail()
+            ->dataFiltersRules()->firstOrFail();
+        dd($var2);
     }
 }
