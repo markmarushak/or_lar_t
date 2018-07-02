@@ -85,7 +85,7 @@ class DataFilterRuleRepository
 
     public function showPartners($dataFilterRuleId){
         return $this->dataFiltersRulesModel
-            ->find($dataFilterRuleId)
+            ->find($dataFilterRuleId['id'])
             ->with('affiliatesPartners')
             ->firstOrFail()
             ->affiliatesPartners()
