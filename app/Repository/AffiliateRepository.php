@@ -7,8 +7,6 @@ use App\Models\DataFiltersRules;
 use App\Models\SettingOfDataBase;
 use App\Plugins\QformLibrary\Quform\Quform_Repository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\DB;
-
 
 class AffiliateRepository
 {
