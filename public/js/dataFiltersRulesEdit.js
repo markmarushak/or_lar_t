@@ -11,6 +11,7 @@ $(document).ready(function() {
     showData();
 })
 
+var aff_data = {};
 
 function showData(){
     var table = $('#m_table_1').DataTable();
@@ -34,7 +35,7 @@ function showData(){
 
             order: [[1, 'desc']],
             data: data,
-            rowId: "data_filters_rules_id",
+            rowId: "id",
             /*headerCallback: function (thead, data, start, end, display) {
                 thead.getElementsByTagName('th')[0].innerHTML = `
                     <label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">
@@ -86,7 +87,7 @@ function showData(){
                                 </a></span>`;
                     },
                 },
-         //
+
                 {
                     targets: 5,
                     data: 'status',
@@ -118,10 +119,8 @@ function showData(){
 
 }
 
-var aff_data = {};
 
 function editRow (id) {
-    console.log(id);
     $.ajax({
         method: 'POST',
         dataType: 'json',
@@ -144,13 +143,14 @@ function editRow (id) {
                 $('#n_status').removeAttr("checked");
             }
         })
-        $('#m_modal_edit').removeAttr("hidden");
+        $('#m_modal_edit').show();
+        $('#edit_modal').slideDown(300);
     })
 }
 
 function saveRow(){
 
-    $('#m_modal_edit').attr("hidden", true);
+    closeModal();
     var status = true;
     if($('#n_status').is(":checked")){
         status = 1;
@@ -180,5 +180,7 @@ function saveRow(){
 
 
 function closeModal(){
-    $('#m_modal_edit').attr("hidden", true);
+    $('#edit_modal').slideUp('fast', function(){
+        $('#m_modal_edit').hide();
+    })
 }

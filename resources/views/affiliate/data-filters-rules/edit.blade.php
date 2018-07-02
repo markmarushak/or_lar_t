@@ -1,5 +1,5 @@
-<div class="modal fade show" id="m_modal_edit" tabindex="-1" role="dialog" style="display: block; padding-right: 15px; background: rgba(20, 20, 20, 0.9)" hidden="true">
-    <div class="modal-dialog modal-md" role="document">
+<div class="modal fade show" id="m_modal_edit" tabindex="-1" role="dialog" style="display: none; padding-right: 15px; background: rgba(20, 20, 20, 0.9)">
+    <div class="modal-dialog modal-md" role="document" id="edit_modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Update Data Filters & Rules</h5>

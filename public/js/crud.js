@@ -4,12 +4,14 @@ $(document).ready(function() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
     showData();
 
 })
 
 var type = 'All';
 var id = '';
+var aff_data = {};
 
 //Render Table
 //-------------------------------------------------------
@@ -127,17 +129,6 @@ function showData(){
 }
 
 
-// <div class="dropdown " dropdown-toggle="hover">
-//     <a href="#" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown">
-//     <i class="la la-ellipsis-h"></i>
-//     </a>
-//     <div class="dropdown-menu dropdown-menu-right">
-//     <a class="dropdown-item" href="#" onclick="editRow(`+data.id+`)"><i class="la la-edit"></i> Edit</a>
-// <a class="dropdown-item" href="#" onclick="showModal(`+data.id+`, '`+data.description+`', '`+data.type+`')"><i class="la la-delete flaticon-delete-1"></i> Delete</a>
-// </div>
-// </div>
-
-var aff_data = {};
 
 //Search in Table
 //--------------------------------------------------------------
@@ -170,7 +161,8 @@ function editRow (id) {
                 $('#n_status').removeAttr("checked");
             }
         })
-        $('#m_modal_5').removeAttr("hidden");
+        $('#m_modal_5').show();
+        $('#edit_modal').slideDown(300);
     })
 }
 
@@ -207,9 +199,17 @@ function saveRow(){
 }
 
 
-function closeModal(n_id){
-    $('#m_'+n_id).attr("hidden", true);
-    id = '';
+function closeEditModal(){
+    $('#edit_modal').slideUp('fast', function(){
+        $('#m_modal_5').hide();
+    });
+
+}
+
+function closeDeleteModal(){
+    $('#delete_modal').slideUp('fast', function(){
+        $('#m_modal_4').hide();
+    });
 }
 
 function changeType(t){
@@ -245,8 +245,7 @@ function deleteRow() {
 
     }).done(function () {
         showData();
-        id='';
-        $('#m_modal_4').attr("hidden", true);
+        closeDeleteModal();
     });
 }
 
@@ -259,7 +258,8 @@ function showModal(n_id, description, type){
     $('#aff').text(type);
     $('#aff_id').text(n_id);
     $('#aff_descr').text(description);
-    $('#m_modal_4').removeAttr("hidden");
+    $('#m_modal_4').show();
+    $('#delete_modal').slideDown(300);
 }
 
 

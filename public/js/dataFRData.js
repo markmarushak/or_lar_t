@@ -102,22 +102,10 @@ $(document).ready(function() {
         width: 300,
         zIndex: 9999,
         deferRequestBy: 300,
-        onSelect: function (e) {
-             if(!($('*').is('#ac_btn'))) {
-                 $('#auto_complete').append(`<a href="#" onclick="addPartner(`+e+`)" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air ml-4" id="ac_btn">
-                            <span>
-                                <i class="la la-plus"></i>
-                                <span id="add_btn">Add</span>
-                            </span>
-                        </a>`);
-             }
-        },
+        showNoSuggestionNotice: true,
     });
 
     ac.enable();
-
-    $('#div_hide').hide();
-    $('#div_hide').removeAttr("hidden");
 
     showData();
 })
@@ -131,7 +119,7 @@ function showData(){
         method: 'POST',
         dataType: 'json',
         url: laroute.action('show-partners'),
-        data: '',
+        data: project_id,
     }).done(function(data){
         var table = $('#m_table_4').DataTable({
             paging: false,
@@ -283,10 +271,6 @@ function saveRow() {
     });
 }
 
-function closeModal(n_id){
-    $('#m_'+n_id).attr("hidden", true);
-    id = '';
-}
 
 function deleteRow() {
 
@@ -306,24 +290,23 @@ function deleteRow() {
     });
 }
 
-function addPartner(partner){
+function addPartner(){
 
     $.ajax({
 
         type: 'POST',
-
+        dataType: 'json',
         url: laroute.action('add-partners'),
 
-        data: {data: partner},
+        data: {affiliates_partners_id: $('#query').val(),
+                data_filters_rules_id: $('#project_id').val()},
 
 
     }).done(function () {
         showData();
-
     });
 }
-var shRow = '';
-var tempTr = '';
+
 function showConditionalLogic(table, tr) {
 
 
@@ -336,16 +319,11 @@ function showConditionalLogic(table, tr) {
         } );
     }
     else {
-        // if ( $('tbody tr').hasClass('shown') ) {
-        //     $('.slider', shRow.child()).slideUp( function () {
-        //         shRow.child.hide();
-        //         tempTr.removeClass('shown');
-        //     } );
-        // }
+        if ( $('tbody tr').hasClass('shown') ) {
+            showConditionalLogic(table, $('.shown'));
+        }
         row.child(conditionalLogic).show();
         tr.addClass('shown');
-        shRow = row;
-        tempTr = tr;
 
         $('.slider', row.child()).slideDown();
     }
