@@ -106,10 +106,19 @@ class DataFilterRuleService extends BaseService
         return $this->dataFilterRuleRepository->editDataFiltersRulesById($request);
     }
 
-    public function bindProjectAndPartner($dataFiltersRulesId)
+    public function bindProjectAndPartner($dataFiltersRulesId, $affiliatePartnerId)
     {
-        $this->dataFilterRuleRepository->bindProjectAndPartner($dataFiltersRulesId);
+        $affiliatePartner = $this->dataFilterRuleRepository->getPartnerById($affiliatePartnerId);
+        $dataFilterRule =  $this->dataFilterRuleRepository->getRuleByIdWithPartner($dataFiltersRulesId);
+      return  $this->dataFilterRuleRepository->bindProjectAndPartner($dataFilterRule, $affiliatePartner);
 
+    }
+
+    public function detachProjectAndPartner($dataFiltersRulesId, $affiliatePartnerId)
+    {
+        $affiliatePartner = $this->dataFilterRuleRepository->getPartnerById($affiliatePartnerId);
+        $dataFilterRule =  $this->dataFilterRuleRepository->getRuleByIdWithPartner($dataFiltersRulesId);
+        return $this->dataFilterRuleRepository->detachProjectAndPartner($dataFiltersRulesId, $affiliatePartnerId);
     }
 
     public function showPartners(){

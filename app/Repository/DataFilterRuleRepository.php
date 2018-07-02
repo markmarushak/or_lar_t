@@ -61,27 +61,31 @@ class DataFilterRuleRepository
         return $forms;
     }
 
-    public function bindProjectAndPartner($dataFiltersRulesId)
+    public function bindProjectAndPartner($dataFilterRule, $affiliatePartner)
     {
-        $model = new AffiliatePartner;
-//        $var = $this->dataFiltersRulesModel
-//            ->where('data_filters_rules_id' ,$dataFiltersRulesId)
-//            ->firstOrFail()
-//        ->affiliatesPartners()
-//            ->firstOrFail();
-            $var2 = $model
-                ->where('id', 34)
-                ->firstOrFail()
-            ->dataFiltersRules()->firstOrFail();
-        dd($var2);
+       return $dataFilterRule->affiliatesPartners()->sync($affiliatePartner);
+    }
+
+    public function getRuleByIdWithPartner($dataFiltersRulesId)
+    {
+        return $this->dataFiltersRulesModel
+            ->where('id' ,$dataFiltersRulesId)
+            ->with('affiliatesPartners')
+            ->firstOrFail();
+    }
+
+    public function detachProjectAndPartner($dataFilterRule, $affiliatePartner)
+    {
+        return $dataFilterRule->affiliatesPartners()->detach($affiliatePartner);
     }
 
     public function showPartners(){
         return $this->affiliatePartnerModel->select()->get();
     }
 
-    public function getPartners($request){
-
+    public function getPartnerById($id)
+    {
+        return $this->affiliatePartnerModel->find($id);
     }
 
     public function editPartners($request){

@@ -102,7 +102,7 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
         Route::group( ['prefix' => 'data-filters-rules-data'] , function() {
         Route::get('/', 'DataFilterRuleController@dataFiltersRulesData')->name('data-filters-rules-data');
         Route::get('/bind-project-partner', 'DataFilterRuleController@bindProjectAndPartner')->name('bind-project-and-partner');
-
+        Route::get('/detach-project-partner', 'DataFilterRuleController@detachProjectAndPartner')->name('detach-project-and-partner');
         });
         //outputOverview
         Route::get('/output-overview', 'DataFilterRuleController@outputOverview')->name('output-overview');

@@ -295,10 +295,15 @@ class DataFilterRuleController extends Controller
         }
     }
 
-    public function bindProjectAndPartner(Request $request)
+    public function bindProjectAndPartner(Request $request, $affiliatePartnerId)
     {
         $dataFiltersRulesId = $request->data_filters_rules_id;
-        $this->dataFilterRuleService->bindProjectAndPartner($dataFiltersRulesId);
-        dd(1111);
+       return $this->dataFilterRuleService->bindProjectAndPartner($dataFiltersRulesId, $affiliatePartnerId);
+    }
+
+    public function detachProjectAndPartner(Request $request, $affiliatePartnerId)
+    {
+        $dataFiltersRulesId = $request->data_filters_rules_id;
+        return $this->dataFilterRuleService->detachProjectAndPartner($dataFiltersRulesId, $affiliatePartnerId);
     }
 }
