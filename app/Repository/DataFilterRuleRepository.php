@@ -83,6 +83,8 @@ class DataFilterRuleRepository
 
     }
 
+    
+
     public function showPartners($dataFilterRuleId){
         return $this->dataFiltersRulesModel
             ->find($dataFilterRuleId['id'])
