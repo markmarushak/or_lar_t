@@ -91,8 +91,8 @@
                 </div>
         </div>
     </div>
-    <div class="modal fade show" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: block; padding-right: 15px; background: rgba(20, 20, 20, 0.9)" hidden="true">
-        <div class="modal-dialog modal-sm" role="document" style="top:20%">
+    <div class="modal fade show" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none; padding-right: 15px; background: rgba(20, 20, 20, 0.9)">
+        <div class="modal-dialog modal-sm" role="document" style="display:none; top:20%" id="delete_modal">
             <div class="modal-content">
                 <div class="modal-body">
                     <div>
@@ -109,7 +109,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" onclick="deleteRow()">Delete</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeModal('modal_4')">Cancel</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeDeleteModal()">Cancel</button>
                 </div>
             </div>
         </div>

@@ -21,6 +21,12 @@
                      <div id="auto_complete" class="input-group m-input-icon m-input-icon--left">
                          <input name="query" class="form-control col-4 m-input" id="query" placeholder="Search" type="text"/>
                          <span class="m-input-icon__icon m-input-icon__icon--left"><span><i class="la la-map-marker"></i></span></span>
+                         <a href="#" onclick="addPartner()" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air ml-4" id="ac_btn">
+                            <span>
+                                <i class="la la-plus"></i>
+                                <span id="add_btn">Add</span>
+                            </span>
+                         </a>
                      </div>
                         <table class="table m-table m-table--head-separator-primary" id="m_table_4">
                             <thead>
@@ -54,103 +60,6 @@
 
                             </tbody>
                         </table>
-                {{--<div class="form-group m-form__group row pt-4">--}}
-                    {{--<label for="host" class="col-form-label col-lg-3 col-sm-12">--}}
-                        {{--Enable conditional logic rules:--}}
-                    {{--</label>--}}
-                    {{--<div class="col-3">--}}
-											{{--<span class="m-switch m-switch--outline m-switch--icon m-switch--success">--}}
-												{{--<label>--}}
-						                        {{--<input type="checkbox" name="" id="rules_switch" onclick="showConditionalLogic()">--}}
-						                        {{--<span></span>--}}
-						                        {{--</label>--}}
-						                    {{--</span>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<div id="div_hide" hidden="true">--}}
-                    {{--<form class="form-inline">--}}
-                        {{--<div class="form-group m-form__group">--}}
-
-                            {{--<div class=" form-group">--}}
-                                {{--<select class="form-control" style="width:110px" id="m_notify_placement_from">--}}
-                                    {{--<option value="top">ZipCode</option>--}}
-                                    {{--<option value="bottom">Bottom</option>--}}
-                                {{--</select>--}}
-                            {{--</div>--}}
-                            {{--<div class="form-group">--}}
-                                {{--<div class="form-group">--}}
-                                    {{--<select class="form-control ml-3" id="m_notify_placement_from">--}}
-                                        {{--<option value="top">From</option>--}}
-                                        {{--<option value="bottom">Bottom</option>--}}
-                                    {{--</select>--}}
-                                {{--</div>--}}
-                                {{--<input type="text" class="form-control col-3 ml-3">--}}
-                            {{--</div>--}}
-                            {{--<div class="form-group">--}}
-                                {{--<div class=" form-group">--}}
-                                    {{--<select class="form-control" id="m_notify_placement_from">--}}
-                                        {{--<option value="top">To</option>--}}
-                                        {{--<option value="bottom">Bottom</option>--}}
-                                    {{--</select>--}}
-                                {{--</div>--}}
-                                {{--<input type="text" class="form-control col-3 ml-3">--}}
-                                {{--<div class="ml-3">--}}
-                                    {{--<a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">--}}
-						{{--<span>--}}
-							{{--<i class="la la-plus"></i>--}}
-							{{--<span id="add_btn">Add</span>--}}
-						{{--</span>--}}
-                                    {{--</a>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</form>--}}
-                    {{--<form class="form-inline">--}}
-                        {{--<div class="form-group m-form__group pt-2">--}}
-
-                            {{--<div class=" form-group">--}}
-                                {{--<select class="form-control" style="width:110px" id="m_notify_placement_from">--}}
-                                    {{--<option value="top">Material</option>--}}
-                                    {{--<option value="bottom">Bottom</option>--}}
-                                {{--</select>--}}
-                            {{--</div>--}}
-                            {{--<div class="form-group">--}}
-                                {{--<select class="form-control ml-3" id="m_notify_placement_from">--}}
-                                    {{--<option value="top">Is</option>--}}
-                                    {{--<option value="bottom">Bottom</option>--}}
-                                {{--</select>--}}
-                            {{--</div>--}}
-
-                            {{--<div class="form-group">--}}
-                                {{--<div class=" form-group">--}}
-                                    {{--<select class="form-control ml-3" id="m_notify_placement_from">--}}
-                                        {{--<option value="top">Stone</option>--}}
-                                        {{--<option value="bottom">Bottom</option>--}}
-                                    {{--</select>--}}
-                                {{--</div>--}}
-                                {{--<div class="ml-3">--}}
-                                    {{--<a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">--}}
-						{{--<span>--}}
-							{{--<i class="la la-plus"></i>--}}
-							{{--<span id="add_btn">Add</span>--}}
-						{{--</span>--}}
-                                    {{--</a>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</form>--}}
-                    {{--<div class="pt-2">--}}
-                        {{--<a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">--}}
-						{{--<span>--}}
-							{{--<i class="la la-plus"></i>--}}
-							{{--<span id="add_btn">Add Rule</span>--}}
-						{{--</span>--}}
-                        {{--</a>--}}
-                    {{--</div>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-
 
     <div class="modal fade show" id="m_modal_delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: block; padding-right: 15px; background: rgba(20, 20, 20, 0.9)" hidden="true">
         <div class="modal-dialog modal-sm" role="document" style="top:20%">
