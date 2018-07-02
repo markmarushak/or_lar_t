@@ -63,7 +63,7 @@ class DataFilterRuleRepository
 
     public function bindProjectAndPartner($dataFilterRule, $affiliatePartner)
     {
-       $dataFilterRule->affiliatesPartners()->sync($affiliatePartner);
+       $dataFilterRule->affiliatesPartners()->attach($affiliatePartner);
     }
 
     public function getRuleByIdWithPartner($dataFiltersRulesId)
@@ -81,9 +81,11 @@ class DataFilterRuleRepository
 
     public function showPartners($dataFilterRuleId){
         return $this->dataFiltersRulesModel
-            ->where('id', $dataFilterRuleId)
+            ->where('id', $dataFilterRuleId['id'])
             ->with('affiliatesPartners')
-            ->firstOrFail();
+            ->firstOrFail()
+            ->affiliatesPartners()
+            ->select()->get();
     }
 
     public function getPartnerById($id)
@@ -102,5 +104,10 @@ class DataFilterRuleRepository
     public function addPartners($request)
     {
         return $this->affiliatePartnerModel->where('description', '=', $request)->select('id')->get();
+    }
+
+    public function addRules($request)
+    {
+        $this->affiliatePartnerModel->where('id', '=', $request['affiliate_partner_id'])->update(['rules' => $request['new_rule']]);
     }
 }

@@ -42,6 +42,7 @@ class DataFilterRuleController extends Controller
 
     public function showPartners(Request $request)
     {
+
         $result = $this->dataFilterRuleService->showPartners($request);
         return response()->json($result);
 //        $dataFiltersRulesId = $request->all();
@@ -80,7 +81,9 @@ class DataFilterRuleController extends Controller
 
     public function deletePartners(Request $request)
     {
-        $this->dataFilterRuleService->deletePartners($request);
+        $dataFiltersRulesId = $request['data_filter_rules_id'];
+        $affiliatePartnerId = $request['affiliate_partner_id'];
+        $this->detachProjectAndPartner($dataFiltersRulesId, $affiliatePartnerId);
         return response()->json();
     }
 
@@ -91,9 +94,15 @@ class DataFilterRuleController extends Controller
 
     public function addPartners(Request $request)
     {
-        $affiliatesPartnersId = $this->dataFilterRuleService->addPartners($request['affiliates_partners_id']);
+        $affiliatesPartnersId = $this->dataFilterRuleService->addPartners($request['affiliates_partners_description']);
         $dataFiltersRulesId = $request['data_filters_rules_id'];
         $this->bindProjectAndPartner($dataFiltersRulesId, $affiliatesPartnersId);
+        return response()->json();
+    }
+
+    public function addRules(Request $request)
+    {
+        $this->dataFilterRuleService->addRules($request);
         return response()->json();
     }
 
@@ -304,9 +313,9 @@ class DataFilterRuleController extends Controller
        $this->dataFilterRuleService->bindProjectAndPartner($dataFiltersRulesId, $affiliatePartnerId);
     }
 
-    public function detachProjectAndPartner(Request $request, $affiliatePartnerId)
+    public function detachProjectAndPartner($dataFiltersRulesId, $affiliatePartnerId)
     {
-        $dataFiltersRulesId = $request->data_filters_rules_id;
+
         return $this->dataFilterRuleService->detachProjectAndPartner($dataFiltersRulesId, $affiliatePartnerId);
     }
 }

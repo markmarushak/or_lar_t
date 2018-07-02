@@ -170,7 +170,7 @@ function editRow (id) {
 //------------------------------------------------
 function saveRow(){
 
-    $('#m_modal_5').attr("hidden", true);
+    closeEditModal();
     var status = true;
     if($('#n_status').is(":checked")){
         status = 1;

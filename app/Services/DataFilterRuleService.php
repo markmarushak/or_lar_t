@@ -118,7 +118,7 @@ class DataFilterRuleService extends BaseService
     {
         $affiliatePartner = $this->dataFilterRuleRepository->getPartnerById($affiliatePartnerId);
         $dataFilterRule =  $this->dataFilterRuleRepository->getRuleByIdWithPartner($dataFiltersRulesId);
-        return $this->dataFilterRuleRepository->detachProjectAndPartner($dataFiltersRulesId, $affiliatePartnerId);
+        return $this->dataFilterRuleRepository->detachProjectAndPartner($dataFilterRule, $affiliatePartner);
     }
 
     public function showPartners($dataFilterRuleId){
@@ -141,6 +141,11 @@ class DataFilterRuleService extends BaseService
     public function addPartners($request)
     {
         return $this->dataFilterRuleRepository->addPartners($request);
+    }
+
+    public function addRules($request)
+    {
+        $this->dataFilterRuleRepository->addRules($request);
     }
 
 
