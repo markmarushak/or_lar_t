@@ -175,5 +175,6 @@
             </div>
         </div>
     </div>
+
     {!! Html::script('js/dataFRData.js') !!}
 @endsection

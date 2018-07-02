@@ -71,3 +71,6 @@
 .form-control.m-input--slim {
     width: 120px;
 }
+.m-dropdown .m-dropdown__wrapper .m-dropdown__body {
+    padding: 10px;
+}

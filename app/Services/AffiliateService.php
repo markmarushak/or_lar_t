@@ -3,14 +3,11 @@
 
 namespace App\Services;
 
-use App\Models\DataFiltersRules;
-use App\Models\SettingOfDataBase;
-use App\Plugins\QformLibrary\Quform\Quform_Repository;
+
 use App\Plugins\WordPress\Wpdb;
 use App\Repository\AffiliateRepository;
-use App\Services\BaseService;
 use Exception;
-use Illuminate\Support\Facades\Config;
+
 
 
 class AffiliateService extends BaseService
