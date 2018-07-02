@@ -80,6 +80,7 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
     Route::post('/email-bulk-split/data-filters-rules/data-filters-rules-data/edit-partners', 'DataFilterRuleController@editPartners')->name('edit-partners');
     Route::post('/email-bulk-split/data-filters-rules/data-filters-rules-data/delete-partners', 'DataFilterRuleController@deletePartners')->name('delete-partners');
     Route::post('/email-bulk-split/data-filters-rules/data-filters-rules-data/add-partners', 'DataFilterRuleController@addPartners')->name('add-partners');
+    Route::post('/email-bulk-split/data-filters-rules/data-filters-rules-data/add-rules', 'DataFilterRuleController@addRules')->name('add-rules');
 
     Route::group(['prefix' => '/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules_description}'], function (){
 
