@@ -79,10 +79,14 @@ class DataFilterRuleRepository
         return $dataFilterRule->affiliatesPartners()->detach($affiliatePartner);
     }
 
-    public function showPartners($dataFilterRuleId){
+    public function showPartners($dataFilterRuleId)
+    {
+
         return $this->dataFiltersRulesModel
             ->where('id', $dataFilterRuleId)
             ->with('affiliatesPartners')
+            ->firstOrFail()
+            ->affiliatesPartners()
             ->firstOrFail();
     }
 
