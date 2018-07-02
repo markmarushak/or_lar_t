@@ -36,7 +36,6 @@ class AffiliateRepository
             return $this->settingOfDataBaseModel
                 ->where('data_filters_rules_id', $dataFiltersRulesId)
                 ->firstOrFail();
-
         }
         catch(ModelNotFoundException $e)
         {
@@ -47,37 +46,47 @@ class AffiliateRepository
     public function getDataFiltersRulesById($dataFiltersRulesId)
     {
         return $this->dataFiltersRulesModel
-            ->where('id', $dataFiltersRulesId)
+            ->find($dataFiltersRulesId)
             ->with('settingOfDataBase')
             ->firstOrFail();
     }
 
     public function editConnectToDb($settingOfDataBase, $dataFiltersRulesObject)
     {
-        $dataFiltersRulesObject->settingOfDataBase()->update([
+        $dataFiltersRulesObject
+            ->settingOfDataBase()
+            ->update([
             'setting' => $settingOfDataBase
         ]);
     }
 
     public function addConnectToDb($settingOfDataBase, $dataFiltersRulesObject)
     {
-        $dataFiltersRulesObject->settingOfDataBase()->updateOrCreate([
+        $dataFiltersRulesObject
+            ->settingOfDataBase()
+            ->updateOrCreate([
             'setting' => $settingOfDataBase
         ])->save();
     }
 
     public function addToDatabase($request)
     {
-        $this->affiliatePartnerModel->insertGetId($request->only('description', 'country', 'type'));
+        $this->affiliatePartnerModel
+            ->insertGetId($request->only('description', 'country', 'type'));
     }
 
     public function getData($request)
     {
         if($request['data'] == 'All') {
-            return $this->affiliatePartnerModel->select()->get();
+            return $this->affiliatePartnerModel
+                ->select()
+                ->get();
         }
         else{
-            return $this->affiliatePartnerModel->where('type', $request['data'])->select()->get();
+            return $this->affiliatePartnerModel
+                ->where('type', $request['data'])
+                ->select()
+                ->get();
 
         }
     }
@@ -88,19 +97,27 @@ class AffiliateRepository
 
     public function getDataById($request)
     {
-        return $this->affiliatePartnerModel->select()->where('id', '=', $request->all())->get();
+        return $this->affiliatePartnerModel
+            ->select()
+            ->where('id', '=', $request->all())->get();
     }
 
     public function editDataById($request)
     {
-        $this->affiliatePartnerModel->where('id', '=', $request['id'])->update(['description' => $request['description'],
-            'country'=> $request['country'],
-            'type'=>$request['type']]);
+        $this->affiliatePartnerModel
+            ->where('id', '=', $request['id'])
+            ->update([
+                'description' => $request['description'],
+                'country'=> $request['country'],
+                'type'=>$request['type']
+            ]);
     }
 
     public function getAffiliatesDescriptions($request)
     {
         $request = $request->all();
-        return  $this->affiliatePartnerModel->where('description', 'LIKE', '%'.$request['query'].'%')->pluck('description');
+        return  $this->affiliatePartnerModel
+            ->where('description', 'LIKE', '%'.$request['query'].'%')
+            ->pluck('description');
     }
 }

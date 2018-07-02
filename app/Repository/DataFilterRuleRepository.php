@@ -69,21 +69,25 @@ class DataFilterRuleRepository
     public function getRuleByIdWithPartner($dataFiltersRulesId)
     {
         return $this->dataFiltersRulesModel
-            ->where('id' ,$dataFiltersRulesId)
+            ->find($dataFiltersRulesId)
             ->with('affiliatesPartners')
             ->firstOrFail();
     }
 
     public function detachProjectAndPartner($dataFilterRule, $affiliatePartner)
     {
-        return $dataFilterRule->affiliatesPartners()->detach($affiliatePartner);
+
+       return $dataFilterRule
+           ->affiliatesPartners()
+           ->detach($affiliatePartner);
+
     }
 
     public function showPartners($dataFilterRuleId)
     {
 
         return $this->dataFiltersRulesModel
-            ->where('id', $dataFilterRuleId)
+            ->find($dataFilterRuleId)
             ->with('affiliatesPartners')
             ->firstOrFail()
             ->affiliatesPartners()
