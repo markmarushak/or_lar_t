@@ -83,13 +83,15 @@ class DataFilterRuleRepository
 
     }
 
-    public function showPartners($dataFilterRuleId){
-        return $this->dataFiltersRulesModel
-            ->find($dataFilterRuleId)
-            ->with('affiliatesPartners')
-            ->firstOrFail()
-            ->affiliatesPartners()
-            ->select()->get();
+    public function showPartners($dataFilterRuleId)
+    {
+
+        $var = $this->dataFiltersRulesModel
+            ->where('id', $dataFilterRuleId->id)
+//            ->affiliatesPartners()
+            ->select()->get()
+        ;
+        dd($var);
     }
 
     public function getPartnerById($id)
