@@ -43,7 +43,6 @@ class DataFilterRuleController extends Controller
     public function showPartners(Request $request)
     {
         $result = $this->dataFilterRuleService->showPartners($request);
-        dd($result);
         return response()->json($result);
 //        $dataFiltersRulesId = $request->all();
 //        $connectionToDataBase= $this->affiliateService->connectionToDataBase($dataFiltersRulesId);
