@@ -1,5 +1,11 @@
 @extends('layouts.admin.app')
 @section('content')
+    <div class="row">
+        <div class="clearfix"></div>
+        <div class="col-xl-4">
+        </div>
+
+    </div>
     <div class="m-portlet m-portlet--mobile">
         <div class="m-portlet__body">
             <table class="table m-table m-table--head-separator-primary" id="m_table_1">

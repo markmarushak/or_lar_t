@@ -1,5 +1,6 @@
 
 @extends('layouts.admin.app')
+<link rel='stylesheet' id='quform-css'  href='http://garasje-tilbud.no/modules/quform/cache/quform.css?ver=1521656337' type='text/css' media='all' />
 
 
 @section('content')
@@ -9,7 +10,6 @@
         <div class="col-xl-4">
         </div>
     </div>
-    <div class="col-xl-12" style="margin-top: 20px;">
         @include('affiliate.tabs-menu.top-menu')
             @include('errors')
             @if(isset($recentEntries) && !empty($recentEntries) )
@@ -50,7 +50,6 @@
 
             </div>
         @endif
-        </div>
 
 
 @endsection

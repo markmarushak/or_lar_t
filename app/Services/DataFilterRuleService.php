@@ -148,5 +148,10 @@ class DataFilterRuleService extends BaseService
         $this->dataFilterRuleRepository->addRules($request);
     }
 
+    public function getRule($affiliatePartnerId)
+    {
+        return $this->dataFilterRuleRepository->getRule($affiliatePartnerId);
+    }
+
 
 }

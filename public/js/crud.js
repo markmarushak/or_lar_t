@@ -208,7 +208,7 @@ function closeEditModal(){
 
 function closeDeleteModal(){
     $('#delete_modal').slideUp('fast', function(){
-        $('#m_modal_4').hide();
+        $('#m_modal_del').hide();
     });
 }
 
@@ -255,10 +255,10 @@ function searchData(){
 
 function showModal(n_id, description, type){
     id = n_id;
-    $('#aff').text(type);
+    $('#aff_type').text(type);
     $('#aff_id').text(n_id);
     $('#aff_descr').text(description);
-    $('#m_modal_4').show();
+    $('#m_modal_del').show();
     $('#delete_modal').slideDown(300);
 }
 

@@ -114,4 +114,9 @@ class DataFilterRuleRepository
     {
         $this->affiliatePartnerModel->where('id', '=', $request['affiliate_partner_id'])->update(['rules' => $request['new_rule']]);
     }
+
+    public function getRule($affiliatePartnerId)
+    {
+        return $this->affiliatePartnerModel->where('id', $affiliatePartnerId)->select('rules')->get();
+    }
 }

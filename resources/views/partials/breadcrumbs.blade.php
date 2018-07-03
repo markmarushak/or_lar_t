@@ -4,8 +4,8 @@
         <?php
             echo last($breadcrumbs)->title;
          ?>
-
     </h3>
+    <br />
     <ul class="m-subheader__breadcrumbs m-nav m-nav--inline" style="height: 40px;">
         @foreach ($breadcrumbs as $breadcrumb)
 

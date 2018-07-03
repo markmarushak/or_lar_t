@@ -4,8 +4,8 @@ $.ajaxSetup({
     }
 });
 
-var id = ''
-var project_id = ''
+var id = '';
+var project_id = '';
 var conditionalLogic = `<div id="div_hide" class="slider" style="display: none">
                         <form class="form-inline">
                             <div class="form-group m-form__group">
@@ -78,9 +78,8 @@ var conditionalLogic = `<div id="div_hide" class="slider" style="display: none">
 
 $(document).ready(function() {
 
-    var ac = $('#query').autocomplete({
+    var autoComplete = $('#query').autocomplete({
         serviceUrl: '/affiliate-service/affiliates-partners/acaffiliates',
-        // serviceUrl: laroute.action('get-affiliates-partners-autocomplete'),
         type: "GET",
         minChars: 2,
         delimiter: /(,|;)\s*/,
@@ -91,9 +90,13 @@ $(document).ready(function() {
         showNoSuggestionNotice: true,
     });
 
-    ac.enable();
+    autoComplete.enable();
 
     showData();
+
+    $('#m_table_4').on('dblclick', 'tbody tr', function(){
+        showConditionalLogic($('#m_table_4').DataTable(), $(this), $(this).attr("id"));
+    });
 })
 
 function showData()
@@ -109,7 +112,7 @@ function showData()
         url: laroute.action('show-partners'),
         data: {id: project_id},
     }).done(function(data){
-        var table = $('#m_table_4').DataTable({
+        table = $('#m_table_4').DataTable({
             paging: false,
             ordering: true,
             responsive: true,
@@ -192,7 +195,7 @@ function showData()
 
                             
                                                             <li class="m-nav__item">
-                                                                <a href="#" class="m-nav__link" onclick="showModal(`+data.affiliate_partner_id+`, '`+data.description+`', '`+data.type+`')">
+                                                                <a href="#" class="m-nav__link" onclick="showDeleteModal(`+data.affiliate_partner_id+`, '`+data.description+`', '`+data.type+`')">
                                                                     <i class="m-nav__link-icon flaticon-delete-1"></i>
                                                                     <span class="m-nav__link-text">Delete</span>
                                                                 </a>
@@ -210,17 +213,13 @@ function showData()
 
         });
 
-        $('#m_table_4').on('dblclick', 'tbody tr', function(){
-            showConditionalLogic(table, $(this), $(this).attr("id"));
-        });
-
     });
 
 }
 
 
 
-function deletePartner()
+function deleteRow()
 {
 
     $.ajax({
@@ -278,31 +277,52 @@ function addRule()
 
 function showConditionalLogic(table, tr, t_id)
 {
-    console.log(tr);
-    var row = table.row( tr );
-    if ( row.child.isShown() ) {
-        $('.slider', row.child()).slideUp( function () {
-            row.child.hide();
-            tr.removeClass('shown');
-            id = '';
-        } );
-    }
-    else {
-        if ( $('tbody tr').hasClass('shown') ) {
-            showConditionalLogic(table, $('.shown'));
-        }
-        row.child(conditionalLogic).show();
-        tr.addClass('shown');
+    $.ajax({
 
-        $('.slider', row.child()).slideDown();
-        id = t_id;
-    }
+        type: 'POST',
+        dataType: 'json',
+        url: laroute.action('get-rule'),
+
+        data: {affiliate_partner_id: t_id},
+
+
+    }).done(function (data) {
+        var row = table.row(tr);
+        if (row.child.isShown()) {
+            $('.slider', row.child()).slideUp(function () {
+                row.child.hide();
+                tr.removeClass('shown');
+                id = '';
+            });
+        }
+        else {
+            if ($('tbody tr').hasClass('shown')) {
+                showConditionalLogic(table, $('.shown'));
+            }
+            row.child(conditionalLogic).show();
+            tr.addClass('shown');
+
+            $('.slider', row.child()).slideDown();
+            id = t_id;
+        }
+        var ruleArray = data[0].rules.split(" ");
+
+        $('#m_zip_code :contains('+ruleArray[0]+')').attr("selected", "selected");
+        $('#m_from :contains('+ruleArray[1]+')').attr("selected", "selected");
+        $('#m_zip_val').val(ruleArray[2]);
+        $('#m_from_2 :contains('+ruleArray[3]+')').attr("selected", "selected");
+        $('#m_zip_val_2').val(ruleArray[4]);
+        $('#m_material :contains('+ruleArray[5]+')').attr("selected", "selected");
+        $('#m_material_is :contains('+ruleArray[6]+')').attr("selected", "selected");
+        $('#m_material_2 :contains('+ruleArray[7]+')').attr("selected", "selected");
+    })
 }
 
-function showModal(n_id, description, type)
+function showDeleteModal(n_id, description, type)
 {
     id = n_id;
-    $('#aff').text(type);
+    $('#deleteId').text('Detach ');
+    $('#aff_type').text(type);
     $('#aff_id').text(n_id);
     $('#aff_descr').text(description);
     $('#m_modal_del').show();
@@ -311,7 +331,7 @@ function showModal(n_id, description, type)
 
 function closeDeleteModal()
 {
-    $('#delete_modal').slideUp('fast', function(){
+    $('#delete_modal').slideUp(300, function(){
         $('#m_modal_del').hide();
     });
 }
