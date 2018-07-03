@@ -42,7 +42,6 @@ class DataFilterRuleController extends Controller
 
     public function showPartners(Request $request)
     {
-
         $result = $this->dataFilterRuleService->showPartners($request);
         return response()->json($result);
 //        $dataFiltersRulesId = $request->all();
