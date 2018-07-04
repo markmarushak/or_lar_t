@@ -49,6 +49,9 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
 
+
+
+
 @yield('css')
 <!--end::Base Styles -->
     <link rel="shortcut icon" href="/assets/demo/default/media/img/logo/favicon.ico"/>
