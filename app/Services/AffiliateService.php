@@ -1,14 +1,10 @@
 <?php
 
-
 namespace App\Services;
-
 
 use App\Plugins\WordPress\Wpdb;
 use App\Repository\AffiliateRepository;
 use Exception;
-
-
 
 class AffiliateService extends BaseService
 {
@@ -46,7 +42,6 @@ class AffiliateService extends BaseService
         {
             return $e;
         }
-
     }
 
     public function editConnectToDb($request, $dataFiltersRulesId)
@@ -96,8 +91,6 @@ class AffiliateService extends BaseService
         }
     }
 
-
-
     public function addAffiliatePartner($request)
     {
        $this->affiliateRepository->addToDatabase($request);
@@ -118,16 +111,15 @@ class AffiliateService extends BaseService
         return $this->affiliateRepository->getDataById($request);
     }
 
-    public function editAffiliatesPartners($request){
+    public function editAffiliatesPartners($request)
+    {
         return $this->affiliateRepository->editDataById($request);
     }
 
-    public function getAffiliatesDescriptions($request){
+    public function getAffiliatesDescriptions($request)
+    {
         $result['suggestions'] = $this->affiliateRepository->getAffiliatesDescriptions($request);
-
         return json_encode($result);
-
-
     }
 
 }
