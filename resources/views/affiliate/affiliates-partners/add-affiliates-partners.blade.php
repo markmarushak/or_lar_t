@@ -1,7 +1,8 @@
 @extends('layouts.admin.app')
-<link rel='stylesheet' id='quform-css' href='http://garasje-tilbud.no/modules/quform/cache/quform.css?ver=1521656337'
-      type='text/css' media='all'/>
+
 @section('content')
+
+
 
 
         <div class="tab-content">
@@ -11,6 +12,7 @@
             <form action="{{route('add-affiliates-partners-store')}}" method="post">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 @include('errors')
+
                 <div class="form-group m-form__group row">
                     <label class="col-form-label col-lg-3 col-sm-12">Description:</label>
                     <div class="col-lg-4 col-md-9 col-sm-12">
@@ -40,8 +42,6 @@
                 </div>
             </form>
         </div>
-
-
     </div>
         {!! Html::script('js/affiliatePartners.js') !!}
 @endsection

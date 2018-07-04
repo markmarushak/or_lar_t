@@ -15,6 +15,8 @@
         {{--Call Tab Menu--}}
         @include('affiliate.tabs-menu.top-menu')
         @include('errors')
+    <div class="m-portlet m-portlet--mobile">
+        <div class="m-portlet__body qfb-box">
         @if(isset($data) && !empty($data) )
                 <!--<div class="col-xl-3">
                     <div class="form-group m-form__group">
@@ -47,7 +49,8 @@
                 </div>
 
         @endif
-
+        </div>
+    </div>
 
 
 
