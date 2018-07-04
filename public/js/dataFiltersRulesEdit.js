@@ -14,8 +14,10 @@ $(document).ready(function() {
 var aff_data = {};
 
 function showData(){
+    $('#m_table_1').hide();
     var table = $('#m_table_1').DataTable();
     table.destroy();
+    $('#spinner').show();
 
     $.ajax({
         method: 'POST',
@@ -23,6 +25,8 @@ function showData(){
         url: laroute.action('data-filters-rules-show'),
         data:'',
     }).done(function(data){
+        $('#spinner').hide();
+        $('#m_table_1').show();
         $('#m_table_1').DataTable({
             paging: false,
             ordering: true,

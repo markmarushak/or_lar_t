@@ -44,9 +44,12 @@
                     <input id="m_search_input" placeholder="Search" type="text" onkeyup="searchData()"/>
                 </div>
             </div>
-            
+            <div class="container text-center" id="spinner" style="display: none; width: 100%">
+                <div class="m-loader m-loader--success m-loader--lg col-md-6" style="margin-top: 50px; width: 30px; display: inline-block;"></div>
+            </div>
+
             <table class="table m-table m-table--head-separator-primary"
-                   id="m_table_2">
+                   id="m_table_2" style="display: none">
                 <thead>
                 <tr>
                     <th data-field="ID" class="m-datatable__cell m-datatable__cell--sort">
@@ -82,7 +85,7 @@
 
 
                 <div class="pt-2">
-                    <a href="#" onclick="window.location = laroute.action('add-affiliates-partners', {type: $('#dropdownMenuButton').text()})" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+                    <a href="#" onclick="window.location = laroute.action('add-affiliates-partners')" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-plus"></i>
 							<span id="add_btn">Add</span>
