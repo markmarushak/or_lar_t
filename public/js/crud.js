@@ -193,6 +193,7 @@ function editRow (id) {
 function showEditRow(tr_id)
 {
     event.preventDefault();
+
     editRow(tr_id);
     var tr = ($('#'+tr_id));
     var table = $('#m_table_2').DataTable();
