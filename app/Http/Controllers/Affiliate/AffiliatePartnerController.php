@@ -43,12 +43,6 @@ class AffiliatePartnerController extends Controller
     }
 
     public function store(Request $request){
-        if($request['status'] == null){
-            $request['status'] = FALSE;
-        }
-        if($request['status'] == 'on'){
-            $request['status'] = TRUE;
-        }
         $this->validate($request, [
             'description' => 'required',
             'country' => 'required',

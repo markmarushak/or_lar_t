@@ -92,6 +92,7 @@ $(document).ready(function() {
 
     autoComplete.enable();
 
+
     showData();
 
     $('#m_table_4').on('dblclick', 'tbody tr', function(){
@@ -101,10 +102,11 @@ $(document).ready(function() {
 
 function showData()
 {
-
+    $('#m_table_4').hide();
     var table = $('#m_table_4').DataTable();
     table.clear();
     table.destroy();
+    $('#spinner').show();
     project_id = $('#project_id').val();
     $.ajax({
         method: 'POST',
@@ -112,6 +114,8 @@ function showData()
         url: laroute.action('show-partners'),
         data: {id: project_id},
     }).done(function(data){
+        $('#spinner').hide();
+        $('#m_table_4').show()
         table = $('#m_table_4').DataTable({
             paging: false,
             ordering: true,

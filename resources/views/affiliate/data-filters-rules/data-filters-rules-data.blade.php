@@ -28,7 +28,10 @@
                             </span>
                          </a>
                      </div>
-                        <table class="table m-table m-table--head-separator-primary" id="m_table_4">
+                     <div class="container text-center" id="spinner" style="display: none; width: 100%">
+                         <div class="m-loader m-loader--success m-loader--lg col-md-6" style="margin-top: 50px; width: 30px; display: inline-block;"></div>
+                     </div>
+                     <table class="table m-table m-table--head-separator-primary" id="m_table_4" style="display: none">
                             <thead>
                             <tr>
                              <!--   <th>

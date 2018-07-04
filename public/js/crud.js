@@ -7,18 +7,48 @@ $(document).ready(function() {
 
     showData();
 
+
+
 })
 
 var type = 'All';
 var id = '';
 var aff_data = {};
+var edit_row = `
+                <div class="slider">
+                <div class="row">
+                    <div class="col-lg-3 col-md-9 col-sm-12 ml-auto">
+                        <input type="text" class="form-control m-input" id="e_description">
+                    </div>
+                    <div class="col-lg-3 col-md-9 col-sm-12 ml-auto">
+                        <input type="text" class="form-control m-input" id="e_country">
+                    </div>
+                    <div class="col-lg-3 col-md-9 col-sm-12 ml-auto mr-5">
+                        <select class="form-control m-input" id="e_type">
+                            <option>Affiliate</option>
+                            <option>Partner</option>
+                        </select>
+                    </div>   
+                </div>
+                <div class="pt-2 text-right mr-5">
+                            <a href="#" onclick="saveRow()" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+    <span>
+    <span id="add_btn">Edit</span>
+    </span>
+                            </a>
+                        </div>
+                </div>
+
+
+`;
 
 //Render Table
 //-------------------------------------------------------
 function showData(){
-
+    $('#m_table_2').hide();
     var table = $('#m_table_2').DataTable();
     table.destroy();
+    $('#spinner').show();
 
     $.ajax({
        method: 'POST',
@@ -26,7 +56,9 @@ function showData(){
        url: laroute.action('show-affiliates-partners'),
        data: {data: type},
     }).done(function(data){
-        $('#m_table_2').DataTable({
+        $('#spinner').hide();
+        $('#m_table_2').show();
+        var table = $('#m_table_2').DataTable({
             paging: false,
             ordering: true,
             responsive: true,
@@ -101,7 +133,7 @@ function showData(){
                                                         <ul class="m-nav">
 
                                                             <li class="m-nav__item">
-                                                                <a href="#" onclick="editRow(`+data.id+`)" class="m-nav__link">
+                                                                <a href="#" onclick="showEditRow(`+data.id+`)" class="m-nav__link">
                                                                     <i class="m-nav__link-icon flaticon-edit"></i>
                                                                     <span class="m-nav__link-text">Edit</span>
                                                                 </a>
@@ -148,36 +180,48 @@ function editRow (id) {
 
     }).done(function (data) {
         $.each(data, function (key, value) {
-            $('#n_description').val(value.description);
+            $('#e_description').val(value.description);
             aff_data.id = id;
-            $('#n_country').val(value.country);
-            $('#n_type').val(value.type);
-            $('#n_rules').val(value.rules);
+            $('#e_country').val(value.country);
+            $('#e_type :contains('+value.type+')').attr("selected", "selected");
             aff_data.description = value.description;
-            if (value.status == true) {
-                $('#n_status').attr("checked", "checked");
-            }
-            else {
-                $('#n_status').removeAttr("checked");
-            }
+
         })
-        $('#m_modal_5').show();
-        $('#edit_modal').slideDown(300);
     })
 }
+
+function showEditRow(tr_id)
+{
+    event.preventDefault();
+    editRow(tr_id);
+    var tr = ($('#'+tr_id));
+    var table = $('#m_table_2').DataTable();
+    var row = table.row(tr);
+    if (row.child.isShown()) {
+        $('.slider', row.child()).slideUp(function () {
+            row.child.hide();
+            tr.removeClass('shown');
+            id = '';
+        });
+    }
+    else {
+        if ($('tbody tr').hasClass('shown')) {
+            showEditRow($('.shown').attr('id'));
+        }
+        row.child(edit_row).show();
+        $('.slider', row.child()).slideDown();
+        tr.addClass('shown');
+
+        //id = t_id;
+    }
+}
+
+
 
 //Save edited record to Database
 //------------------------------------------------
 function saveRow(){
 
-    closeEditModal();
-    var status = true;
-    if($('#n_status').is(":checked")){
-        status = 1;
-    }
-    else{
-        status = 0;
-    }
 
     $.ajax({
 
@@ -186,11 +230,9 @@ function saveRow(){
         url: laroute.action('edit-affiliate-partner'),
 
         data: {id: aff_data.id,
-            description: $('#n_description').val(),
-            country: $('#n_country').val(),
-            type: $('#n_type').val(),
-            rules: $('#n_rules').val(),
-            status: status},
+            description: $('#e_description').val(),
+            country: $('#e_country').val(),
+            type: $('#e_type').val()},
 
 
     }).done(function () {
@@ -261,5 +303,7 @@ function showModal(n_id, description, type){
     $('#m_modal_del').show();
     $('#delete_modal').slideDown(300);
 }
+
+
 
 
