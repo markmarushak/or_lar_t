@@ -94,6 +94,10 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
         //form-builder
         Route::get('/form-builder', 'DataFilterRuleController@formbuilder')->name('form-builder');
 
+        //single-form-builder
+        Route::get('/single-form-builder/{singleId?}/', 'DataFilterRuleController@singleFormBuilder')->name('single-form-builder');
+
+
         // Data Filters Edit page
         Route::get('', 'AffiliateController@dataFiltersRules')->name('data-filters-rules-edit');
 
@@ -110,7 +114,7 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
         //outputOverview
         Route::get('/output-overview', 'DataFilterRuleController@outputOverview')->name('output-overview');
 
-        //outputOverviewsSingle
-        Route::get('/output-overview-single/{single_id?}/', 'DataFilterRuleController@outputOverviewSingle')->name('output-overview-single');
+        //singleOutputOverviews
+        Route::get('/single-output-overview/{single_id?}/', 'DataFilterRuleController@singleOutputOverview')->name('single-output-overview');
     });
 });

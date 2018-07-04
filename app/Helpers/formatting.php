@@ -1055,8 +1055,10 @@ function wp_check_invalid_utf8( $string, $strip = false ) {
 		return '';
 	}
 
+
 	// Store the site charset as a static to avoid multiple calls to get_option()
 	static $is_utf8 = null;
+
 	if ( ! isset( $is_utf8 ) ) {
 		$is_utf8 = in_array( get_option( 'blog_charset' ), array( 'utf8', 'utf-8', 'UTF8', 'UTF-8' ) );
 	}
@@ -1083,7 +1085,6 @@ function wp_check_invalid_utf8( $string, $strip = false ) {
 	if ( $strip && function_exists( 'iconv' ) ) {
 		return iconv( 'utf-8', 'utf-8', $string );
 	}
-
 	return '';
 }
 
@@ -3982,6 +3983,7 @@ function esc_html( $text ) {
  * @return string
  */
 function esc_attr( $text ) {
+
 	$safe_text = wp_check_invalid_utf8( $text );
 	$safe_text = _wp_specialchars( $safe_text, ENT_QUOTES );
 	/**

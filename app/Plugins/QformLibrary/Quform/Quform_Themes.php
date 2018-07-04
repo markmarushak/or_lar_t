@@ -4,6 +4,7 @@ namespace App\Plugins\QformLibrary\Quform;
 
 use App\Plugins\QformLibrary\Quform;
 
+
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
  */
@@ -21,82 +22,83 @@ class Quform_Themes
 
     public function __construct()
     {
+
         $this->coreThemes = array(
             'minimal' => array(
                 'name' => 'Minimal',
                 'version' => '1.0.0',
-                'cssPath' => QUFORM_PATH . '/css/theme.minimal.min.css',
-                'cssUrl' => Quform::url('css/theme.minimal.min.css'),
+                'cssPath' =>  public_path(). '/assets/admin/css/quform/css/theme.minimal.min.css',
+                'cssUrl' => Quform::url('/assets/admin/css/quform/css/theme.minimal.min.css'),
                 'previewColor' => '#FFFFFF'
             ),
             'light' => array(
                 'name' => 'Quform Light',
                 'version' => '1.0.0',
-                'cssPath' => QUFORM_PATH . '/css/theme.light.min.css',
-                'cssUrl' => Quform::url('css/theme.light.min.css'),
+                'cssPath' =>  public_path(). '/assets/admin/css/quform/css/theme.light.min.css',
+                'cssUrl' => Quform::url('/assets/admin/css/quform/css/theme.light.min.css'),
                 'previewColor' => '#FFFFFF'
             ),
             'dark' => array(
                 'name' => 'Quform Dark',
                 'version' => '1.0.0',
-                'cssPath' => QUFORM_PATH . '/css/theme.dark.min.css',
-                'cssUrl' => Quform::url('css/theme.dark.min.css'),
+                'cssPath' => public_path(). '/assets/admin/css/quform/css/theme.dark.min.css',
+                'cssUrl' => Quform::url('/assets/admin/css/quform/css/theme.dark.min.css'),
                 'previewColor' => '#0d0d0c'
             ),
             'hollow' => array(
                 'name' => 'Hollow',
                 'version' => '1.0.0',
-                'cssPath' => QUFORM_PATH . '/css/theme.hollow.min.css',
-                'cssUrl' => Quform::url('css/theme.hollow.min.css'),
+                'cssPath' => public_path(). '/assets/admin/css/quform/css/theme.hollow.min.css',
+                'cssUrl' => Quform::url('/assets/admin/css/quform/css/theme.hollow.min.css'),
                 'previewColor' => '#FFFFFF'
             ),
             'underlined' => array(
                 'name' => 'Underline',
                 'version' => '1.0.0',
-                'cssPath' => QUFORM_PATH . '/css/theme.underlined.min.css',
-                'cssUrl' => Quform::url('css/theme.underlined.min.css'),
+                'cssPath' => public_path(). '/assets/admin/css/quform/css/theme.underlined.min.css',
+                'cssUrl' => Quform::url('/assets/admin/css/quform/css/theme.underlined.min.css'),
                 'previewColor' => '#FFFFFF'
             ),
             'simple' => array(
                 'name' => 'Simple',
                 'version' => '1.0.0',
-                'cssPath' => QUFORM_PATH . '/css/theme.simple.min.css',
-                'cssUrl' => Quform::url('css/theme.simple.min.css'),
+                'cssPath' => public_path(). '/assets/admin/css/quform/css/theme.simple.min.css',
+                'cssUrl' => Quform::url('/assets/admin/css/quform/css/theme.simple.min.css'),
                 'previewColor' => '#FFFFFF'
             ),
             'react' => array(
                 'name' => 'React',
                 'version' => '1.0.0',
-                'cssPath' => QUFORM_PATH . '/css/theme.react.min.css',
-                'cssUrl' => Quform::url('css/theme.react.min.css'),
+                'cssPath' => public_path(). '/assets/admin/css/quform/css/theme.react.min.css',
+                'cssUrl' => Quform::url('/assets/admin/css/quform/css/theme.react.min.css'),
                 'previewColor' => '#FFFFFF'
             ),
             'bootstrap' => array(
                 'name' => 'Bootstrap',
                 'version' => '1.0.0',
-                'cssPath' => QUFORM_PATH . '/css/theme.bootstrap.min.css',
-                'cssUrl' => Quform::url('css/theme.bootstrap.min.css'),
+                'cssPath' =>  public_path(). '/assets/admin/css/quform/css/theme.bootstrap.min.css',
+                'cssUrl' => Quform::url('/assets/admin/css/quform/css/theme.bootstrap.min.css'),
                 'previewColor' => '#FFFFFF'
             ),
             'shine-gradient' => array(
                 'name' => 'Shine Gradient',
                 'version' => '1.0.0',
-                'cssPath' => QUFORM_PATH . '/css/theme.shine-gradient.min.css',
-                'cssUrl' => Quform::url('css/theme.shine-gradient.min.css'),
+                'cssPath' =>  public_path(). '/assets/admin/css/quform/css/theme.shine-gradient.min.css',
+                'cssUrl' => Quform::url('/assets/admin/css/quform/css/theme.shine-gradient.min.css'),
                 'previewColor' => '#FFFFFF'
             ),
             'blend-gradient' => array(
                 'name' => 'Blend Gradient',
                 'version' => '1.0.0',
-                'cssPath' => QUFORM_PATH . '/css/theme.blend-gradient.min.css',
-                'cssUrl' => Quform::url('css/theme.blend-gradient.min.css'),
+                'cssPath' =>  public_path(). '/assets/admin/css/quform/css/theme.blend-gradient.min.css',
+                'cssUrl' => Quform::url('/assets/admin/css/quform/css/theme.blend-gradient.min.css'),
                 'previewColor' => '#FFFFFF'
             ),
             'storm' => array(
                 'name' => 'Storm',
                 'version' => '1.0.0',
-                'cssPath' => QUFORM_PATH . '/css/theme.storm.min.css',
-                'cssUrl' => Quform::url('css/theme.storm.min.css'),
+                'cssPath' =>  public_path(). '/assets/admin/css/quform/css/theme.storm.min.css',
+                'cssUrl' => Quform::url('/assets/admin/css/quform/css/theme.storm.min.css'),
                 'previewColor' => '#0d0d0c'
             )
         );

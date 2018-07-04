@@ -100,8 +100,8 @@ class Quform_Element_Group extends Quform_Element_Container
      */
     public static function getDefaultConfig()
     {
-        /*$config = apply_filters('quform_default_config_group', array(
-            'label' => __('Untitled group', 'quform'),
+        $config = apply_filters('quform_default_config_group', array(
+            'label' => __tr('Untitled group', 'quform'),
             'title' => '',
             'titleTag' => 'h4',
             'description' => '',
@@ -124,37 +124,11 @@ class Quform_Element_Group extends Quform_Element_Container
             'logicRules' => array(),
             'styles' => array(),
             'elements' => array()
-        ));*/
-
-        $config = array(
-            'label' => array('Untitled group' => 'quform'),
-            'title' => '',
-            'titleTag' => 'h4',
-            'description' => '',
-            'descriptionAbove' => '',
-            'fieldSize' => 'inherit',
-            'fieldWidth' => 'inherit',
-            'fieldWidthCustom' => '',
-            'groupStyle' => 'plain',
-            'borderColor' => '',
-            'backgroundColor' => '',
-            'labelPosition' => 'inherit',
-            'labelWidth' => '',
-            'showLabelInEmail' => false,
-            'showLabelInEntry' => false,
-            'tooltipType' => 'inherit',
-            'tooltipEvent' => 'inherit',
-            'logicEnabled' => false,
-            'logicAction' => true,
-            'logicMatch' => 'all',
-            'logicRules' => array(),
-            'styles' => array(),
-            'elements' => array()
-        );
-
+        ));
 
         $config['type'] = 'group';
 
         return $config;
     }
 }
+

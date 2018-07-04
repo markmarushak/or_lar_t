@@ -3,10 +3,11 @@
 		<div class="mr-auto">
 		<!-- Get Name of the current Route -->
 		<?php $nameRoute = \Request::route()->getName(); ?>
+
 		<!--Must be dynamic changed -->
 			@if('data-filters-rules' == $nameRoute)
 				{!! Breadcrumbs::render($nameRoute) !!}
-			@elseif('output-overview-single' == $nameRoute)
+			@elseif('single-output-overview' == $nameRoute)
 				{!! Breadcrumbs::render($nameRoute, $nameEntry) !!}
 			@else
 				{!! Breadcrumbs::render($nameRoute) !!}

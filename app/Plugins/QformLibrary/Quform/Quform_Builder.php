@@ -2,7 +2,30 @@
 
 namespace App\Plugins\QformLibrary\Quform;
 
+use App\Plugins\QformLibrary\Quform;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Captcha;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Checkbox;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Column;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Date;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Email;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_File;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Group;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Hidden;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Html;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Multiselect;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Name;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Page;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Password;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Radio;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Recaptcha;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Row;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Select;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Submit;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Text;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Textarea;
+use App\Plugins\QformLibrary\Quform\Element\Quform_Element_Time;
 use App\Plugins\QformLibrary\Quform\Form\Quform_Form_Factory;
+
 
 /**
  * @copyright Copyright (c) 2009-2018 ThemeCatcher (http://www.themecatcher.net)
@@ -62,27 +85,27 @@ class Quform_Builder
             'ajaxUrl' => admin_url('admin-ajax.php'),
             'pluginUrl' => Quform::url(),
             'saveFormNonce' => wp_create_nonce('quform_save_form'),
-            'formSaved' => __('Form saved', 'quform'),
-            'confirmRemoveElement' => __('Are you sure you want to remove this element? Any previously submitted form data for this element will no longer be accessible.', 'quform'),
-            'confirmRemoveGroup' => __('Are you sure you want to remove this group? All elements inside this group will also be removed. Any previously submitted form data for elements inside this group will no longer be accessible.', 'quform'),
-            'confirmRemovePage' => __('Are you sure you want to remove this page? All elements inside this page will also be removed. Any previously submitted form data for elements inside this page will no longer be accessible.', 'quform'),
-            'confirmRemoveRow' => __('Are you sure you want to remove this row? All elements inside this row will also be removed. Any previously submitted form data for elements inside this row will no longer be accessible.', 'quform'),
-            'confirmRemoveColumn' => __('Are you sure you want to remove this column? All elements inside this column will also be removed. Any previously submitted form data for elements inside this column will no longer be accessible.', 'quform'),
-            'confirmRemoveOptgroup' => __('Are you sure you want to remove this optgroup? Any options inside of it will also be removed.', 'quform'),
-            'confirmRemoveSubmit' => __('Are you sure you want to remove this submit button?', 'quform'),
-            'nestingOptgroupError' => __('Nested optgroups are not supported.', 'quform'),
-            'errorSavingForm' => __('Error saving the form', 'quform'),
-            'atLeastOneToCcBccRequired' => __('At least one To, Cc or Bcc address is required', 'quform'),
-            'correctHighlightedFields' => __('Please correct the highlighted fields and save the form again', 'quform'),
-            'inherit' => __('Inherit', 'quform'),
-            'field' => __('Field', 'quform'),
-            'icon' => __('Icon', 'quform'),
-            'above' => __('Above', 'quform'),
-            'left' => __('Left', 'quform'),
-            'inside' => __('Inside', 'quform'),
-            'atLeastOnePage' => __('The form must have at least one page', 'quform'),
+            'formSaved' => __tr('Form saved', 'quform'),
+            'confirmRemoveElement' => __tr('Are you sure you want to remove this element? Any previously submitted form data for this element will no longer be accessible.', 'quform'),
+            'confirmRemoveGroup' => __tr('Are you sure you want to remove this group? All elements inside this group will also be removed. Any previously submitted form data for elements inside this group will no longer be accessible.', 'quform'),
+            'confirmRemovePage' => __tr('Are you sure you want to remove this page? All elements inside this page will also be removed. Any previously submitted form data for elements inside this page will no longer be accessible.', 'quform'),
+            'confirmRemoveRow' => __tr('Are you sure you want to remove this row? All elements inside this row will also be removed. Any previously submitted form data for elements inside this row will no longer be accessible.', 'quform'),
+            'confirmRemoveColumn' => __tr('Are you sure you want to remove this column? All elements inside this column will also be removed. Any previously submitted form data for elements inside this column will no longer be accessible.', 'quform'),
+            'confirmRemoveOptgroup' => __tr('Are you sure you want to remove this optgroup? Any options inside of it will also be removed.', 'quform'),
+            'confirmRemoveSubmit' => __tr('Are you sure you want to remove this submit button?', 'quform'),
+            'nestingOptgroupError' => __tr('Nested optgroups are not supported.', 'quform'),
+            'errorSavingForm' => __tr('Error saving the form', 'quform'),
+            'atLeastOneToCcBccRequired' => __tr('At least one To, Cc or Bcc address is required', 'quform'),
+            'correctHighlightedFields' => __tr('Please correct the highlighted fields and save the form again', 'quform'),
+            'inherit' => __tr('Inherit', 'quform'),
+            'field' => __tr('Field', 'quform'),
+            'icon' => __tr('Icon', 'quform'),
+            'above' => __tr('Above', 'quform'),
+            'left' => __tr('Left', 'quform'),
+            'inside' => __tr('Inside', 'quform'),
+            'atLeastOnePage' => __tr('The form must have at least one page', 'quform'),
             'loadedPreviewLocales' => $this->getLoadedPreviewLocales(),
-            'exampleTooltip' => __('This is an example tooltip!', 'quform'),
+            'exampleTooltip' => __tr('This is an example tooltip!', 'quform'),
             'remove' => _x('Remove', 'delete', 'quform'),
             'selectOptionHtml' => $this->getOptionHtml('select'),
             'checkboxOptionHtml' => $this->getOptionHtml('checkbox'),
@@ -93,41 +116,41 @@ class Quform_Builder
             'defaultOptions' => $this->getDefaultOptions(),
             'defaultOptgroups' => $this->getDefaultOptgroups(),
             'logicRuleHtml' => $this->getLogicRuleHtml(),
-            'noLogicElements' => __('There are no elements available to use for logic rules.', 'quform'),
-            'noLogicRules' => __('There are no logic rules yet, click "Add logic rule" to add one.', 'quform'),
+            'noLogicElements' => __tr('There are no elements available to use for logic rules.', 'quform'),
+            'noLogicRules' => __tr('There are no logic rules yet, click "Add logic rule" to add one.', 'quform'),
             'logicSourceTypes' => $this->getLogicSourceTypes(),
-            'thisFieldMustBePositiveNumberOrZero' => __('This field must be a positive number or zero', 'quform'),
-            'atLeastOneLogicRuleRequired' => __('At least one logic rule is required', 'quform'),
-            'showThisGroup' => __('Show this group', 'quform'),
-            'hideThisGroup' => __('Hide this group', 'quform'),
-            'showThisField' => __('Show this field', 'quform'),
-            'hideThisField' => __('Hide this field', 'quform'),
-            'showThisPage' => __('Show this page', 'quform'),
-            'hideThisPage' => __('Hide this page', 'quform'),
-            'useThisConfirmationIfAll' => __('Use this confirmation if all of these rules match', 'quform'),
-            'useThisConfirmationIfAny' => __('Use this confirmation if any of these rules match', 'quform'),
-            'sendToTheseRecipientsIfAll' => __('Send to these recipients if all of these rules match', 'quform'),
-            'sendToTheseRecipientsIfAny' => __('Send to these recipients if any of these rules match', 'quform'),
-            'ifAllOfTheseRulesMatch' => __('if all of these rules match', 'quform'),
-            'ifAnyOfTheseRulesMatch' => __('if any of these rules match', 'quform'),
-            'addRecipient' => __('Add recipient', 'quform'),
-            'addLogicRule' => __('Add logic rule', 'quform'),
-            'noConditionals' => __('There are no conditionals yet, click "Add conditional" to add one.', 'quform'),
-            'is' => __('is', 'quform'),
-            'isNot' => __('is not', 'quform'),
-            'isEmpty' => __('is empty', 'quform'),
-            'isNotEmpty' => __('is not empty', 'quform'),
-            'greaterThan' => __('is greater than', 'quform'),
-            'lessThan' => __('is less than', 'quform'),
-            'contains' => __('contains', 'quform'),
-            'startsWith' => __('starts with', 'quform'),
-            'endsWith' => __('ends with', 'quform'),
-            'enterValue' => __('Enter a value', 'quform'),
-            'unsavedChanges' => __('You have unsaved changes.', 'quform'),
-            'previewError' => __('An error occurred loading the preview', 'quform'),
-            'untitled' =>  __('Untitled', 'quform'),
+            'thisFieldMustBePositiveNumberOrZero' => __tr('This field must be a positive number or zero', 'quform'),
+            'atLeastOneLogicRuleRequired' => __tr('At least one logic rule is required', 'quform'),
+            'showThisGroup' => __tr('Show this group', 'quform'),
+            'hideThisGroup' => __tr('Hide this group', 'quform'),
+            'showThisField' => __tr('Show this field', 'quform'),
+            'hideThisField' => __tr('Hide this field', 'quform'),
+            'showThisPage' => __tr('Show this page', 'quform'),
+            'hideThisPage' => __tr('Hide this page', 'quform'),
+            'useThisConfirmationIfAll' => __tr('Use this confirmation if all of these rules match', 'quform'),
+            'useThisConfirmationIfAny' => __tr('Use this confirmation if any of these rules match', 'quform'),
+            'sendToTheseRecipientsIfAll' => __tr('Send to these recipients if all of these rules match', 'quform'),
+            'sendToTheseRecipientsIfAny' => __tr('Send to these recipients if any of these rules match', 'quform'),
+            'ifAllOfTheseRulesMatch' => __tr('if all of these rules match', 'quform'),
+            'ifAnyOfTheseRulesMatch' => __tr('if any of these rules match', 'quform'),
+            'addRecipient' => __tr('Add recipient', 'quform'),
+            'addLogicRule' => __tr('Add logic rule', 'quform'),
+            'noConditionals' => __tr('There are no conditionals yet, click "Add conditional" to add one.', 'quform'),
+            'is' => __tr('is', 'quform'),
+            'isNot' => __tr('is not', 'quform'),
+            'isEmpty' => __tr('is empty', 'quform'),
+            'isNotEmpty' => __tr('is not empty', 'quform'),
+            'greaterThan' => __tr('is greater than', 'quform'),
+            'lessThan' => __tr('is less than', 'quform'),
+            'contains' => __tr('contains', 'quform'),
+            'startsWith' => __tr('starts with', 'quform'),
+            'endsWith' => __tr('ends with', 'quform'),
+            'enterValue' => __tr('Enter a value', 'quform'),
+            'unsavedChanges' => __tr('You have unsaved changes.', 'quform'),
+            'previewError' => __tr('An error occurred loading the preview', 'quform'),
+            'untitled' =>  __tr('Untitled', 'quform'),
             'pageTabNavHtml' => $this->getPageTabNavHtml(),
-            'pageTabNavText' => __('Page %s', 'quform'),
+            'pageTabNavText' => __tr('Page %s', 'quform'),
             'elements' => $this->getElements(),
             'elementHtml' => $this->getDefaultElementHtml('text'),
             'groupHtml' => $this->getDefaultElementHtml('group'),
@@ -147,51 +170,51 @@ class Quform_Builder
             'visibleValidators' => $this->getVisibleValidators(),
             'notification' => Quform_Notification::getDefaultConfig(),
             'notificationHtml' => $this->getNotificationHtml(),
-            'notificationConfirmRemove' => __('Are you sure you want to remove this notification?', 'quform'),
-            'sendThisNotification' => __('Send this notification', 'quform'),
-            'doNotSendThisNotification' => __('Do not send this notification', 'quform'),
+            'notificationConfirmRemove' => __tr('Are you sure you want to remove this notification?', 'quform'),
+            'sendThisNotification' => __tr('Send this notification', 'quform'),
+            'doNotSendThisNotification' => __tr('Do not send this notification', 'quform'),
             'recipientHtml' => $this->getRecipientHtml(),
-            'popupTriggerText' => __('Click me', 'quform'),
+            'popupTriggerText' => __tr('Click me', 'quform'),
             'attachmentHtml' => $this->getAttachmentHtml(),
-            'selectFiles' => __('Select Files', 'quform'),
-            'selectElement' => __('Select an element', 'quform'),
+            'selectFiles' => __tr('Select Files', 'quform'),
+            'selectElement' => __tr('Select an element', 'quform'),
             'attachmentSourceTypes' => $this->getAttachmentSourceTypes(),
-            'noAttachmentSourcesFound' => __('No attachment sources found', 'quform'),
-            'noAttachments' => __('There are no attachments yet, click "Add attachment" to add one.', 'quform'),
-            'selectOneFile' => __('Select at least one file', 'quform'),
+            'noAttachmentSourcesFound' => __tr('No attachment sources found', 'quform'),
+            'noAttachments' => __tr('There are no attachments yet, click "Add attachment" to add one.', 'quform'),
+            'selectOneFile' => __tr('Select at least one file', 'quform'),
             'confirmation' => Quform_Confirmation::getDefaultConfig(),
             'confirmationHtml' => $this->getConfirmationHtml(),
-            'cannotRemoveDefaultConfirmation' => __('The default confirmation cannot be removed', 'quform'),
-            'confirmationConfirmRemove' => __('Are you sure you want to remove this confirmation?', 'quform'),
+            'cannotRemoveDefaultConfirmation' => __tr('The default confirmation cannot be removed', 'quform'),
+            'confirmationConfirmRemove' => __tr('Are you sure you want to remove this confirmation?', 'quform'),
             'dbPasswordHtml' => $this->getDbPasswordHtml(),
             'dbColumnHtml' => $this->getDbColumnHtml(),
-            'areYouSure' => __('Are you sure?', 'quform'),
-            'emailRemoveBrackets' => __('Please remove the brackets from the email address', 'quform'),
+            'areYouSure' => __tr('Are you sure?', 'quform'),
+            'emailRemoveBrackets' => __tr('Please remove the brackets from the email address', 'quform'),
             'themes' => $this->getThemes(),
-            'collapse' => __('Collapse', 'quform'),
-            'expand' => __('Expand', 'quform'),
-            'noIcon' => __('No icon', 'quform'),
-            'columnNumber' => __('Column %d', 'quform'),
-            'columnWidthMustBeNumeric' => __('Column width must be numeric', 'quform'),
-            'columnWidthTotalTooHigh' => __('Total of column widths must not be higher than 100', 'quform'),
-            'pageSettings' => __('Page settings', 'quform'),
-            'groupSettings' => __('Group settings', 'quform'),
-            'rowSettings' => __('Row settings', 'quform'),
-            'elementSettings' => __('Element settings', 'quform'),
-            'pleaseSelect' => __('Please select', 'quform'),
-            'buttonIcon' => __('Button icon', 'quform'),
-            'buttonIconPosition' => __('Button icon position', 'quform'),
-            'dropzoneIcon' => __('Dropzone icon', 'quform'),
-            'dropzoneIconPosition' => __('Dropzone icon position', 'quform'),
+            'collapse' => __tr('Collapse', 'quform'),
+            'expand' => __tr('Expand', 'quform'),
+            'noIcon' => __tr('No icon', 'quform'),
+            'columnNumber' => __tr('Column %d', 'quform'),
+            'columnWidthMustBeNumeric' => __tr('Column width must be numeric', 'quform'),
+            'columnWidthTotalTooHigh' => __tr('Total of column widths must not be higher than 100', 'quform'),
+            'pageSettings' => __tr('Page settings', 'quform'),
+            'groupSettings' => __tr('Group settings', 'quform'),
+            'rowSettings' => __tr('Row settings', 'quform'),
+            'elementSettings' => __tr('Element settings', 'quform'),
+            'pleaseSelect' => __tr('Please select', 'quform'),
+            'buttonIcon' => __tr('Button icon', 'quform'),
+            'buttonIconPosition' => __tr('Button icon position', 'quform'),
+            'dropzoneIcon' => __tr('Dropzone icon', 'quform'),
+            'dropzoneIconPosition' => __tr('Dropzone icon position', 'quform'),
             'posts' => array_merge(Quform::getPosts(), Quform::getPages()),
-            'displayAMessage' => __('Display a message', 'quform'),
-            'redirectTo' => __('Redirect to', 'quform'),
-            'reloadThePage' => __('Reload the page', 'quform'),
-            'enableCustomizeValuesToChange' => __('Enable the "Customize values" setting to change the value', 'quform'),
-            'everyone' => __('Everyone', 'quform'),
-            'adminOnly' => __('Admin only', 'quform'),
-            'loggedInUsersOnly' => __('Logged in users only', 'quform'),
-            'loggedOutUsersOnly' => __('Logged out users only', 'quform')
+            'displayAMessage' => __tr('Display a message', 'quform'),
+            'redirectTo' => __tr('Redirect to', 'quform'),
+            'reloadThePage' => __tr('Reload the page', 'quform'),
+            'enableCustomizeValuesToChange' => __tr('Enable the "Customize values" setting to change the value', 'quform'),
+            'everyone' => __tr('Everyone', 'quform'),
+            'adminOnly' => __tr('Admin only', 'quform'),
+            'loggedInUsersOnly' => __tr('Logged in users only', 'quform'),
+            'loggedOutUsersOnly' => __tr('Logged out users only', 'quform')
         );
 
         $params = array(
@@ -303,55 +326,55 @@ class Quform_Builder
     {
         return apply_filters('quform_bulk_options', array(
             'countries' => array(
-                'name' => __('Countries', 'quform'),
+                'name' => __tr('Countries', 'quform'),
                 'options' => $this->getCountries()
             ),
             'usStates' => array(
-                'name' => __('U.S. States', 'quform'),
+                'name' => __tr('U.S. States', 'quform'),
                 'options' => $this->getUsStates()
             ),
             'canadianProvinces' => array(
-                'name' => __('Canadian Provinces', 'quform'),
+                'name' => __tr('Canadian Provinces', 'quform'),
                 'options' => $this->getCanadianProvinces()
             ),
             'ukCounties' => array(
-                'name' => __('UK Counties', 'quform'),
+                'name' => __tr('UK Counties', 'quform'),
                 'options' => $this->getUkCounties()
             ),
             'germanStates' => array(
-                'name' => __('German States', 'quform'),
+                'name' => __tr('German States', 'quform'),
                 'options' => array('Baden-Wurttemberg', 'Bavaria', 'Berlin', 'Brandenburg', 'Bremen', 'Hamburg', 'Hesse', 'Mecklenburg-West Pomerania', 'Lower Saxony', 'North Rhine-Westphalia', 'Rhineland-Palatinate', 'Saarland', 'Saxony', 'Saxony-Anhalt', 'Schleswig-Holstein', 'Thuringia')
             ),
             'dutchProvinces' => array(
-                'name' => __('Dutch Provinces', 'quform'),
+                'name' => __tr('Dutch Provinces', 'quform'),
                 'options' => array('Drente', 'Flevoland', 'Friesland', 'Gelderland', 'Groningen', 'Limburg', 'Noord-Brabant', 'Noord-Holland', 'Overijssel', 'Zuid-Holland', 'Utrecht', 'Zeeland')
             ),
             'continents' => array(
-                'name' => __('Continents', 'quform'),
-                'options' => array(__('Africa', 'quform'), __('Antarctica', 'quform'), __('Asia', 'quform'), __('Australia', 'quform'), __('Europe', 'quform'), __('North America', 'quform'), __('South America', 'quform'))
+                'name' => __tr('Continents', 'quform'),
+                'options' => array(__tr('Africa', 'quform'), __tr('Antarctica', 'quform'), __tr('Asia', 'quform'), __tr('Australia', 'quform'), __tr('Europe', 'quform'), __tr('North America', 'quform'), __tr('South America', 'quform'))
             ),
             'gender' => array(
-                'name' => __('Gender', 'quform'),
-                'options' => array(__('Male', 'quform'), __('Female', 'quform'))
+                'name' => __tr('Gender', 'quform'),
+                'options' => array(__tr('Male', 'quform'), __tr('Female', 'quform'))
             ),
             'age' => array(
-                'name' => __('Age', 'quform'),
-                'options' => array(__('Under 18', 'quform'), __('18-24', 'quform'), __('25-34', 'quform'), __('35-44', 'quform'), __('45-54', 'quform'), __('55-64', 'quform'), __('65 or over', 'quform'))
+                'name' => __tr('Age', 'quform'),
+                'options' => array(__tr('Under 18', 'quform'), __tr('18-24', 'quform'), __tr('25-34', 'quform'), __tr('35-44', 'quform'), __tr('45-54', 'quform'), __tr('55-64', 'quform'), __tr('65 or over', 'quform'))
             ),
             'maritalStatus' => array(
-                'name' => __('Marital Status', 'quform'),
-                'options' => array(__('Single', 'quform'), __('Married', 'quform'), __('Divorced', 'quform'), __('Widowed', 'quform'))
+                'name' => __tr('Marital Status', 'quform'),
+                'options' => array(__tr('Single', 'quform'), __tr('Married', 'quform'), __tr('Divorced', 'quform'), __tr('Widowed', 'quform'))
             ),
             'income' => array(
-                'name' => __('Income', 'quform'),
-                'options' => array(__('Under $20,000', 'quform'), __('$20,000 - $30,000', 'quform'), __('$30,000 - $40,000', 'quform'), __('$40,000 - $50,000', 'quform'), __('$50,000 - $75,000', 'quform'), __('$75,000 - $100,000', 'quform'), __('$100,000 - $150,000', 'quform'), __('$150,000 or more', 'quform'))
+                'name' => __tr('Income', 'quform'),
+                'options' => array(__tr('Under $20,000', 'quform'), __tr('$20,000 - $30,000', 'quform'), __tr('$30,000 - $40,000', 'quform'), __tr('$40,000 - $50,000', 'quform'), __tr('$50,000 - $75,000', 'quform'), __tr('$75,000 - $100,000', 'quform'), __tr('$100,000 - $150,000', 'quform'), __tr('$150,000 or more', 'quform'))
             ),
             'days' => array(
-                'name' => __('Days', 'quform'),
-                'options' => array(__('Monday', 'quform'), __('Tuesday', 'quform'), __('Wednesday', 'quform'), __('Thursday', 'quform'), __('Friday', 'quform'), __('Saturday', 'quform'), __('Sunday', 'quform'))
+                'name' => __tr('Days', 'quform'),
+                'options' => array(__tr('Monday', 'quform'), __tr('Tuesday', 'quform'), __tr('Wednesday', 'quform'), __tr('Thursday', 'quform'), __tr('Friday', 'quform'), __tr('Saturday', 'quform'), __tr('Sunday', 'quform'))
             ),
             'months' => array(
-                'name' => __('Months', 'quform'),
+                'name' => __tr('Months', 'quform'),
                 'options' => array_values($this->getAllMonths())
             )
         ));
@@ -365,18 +388,18 @@ class Quform_Builder
     protected function getCountries()
     {
         return apply_filters('quform_countries', array(
-            __('Afghanistan', 'quform'), __('Albania', 'quform'), __('Algeria', 'quform'), __('American Samoa', 'quform'), __('Andorra', 'quform'), __('Angola', 'quform'), __('Anguilla', 'quform'), __('Antarctica', 'quform'), __('Antigua And Barbuda', 'quform'), __('Argentina', 'quform'), __('Armenia', 'quform'), __('Aruba', 'quform'), __('Australia', 'quform'), __('Austria', 'quform'), __('Azerbaijan', 'quform'), __('Bahamas', 'quform'), __('Bahrain', 'quform'), __('Bangladesh', 'quform'), __('Barbados', 'quform'), __('Belarus', 'quform'), __('Belgium', 'quform'),
-            __('Belize', 'quform'), __('Benin', 'quform'), __('Bermuda', 'quform'), __('Bhutan', 'quform'), __('Bolivia', 'quform'), __('Bosnia And Herzegovina', 'quform'), __('Botswana', 'quform'), __('Bouvet Island', 'quform'), __('Brazil', 'quform'), __('British Indian Ocean Territory', 'quform'), __('Brunei Darussalam', 'quform'), __('Bulgaria', 'quform'), __('Burkina Faso', 'quform'), __('Burundi', 'quform'), __('Cambodia', 'quform'), __('Cameroon', 'quform'), __('Canada', 'quform'), __('Cape Verde', 'quform'), __('Cayman Islands', 'quform'), __('Central African Republic', 'quform'), __('Chad', 'quform'),
-            __('Chile', 'quform'), __('China', 'quform'), __('Christmas Island', 'quform'), __('Cocos (Keeling) Islands', 'quform'), __('Colombia', 'quform'), __('Comoros', 'quform'), __('Congo', 'quform'), __('Congo, The Democratic Republic Of The', 'quform'), __('Cook Islands', 'quform'), __('Costa Rica', 'quform'), __('Cote D\'Ivoire', 'quform'), __('Croatia (Local Name: Hrvatska)', 'quform'), __('Cuba', 'quform'), __('Cyprus', 'quform'), __('Czech Republic', 'quform'), __('Denmark', 'quform'), __('Djibouti', 'quform'), __('Dominica', 'quform'), __('Dominican Republic', 'quform'), __('East Timor', 'quform'), __('Ecuador', 'quform'),
-            __('Egypt', 'quform'), __('El Salvador', 'quform'), __('Equatorial Guinea', 'quform'), __('Eritrea', 'quform'), __('Estonia', 'quform'), __('Ethiopia', 'quform'), __('Falkland Islands (Malvinas)', 'quform'), __('Faroe Islands', 'quform'), __('Fiji', 'quform'), __('Finland', 'quform'), __('France', 'quform'), __('France, Metropolitan', 'quform'), __('French Guiana', 'quform'), __('French Polynesia', 'quform'), __('French Southern Territories', 'quform'), __('Gabon', 'quform'), __('Gambia', 'quform'), __('Georgia', 'quform'), __('Germany', 'quform'), __('Ghana', 'quform'), __('Gibraltar', 'quform'),
-            __('Greece', 'quform'), __('Greenland', 'quform'), __('Grenada', 'quform'), __('Guadeloupe', 'quform'), __('Guam', 'quform'), __('Guatemala', 'quform'), __('Guinea', 'quform'), __('Guinea-Bissau', 'quform'), __('Guyana', 'quform'), __('Haiti', 'quform'), __('Heard And Mc Donald Islands', 'quform'), __('Holy See (Vatican City State)', 'quform'), __('Honduras', 'quform'), __('Hong Kong', 'quform'), __('Hungary', 'quform'), __('Iceland', 'quform'), __('India', 'quform'), __('Indonesia', 'quform'), __('Iran (Islamic Republic Of)', 'quform'), __('Iraq', 'quform'), __('Ireland', 'quform'),
-            __('Israel', 'quform'), __('Italy', 'quform'), __('Jamaica', 'quform'), __('Japan', 'quform'), __('Jordan', 'quform'), __('Kazakhstan', 'quform'), __('Kenya', 'quform'), __('Kiribati', 'quform'), __('Korea, Democratic People\'s Republic Of', 'quform'), __('Korea, Republic Of', 'quform'), __('Kuwait', 'quform'), __('Kyrgyzstan', 'quform'), __('Lao People\'s Democratic Republic', 'quform'), __('Latvia', 'quform'), __('Lebanon', 'quform'), __('Lesotho', 'quform'), __('Liberia', 'quform'), __('Libyan Arab Jamahiriya', 'quform'), __('Liechtenstein', 'quform'), __('Lithuania', 'quform'), __('Luxembourg', 'quform'),
-            __('Macau', 'quform'), __('Macedonia, Former Yugoslav Republic Of', 'quform'), __('Madagascar', 'quform'), __('Malawi', 'quform'), __('Malaysia', 'quform'), __('Maldives', 'quform'), __('Mali', 'quform'), __('Malta', 'quform'), __('Marshall Islands', 'quform'), __('Martinique', 'quform'), __('Mauritania', 'quform'), __('Mauritius', 'quform'), __('Mayotte', 'quform'), __('Mexico', 'quform'), __('Micronesia, Federated States Of', 'quform'), __('Moldova, Republic Of', 'quform'), __('Monaco', 'quform'), __('Mongolia', 'quform'), __('Montserrat', 'quform'), __('Morocco', 'quform'), __('Mozambique', 'quform'),
-            __('Myanmar', 'quform'), __('Namibia', 'quform'), __('Nauru', 'quform'), __('Nepal', 'quform'), __('Netherlands', 'quform'), __('Netherlands Antilles', 'quform'), __('New Caledonia', 'quform'), __('New Zealand', 'quform'), __('Nicaragua', 'quform'), __('Niger', 'quform'), __('Nigeria', 'quform'), __('Niue', 'quform'), __('Norfolk Island', 'quform'), __('Northern Mariana Islands', 'quform'), __('Norway', 'quform'), __('Oman', 'quform'), __('Pakistan', 'quform'), __('Palau', 'quform'), __('Panama', 'quform'), __('Papua New Guinea', 'quform'), __('Paraguay', 'quform'),
-            __('Peru', 'quform'), __('Philippines', 'quform'), __('Pitcairn', 'quform'), __('Poland', 'quform'), __('Portugal', 'quform'), __('Puerto Rico', 'quform'), __('Qatar', 'quform'), __('Reunion', 'quform'), __('Romania', 'quform'), __('Russian Federation', 'quform'), __('Rwanda', 'quform'), __('Saint Kitts And Nevis', 'quform'), __('Saint Lucia', 'quform'), __('Saint Vincent And The Grenadines', 'quform'), __('Samoa', 'quform'), __('San Marino', 'quform'), __('Sao Tome And Principe', 'quform'), __('Saudi Arabia', 'quform'), __('Senegal', 'quform'), __('Seychelles', 'quform'), __('Sierra Leone', 'quform'),
-            __('Singapore', 'quform'), __('Slovakia (Slovak Republic)', 'quform'), __('Slovenia', 'quform'), __('Solomon Islands', 'quform'), __('Somalia', 'quform'), __('South Africa', 'quform'), __('South Georgia, South Sandwich Islands', 'quform'), __('Spain', 'quform'), __('Sri Lanka', 'quform'), __('St. Helena', 'quform'), __('St. Pierre And Miquelon', 'quform'), __('Sudan', 'quform'), __('Suriname', 'quform'), __('Svalbard And Jan Mayen Islands', 'quform'), __('Swaziland', 'quform'), __('Sweden', 'quform'), __('Switzerland', 'quform'), __('Syrian Arab Republic', 'quform'), __('Taiwan', 'quform'), __('Tajikistan', 'quform'), __('Tanzania, United Republic Of', 'quform'),
-            __('Thailand', 'quform'), __('Togo', 'quform'), __('Tokelau', 'quform'), __('Tonga', 'quform'), __('Trinidad And Tobago', 'quform'), __('Tunisia', 'quform'), __('Turkey', 'quform'), __('Turkmenistan', 'quform'), __('Turks And Caicos Islands', 'quform'), __('Tuvalu', 'quform'), __('Uganda', 'quform'), __('Ukraine', 'quform'), __('United Arab Emirates', 'quform'), __('United Kingdom', 'quform'), __('United States', 'quform'), __('United States Minor Outlying Islands', 'quform'), __('Uruguay', 'quform'), __('Uzbekistan', 'quform'), __('Vanuatu', 'quform'), __('Venezuela', 'quform'), __('Vietnam', 'quform'),
-            __('Virgin Islands (British)', 'quform'), __('Virgin Islands (U.S.)', 'quform'), __('Wallis And Futuna Islands', 'quform'), __('Western Sahara', 'quform'), __('Yemen', 'quform'), __('Yugoslavia', 'quform'), __('Zambia', 'quform'), __('Zimbabwe', 'quform')
+            __tr('Afghanistan', 'quform'), __tr('Albania', 'quform'), __tr('Algeria', 'quform'), __tr('American Samoa', 'quform'), __tr('Andorra', 'quform'), __tr('Angola', 'quform'), __tr('Anguilla', 'quform'), __tr('Antarctica', 'quform'), __tr('Antigua And Barbuda', 'quform'), __tr('Argentina', 'quform'), __tr('Armenia', 'quform'), __tr('Aruba', 'quform'), __tr('Australia', 'quform'), __tr('Austria', 'quform'), __tr('Azerbaijan', 'quform'), __tr('Bahamas', 'quform'), __tr('Bahrain', 'quform'), __tr('Bangladesh', 'quform'), __tr('Barbados', 'quform'), __tr('Belarus', 'quform'), __tr('Belgium', 'quform'),
+            __tr('Belize', 'quform'), __tr('Benin', 'quform'), __tr('Bermuda', 'quform'), __tr('Bhutan', 'quform'), __tr('Bolivia', 'quform'), __tr('Bosnia And Herzegovina', 'quform'), __tr('Botswana', 'quform'), __tr('Bouvet Island', 'quform'), __tr('Brazil', 'quform'), __tr('British Indian Ocean Territory', 'quform'), __tr('Brunei Darussalam', 'quform'), __tr('Bulgaria', 'quform'), __tr('Burkina Faso', 'quform'), __tr('Burundi', 'quform'), __tr('Cambodia', 'quform'), __tr('Cameroon', 'quform'), __tr('Canada', 'quform'), __tr('Cape Verde', 'quform'), __tr('Cayman Islands', 'quform'), __tr('Central African Republic', 'quform'), __tr('Chad', 'quform'),
+            __tr('Chile', 'quform'), __tr('China', 'quform'), __tr('Christmas Island', 'quform'), __tr('Cocos (Keeling) Islands', 'quform'), __tr('Colombia', 'quform'), __tr('Comoros', 'quform'), __tr('Congo', 'quform'), __tr('Congo, The Democratic Republic Of The', 'quform'), __tr('Cook Islands', 'quform'), __tr('Costa Rica', 'quform'), __tr('Cote D\'Ivoire', 'quform'), __tr('Croatia (Local Name: Hrvatska)', 'quform'), __tr('Cuba', 'quform'), __tr('Cyprus', 'quform'), __tr('Czech Republic', 'quform'), __tr('Denmark', 'quform'), __tr('Djibouti', 'quform'), __tr('Dominica', 'quform'), __tr('Dominican Republic', 'quform'), __tr('East Timor', 'quform'), __tr('Ecuador', 'quform'),
+            __tr('Egypt', 'quform'), __tr('El Salvador', 'quform'), __tr('Equatorial Guinea', 'quform'), __tr('Eritrea', 'quform'), __tr('Estonia', 'quform'), __tr('Ethiopia', 'quform'), __tr('Falkland Islands (Malvinas)', 'quform'), __tr('Faroe Islands', 'quform'), __tr('Fiji', 'quform'), __tr('Finland', 'quform'), __tr('France', 'quform'), __tr('France, Metropolitan', 'quform'), __tr('French Guiana', 'quform'), __tr('French Polynesia', 'quform'), __tr('French Southern Territories', 'quform'), __tr('Gabon', 'quform'), __tr('Gambia', 'quform'), __tr('Georgia', 'quform'), __tr('Germany', 'quform'), __tr('Ghana', 'quform'), __tr('Gibraltar', 'quform'),
+            __tr('Greece', 'quform'), __tr('Greenland', 'quform'), __tr('Grenada', 'quform'), __tr('Guadeloupe', 'quform'), __tr('Guam', 'quform'), __tr('Guatemala', 'quform'), __tr('Guinea', 'quform'), __tr('Guinea-Bissau', 'quform'), __tr('Guyana', 'quform'), __tr('Haiti', 'quform'), __tr('Heard And Mc Donald Islands', 'quform'), __tr('Holy See (Vatican City State)', 'quform'), __tr('Honduras', 'quform'), __tr('Hong Kong', 'quform'), __tr('Hungary', 'quform'), __tr('Iceland', 'quform'), __tr('India', 'quform'), __tr('Indonesia', 'quform'), __tr('Iran (Islamic Republic Of)', 'quform'), __tr('Iraq', 'quform'), __tr('Ireland', 'quform'),
+            __tr('Israel', 'quform'), __tr('Italy', 'quform'), __tr('Jamaica', 'quform'), __tr('Japan', 'quform'), __tr('Jordan', 'quform'), __tr('Kazakhstan', 'quform'), __tr('Kenya', 'quform'), __tr('Kiribati', 'quform'), __tr('Korea, Democratic People\'s Republic Of', 'quform'), __tr('Korea, Republic Of', 'quform'), __tr('Kuwait', 'quform'), __tr('Kyrgyzstan', 'quform'), __tr('Lao People\'s Democratic Republic', 'quform'), __tr('Latvia', 'quform'), __tr('Lebanon', 'quform'), __tr('Lesotho', 'quform'), __tr('Liberia', 'quform'), __tr('Libyan Arab Jamahiriya', 'quform'), __tr('Liechtenstein', 'quform'), __tr('Lithuania', 'quform'), __tr('Luxembourg', 'quform'),
+            __tr('Macau', 'quform'), __tr('Macedonia, Former Yugoslav Republic Of', 'quform'), __tr('Madagascar', 'quform'), __tr('Malawi', 'quform'), __tr('Malaysia', 'quform'), __tr('Maldives', 'quform'), __tr('Mali', 'quform'), __tr('Malta', 'quform'), __tr('Marshall Islands', 'quform'), __tr('Martinique', 'quform'), __tr('Mauritania', 'quform'), __tr('Mauritius', 'quform'), __tr('Mayotte', 'quform'), __tr('Mexico', 'quform'), __tr('Micronesia, Federated States Of', 'quform'), __tr('Moldova, Republic Of', 'quform'), __tr('Monaco', 'quform'), __tr('Mongolia', 'quform'), __tr('Montserrat', 'quform'), __tr('Morocco', 'quform'), __tr('Mozambique', 'quform'),
+            __tr('Myanmar', 'quform'), __tr('Namibia', 'quform'), __tr('Nauru', 'quform'), __tr('Nepal', 'quform'), __tr('Netherlands', 'quform'), __tr('Netherlands Antilles', 'quform'), __tr('New Caledonia', 'quform'), __tr('New Zealand', 'quform'), __tr('Nicaragua', 'quform'), __tr('Niger', 'quform'), __tr('Nigeria', 'quform'), __tr('Niue', 'quform'), __tr('Norfolk Island', 'quform'), __tr('Northern Mariana Islands', 'quform'), __tr('Norway', 'quform'), __tr('Oman', 'quform'), __tr('Pakistan', 'quform'), __tr('Palau', 'quform'), __tr('Panama', 'quform'), __tr('Papua New Guinea', 'quform'), __tr('Paraguay', 'quform'),
+            __tr('Peru', 'quform'), __tr('Philippines', 'quform'), __tr('Pitcairn', 'quform'), __tr('Poland', 'quform'), __tr('Portugal', 'quform'), __tr('Puerto Rico', 'quform'), __tr('Qatar', 'quform'), __tr('Reunion', 'quform'), __tr('Romania', 'quform'), __tr('Russian Federation', 'quform'), __tr('Rwanda', 'quform'), __tr('Saint Kitts And Nevis', 'quform'), __tr('Saint Lucia', 'quform'), __tr('Saint Vincent And The Grenadines', 'quform'), __tr('Samoa', 'quform'), __tr('San Marino', 'quform'), __tr('Sao Tome And Principe', 'quform'), __tr('Saudi Arabia', 'quform'), __tr('Senegal', 'quform'), __tr('Seychelles', 'quform'), __tr('Sierra Leone', 'quform'),
+            __tr('Singapore', 'quform'), __tr('Slovakia (Slovak Republic)', 'quform'), __tr('Slovenia', 'quform'), __tr('Solomon Islands', 'quform'), __tr('Somalia', 'quform'), __tr('South Africa', 'quform'), __tr('South Georgia, South Sandwich Islands', 'quform'), __tr('Spain', 'quform'), __tr('Sri Lanka', 'quform'), __tr('St. Helena', 'quform'), __tr('St. Pierre And Miquelon', 'quform'), __tr('Sudan', 'quform'), __tr('Suriname', 'quform'), __tr('Svalbard And Jan Mayen Islands', 'quform'), __tr('Swaziland', 'quform'), __tr('Sweden', 'quform'), __tr('Switzerland', 'quform'), __tr('Syrian Arab Republic', 'quform'), __tr('Taiwan', 'quform'), __tr('Tajikistan', 'quform'), __tr('Tanzania, United Republic Of', 'quform'),
+            __tr('Thailand', 'quform'), __tr('Togo', 'quform'), __tr('Tokelau', 'quform'), __tr('Tonga', 'quform'), __tr('Trinidad And Tobago', 'quform'), __tr('Tunisia', 'quform'), __tr('Turkey', 'quform'), __tr('Turkmenistan', 'quform'), __tr('Turks And Caicos Islands', 'quform'), __tr('Tuvalu', 'quform'), __tr('Uganda', 'quform'), __tr('Ukraine', 'quform'), __tr('United Arab Emirates', 'quform'), __tr('United Kingdom', 'quform'), __tr('United States', 'quform'), __tr('United States Minor Outlying Islands', 'quform'), __tr('Uruguay', 'quform'), __tr('Uzbekistan', 'quform'), __tr('Vanuatu', 'quform'), __tr('Venezuela', 'quform'), __tr('Vietnam', 'quform'),
+            __tr('Virgin Islands (British)', 'quform'), __tr('Virgin Islands (U.S.)', 'quform'), __tr('Wallis And Futuna Islands', 'quform'), __tr('Western Sahara', 'quform'), __tr('Yemen', 'quform'), __tr('Yugoslavia', 'quform'), __tr('Zambia', 'quform'), __tr('Zimbabwe', 'quform')
         ));
     }
 
@@ -449,18 +472,18 @@ class Quform_Builder
     protected function getAllMonths()
     {
         return apply_filters('quform_get_all_months', array(
-            1  => __('January', 'quform'),
-            2  => __('February', 'quform'),
-            3  => __('March', 'quform'),
-            4  => __('April', 'quform'),
-            5  => __('May', 'quform'),
-            6  => __('June', 'quform'),
-            7  => __('July', 'quform'),
-            8  => __('August', 'quform'),
-            9  => __('September', 'quform'),
-            10 => __('October', 'quform'),
-            11 => __('November', 'quform'),
-            12 => __('December', 'quform')
+            1  => __tr('January', 'quform'),
+            2  => __tr('February', 'quform'),
+            3  => __tr('March', 'quform'),
+            4  => __tr('April', 'quform'),
+            5  => __tr('May', 'quform'),
+            6  => __tr('June', 'quform'),
+            7  => __tr('July', 'quform'),
+            8  => __tr('August', 'quform'),
+            9  => __tr('September', 'quform'),
+            10 => __tr('October', 'quform'),
+            11 => __tr('November', 'quform'),
+            12 => __tr('December', 'quform')
         ));
     }
 
@@ -509,7 +532,7 @@ class Quform_Builder
                 'config' => Quform_Element_Multiselect::getDefaultConfig()
             ),
             'file' => array(
-                'name' => __('File Upload', 'quform'),
+                'name' => __tr('File Upload', 'quform'),
                 'icon' => '<i class="fa fa-upload"></i>',
                 'config' => Quform_Element_File::getDefaultConfig()
             ),
@@ -534,12 +557,12 @@ class Quform_Builder
                 'config' => Quform_Element_Password::getDefaultConfig()
             ),
             'html' => array(
-                'name' => __('HTML', 'quform'),
+                'name' => __tr('HTML', 'quform'),
                 'icon' => '<i class="fa fa-code"></i>',
                 'config' => Quform_Element_Html::getDefaultConfig()
             ),
             'hidden' => array(
-                'name' => __('Hidden', 'quform'),
+                'name' => __tr('Hidden', 'quform'),
                 'icon' => '<i class="fa fa-eye-slash"></i>',
                 'config' => Quform_Element_Hidden::getDefaultConfig()
             ),
@@ -549,7 +572,7 @@ class Quform_Builder
                 'config' => Quform_Element_Captcha::getDefaultConfig()
             ),
             'recaptcha' => array(
-                'name' => __('reCAPTCHA', 'quform'),
+                'name' => __tr('reCAPTCHA', 'quform'),
                 'icon' => '<i class="mdi mdi-face"></i>',
                 'config' => Quform_Element_Recaptcha::getDefaultConfig()
             ),
@@ -559,22 +582,22 @@ class Quform_Builder
                 'config' => Quform_Element_Submit::getDefaultConfig()
             ),
             'page' => array(
-                'name' => __('Page', 'quform'),
+                'name' => __tr('Page', 'quform'),
                 'icon' => '<i class="fa fa-file-o"></i>',
                 'config' => Quform_Element_Page::getDefaultConfig()
             ),
             'group' => array(
-                'name' => __('Group', 'quform'),
+                'name' => __tr('Group', 'quform'),
                 'icon' => '<i class="fa fa-object-group"></i>',
                 'config' => Quform_Element_Group::getDefaultConfig()
             ),
             'row' => array(
-                'name' => __('Column Layout', 'quform'),
+                'name' => __tr('Column Layout', 'quform'),
                 'icon' => '<i class="fa fa-columns"></i>',
                 'config' => Quform_Element_Row::getDefaultConfig()
             ),
             'column' => array(
-                'name' => __('Column', 'quform'),
+                'name' => __tr('Column', 'quform'),
                 'icon' => '<i class="fa fa-columns"></i>',
                 'config' => Quform_Element_Column::getDefaultConfig()
             )
@@ -610,85 +633,85 @@ class Quform_Builder
     public function getStyles()
     {
         $styles = array(
-            'element' => array('name' => __('Outer wrapper', 'quform')),
-            'elementLabel' => array('name' => __('Label', 'quform')),
-            'elementLabelText' => array('name' => __('Label text', 'quform')),
-            'elementRequiredText' => array('name' => __('Element required text', 'quform')),
-            'elementInner' => array('name' => __('Inner wrapper', 'quform')),
-            'elementInput' => array('name' => __('Input wrapper', 'quform')),
-            'elementText' => array('name' => __('Text input field', 'quform')),
-            'elementTextHover' => array('name' => __('Text input field (hover)', 'quform')),
-            'elementTextFocus' => array('name' => __('Text input field (focus)', 'quform')),
-            'elementTextarea' => array('name' => __('Textarea field', 'quform')),
-            'elementTextareaHover' => array('name' => __('Textarea field (hover)', 'quform')),
-            'elementTextareaFocus' => array('name' => __('Textarea field (focus)', 'quform')),
-            'elementSelect' => array('name' => __('Select field', 'quform')),
-            'elementSelectHover' => array('name' => __('Select field (hover)', 'quform')),
-            'elementSelectFocus' => array('name' => __('Select field (focus)', 'quform')),
-            'elementIcon' => array('name' => __('Text input icons', 'quform')),
-            'elementIconHover' => array('name' => __('Text input icons (hover)', 'quform')),
-            'elementSubLabel' => array('name' => __('Sub label', 'quform')),
-            'elementDescription' => array('name' => __('Description', 'quform')),
-            'options' => array('name' => __('Options outer wrapper', 'quform')),
-            'option' => array('name' => __('Option wrapper', 'quform')),
-            'optionRadioButton' => array('name' => __('Option radio button', 'quform')),
-            'optionCheckbox' => array('name' => __('Option checkbox', 'quform')),
-            'optionLabel' => array('name' => __('Option label', 'quform')),
-            'optionLabelSelected' => array('name' => __('Option label (when selected)', 'quform')),
-            'optionIcon' => array('name' => __('Option icon', 'quform')),
-            'optionIconSelected' => array('name' => __('Option icon (when selected)', 'quform')),
-            'optionText' => array('name' => __('Option text', 'quform')),
-            'optionTextSelected' => array('name' => __('Option text (when selected)', 'quform')),
-            'page' => array('name' => __('Page wrapper', 'quform')),
-            'pageTitle' => array('name' => __('Page title', 'quform')),
-            'pageDescription' => array('name' => __('Page description', 'quform')),
-            'pageElements' => array('name' => __('Page elements wrapper', 'quform')),
-            'group' => array('name' => __('Group wrapper', 'quform')),
-            'groupTitle' => array('name' => __('Group title', 'quform')),
-            'groupDescription' => array('name' => __('Group description', 'quform')),
-            'groupElements' => array('name' => __('Group elements wrapper', 'quform')),
-            'submit' => array('name' => __('Submit button outer wrapper', 'quform')),
-            'submitInner' => array('name' => __('Submit button inner wrapper', 'quform')),
-            'submitButton' => array('name' => __('Submit button', 'quform')),
-            'submitButtonHover' => array('name' => __('Submit button (hover)', 'quform')),
-            'submitButtonActive' => array('name' => __('Submit button (active)', 'quform')),
-            'submitButtonText' => array('name' => __('Submit button text', 'quform')),
-            'submitButtonTextHover' => array('name' => __('Submit button text (hover)', 'quform')),
-            'submitButtonTextActive' => array('name' => __('Submit button text (active)', 'quform')),
-            'submitButtonIcon' => array('name' => __('Submit button icon', 'quform')),
-            'submitButtonIconHover' => array('name' => __('Submit button icon (hover)', 'quform')),
-            'submitButtonIconActive' => array('name' => __('Submit button icon (active)', 'quform')),
-            'backInner' => array('name' => __('Back button inner wrapper', 'quform')),
-            'backButton' => array('name' => __('Back button', 'quform')),
-            'backButtonHover' => array('name' => __('Back button (hover)', 'quform')),
-            'backButtonActive' => array('name' => __('Back button (active)', 'quform')),
-            'backButtonText' => array('name' => __('Back button text', 'quform')),
-            'backButtonTextHover' => array('name' => __('Back button text (hover)', 'quform')),
-            'backButtonTextActive' => array('name' => __('Back button text (active)', 'quform')),
-            'backButtonIcon' => array('name' => __('Back button icon', 'quform')),
-            'backButtonIconHover' => array('name' => __('Back button icon (hover)', 'quform')),
-            'backButtonIconActive' => array('name' => __('Back button icon (active)', 'quform')),
-            'uploadButton' => array('name' => __('Upload button', 'quform')),
-            'uploadButtonHover' => array('name' => __('Upload button (hover)', 'quform')),
-            'uploadButtonActive' => array('name' => __('Upload button (active)', 'quform')),
-            'uploadButtonText' => array('name' => __('Upload button text', 'quform')),
-            'uploadButtonTextHover' => array('name' => __('Upload button text (hover)', 'quform')),
-            'uploadButtonTextActive' => array('name' => __('Upload button text (active)', 'quform')),
-            'uploadButtonIcon' => array('name' => __('Upload button icon', 'quform')),
-            'uploadButtonIconHover' => array('name' => __('Upload button icon (hover)', 'quform')),
-            'uploadButtonIconActive' => array('name' => __('Upload button icon (active)', 'quform')),
-            'datepickerHeader' => array('name' => __('Datepicker header', 'quform')),
-            'datepickerHeaderText' => array('name' => __('Datepicker header text', 'quform')),
-            'datepickerHeaderTextHover' => array('name' => __('Datepicker header text (hover)', 'quform')),
-            'datepickerFooter' => array('name' => __('Datepicker footer', 'quform')),
-            'datepickerFooterText' => array('name' => __('Datepicker footer text', 'quform')),
-            'datepickerFooterTextHover' => array('name' => __('Datepicker footer text (hover)', 'quform')),
-            'datepickerSelection' => array('name' => __('Datepicker selection', 'quform')),
-            'datepickerSelectionActive' => array('name' => __('Datepicker selection (chosen)', 'quform')),
-            'datepickerSelectionText' => array('name' => __('Datepicker selection text', 'quform')),
-            'datepickerSelectionTextHover' => array('name' => __('Datepicker selection text (hover)', 'quform')),
-            'datepickerSelectionActiveText' => array('name' => __('Datepicker selection text (active)', 'quform')),
-            'datepickerSelectionActiveTextHover' => array('name' => __('Datepicker selection text (chosen) (hover)', 'quform'))
+            'element' => array('name' => __tr('Outer wrapper', 'quform')),
+            'elementLabel' => array('name' => __tr('Label', 'quform')),
+            'elementLabelText' => array('name' => __tr('Label text', 'quform')),
+            'elementRequiredText' => array('name' => __tr('Element required text', 'quform')),
+            'elementInner' => array('name' => __tr('Inner wrapper', 'quform')),
+            'elementInput' => array('name' => __tr('Input wrapper', 'quform')),
+            'elementText' => array('name' => __tr('Text input field', 'quform')),
+            'elementTextHover' => array('name' => __tr('Text input field (hover)', 'quform')),
+            'elementTextFocus' => array('name' => __tr('Text input field (focus)', 'quform')),
+            'elementTextarea' => array('name' => __tr('Textarea field', 'quform')),
+            'elementTextareaHover' => array('name' => __tr('Textarea field (hover)', 'quform')),
+            'elementTextareaFocus' => array('name' => __tr('Textarea field (focus)', 'quform')),
+            'elementSelect' => array('name' => __tr('Select field', 'quform')),
+            'elementSelectHover' => array('name' => __tr('Select field (hover)', 'quform')),
+            'elementSelectFocus' => array('name' => __tr('Select field (focus)', 'quform')),
+            'elementIcon' => array('name' => __tr('Text input icons', 'quform')),
+            'elementIconHover' => array('name' => __tr('Text input icons (hover)', 'quform')),
+            'elementSubLabel' => array('name' => __tr('Sub label', 'quform')),
+            'elementDescription' => array('name' => __tr('Description', 'quform')),
+            'options' => array('name' => __tr('Options outer wrapper', 'quform')),
+            'option' => array('name' => __tr('Option wrapper', 'quform')),
+            'optionRadioButton' => array('name' => __tr('Option radio button', 'quform')),
+            'optionCheckbox' => array('name' => __tr('Option checkbox', 'quform')),
+            'optionLabel' => array('name' => __tr('Option label', 'quform')),
+            'optionLabelSelected' => array('name' => __tr('Option label (when selected)', 'quform')),
+            'optionIcon' => array('name' => __tr('Option icon', 'quform')),
+            'optionIconSelected' => array('name' => __tr('Option icon (when selected)', 'quform')),
+            'optionText' => array('name' => __tr('Option text', 'quform')),
+            'optionTextSelected' => array('name' => __tr('Option text (when selected)', 'quform')),
+            'page' => array('name' => __tr('Page wrapper', 'quform')),
+            'pageTitle' => array('name' => __tr('Page title', 'quform')),
+            'pageDescription' => array('name' => __tr('Page description', 'quform')),
+            'pageElements' => array('name' => __tr('Page elements wrapper', 'quform')),
+            'group' => array('name' => __tr('Group wrapper', 'quform')),
+            'groupTitle' => array('name' => __tr('Group title', 'quform')),
+            'groupDescription' => array('name' => __tr('Group description', 'quform')),
+            'groupElements' => array('name' => __tr('Group elements wrapper', 'quform')),
+            'submit' => array('name' => __tr('Submit button outer wrapper', 'quform')),
+            'submitInner' => array('name' => __tr('Submit button inner wrapper', 'quform')),
+            'submitButton' => array('name' => __tr('Submit button', 'quform')),
+            'submitButtonHover' => array('name' => __tr('Submit button (hover)', 'quform')),
+            'submitButtonActive' => array('name' => __tr('Submit button (active)', 'quform')),
+            'submitButtonText' => array('name' => __tr('Submit button text', 'quform')),
+            'submitButtonTextHover' => array('name' => __tr('Submit button text (hover)', 'quform')),
+            'submitButtonTextActive' => array('name' => __tr('Submit button text (active)', 'quform')),
+            'submitButtonIcon' => array('name' => __tr('Submit button icon', 'quform')),
+            'submitButtonIconHover' => array('name' => __tr('Submit button icon (hover)', 'quform')),
+            'submitButtonIconActive' => array('name' => __tr('Submit button icon (active)', 'quform')),
+            'backInner' => array('name' => __tr('Back button inner wrapper', 'quform')),
+            'backButton' => array('name' => __tr('Back button', 'quform')),
+            'backButtonHover' => array('name' => __tr('Back button (hover)', 'quform')),
+            'backButtonActive' => array('name' => __tr('Back button (active)', 'quform')),
+            'backButtonText' => array('name' => __tr('Back button text', 'quform')),
+            'backButtonTextHover' => array('name' => __tr('Back button text (hover)', 'quform')),
+            'backButtonTextActive' => array('name' => __tr('Back button text (active)', 'quform')),
+            'backButtonIcon' => array('name' => __tr('Back button icon', 'quform')),
+            'backButtonIconHover' => array('name' => __tr('Back button icon (hover)', 'quform')),
+            'backButtonIconActive' => array('name' => __tr('Back button icon (active)', 'quform')),
+            'uploadButton' => array('name' => __tr('Upload button', 'quform')),
+            'uploadButtonHover' => array('name' => __tr('Upload button (hover)', 'quform')),
+            'uploadButtonActive' => array('name' => __tr('Upload button (active)', 'quform')),
+            'uploadButtonText' => array('name' => __tr('Upload button text', 'quform')),
+            'uploadButtonTextHover' => array('name' => __tr('Upload button text (hover)', 'quform')),
+            'uploadButtonTextActive' => array('name' => __tr('Upload button text (active)', 'quform')),
+            'uploadButtonIcon' => array('name' => __tr('Upload button icon', 'quform')),
+            'uploadButtonIconHover' => array('name' => __tr('Upload button icon (hover)', 'quform')),
+            'uploadButtonIconActive' => array('name' => __tr('Upload button icon (active)', 'quform')),
+            'datepickerHeader' => array('name' => __tr('Datepicker header', 'quform')),
+            'datepickerHeaderText' => array('name' => __tr('Datepicker header text', 'quform')),
+            'datepickerHeaderTextHover' => array('name' => __tr('Datepicker header text (hover)', 'quform')),
+            'datepickerFooter' => array('name' => __tr('Datepicker footer', 'quform')),
+            'datepickerFooterText' => array('name' => __tr('Datepicker footer text', 'quform')),
+            'datepickerFooterTextHover' => array('name' => __tr('Datepicker footer text (hover)', 'quform')),
+            'datepickerSelection' => array('name' => __tr('Datepicker selection', 'quform')),
+            'datepickerSelectionActive' => array('name' => __tr('Datepicker selection (chosen)', 'quform')),
+            'datepickerSelectionText' => array('name' => __tr('Datepicker selection text', 'quform')),
+            'datepickerSelectionTextHover' => array('name' => __tr('Datepicker selection text (hover)', 'quform')),
+            'datepickerSelectionActiveText' => array('name' => __tr('Datepicker selection text (active)', 'quform')),
+            'datepickerSelectionActiveTextHover' => array('name' => __tr('Datepicker selection text (chosen) (hover)', 'quform'))
         );
 
         foreach ($styles as $key => $style) {
@@ -709,98 +732,98 @@ class Quform_Builder
         $styles = array(
             'formOuter' => array('name' => _x('Form outer wrapper', 'the outermost HTML wrapper around the form', 'quform')),
             'formInner' => array('name' => _x('Form inner wrapper', 'the inner HTML wrapper around the form', 'quform')),
-            'formSuccess' => array('name' => __('Success message', 'quform')),
-            'formSuccessIcon' => array('name' => __('Success message icon', 'quform')),
-            'formSuccessContent' => array('name' => __('Success message content', 'quform')),
-            'formTitle' => array('name' => __('Form title', 'quform')),
-            'formDescription' => array('name' => __('Form description', 'quform')),
+            'formSuccess' => array('name' => __tr('Success message', 'quform')),
+            'formSuccessIcon' => array('name' => __tr('Success message icon', 'quform')),
+            'formSuccessContent' => array('name' => __tr('Success message content', 'quform')),
+            'formTitle' => array('name' => __tr('Form title', 'quform')),
+            'formDescription' => array('name' => __tr('Form description', 'quform')),
             'formElements' => array('name' => _x('Form elements wrapper', 'the HTML wrapper around the form elements', 'quform')),
-            'formError' => array('name' => __('Form error message', 'quform')),
-            'formErrorInner' => array('name' => __('Form error message inner wrapper', 'quform')),
-            'formErrorTitle' => array('name' => __('Form error message title', 'quform')),
-            'formErrorContent' => array('name' => __('Form error message content', 'quform')),
+            'formError' => array('name' => __tr('Form error message', 'quform')),
+            'formErrorInner' => array('name' => __tr('Form error message inner wrapper', 'quform')),
+            'formErrorTitle' => array('name' => __tr('Form error message title', 'quform')),
+            'formErrorContent' => array('name' => __tr('Form error message content', 'quform')),
             'element' => array('name' => _x('Element outer wrapper', 'outermost wrapping HTML element around an element', 'quform')),
-            'elementLabel' => array('name' => __('Element label', 'quform')),
-            'elementLabelText' => array('name' => __('Element label text', 'quform')),
-            'elementRequiredText' => array('name' => __('Element required text', 'quform')),
+            'elementLabel' => array('name' => __tr('Element label', 'quform')),
+            'elementLabelText' => array('name' => __tr('Element label text', 'quform')),
+            'elementRequiredText' => array('name' => __tr('Element required text', 'quform')),
             'elementInner' => array('name' => _x('Element inner wrapper', 'the inner HTML wrapper around the element', 'quform')),
             'elementInput' => array('name' => _x('Element input wrapper', 'the HTML wrapper around just the input', 'quform')),
-            'elementText' => array('name' => __('Text input fields', 'quform')),
-            'elementTextHover' => array('name' => __('Text input fields (hover)', 'quform')),
-            'elementTextFocus' => array('name' => __('Text input fields (focus)', 'quform')),
-            'elementTextarea' => array('name' => __('Textarea fields', 'quform')),
-            'elementTextareaHover' => array('name' => __('Textarea fields (hover)', 'quform')),
-            'elementTextareaFocus' => array('name' => __('Textarea fields (focus)', 'quform')),
-            'elementSelect' => array('name' => __('Select fields', 'quform')),
-            'elementSelectHover' => array('name' => __('Select fields (hover)', 'quform')),
-            'elementSelectFocus' => array('name' => __('Select fields (focus)', 'quform')),
-            'elementIcon' => array('name' => __('Text input icons', 'quform')),
-            'elementIconHover' => array('name' => __('Text input icons (hover)', 'quform')),
-            'elementSubLabel' => array('name' => __('Element sub label', 'quform')),
-            'elementDescription' => array('name' => __('Element description', 'quform')),
+            'elementText' => array('name' => __tr('Text input fields', 'quform')),
+            'elementTextHover' => array('name' => __tr('Text input fields (hover)', 'quform')),
+            'elementTextFocus' => array('name' => __tr('Text input fields (focus)', 'quform')),
+            'elementTextarea' => array('name' => __tr('Textarea fields', 'quform')),
+            'elementTextareaHover' => array('name' => __tr('Textarea fields (hover)', 'quform')),
+            'elementTextareaFocus' => array('name' => __tr('Textarea fields (focus)', 'quform')),
+            'elementSelect' => array('name' => __tr('Select fields', 'quform')),
+            'elementSelectHover' => array('name' => __tr('Select fields (hover)', 'quform')),
+            'elementSelectFocus' => array('name' => __tr('Select fields (focus)', 'quform')),
+            'elementIcon' => array('name' => __tr('Text input icons', 'quform')),
+            'elementIconHover' => array('name' => __tr('Text input icons (hover)', 'quform')),
+            'elementSubLabel' => array('name' => __tr('Element sub label', 'quform')),
+            'elementDescription' => array('name' => __tr('Element description', 'quform')),
             'options' => array('name' => _x('Options outer wrapper', 'the wrapper around the list of options for checkboxes and radio buttons', 'quform')),
             'option' => array('name' => _x('Option wrappers', 'the wrapper around each option for checkboxes and radio buttons', 'quform')),
-            'optionRadioButton' => array('name' => __('Option radio button', 'quform')),
-            'optionCheckbox' => array('name' => __('Option checkbox', 'quform')),
-            'optionLabel' => array('name' => __('Option labels', 'quform')),
-            'optionLabelSelected' => array('name' => __('Option labels (when selected)', 'quform')),
-            'optionIcon' => array('name' => __('Option icons', 'quform')),
-            'optionIconSelected' => array('name' => __('Option icons (when selected)', 'quform')),
-            'optionText' => array('name' => __('Option text', 'quform')),
-            'optionTextSelected' => array('name' => __('Option text (when selected)', 'quform')),
-            'elementError' => array('name' => __('Element error', 'quform')),
-            'elementErrorInner' => array('name' => __('Element error inner wrapper', 'quform')),
-            'elementErrorText' => array('name' => __('Element error text', 'quform')),
-            'page' => array('name' => __('Page wrapper', 'quform')),
-            'pageTitle' => array('name' => __('Page title', 'quform')),
-            'pageDescription' => array('name' => __('Page description', 'quform')),
-            'pageElements' => array('name' => __('Page elements wrapper', 'quform')),
-            'group' => array('name' => __('Group wrapper', 'quform')),
-            'groupTitle' => array('name' => __('Group title', 'quform')),
-            'groupDescription' => array('name' => __('Group description', 'quform')),
-            'groupElements' => array('name' => __('Group elements wrapper', 'quform')),
-            'submit' => array('name' => __('Submit button outer wrapper', 'quform')),
-            'submitInner' => array('name' => __('Submit button inner wrapper', 'quform')),
-            'submitButton' => array('name' => __('Submit button', 'quform')),
-            'submitButtonHover' => array('name' => __('Submit button (hover)', 'quform')),
-            'submitButtonActive' => array('name' => __('Submit button (active)', 'quform')),
-            'submitButtonText' => array('name' => __('Submit button text', 'quform')),
-            'submitButtonTextHover' => array('name' => __('Submit button text (hover)', 'quform')),
-            'submitButtonTextActive' => array('name' => __('Submit button text (active)', 'quform')),
-            'submitButtonIcon' => array('name' => __('Submit button icon', 'quform')),
-            'submitButtonIconHover' => array('name' => __('Submit button icon (hover)', 'quform')),
-            'submitButtonIconActive' => array('name' => __('Submit button icon (active)', 'quform')),
-            'backInner' => array('name' => __('Back button inner wrapper', 'quform')),
-            'backButton' => array('name' => __('Back button', 'quform')),
-            'backButtonHover' => array('name' => __('Back button (hover)', 'quform')),
-            'backButtonActive' => array('name' => __('Back button (active)', 'quform')),
-            'backButtonText' => array('name' => __('Back button text', 'quform')),
-            'backButtonTextHover' => array('name' => __('Back button text (hover)', 'quform')),
-            'backButtonTextActive' => array('name' => __('Back button text (active)', 'quform')),
-            'backButtonIcon' => array('name' => __('Back button icon', 'quform')),
-            'backButtonIconHover' => array('name' => __('Back button icon (hover)', 'quform')),
-            'backButtonIconActive' => array('name' => __('Back button icon (active)', 'quform')),
-            'uploadButton' => array('name' => __('Upload button', 'quform')),
-            'uploadButtonHover' => array('name' => __('Upload button (hover)', 'quform')),
-            'uploadButtonActive' => array('name' => __('Upload button (active)', 'quform')),
-            'uploadButtonText' => array('name' => __('Upload button text', 'quform')),
-            'uploadButtonTextHover' => array('name' => __('Upload button text (hover)', 'quform')),
-            'uploadButtonTextActive' => array('name' => __('Upload button text (active)', 'quform')),
-            'uploadButtonIcon' => array('name' => __('Upload button icon', 'quform')),
-            'uploadButtonIconHover' => array('name' => __('Upload button icon (hover)', 'quform')),
-            'uploadButtonIconActive' => array('name' => __('Upload button icon (active)', 'quform')),
-            'datepickerHeader' => array('name' => __('Datepicker header', 'quform')),
-            'datepickerHeaderText' => array('name' => __('Datepicker header text', 'quform')),
-            'datepickerHeaderTextHover' => array('name' => __('Datepicker header text (hover)', 'quform')),
-            'datepickerFooter' => array('name' => __('Datepicker footer', 'quform')),
-            'datepickerFooterText' => array('name' => __('Datepicker footer text', 'quform')),
-            'datepickerFooterTextHover' => array('name' => __('Datepicker footer text (hover)', 'quform')),
-            'datepickerSelection' => array('name' => __('Datepicker selection', 'quform')),
-            'datepickerSelectionActive' => array('name' => __('Datepicker selection (chosen)', 'quform')),
-            'datepickerSelectionText' => array('name' => __('Datepicker selection text', 'quform')),
-            'datepickerSelectionTextHover' => array('name' => __('Datepicker selection text (hover)', 'quform')),
-            'datepickerSelectionActiveText' => array('name' => __('Datepicker selection text (active)', 'quform')),
-            'datepickerSelectionActiveTextHover' => array('name' => __('Datepicker selection text (chosen) (hover)', 'quform'))
+            'optionRadioButton' => array('name' => __tr('Option radio button', 'quform')),
+            'optionCheckbox' => array('name' => __tr('Option checkbox', 'quform')),
+            'optionLabel' => array('name' => __tr('Option labels', 'quform')),
+            'optionLabelSelected' => array('name' => __tr('Option labels (when selected)', 'quform')),
+            'optionIcon' => array('name' => __tr('Option icons', 'quform')),
+            'optionIconSelected' => array('name' => __tr('Option icons (when selected)', 'quform')),
+            'optionText' => array('name' => __tr('Option text', 'quform')),
+            'optionTextSelected' => array('name' => __tr('Option text (when selected)', 'quform')),
+            'elementError' => array('name' => __tr('Element error', 'quform')),
+            'elementErrorInner' => array('name' => __tr('Element error inner wrapper', 'quform')),
+            'elementErrorText' => array('name' => __tr('Element error text', 'quform')),
+            'page' => array('name' => __tr('Page wrapper', 'quform')),
+            'pageTitle' => array('name' => __tr('Page title', 'quform')),
+            'pageDescription' => array('name' => __tr('Page description', 'quform')),
+            'pageElements' => array('name' => __tr('Page elements wrapper', 'quform')),
+            'group' => array('name' => __tr('Group wrapper', 'quform')),
+            'groupTitle' => array('name' => __tr('Group title', 'quform')),
+            'groupDescription' => array('name' => __tr('Group description', 'quform')),
+            'groupElements' => array('name' => __tr('Group elements wrapper', 'quform')),
+            'submit' => array('name' => __tr('Submit button outer wrapper', 'quform')),
+            'submitInner' => array('name' => __tr('Submit button inner wrapper', 'quform')),
+            'submitButton' => array('name' => __tr('Submit button', 'quform')),
+            'submitButtonHover' => array('name' => __tr('Submit button (hover)', 'quform')),
+            'submitButtonActive' => array('name' => __tr('Submit button (active)', 'quform')),
+            'submitButtonText' => array('name' => __tr('Submit button text', 'quform')),
+            'submitButtonTextHover' => array('name' => __tr('Submit button text (hover)', 'quform')),
+            'submitButtonTextActive' => array('name' => __tr('Submit button text (active)', 'quform')),
+            'submitButtonIcon' => array('name' => __tr('Submit button icon', 'quform')),
+            'submitButtonIconHover' => array('name' => __tr('Submit button icon (hover)', 'quform')),
+            'submitButtonIconActive' => array('name' => __tr('Submit button icon (active)', 'quform')),
+            'backInner' => array('name' => __tr('Back button inner wrapper', 'quform')),
+            'backButton' => array('name' => __tr('Back button', 'quform')),
+            'backButtonHover' => array('name' => __tr('Back button (hover)', 'quform')),
+            'backButtonActive' => array('name' => __tr('Back button (active)', 'quform')),
+            'backButtonText' => array('name' => __tr('Back button text', 'quform')),
+            'backButtonTextHover' => array('name' => __tr('Back button text (hover)', 'quform')),
+            'backButtonTextActive' => array('name' => __tr('Back button text (active)', 'quform')),
+            'backButtonIcon' => array('name' => __tr('Back button icon', 'quform')),
+            'backButtonIconHover' => array('name' => __tr('Back button icon (hover)', 'quform')),
+            'backButtonIconActive' => array('name' => __tr('Back button icon (active)', 'quform')),
+            'uploadButton' => array('name' => __tr('Upload button', 'quform')),
+            'uploadButtonHover' => array('name' => __tr('Upload button (hover)', 'quform')),
+            'uploadButtonActive' => array('name' => __tr('Upload button (active)', 'quform')),
+            'uploadButtonText' => array('name' => __tr('Upload button text', 'quform')),
+            'uploadButtonTextHover' => array('name' => __tr('Upload button text (hover)', 'quform')),
+            'uploadButtonTextActive' => array('name' => __tr('Upload button text (active)', 'quform')),
+            'uploadButtonIcon' => array('name' => __tr('Upload button icon', 'quform')),
+            'uploadButtonIconHover' => array('name' => __tr('Upload button icon (hover)', 'quform')),
+            'uploadButtonIconActive' => array('name' => __tr('Upload button icon (active)', 'quform')),
+            'datepickerHeader' => array('name' => __tr('Datepicker header', 'quform')),
+            'datepickerHeaderText' => array('name' => __tr('Datepicker header text', 'quform')),
+            'datepickerHeaderTextHover' => array('name' => __tr('Datepicker header text (hover)', 'quform')),
+            'datepickerFooter' => array('name' => __tr('Datepicker footer', 'quform')),
+            'datepickerFooterText' => array('name' => __tr('Datepicker footer text', 'quform')),
+            'datepickerFooterTextHover' => array('name' => __tr('Datepicker footer text (hover)', 'quform')),
+            'datepickerSelection' => array('name' => __tr('Datepicker selection', 'quform')),
+            'datepickerSelectionActive' => array('name' => __tr('Datepicker selection (chosen)', 'quform')),
+            'datepickerSelectionText' => array('name' => __tr('Datepicker selection text', 'quform')),
+            'datepickerSelectionTextHover' => array('name' => __tr('Datepicker selection text (hover)', 'quform')),
+            'datepickerSelectionActiveText' => array('name' => __tr('Datepicker selection text (active)', 'quform')),
+            'datepickerSelectionActiveTextHover' => array('name' => __tr('Datepicker selection text (chosen) (hover)', 'quform'))
         );
 
         foreach ($styles as $k => $style) {
@@ -907,32 +930,32 @@ class Quform_Builder
         $filters = array(
             'alpha' => array(
                 'name' => _x('Alpha', 'the alphabet filter', 'quform'),
-                'tooltip' => __('Removes any non-alphabet characters', 'quform'),
+                'tooltip' => __tr('Removes any non-alphabet characters', 'quform'),
                 'config' => Quform_Filter_Alpha::getDefaultConfig()
             ),
             'alphaNumeric' => array(
                 'name' => _x('Alphanumeric', 'the alphanumeric filter', 'quform'),
-                'tooltip' => __('Removes any non-alphabet characters and non-digits', 'quform'),
+                'tooltip' => __tr('Removes any non-alphabet characters and non-digits', 'quform'),
                 'config' => Quform_Filter_AlphaNumeric::getDefaultConfig()
             ),
             'digits' => array(
                 'name' => _x('Digits', 'the digits filter', 'quform'),
-                'tooltip' => __('Removes any non-digits', 'quform'),
+                'tooltip' => __tr('Removes any non-digits', 'quform'),
                 'config' => Quform_Filter_Digits::getDefaultConfig()
             ),
             'regex' => array(
                 'name' => _x('Regex', 'the regex filter', 'quform'),
-                'tooltip' => __('Removes characters matching the given regular expression', 'quform'),
+                'tooltip' => __tr('Removes characters matching the given regular expression', 'quform'),
                 'config' => Quform_Filter_Regex::getDefaultConfig()
             ),
             'stripTags' => array(
                 'name' => _x('Strip Tags', 'the strip tags filter', 'quform'),
-                'tooltip' => __('Removes any HTML tags', 'quform'),
+                'tooltip' => __tr('Removes any HTML tags', 'quform'),
                 'config' => Quform_Filter_StripTags::getDefaultConfig()
             ),
             'trim' => array(
                 'name' => _x('Trim', 'the trim filter', 'quform'),
-                'tooltip' => __('Removes white space from the start and end', 'quform'),
+                'tooltip' => __tr('Removes white space from the start and end', 'quform'),
                 'config' => Quform_Filter_Trim::getDefaultConfig()
             )
         );
@@ -992,57 +1015,57 @@ class Quform_Builder
         $validators = array(
             'alpha' => array(
                 'name' => _x('Alpha', 'the alphabet validator', 'quform'),
-                'tooltip' => __('Checks that the value contains only alphabet characters', 'quform'),
+                'tooltip' => __tr('Checks that the value contains only alphabet characters', 'quform'),
                 'config' => Quform_Validator_Alpha::getDefaultConfig()
             ),
             'alphaNumeric' => array(
                 'name' => _x('Alphanumeric', 'the alphanumeric validator', 'quform'),
-                'tooltip' => __('Checks that the value contains only alphabet or digits', 'quform'),
+                'tooltip' => __tr('Checks that the value contains only alphabet or digits', 'quform'),
                 'config' => Quform_Validator_AlphaNumeric::getDefaultConfig()
             ),
             'digits' => array(
                 'name' => _x('Digits', 'the digits validator', 'quform'),
-                'tooltip' => __('Checks that the value contains only digits', 'quform'),
+                'tooltip' => __tr('Checks that the value contains only digits', 'quform'),
                 'config' => Quform_Validator_Digits::getDefaultConfig()
             ),
             'email' => array(
                 'name' => _x('Email', 'the strip tags validator', 'quform'),
-                'tooltip' => __('Checks that the value is a valid email address', 'quform'),
+                'tooltip' => __tr('Checks that the value is a valid email address', 'quform'),
                 'config' => Quform_Validator_Email::getDefaultConfig()
             ),
             'greaterThan' => array(
                 'name' => _x('Greater Than', 'the greater than validator', 'quform'),
-                'tooltip' => __('Checks that the value is numerically greater than the given minimum', 'quform'),
+                'tooltip' => __tr('Checks that the value is numerically greater than the given minimum', 'quform'),
                 'config' => Quform_Validator_GreaterThan::getDefaultConfig()
             ),
             'identical' => array(
                 'name' => _x('Identical', 'the identical validator', 'quform'),
-                'tooltip' => __('Checks that the value is identical to the given token', 'quform'),
+                'tooltip' => __tr('Checks that the value is identical to the given token', 'quform'),
                 'config' => Quform_Validator_Identical::getDefaultConfig()
             ),
             'inArray' => array(
                 'name' => _x('In Array', 'the in array validator', 'quform'),
-                'tooltip' => __('Checks that the value is in a list of allowed values', 'quform'),
+                'tooltip' => __tr('Checks that the value is in a list of allowed values', 'quform'),
                 'config' => Quform_Validator_InArray::getDefaultConfig()
             ),
             'length' => array(
                 'name' => _x('Length', 'the length validator', 'quform'),
-                'tooltip' => __('Checks that the length of the value is between the given maximum and minimum', 'quform'),
+                'tooltip' => __tr('Checks that the length of the value is between the given maximum and minimum', 'quform'),
                 'config' => Quform_Validator_Length::getDefaultConfig()
             ),
             'lessThan' => array(
                 'name' => _x('Less Than', 'the less than validator', 'quform'),
-                'tooltip' => __('Checks that the value is numerically less than the given maximum', 'quform'),
+                'tooltip' => __tr('Checks that the value is numerically less than the given maximum', 'quform'),
                 'config' => Quform_Validator_LessThan::getDefaultConfig()
             ),
             'duplicate' => array(
                 'name' => _x('Prevent Duplicates', 'the duplicate validator', 'quform'),
-                'tooltip' => __('Checks that the same value has not already been submitted', 'quform'),
+                'tooltip' => __tr('Checks that the same value has not already been submitted', 'quform'),
                 'config' => Quform_Validator_Duplicate::getDefaultConfig()
             ),
             'regex' => array(
                 'name' => _x('Regex', 'the regex validator', 'quform'),
-                'tooltip' => __('Checks that the value matches the given regular expression', 'quform'),
+                'tooltip' => __tr('Checks that the value matches the given regular expression', 'quform'),
                 'config' => Quform_Validator_Regex::getDefaultConfig()
             )
         );
@@ -1370,13 +1393,13 @@ class Quform_Builder
 
         $notification = Quform_Notification::getDefaultConfig();
         $notification['id'] = 1;
-        $notification['name'] = __('Admin notification', 'quform');
+        $notification['name'] = __tr('Admin notification', 'quform');
         $notification['html'] = '{all_form_data}';
 
         $confirmation = Quform_Confirmation::getDefaultConfig();
         $confirmation['id'] = 1;
-        $confirmation['name'] = __('Default confirmation', 'quform');
-        $confirmation['message'] = __('Your message has been sent, thanks.', 'quform');
+        $confirmation['name'] = __tr('Default confirmation', 'quform');
+        $confirmation['message'] = __tr('Your message has been sent, thanks.', 'quform');
         $confirmation['messageIcon'] = 'qicon-check';
 
         $form = Quform_Form::getDefaultConfig();
@@ -1466,9 +1489,9 @@ class Quform_Builder
         <div id="qfb-element-<?php echo esc_attr($element['id']); ?>" class="qfb-element qfb-element-page" data-id="<?php echo esc_attr($element['id']); ?>" data-type="page">
             <div id="qfb-child-elements-<?php echo esc_attr($element['id']); ?>" class="qfb-child-elements qfb-cf">
                 <?php
-                    foreach ($element['elements'] as $child) {
-                        echo $this->getElementHtml($child);
-                    }
+                foreach ($element['elements'] as $child) {
+                    echo $this->getElementHtml($child);
+                }
                 ?>
             </div>
         </div>
@@ -1498,9 +1521,9 @@ class Quform_Builder
             </div>
             <div id="qfb-child-elements-<?php echo esc_attr($element['id']); ?>" class="qfb-child-elements qfb-cf">
                 <?php
-                    foreach ($element['elements'] as $child) {
-                        echo $this->getElementHtml($child);
-                    }
+                foreach ($element['elements'] as $child) {
+                    echo $this->getElementHtml($child);
+                }
                 ?>
             </div>
             <div class="qfb-element-group-empty-indicator"><span class="qfb-element-group-empty-indicator-arrow"><i class="fa fa-arrow-down"></i></span><span class="qfb-element-group-empty-add-row" title="<?php esc_attr_e('Add column layout', 'quform'); ?>"><i class="fa fa-columns"></i><i class="mdi mdi-add_circle"></i></span></div>
@@ -1520,11 +1543,11 @@ class Quform_Builder
         ob_start(); ?>
         <div id="qfb-element-<?php echo esc_attr($element['id']); ?>" class="qfb-element qfb-element-row" data-id="<?php echo esc_attr($element['id']); ?>" data-type="row">
             <div id="qfb-child-elements-<?php echo esc_attr($element['id']); ?>" class="qfb-child-elements qfb-cf qfb-<?php echo esc_attr(count($element['elements'])); ?>-columns">
-            <?php
+                <?php
                 foreach ($element['elements'] as $child) {
                     echo $this->getElementHtml($child);
                 }
-            ?>
+                ?>
             </div>
             <div class="qfb-row-actions">
                 <span class="qfb-row-action-add-column" title="<?php esc_attr_e('Add column', 'quform'); ?>"><i class="mdi mdi-add_circle"></i></span>
@@ -1623,7 +1646,7 @@ class Quform_Builder
         if (Quform::isNonEmptyString($label)) {
             $output .= esc_html($label);
         } else if (is_numeric($key)) {
-            $output .= esc_html(sprintf(__('Page %s', 'quform'), $key + 1));
+            $output .= esc_html(sprintf(__tr('Page %s', 'quform'), $key + 1));
         }
 
         $output .= '</span>';
@@ -1643,14 +1666,14 @@ class Quform_Builder
     {
         $variables = $this->getPreProcessVariables();
 
-        $variables['general']['variables']['{entry_id}'] = __('Entry ID', 'quform');
-        $variables['general']['variables']['{form_name}'] = __('Form Name', 'quform');
-        $variables['general']['variables']['{all_form_data}'] = __('All Form Data', 'quform');
-        $variables['general']['variables']['{default_email_address}'] = __('Default Email Address', 'quform');
-        $variables['general']['variables']['{default_email_name}'] = __('Default Email Name', 'quform');
-        $variables['general']['variables']['{default_from_email_address}'] = __('Default "From" Email Address', 'quform');
-        $variables['general']['variables']['{default_from_email_name}'] = __('Default "From" Email Name', 'quform');
-        $variables['general']['variables']['{admin_email}'] = __('Admin Email', 'quform');
+        $variables['general']['variables']['{entry_id}'] = __tr('Entry ID', 'quform');
+        $variables['general']['variables']['{form_name}'] = __tr('Form Name', 'quform');
+        $variables['general']['variables']['{all_form_data}'] = __tr('All Form Data', 'quform');
+        $variables['general']['variables']['{default_email_address}'] = __tr('Default Email Address', 'quform');
+        $variables['general']['variables']['{default_email_name}'] = __tr('Default Email Name', 'quform');
+        $variables['general']['variables']['{default_from_email_address}'] = __tr('Default "From" Email Address', 'quform');
+        $variables['general']['variables']['{default_from_email_name}'] = __tr('Default "From" Email Name', 'quform');
+        $variables['general']['variables']['{admin_email}'] = __tr('Admin Email', 'quform');
 
         return apply_filters('quform_variables', $variables);
     }
@@ -1662,26 +1685,26 @@ class Quform_Builder
     {
         return apply_filters('quform_pre_process_variables', array(
             'general' => array(
-                'heading' => __('General', 'quform'),
+                'heading' => __tr('General', 'quform'),
                 'variables' => array(
-                    '{url}' => __('Form URL', 'quform'),
-                    '{referring_url}' => __('Referring URL', 'quform'),
-                    '{post|ID}' => __('Post ID', 'quform'),
-                    '{post|post_title}' => __('Post Title', 'quform'),
-                    '{date}' => __('Date', 'quform'),
-                    '{time}' => __('Time', 'quform'),
-                    '{site_title}' => __('Site Title', 'quform'),
-                    '{site_tagline}' => __('Site Description', 'quform')
+                    '{url}' => __tr('Form URL', 'quform'),
+                    '{referring_url}' => __tr('Referring URL', 'quform'),
+                    '{post|ID}' => __tr('Post ID', 'quform'),
+                    '{post|post_title}' => __tr('Post Title', 'quform'),
+                    '{date}' => __tr('Date', 'quform'),
+                    '{time}' => __tr('Time', 'quform'),
+                    '{site_title}' => __tr('Site Title', 'quform'),
+                    '{site_tagline}' => __tr('Site Description', 'quform')
                 )
             ),
             'user' => array(
-                'heading' => __('User', 'quform'),
+                'heading' => __tr('User', 'quform'),
                 'variables' => array(
-                    '{ip}' => __('IP Address', 'quform'),
-                    '{user_agent}' => __('User Agent', 'quform'),
-                    '{user|display_name}' => __('Display Name', 'quform'),
-                    '{user|user_email}' => __('Email', 'quform'),
-                    '{user|user_login}' => __('Login', 'quform')
+                    '{ip}' => __tr('IP Address', 'quform'),
+                    '{user_agent}' => __tr('User Agent', 'quform'),
+                    '{user|display_name}' => __tr('Display Name', 'quform'),
+                    '{user|user_email}' => __tr('Email', 'quform'),
+                    '{user|user_login}' => __tr('Login', 'quform')
                 )
             )
         ));
@@ -1695,7 +1718,7 @@ class Quform_Builder
     public function getRecaptchaLanguages()
     {
         return array(
-            '' => __('Autodetect', 'quform'),
+            '' => __tr('Autodetect', 'quform'),
             'ar' => 'Arabic',
             'bn' => 'Bengali',
             'bg' => 'Bulgarian',
@@ -1811,7 +1834,7 @@ class Quform_Builder
         if ( ! is_array($config)) {
             wp_send_json(array(
                 'type'    => 'error',
-                'message' => __('Malformed form configuration', 'quform')
+                'message' => __tr('Malformed form configuration', 'quform')
             ));
         }
 
@@ -1836,21 +1859,21 @@ class Quform_Builder
         if ( ! Quform::isPostRequest() || ! isset($_POST['form'])) {
             wp_send_json(array(
                 'type'    => 'error',
-                'message' => __('Bad request', 'quform')
+                'message' => __tr('Bad request', 'quform')
             ));
         }
 
         if ( ! current_user_can('quform_edit_forms')) {
             wp_send_json(array(
                 'type'    => 'error',
-                'message' => __('Insufficient permissions', 'quform')
+                'message' => __tr('Insufficient permissions', 'quform')
             ));
         }
 
         if ( ! check_ajax_referer('quform_save_form', false, false)) {
             wp_send_json(array(
                 'type'    => 'error',
-                'message' => __('Nonce check failed', 'quform')
+                'message' => __tr('Nonce check failed', 'quform')
             ));
         }
     }
@@ -1981,14 +2004,14 @@ class Quform_Builder
             wp_send_json(array(
                 'type' => 'error',
                 'errors' => array(
-                    'qfb-forms-add-name' => __('This field is required', 'quform')
+                    'qfb-forms-add-name' => __tr('This field is required', 'quform')
                 )
             ));
         } elseif ($nameLength > 64) {
             wp_send_json(array(
                 'type' => 'error',
                 'errors' => array(
-                    'qfb-forms-add-name' => __('The form name must be no longer than 64 characters', 'quform')
+                    'qfb-forms-add-name' => __tr('The form name must be no longer than 64 characters', 'quform')
                 )
             ));
         }
@@ -2002,7 +2025,7 @@ class Quform_Builder
             wp_send_json(array(
                 'type' => 'error',
                 'message' => wp_kses(sprintf(
-                    __('Failed to insert into database, check the %serror log%s for more information', 'quform'),
+                    __tr('Failed to insert into database, check the %serror log%s for more information', 'quform'),
                     '<a href="http://support.themecatcher.net/quform-wordpress-v2/guides/advanced/enabling-debug-logging">',
                     '</a>'
                 ), array('a' => array('href' => array())))
@@ -2023,21 +2046,21 @@ class Quform_Builder
         if ( ! Quform::isPostRequest() || ! isset($_POST['name']) || ! is_string($_POST['name'])) {
             wp_send_json(array(
                 'type'    => 'error',
-                'message' => __('Bad request', 'quform')
+                'message' => __tr('Bad request', 'quform')
             ));
         }
 
         if ( ! current_user_can('quform_add_forms')) {
             wp_send_json(array(
                 'type'    => 'error',
-                'message' => __('Insufficient permissions', 'quform')
+                'message' => __tr('Insufficient permissions', 'quform')
             ));
         }
 
         if ( ! check_ajax_referer('quform_add_form', false, false)) {
             wp_send_json(array(
                 'type'    => 'error',
-                'message' => __('Nonce check failed', 'quform')
+                'message' => __tr('Nonce check failed', 'quform')
             ));
         }
     }
@@ -2054,7 +2077,7 @@ class Quform_Builder
         if ( ! is_array($config)) {
             wp_send_json(array(
                 'type'    => 'error',
-                'message' => __('Bad request', 'quform')
+                'message' => __tr('Bad request', 'quform')
             ));
         }
 
@@ -2081,14 +2104,14 @@ class Quform_Builder
         if ( ! Quform::isPostRequest() || ! isset($_POST['form'])) {
             wp_send_json(array(
                 'type'    => 'error',
-                'message' => __('Bad request', 'quform')
+                'message' => __tr('Bad request', 'quform')
             ));
         }
 
         if ( ! current_user_can('quform_edit_forms')) {
             wp_send_json(array(
                 'type'    => 'error',
-                'message' => __('Insufficient permissions', 'quform')
+                'message' => __tr('Insufficient permissions', 'quform')
             ));
         }
     }
@@ -2101,7 +2124,7 @@ class Quform_Builder
         if ( ! Quform::isNonEmptyString($config['name'])) {
             wp_send_json(array(
                 'type'    => 'error',
-                'message' => __('A form name is required.', 'quform')
+                'message' => __tr('A form name is required.', 'quform')
             ));
         }
     }
@@ -2240,15 +2263,15 @@ class Quform_Builder
     public function getResponsiveSelectHtml($id, $selectedValue = '', $showInheritOption = true)
     {
         $options = array(
-            '' => __('Off', 'quform'),
-            'phone-portrait' => __('Phone portrait (479px)', 'quform'),
-            'phone-landscape' => __('Phone landscape (767px)', 'quform'),
-            'tablet-landscape' => __('Tablet landscape (1024px)', 'quform'),
-            'custom' => __('Custom...', 'quform')
+            '' => __tr('Off', 'quform'),
+            'phone-portrait' => __tr('Phone portrait (479px)', 'quform'),
+            'phone-landscape' => __tr('Phone landscape (767px)', 'quform'),
+            'tablet-landscape' => __tr('Tablet landscape (1024px)', 'quform'),
+            'custom' => __tr('Custom...', 'quform')
         );
 
         if ($showInheritOption) {
-            $options = array('inherit' => __('Inherit', 'quform')) + $options;
+            $options = array('inherit' => __tr('Inherit', 'quform')) + $options;
         }
 
         return $this->getSelectHtml($id, $options, $selectedValue);
@@ -2265,15 +2288,15 @@ class Quform_Builder
     public function getSizeSelectHtml($id, $selectedValue = '', $showInheritOption = true)
     {
         $options = array(
-            '' => __('Default', 'quform'),
-            'slim' => __('Slim', 'quform'),
-            'medium' => __('Medium', 'quform'),
-            'fat' => __('Fat', 'quform'),
-            'huge' => __('Huge', 'quform')
+            '' => __tr('Default', 'quform'),
+            'slim' => __tr('Slim', 'quform'),
+            'medium' => __tr('Medium', 'quform'),
+            'fat' => __tr('Fat', 'quform'),
+            'huge' => __tr('Huge', 'quform')
         );
 
         if ($showInheritOption) {
-            $options = array('inherit' => __('Inherit', 'quform')) + $options;
+            $options = array('inherit' => __tr('Inherit', 'quform')) + $options;
         }
 
         return $this->getSelectHtml($id, $options, $selectedValue);
@@ -2290,16 +2313,16 @@ class Quform_Builder
     public function getFieldWidthSelectHtml($id, $selectedValue = '', $showInheritOption = true)
     {
         $options = array(
-            'tiny' => __('Tiny', 'quform'),
-            'small' => __('Small', 'quform'),
-            'medium' => __('Medium', 'quform'),
-            'large' => __('Large', 'quform'),
-            '' => __('100% (default)', 'quform'),
-            'custom' => __('Custom...', 'quform')
+            'tiny' => __tr('Tiny', 'quform'),
+            'small' => __tr('Small', 'quform'),
+            'medium' => __tr('Medium', 'quform'),
+            'large' => __tr('Large', 'quform'),
+            '' => __tr('100% (default)', 'quform'),
+            'custom' => __tr('Custom...', 'quform')
         );
 
         if ($showInheritOption) {
-            $options = array('inherit' => __('Inherit', 'quform')) + $options;
+            $options = array('inherit' => __tr('Inherit', 'quform')) + $options;
         }
 
         return $this->getSelectHtml($id, $options, $selectedValue);
@@ -2317,23 +2340,23 @@ class Quform_Builder
     public function getButtonStyleSelectHtml($id, $selectedValue = '', $showInheritOption = true, $emptyOptionText = null)
     {
         $options = array(
-            '' => is_string($emptyOptionText) ? $emptyOptionText : __('Default', 'quform'),
-            'theme' => __('Use form theme button style', 'quform'),
-            'sexy-silver' => __('Sexy Silver', 'quform'),
-            'classic' => __('Classic', 'quform'),
-            'background-blending-gradient' => __('Blending Gradient', 'quform'),
-            'shine-gradient' => __('Shine Gradient', 'quform'),
-            'blue-3d' => __('3D', 'quform'),
-            'hollow' => __('Hollow', 'quform'),
-            'hollow-rounded' => __('Hollow Rounded', 'quform'),
-            'chilled' => __('Chilled', 'quform'),
-            'pills' => __('Pill', 'quform'),
-            'bootstrap' => __('Bootstrap', 'quform'),
-            'bootstrap-primary' => __('Bootstrap Primary', 'quform')
+            '' => is_string($emptyOptionText) ? $emptyOptionText : __tr('Default', 'quform'),
+            'theme' => __tr('Use form theme button style', 'quform'),
+            'sexy-silver' => __tr('Sexy Silver', 'quform'),
+            'classic' => __tr('Classic', 'quform'),
+            'background-blending-gradient' => __tr('Blending Gradient', 'quform'),
+            'shine-gradient' => __tr('Shine Gradient', 'quform'),
+            'blue-3d' => __tr('3D', 'quform'),
+            'hollow' => __tr('Hollow', 'quform'),
+            'hollow-rounded' => __tr('Hollow Rounded', 'quform'),
+            'chilled' => __tr('Chilled', 'quform'),
+            'pills' => __tr('Pill', 'quform'),
+            'bootstrap' => __tr('Bootstrap', 'quform'),
+            'bootstrap-primary' => __tr('Bootstrap Primary', 'quform')
         );
 
         if ($showInheritOption) {
-            $options = array('inherit' => __('Inherit', 'quform')) + $options;
+            $options = array('inherit' => __tr('Inherit', 'quform')) + $options;
         }
 
         return $this->getSelectHtml($id, $options, $selectedValue);
@@ -2350,17 +2373,17 @@ class Quform_Builder
     public function getButtonWidthSelectHtml($id, $selectedValue = '', $showInheritOption = true)
     {
         $options = array(
-            '' => __('Auto (default)', 'quform'),
-            'tiny' => __('Tiny', 'quform'),
-            'small' => __('Small', 'quform'),
-            'medium' => __('Medium', 'quform'),
-            'large' => __('Large', 'quform'),
-            'full' => __('100%', 'quform'),
-            'custom' => __('Custom...', 'quform')
+            '' => __tr('Auto (default)', 'quform'),
+            'tiny' => __tr('Tiny', 'quform'),
+            'small' => __tr('Small', 'quform'),
+            'medium' => __tr('Medium', 'quform'),
+            'large' => __tr('Large', 'quform'),
+            'full' => __tr('100%', 'quform'),
+            'custom' => __tr('Custom...', 'quform')
         );
 
         if ($showInheritOption) {
-            $options = array('inherit' => __('Inherit', 'quform')) + $options;
+            $options = array('inherit' => __tr('Inherit', 'quform')) + $options;
         }
 
         return $this->getSelectHtml($id, $options, $selectedValue);
@@ -2415,13 +2438,13 @@ class Quform_Builder
     public function getIconPositionSelectHtml($id, $selectedValue = '', $showInheritOption = true)
     {
         $options = array(
-            'left' => __('Left', 'quform'),
-            'right' => __('Right', 'quform'),
-            'above' => __('Above', 'quform')
+            'left' => __tr('Left', 'quform'),
+            'right' => __tr('Right', 'quform'),
+            'above' => __tr('Above', 'quform')
         );
 
         if ($showInheritOption) {
-            $options = array('inherit' => __('Inherit', 'quform')) + $options;
+            $options = array('inherit' => __tr('Inherit', 'quform')) + $options;
         }
 
         $output = sprintf('<select id="%s">', Quform::escape($id));
@@ -2450,29 +2473,29 @@ class Quform_Builder
         $output = '';
 
         $helpers = array(
-            array('css' => 'background-color: ;', 'icon' => 'mdi mdi-format_color_fill', 'title' => __('Background color', 'quform')),
-            array('css' => 'background-image: url() top left no-repeat;', 'icon' => 'mdi mdi-wallpaper', 'title' => __('Background image', 'quform')),
-            array('css' => 'border-color: ;', 'icon' => 'mdi mdi-border_color', 'title' => __('Border color', 'quform')),
-            array('css' => 'color: ;', 'icon' => 'mdi mdi-format_color_text', 'title' => __('Text color', 'quform')),
+            array('css' => 'background-color: ;', 'icon' => 'mdi mdi-format_color_fill', 'title' => __tr('Background color', 'quform')),
+            array('css' => 'background-image: url() top left no-repeat;', 'icon' => 'mdi mdi-wallpaper', 'title' => __tr('Background image', 'quform')),
+            array('css' => 'border-color: ;', 'icon' => 'mdi mdi-border_color', 'title' => __tr('Border color', 'quform')),
+            array('css' => 'color: ;', 'icon' => 'mdi mdi-format_color_text', 'title' => __tr('Text color', 'quform')),
 
-            array('css' => 'padding: ;', 'icon' => 'fa fa-external-link-square', 'title' => __('Padding', 'quform')),
-            array('css' => 'margin: ;', 'icon' => 'fa fa-external-link', 'title' => __('Margin', 'quform')),
-            array('css' => 'border-radius: ;', 'icon' => 'mdi mdi-crop_free', 'title' => __('Border radius', 'quform')),
+            array('css' => 'padding: ;', 'icon' => 'fa fa-external-link-square', 'title' => __tr('Padding', 'quform')),
+            array('css' => 'margin: ;', 'icon' => 'fa fa-external-link', 'title' => __tr('Margin', 'quform')),
+            array('css' => 'border-radius: ;', 'icon' => 'mdi mdi-crop_free', 'title' => __tr('Border radius', 'quform')),
 
-            array('css' => 'font-size: ;', 'icon' => 'mdi mdi-format_size', 'title' => __('Font size', 'quform')),
-            array('css' => 'line-height: ;', 'icon' => 'mdi mdi-format_line_spacing', 'title' => __('Line height', 'quform')),
-            array('css' => 'font-weight: bold;', 'icon' => 'mdi mdi-format_bold', 'title' => __('Bold', 'quform')),
-            array('css' => 'text-decoration: underline;', 'icon' => 'mdi mdi-format_underlined', 'title' => __('Underline', 'quform')),
-            array('css' => 'text-transform: uppercase;', 'icon' => 'mdi mdi-title', 'title' => __('Uppercase', 'quform')),
+            array('css' => 'font-size: ;', 'icon' => 'mdi mdi-format_size', 'title' => __tr('Font size', 'quform')),
+            array('css' => 'line-height: ;', 'icon' => 'mdi mdi-format_line_spacing', 'title' => __tr('Line height', 'quform')),
+            array('css' => 'font-weight: bold;', 'icon' => 'mdi mdi-format_bold', 'title' => __tr('Bold', 'quform')),
+            array('css' => 'text-decoration: underline;', 'icon' => 'mdi mdi-format_underlined', 'title' => __tr('Underline', 'quform')),
+            array('css' => 'text-transform: uppercase;', 'icon' => 'mdi mdi-title', 'title' => __tr('Uppercase', 'quform')),
 
-            array('css' => 'text-align: left;', 'icon' => 'mdi mdi-format_align_left', 'title' => __('Text align left', 'quform')),
-            array('css' => 'text-align: center;', 'icon' => 'mdi mdi-format_align_center', 'title' => __('Text align center', 'quform')),
-            array('css' => 'text-align: right;', 'icon' => 'mdi mdi-format_align_right', 'title' => __('Text align right', 'quform')),
+            array('css' => 'text-align: left;', 'icon' => 'mdi mdi-format_align_left', 'title' => __tr('Text align left', 'quform')),
+            array('css' => 'text-align: center;', 'icon' => 'mdi mdi-format_align_center', 'title' => __tr('Text align center', 'quform')),
+            array('css' => 'text-align: right;', 'icon' => 'mdi mdi-format_align_right', 'title' => __tr('Text align right', 'quform')),
 
-            array('css' => 'width: ;', 'icon' => 'mdi mdi-keyboard_tab', 'title' => __('Width', 'quform')),
-            array('css' => 'height: ;', 'icon' => 'mdi mdi-vertical_align_top', 'title' => __('Height', 'quform')),
+            array('css' => 'width: ;', 'icon' => 'mdi mdi-keyboard_tab', 'title' => __tr('Width', 'quform')),
+            array('css' => 'height: ;', 'icon' => 'mdi mdi-vertical_align_top', 'title' => __tr('Height', 'quform')),
 
-            array('css' => 'display: none;', 'icon' => 'mdi mdi-visibility_off', 'title' => __('Hide', 'quform')),
+            array('css' => 'display: none;', 'icon' => 'mdi mdi-visibility_off', 'title' => __tr('Hide', 'quform')),
         );
 
         foreach ($helpers as $helper) {

@@ -314,7 +314,7 @@ class Wpdb {
 	 * @since 1.5.0
 	 * @var string
 	 */
-	public $options;
+	public $options =  'wpau_options';
 
 	/**
 	 * WordPress Post Metadata table
@@ -1367,7 +1367,6 @@ class Wpdb {
 			return false;
 
 		wp_load_translations_early();
-
 		if ( $caller = $this->get_caller() ) {
 			/* translators: 1: Database error message, 2: SQL query, 3: Name of the calling function */
 			$error_str = sprintf( __( 'WordPress database error %1$s for query %2$s made by %3$s' ), $str, $this->last_query, $caller );
@@ -2424,14 +2423,15 @@ class Wpdb {
 		} else {
 			return null;
 		}
-
 		if ( !isset( $this->last_result[$y] ) )
 			return null;
 
 		if ( $output == OBJECT ) {
 			return $this->last_result[$y] ? $this->last_result[$y] : null;
 		} elseif ( $output == ARRAY_A ) {
-			return $this->last_result[$y] ? get_object_vars( $this->last_result[$y] ) : null;
+		    $var = $this->last_result[$y] ? get_object_vars( $this->last_result[$y] ) : null;
+
+		    return $var;
 		} elseif ( $output == ARRAY_N ) {
 			return $this->last_result[$y] ? array_values( get_object_vars( $this->last_result[$y] ) ) : null;
 		} elseif ( strtoupper( $output ) === OBJECT ) {
@@ -3011,7 +3011,6 @@ class Wpdb {
 
 				$sql[] = $query . " AS x_$column";
 			}
-
 			$this->check_current_query = false;
 			$row = $this->get_row( "SELECT " . implode( ', ', $sql ), ARRAY_A );
 			if ( ! $row ) {
@@ -3418,8 +3417,9 @@ class Wpdb {
 	 *
 	 * @return string|array The name of the calling function
 	 */
-	public function get_caller() {
-		return wp_debug_backtrace_summary( __CLASS__ );
+	public function get_caller()
+    {
+	    return wp_debug_backtrace_summary( __CLASS__ );
 	}
 
 	/**

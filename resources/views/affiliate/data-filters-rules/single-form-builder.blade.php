@@ -13,7 +13,8 @@
     {!! Html::style('/assets/admin/css/quform/css/font-awesome.min.css') !!}
     {!! Html::style('/assets/admin/css/quform/admin/fonts/material-icons.min.css') !!}
     {!! Html::style('/assets/admin/css/quform/admin/css/admin.min.css') !!}
-    {{--{!! Html::style('/assets/admin/css/quform/admin/css/builder.min.css') !!}--}}
+    {!! Html::style('/assets/admin/css/quform/admin/css/builder.min.css') !!}
+
 
 
     <div class="row">
@@ -48,7 +49,6 @@
                                             <ul id="qfb-page-tabs-nav" class="qfb-cf">
                                                 <?php
                                                 use App\Plugins\QformLibrary\Quform;
-
                                                 foreach ($builder->getFormConfigValue($form, 'elements') as $key => $element) {
                                                         echo $builder->getPageTabNavHtml($key, $element['id'], $element['label']);
                                                 }
@@ -1683,7 +1683,9 @@
                                     <div id="qfb-preview-panel"><iframe id="qfb-preview-frame" src="    test "></iframe></div>
                                 </div>
                             </div>
-
+                            <?php include app_path() . '/Plugins/QformLibrary/templates/admin/element-settings.php'; ?>
+                            <?php include app_path()  . '/Plugins/QformLibrary/templates/admin/confirmation-settings.php'; ?>
+                            <?php include app_path() . '/Plugins/QformLibrary/templates/admin/notification-settings.php'; ?>
                             <div id="qfb-insert-variable" class="qfb-insert-variable-menu">
                                 <div class="qfb-insert-variable-heading"><?php esc_html_e('Submitted Form Value', 'quform'); ?></div>
                                 <div id="qfb-insert-variable-element"></div>

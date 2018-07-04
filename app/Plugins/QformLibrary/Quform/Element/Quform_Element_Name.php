@@ -168,7 +168,7 @@ class Quform_Element_Name extends Quform_Element_Field implements Quform_Element
      */
     public function setValueFromStorage($value)
     {
-        //$this->setValue(is_serialized($value) ? unserialize($value) : $this->getEmptyValue());
+        $this->setValue(is_serialized($value) ? unserialize($value) : $this->getEmptyValue());
     }
 
     /**
@@ -436,41 +436,41 @@ class Quform_Element_Name extends Quform_Element_Field implements Quform_Element
     public static function getDefaultConfig()
     {
         $config = apply_filters('quform_default_config_name', array(
-            'label' => __('Name', 'quform'),
+            'label' => __tr('Name', 'quform'),
             'subLabel' => '',
             'description' => '',
             'descriptionAbove' => '',
             'prefixEnabled' => false,
             'prefixRequired' => false,
             'prefixOptions' => array(
-                array('id' => 1, 'label' => __('Mr', 'quform'), 'value' => __('Mr', 'quform')),
-                array('id' => 2, 'label' => __('Mrs', 'quform'), 'value' => __('Mrs', 'quform')),
-                array('id' => 3, 'label' => __('Ms', 'quform'), 'value' => __('Ms', 'quform')),
-                array('id' => 4, 'label' => __('Miss', 'quform'), 'value' => __('Miss', 'quform')),
-                array('id' => 5, 'label' => __('Dr', 'quform'), 'value' => __('Dr', 'quform')),
+                array('id' => 1, 'label' => __tr('Mr', 'quform'), 'value' => __tr('Mr', 'quform')),
+                array('id' => 2, 'label' => __tr('Mrs', 'quform'), 'value' => __tr('Mrs', 'quform')),
+                array('id' => 3, 'label' => __tr('Ms', 'quform'), 'value' => __tr('Ms', 'quform')),
+                array('id' => 4, 'label' => __tr('Miss', 'quform'), 'value' => __tr('Miss', 'quform')),
+                array('id' => 5, 'label' => __tr('Dr', 'quform'), 'value' => __tr('Dr', 'quform')),
             ),
             'prefixNextOptionId' => 6,
             'prefixDefaultValue' => '',
             'prefixCustomiseValues' => false,
             'prefixNoneOption' => true,
             'prefixNoneOptionText' => '',
-            'prefixSubLabel' => __('Prefix', 'quform'),
+            'prefixSubLabel' => __tr('Prefix', 'quform'),
             'firstEnabled' => true,
             'firstRequired' => false,
             'firstPlaceholder' => '',
-            'firstSubLabel' => __('First', 'quform'),
+            'firstSubLabel' => __tr('First', 'quform'),
             'middleEnabled' => false,
             'middleRequired' => false,
             'middlePlaceholder' => '',
-            'middleSubLabel' => __('Middle', 'quform'),
+            'middleSubLabel' => __tr('Middle', 'quform'),
             'lastEnabled' => true,
             'lastRequired' => false,
             'lastPlaceholder' => '',
-            'lastSubLabel' => __('Last', 'quform'),
+            'lastSubLabel' => __tr('Last', 'quform'),
             'suffixEnabled' => false,
             'suffixRequired' => false,
             'suffixPlaceholder' => '',
-            'suffixSubLabel' => __('Suffix', 'quform'),
+            'suffixSubLabel' => __tr('Suffix', 'quform'),
             'dynamicDefaultValue' => false,
             'dynamicKey' => '',
             'tooltip' => '',

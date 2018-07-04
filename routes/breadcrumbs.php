@@ -101,11 +101,11 @@ Breadcrumbs::register('output-overview', function($breadcrumbs) {
 
 
 //output-overview-single
-Breadcrumbs::register('output-overview-single', function($breadcrumbs, $nameEntry ) {
+Breadcrumbs::register('single-output-overview', function($breadcrumbs, $nameEntry ) {
 
 
     $breadcrumbs->parent('output-overview');
-    $breadcrumbs->push($nameEntry ,route('output-overview-single', [  'single_id', 'data_filters_rules_id', 'data_filters_rules_description']));
+    $breadcrumbs->push($nameEntry ,route('single-output-overview', [  'single_id', 'data_filters_rules_id', 'data_filters_rules_description']));
 });
 
 ?>

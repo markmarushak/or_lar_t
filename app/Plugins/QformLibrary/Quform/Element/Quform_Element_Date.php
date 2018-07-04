@@ -234,7 +234,7 @@ class Quform_Element_Date extends Quform_Element_Field implements Quform_Element
     public static function getDefaultConfig()
     {
         $config = apply_filters('quform_default_config_date', array(
-            'label' => __('Date', 'quform'),
+            'label' => __tr('Date', 'quform'),
             'placeholder' => '',
             'subLabel' => '',
             'description' => '',

@@ -28,6 +28,7 @@
  * @return mixed Value set for the option.
  */
 function get_option( $option, $default = false ) {
+
     global $wpdb;
     $option = trim( $option );
     if ( empty( $option ) )
@@ -55,7 +56,6 @@ function get_option( $option, $default = false ) {
      *                               Default is false.
      */
     $pre = apply_filters( "pre_option_{$option}", false, $option, $default );
-
     if ( false !== $pre )
         return $pre;
 
@@ -69,7 +69,6 @@ function get_option( $option, $default = false ) {
 
         // prevent non-existent options from triggering multiple queries
         $notoptions = '';
-
         if ( isset( $notoptions[ $option ] ) ) {
             /**
              * Filters the default value for an option.
@@ -89,12 +88,13 @@ function get_option( $option, $default = false ) {
         }
 
         $alloptions = wp_load_alloptions();
-
         if ( isset( $alloptions[$option] ) ) {
             $value = $alloptions[$option];
         } else {
+
             $value = wp_cache_get( $option, 'options' );
             if ( false === $value ) {
+
                 $row = $wpdb->get_row( $wpdb->prepare( "SELECT option_value FROM $wpdb->options WHERE option_name = %s LIMIT 1", $option ) );
 
                 // Has to be get_row instead of get_var because of funkiness with 0, false, null values
@@ -116,6 +116,7 @@ function get_option( $option, $default = false ) {
     } else {
         $suppress = $wpdb->suppress_errors();
         $row = $wpdb->get_row( $wpdb->prepare( "SELECT option_value FROM $wpdb->options WHERE option_name = %s LIMIT 1", $option ) );
+
         $wpdb->suppress_errors( $suppress );
         if ( is_object( $row ) ) {
             $value = $row->option_value;
