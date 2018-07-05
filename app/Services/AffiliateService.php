@@ -93,7 +93,7 @@ class AffiliateService extends BaseService
 
     public function addAffiliatePartner($request)
     {
-       $this->affiliateRepository->addToDatabase($request);
+       $this->affiliateRepository->addAffiliatePartner($request);
     }
 
     public function getAffiliatesData($request)
@@ -113,7 +113,12 @@ class AffiliateService extends BaseService
 
     public function editAffiliatesPartners($request)
     {
-        return $this->affiliateRepository->editDataById($request);
+        return $this->affiliateRepository->getAffiliateOrPartnerById($request);
+    }
+
+    public function updateAffiliatesPartners($request)
+    {
+        $this->affiliateRepository->updateAffiliateOrPartnerById($request);
     }
 
     public function getAffiliatesDescriptions($request)

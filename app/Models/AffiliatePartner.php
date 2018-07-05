@@ -6,12 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class AffiliatePartner extends Model
 {
-    protected $fillable = ['description', 'country', 'type'];
+    protected $fillable = ['name','description','website', 'address', 'country', 'type'];
 
-    protected $guarded = ['_token'];
+  //  protected $guarded = ['_token'];
 
     protected $table = 'affiliates_partners';
-
 
     public function dataFiltersRules()
     {

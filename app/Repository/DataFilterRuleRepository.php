@@ -90,12 +90,15 @@ class DataFilterRuleRepository
             ->with('affiliatesPartners')
             ->firstOrFail()
             ->affiliatesPartners()
-            ->select()->get();
+            ->select()
+            ->get();
     }
 
     public function getPartnerById($id)
     {
-        return $this->affiliatePartnerModel->find($id)->first();
+        return $this->affiliatePartnerModel
+            ->find($id)
+            ->first();
     }
 
     public function editPartners($request){
@@ -108,16 +111,32 @@ class DataFilterRuleRepository
 
     public function addPartners($request)
     {
-        return $this->affiliatePartnerModel->where('description', '=', $request)->select('id')->get();
+        return $this->affiliatePartnerModel
+            ->where('description', '=', $request)
+            ->select('id')
+            ->get();
     }
 
-    public function addRules($request)
+    public function addRules($affiliatePartnerId, $dataFilterRuleId, $newRule)
     {
-        $this->affiliatePartnerModel->where('id', '=', $request['affiliate_partner_id'])->update(['rules' => $request['new_rule']]);
+        return $this->dataFiltersRulesModel
+            ->find($dataFilterRuleId)
+            ->with('affiliatesPartners')
+            ->firstOrFail()
+            ->affiliatesPartners()
+            ->where('affiliate_partner_id', '=', $affiliatePartnerId)
+            ->update(['rules' => $newRule]);
     }
 
-    public function getRule($affiliatePartnerId)
+    public function getRule($request)
     {
-        return $this->affiliatePartnerModel->where('id', $affiliatePartnerId)->select('rules')->get();
+        return $this->dataFiltersRulesModel
+            ->find($request['data_filter_rule_id'])
+            ->with('affiliatesPartners')
+            ->firstOrFail()
+            ->affiliatesPartners()
+            ->where('affiliate_partner_id', '=', $request['affiliate_partner_id'])
+            ->select('rules')
+            ->get();
     }
 }

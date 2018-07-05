@@ -149,6 +149,9 @@ function showData()
                     targets: 1,
                     data: 'description',
                     render: function (data, type, full, meta) {
+                        if(data == null){
+                            data = "";
+                        }
                         return `
                         <span style="width: 70px;">`+data+`</span>`;
                     },
@@ -157,6 +160,9 @@ function showData()
                     targets: 2,
                     data: 'country',
                     render: function (data, type, full, meta) {
+                        if(data == null){
+                            data = "";
+                        }
                         return `
                         <span style="width: 70px;">`+data+`</span>`;
                     },
@@ -165,6 +171,9 @@ function showData()
                     targets: 3,
                     data: 'type',
                     render: function (data, type, full, meta) {
+                        if(data == null){
+                            data = "";
+                        }
                         return `
                         <span style="width: 70px;">`+data+`</span>`;
                     },
@@ -173,6 +182,10 @@ function showData()
                     targets: 4,
                     data: 'rules',
                     render: function (data, type, full, meta) {
+
+                        if(data == null){
+                            data = "";
+                        }
                         return `
                         <span style="width: 70px;">`+data+`</span>`;
                     },
@@ -233,7 +246,7 @@ function deleteRow()
         url: laroute.action('delete-partners'),
 
         data: {data_filter_rules_id: project_id,
-                affiliate_partner_id: id},
+                affiliate_partner_id: id,},
 
 
     }).done(function () {
@@ -271,7 +284,8 @@ function addRule()
         url: laroute.action('add-rules'),
 
         data: {affiliate_partner_id: id,
-            new_rule: newRule},
+            new_rule: newRule,
+            data_filter_rules_id: project_id},
 
 
     }).done(function () {
@@ -287,7 +301,8 @@ function showConditionalLogic(table, tr, t_id)
         dataType: 'json',
         url: laroute.action('get-rule'),
 
-        data: {affiliate_partner_id: t_id},
+        data: {affiliate_partner_id: t_id,
+                data_filter_rule_id: project_id},
 
 
     }).done(function (data) {
@@ -310,6 +325,7 @@ function showConditionalLogic(table, tr, t_id)
             $('.slider', row.child()).slideDown();
             id = t_id;
         }
+
         var ruleArray = data[0].rules.split(" ");
 
         $('#m_zip_code :contains('+ruleArray[0]+')').attr("selected", "selected");

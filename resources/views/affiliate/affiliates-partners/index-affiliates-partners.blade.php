@@ -57,9 +57,24 @@
                         <span style="width: 130px;">ID</span>
                     </th>
 
+                    <th data-field="Name" class="m-datatable__cell m-datatable__cell--sort">
+
+                        <span style="width: 130px;">Name</span>
+                    </th>
+
                     <th data-field="OrderID" class="m-datatable__cell m-datatable__cell--sort">
 
                         <span style="width: 130px;">Descriptions</span>
+                    </th>
+
+                    <th data-field="Website" class="m-datatable__cell m-datatable__cell--sort">
+
+                        <span style="width: 130px;">Website</span>
+                    </th>
+
+                    <th data-field="Address" class="m-datatable__cell m-datatable__cell--sort">
+
+                        <span style="width: 130px;">Address</span>
                     </th>
 
                     <th data-field="Country" class="m-datatable__cell m-datatable__cell--sort">

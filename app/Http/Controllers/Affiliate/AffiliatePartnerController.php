@@ -10,10 +10,12 @@ use App\Services\AffiliateService;
 class AffiliatePartnerController extends Controller
 {
 
-    public function __construct(
+    public function __construct
+    (
         AffiliateRepository $affiliateRepository,
         AffiliateService $affiliateService
-    ){
+    )
+    {
         $this->affiliateRepository = $affiliateRepository;
         $this->affiliateService = $affiliateService;
     }
@@ -27,7 +29,8 @@ class AffiliatePartnerController extends Controller
         );
     }
 
-    public function show(Request $request){
+    public function show(Request $request)
+    {
         $affiliates_data = $this->affiliateService->getAffiliatesData($request);
         return response()->json($affiliates_data);
     }
@@ -42,13 +45,13 @@ class AffiliatePartnerController extends Controller
         );
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $this->validate($request, [
             'description' => 'required',
             'country' => 'required',
             'type' => 'required'
         ]);
-
         $this->affiliateService->addAffiliatePartner($request);
 
         return redirect()->route('affiliates-partners');
@@ -66,22 +69,26 @@ class AffiliatePartnerController extends Controller
         return response()->json($result);
     }
 
-    public function edit(Request $request){
+    public function edit(Request $request)
+    {
+       $affiliateOrPartner = $this->affiliateService->editAffiliatesPartners($request);
 
-        $this->validate($request, [
-            'description' => 'required',
-            'country' => 'required',
-            'type' => 'required'
-        ]);
-        $this->affiliateService->editAffiliatesPartners($request);
-        return response()->json();
+       return view('affiliate.affiliates-partners.edit-affiliates-partners',
+            [
+                'menu' => 'affiliate-service',
+                'affiliateOrPartner' => $affiliateOrPartner
+            ]
+        );
+    }
+
+    public function update(Request $request)
+    {
+        $this->affiliateService->updateAffiliatesPartners($request);
+        return redirect()->route('affiliates-partners');
     }
 
     public function acAffiliatesPartners(Request $request)
     {
         return $this->affiliateService->getAffiliatesDescriptions($request);
-
     }
-
-
 }

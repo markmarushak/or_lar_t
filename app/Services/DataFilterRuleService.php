@@ -145,12 +145,15 @@ class DataFilterRuleService extends BaseService
 
     public function addRules($request)
     {
-        $this->dataFilterRuleRepository->addRules($request);
+        $affiliatePartnerId = $request['affiliate_partner_id'];
+        $dataFilterRuleId =  $request['data_filter_rules_id'];
+        $newRule = $request['new_rule'];
+        $this->dataFilterRuleRepository->addRules($affiliatePartnerId, $dataFilterRuleId, $newRule);
     }
 
-    public function getRule($affiliatePartnerId)
+    public function getRule($request)
     {
-        return $this->dataFilterRuleRepository->getRule($affiliatePartnerId);
+        return $this->dataFilterRuleRepository->getRule($request);
     }
 
 

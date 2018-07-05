@@ -107,7 +107,7 @@ class DataFilterRuleController extends Controller
 
     public function getRule(Request $request)
     {
-        $affiliatePartnerRule = $this->dataFilterRuleService->getRule($request['affiliate_partner_id']);
+        $affiliatePartnerRule = $this->dataFilterRuleService->getRule($request);
         return response()->json($affiliatePartnerRule);
     }
 

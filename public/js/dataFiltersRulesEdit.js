@@ -52,6 +52,9 @@ function showData(){
                     targets: 0,
                     data: 'description',
                     render: function (data, type, full, meta) {
+                        if(data == null){
+                            data = "";
+                        }
                         return `
                         <span style="width: 70px;">`+data+`</span>`;
                     },
@@ -60,6 +63,9 @@ function showData(){
                     targets: 1,
                     data: 'category',
                     render: function (data, type, full, meta) {
+                        if(data == null){
+                            data = "";
+                        }
                         return `
                         <span style="width: 70px;">`+data+`</span>`;
                     },
@@ -68,6 +74,9 @@ function showData(){
                     targets: 2,
                     data: 'source',
                     render: function (data, type, full, meta) {
+                        if(data == null){
+                            data = "";
+                        }
                         return `
                         <span style="width: 70px;">`+data+`</span>`;
                     },
@@ -76,6 +85,9 @@ function showData(){
                     targets: 3,
                     data: 'type',
                     render: function (data, type, full, meta) {
+                        if(data == null){
+                            data = "";
+                        }
                         return `
                         <span style="width: 70px;">`+data+`</span>`;
                     },
@@ -96,6 +108,7 @@ function showData(){
                     targets: 5,
                     data: 'status',
                     render: function (data, type, full, meta) {
+
                         if(data == 1) {
                             return `
                             <span style="overflow: visible; width: 70px;"><span class="m-badge m-badge--success"><span hidden="true" id="e_status">`+data+`</span></span></span>`;
@@ -112,6 +125,9 @@ function showData(){
                     orderable: false,
                     data: 'country',
                     render: function (data, type, full, meta) {
+                        if(data == null){
+                            data = "";
+                        }
                         return `
                         <span style="width: 70px;">`+data+`</span>`;
                     },
