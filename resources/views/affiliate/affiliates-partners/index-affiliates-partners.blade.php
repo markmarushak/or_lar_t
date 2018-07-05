@@ -96,6 +96,7 @@
     </div>
 
     {!! Html::script('js/crud.js') !!}
+
     @include('affiliate.affiliates-partners.modal')
     @include('affiliate.delete-modal')
 

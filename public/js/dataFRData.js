@@ -291,6 +291,7 @@ function showConditionalLogic(table, tr, t_id)
 
 
     }).done(function (data) {
+        event.preventDefault();
         var row = table.row(tr);
         if (row.child.isShown()) {
             $('.slider', row.child()).slideUp(function () {

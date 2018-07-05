@@ -23,7 +23,7 @@
                 <div class="form-group m-form__group row">
                     <label class="col-form-label col-lg-3 col-sm-12">Country:</label>
                     <div class="col-lg-4 col-md-9 col-sm-12">
-                        <input type="text" class="form-control m-input" name="country">
+                        <input type="text" class="form-control m-input" name="country" id="query">
                     </div>
                 </div>
 
@@ -43,5 +43,5 @@
             </form>
         </div>
     </div>
-
+        {!! Html::script('js/affiliatePartners.js') !!}
 @endsection
