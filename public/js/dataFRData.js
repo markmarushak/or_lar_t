@@ -147,7 +147,7 @@ function showData()
                 },
                 {
                     targets: 1,
-                    data: 'description',
+                    data: 'name',
                     render: function (data, type, full, meta) {
                         if(data == null){
                             data = "";
@@ -158,7 +158,7 @@ function showData()
                 },
                 {
                     targets: 2,
-                    data: 'country',
+                    data: 'description',
                     render: function (data, type, full, meta) {
                         if(data == null){
                             data = "";
@@ -169,7 +169,7 @@ function showData()
                 },
                 {
                     targets: 3,
-                    data: 'type',
+                    data: 'website',
                     render: function (data, type, full, meta) {
                         if(data == null){
                             data = "";
@@ -180,6 +180,39 @@ function showData()
                 },
                 {
                     targets: 4,
+                    data: 'address',
+                    render: function (data, type, full, meta) {
+                        if(data == null){
+                            data = "";
+                        }
+                        return `
+                        <span style="width: 70px;">`+data+`</span>`;
+                    },
+                },
+                {
+                    targets: 5,
+                    data: 'country',
+                    render: function (data, type, full, meta) {
+                        if(data == null){
+                            data = "";
+                        }
+                        return `
+                        <span style="width: 70px;">`+data+`</span>`;
+                    },
+                },
+                {
+                    targets: 6,
+                    data: 'type',
+                    render: function (data, type, full, meta) {
+                        if(data == null){
+                            data = "";
+                        }
+                        return `
+                        <span style="width: 70px;">`+data+`</span>`;
+                    },
+                },
+                {
+                    targets: 7,
                     data: 'rules',
                     render: function (data, type, full, meta) {
 
@@ -191,7 +224,7 @@ function showData()
                     },
                 },
                 {
-                    targets: 5,
+                    targets: 8,
                     width: '30px',
                     orderable: false,
                     data:{id: 'affiliate_partner_id',

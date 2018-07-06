@@ -38,14 +38,30 @@
 
                                 </th>-->
                                 <th data-field="ID" class="m-datatable__cell m-datatable__cell--sort" data-sort="desc">
-                                    <span style="width: 130px;">ID<i class="la la-arrow-down"></i></span>
+                                    <span style="width: 100px;">ID<i class="la la-arrow-down"></i></span>
                                 </th>
+                                <th data-field="Name" class="m-datatable__cell m-datatable__cell--sort">
+
+                                    <span style="width: 130px;">Name</span>
+                                </th>
+
                                 <th data-field="FormID" class="m-datatable__cell m-datatable__cell--sort">
                                     <span style="width: 50px;">Description</span>
                                 </th>
+                                <th data-field="Website" class="m-datatable__cell m-datatable__cell--sort">
+
+                                    <span style="width: 130px;">Website</span>
+                                </th>
+
+                                <th data-field="Address" class="m-datatable__cell m-datatable__cell--sort">
+
+                                    <span style="width: 130px;">Address</span>
+                                </th>
+
                                 <th data-field="Unread" class="m-datatable__cell m-datatable__cell--sort">
                                     <span style="width: 60px;">Country</span>
                                 </th>
+
                                 <th data-field="IP" class="m-datatable__cell m-datatable__cell--sort">
                                     <span style="width: 100px;">Type</span>
                                 </th>
