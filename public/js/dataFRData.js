@@ -95,8 +95,8 @@ $(document).ready(function() {
 
     showData();
 
-    $('#m_table_4').on('dblclick', 'tbody tr', function(){
-        showConditionalLogic($('#m_table_4').DataTable(), $(this), $(this).attr("id"));
+    $('#m_table_4').on('dblclick', 'tbody tr', function(event){
+        showConditionalLogic(event, $('#m_table_4').DataTable(), $(this), $(this).attr("id"));
     });
 })
 
@@ -326,7 +326,7 @@ function addRule()
     });
 }
 
-function showConditionalLogic(table, tr, t_id)
+function showConditionalLogic(event, table, tr, t_id)
 {
     $.ajax({
 
@@ -339,6 +339,7 @@ function showConditionalLogic(table, tr, t_id)
 
 
     }).done(function (data) {
+        event = event || window.event;
         event.preventDefault();
         var row = table.row(tr);
         if (row.child.isShown()) {
