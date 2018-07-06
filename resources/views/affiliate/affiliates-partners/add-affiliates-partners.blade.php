@@ -33,7 +33,7 @@
                 <div class="form-group m-form__group">
                     <label>Website:</label>
                     <div class="m-input-icon m-input-icon--left col-lg-4 col-md-9 col-sm-12">
-                        <input name="website" type="text" class="form-control m-input " placeholder="Website company">
+                        <input name="website" type="text" class="form-control m-input " placeholder="Company website">
                         <span class="m-input-icon__icon m-input-icon__icon--left"><span><i class="la la-tag"></i></span></span>
                     </div>
                 </div>
