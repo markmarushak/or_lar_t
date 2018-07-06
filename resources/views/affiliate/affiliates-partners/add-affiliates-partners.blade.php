@@ -17,7 +17,7 @@
                 <div class="form-group m-form__group">
                     <label>Name:</label>
                     <div class="m-input-icon m-input-icon--left col-lg-4 col-md-9 col-sm-12">
-                        <input name="name" type="text" class="form-control m-input " placeholder="Name company">
+                        <input name="name" type="text" class="form-control m-input " placeholder="Name company" value="{{old('name')}}">
                         <span class="m-input-icon__icon m-input-icon__icon--left"><span><i class="la la-user"></i></span></span>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                 <div class="form-group m-form__group">
                     <label>Description:</label>
                     <div class="m-input-icon m-input-icon--left col-lg-4 col-md-9 col-sm-12">
-                        <input name="description" type="text" class="form-control m-input " placeholder="Description company">
+                        <input name="description" type="text" class="form-control m-input " placeholder="Description company" value="{{old('description')}}">
                         <span class="m-input-icon__icon m-input-icon__icon--left"><span><i class="la la-info-circle"></i></span></span>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                 <div class="form-group m-form__group">
                     <label>Website:</label>
                     <div class="m-input-icon m-input-icon--left col-lg-4 col-md-9 col-sm-12">
-                        <input name="website" type="text" class="form-control m-input " placeholder="Website company">
+                        <input name="website" type="url" class="form-control m-input " placeholder="Website company" value="{{old('website')}}">
                         <span class="m-input-icon__icon m-input-icon__icon--left"><span><i class="la la-tag"></i></span></span>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                 <div class="form-group m-form__group">
                     <label>Address:</label>
                     <div class="m-input-icon m-input-icon--left col-lg-4 col-md-9 col-sm-12">
-                        <input name="address" type="text" class="form-control m-input " placeholder="Address company">
+                        <input name="address" type="text" class="form-control m-input " placeholder="Address company" value="{{old('address')}}">
                         <span class="m-input-icon__icon m-input-icon__icon--left"><span><i class="la la-map-marker"></i></span></span>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                 <div class="form-group m-form__group">
                     <label>Country:</label>
                     <div class="m-input-icon m-input-icon--left col-lg-4 col-md-9 col-sm-12">
-                        <input name="country" type="text" class="form-control m-input " placeholder="Country " id="query">
+                        <input name="country" type="text" class="form-control m-input " placeholder="Country " id="query" value="{{old('country')}}">
                         <span class="m-input-icon__icon m-input-icon__icon--left"><span><i class="la la-thumb-tack"></i></span></span>
                     </div>
                 </div>
