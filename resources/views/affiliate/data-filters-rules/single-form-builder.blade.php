@@ -1803,6 +1803,16 @@
 
                                 </div>
 
+
+
+
+
+
+
+
+
+
+
                                 <div class="qfb-popup-buttons">
                                     <div title="<?php esc_attr_e('Close', 'quform'); ?>" class="qfb-popup-close-button"><i class="mdi mdi-close"></i></div>
                                 </div>
