@@ -52,7 +52,7 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
         Route::post('/delete', 'AffiliatePartnerController@delete')->name('delete-affiliate-partner');
         Route::post('/show', 'AffiliatePartnerController@show')->name('show-affiliates-partners');
         Route::post('/get', 'AffiliatePartnerController@getAffiliatePartner')->name('get-affiliate-partner');
-        Route::get('/edit/{id?}', 'AffiliatePartnerController@edit')->name('edit-affiliate-partner');
+        Route::get('/edit/{id}', 'AffiliatePartnerController@edit')->name('edit-affiliate-partner');
         Route::post('/update/', 'AffiliatePartnerController@update')->name('update-affiliate-partner');
         Route::get('/acaffiliates', 'AffiliatePartnerController@acAffiliatesPartners')->name('get-affiliates-partners-autocomplete');
 
@@ -112,6 +112,6 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
         Route::get('/output-overview', 'DataFilterRuleController@outputOverview')->name('output-overview');
 
         //outputOverviewsSingle
-        Route::get('/output-overview-single/{single_id?}/', 'DataFilterRuleController@outputOverviewSingle')->name('output-overview-single');
+        Route::get('/output-overview-single/{single_id}/', 'DataFilterRuleController@outputOverviewSingle')->name('output-overview-single');
     });
 });
