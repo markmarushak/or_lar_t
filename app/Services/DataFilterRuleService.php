@@ -7,7 +7,7 @@ use App\Plugins\QformLibrary\Quform\Form\Quform_Form_Factory;
 use App\Plugins\QformLibrary\Quform\Quform_Repository;
 use App\Repository\DataFilterRuleRepository;
 
-class DataFilterRuleService extends BaseService
+class DataFilterRuleService
 {
     protected $quformRepository;
     protected $quformFormFactory;
@@ -125,11 +125,13 @@ class DataFilterRuleService extends BaseService
         return $this->dataFilterRuleRepository->showPartners($dataFilterRuleId);
     }
 
-    public function getPartners($request){
+    public function getPartners($request)
+    {
         return $this->dataFilterRuleRepository->getPartners($request);
     }
 
-    public function editPartners($request){
+    public function editPartners($request)
+    {
         $this->dataFilterRuleRepository->editPartners($request);
     }
 

@@ -113,5 +113,8 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
 
         //outputOverviewsSingle
         Route::get('/output-overview-single/{single_id}/', 'DataFilterRuleController@outputOverviewSingle')->name('output-overview-single');
+
+        //Send Mail
+        Route::get('/send', 'DataFilterRuleController@sendMail');
     });
 });

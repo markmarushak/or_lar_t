@@ -82,11 +82,10 @@ class DataFilterRuleRepository
            ->detach($affiliatePartner);
     }
 
-    
-
-    public function showPartners($dataFilterRuleId){
-        return $this->dataFiltersRulesModel
-            ->find($dataFilterRuleId['id'])
+    public function showPartners($dataFilterRuleId)
+    {
+         return $this->dataFiltersRulesModel
+            ->find($dataFilterRuleId)
             ->with('affiliatesPartners')
             ->firstOrFail()
             ->affiliatesPartners()
@@ -101,11 +100,13 @@ class DataFilterRuleRepository
             ->first();
     }
 
-    public function editPartners($request){
+    public function editPartners($request)
+    {
 
     }
 
-    public function deletePartners($request){
+    public function deletePartners($request)
+    {
 
     }
 

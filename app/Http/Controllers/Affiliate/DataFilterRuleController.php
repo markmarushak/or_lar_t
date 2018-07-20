@@ -3,30 +3,37 @@
 namespace App\Http\Controllers\Affiliate;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OrderShipped;
 use App\Repository\AffiliateRepository;
 use App\Services\AffiliateService;
 use App\Services\DataFilterRuleService;
+use App\Services\NewsletterService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class DataFilterRuleController extends Controller
 {
     private $affiliateRepository;
     private $affiliateService;
     private $dataFilterRuleService;
+    private $newsletterService;
 
     public function __construct(
         AffiliateRepository $affiliateRepository,
         AffiliateService $affiliateService,
-        DataFilterRuleService $dataFilterRuleService
+        DataFilterRuleService $dataFilterRuleService,
+        NewsletterService $newsletterService
     )
     {
         $this->affiliateRepository = $affiliateRepository;
         $this->affiliateService = $affiliateService;
         $this->dataFilterRuleService = $dataFilterRuleService;
+        $this->newsletterService = $newsletterService;;
     }
 
     public function index()
     {
+          // $this->newsletterService->newsletterService();
             return view('affiliate.data-filters-rules.index',
                 [
                     'menu' => 'affiliate-service'
@@ -42,7 +49,8 @@ class DataFilterRuleController extends Controller
 
     public function showPartners(Request $request)
     {
-        $result = $this->dataFilterRuleService->showPartners($request);
+        $result = $this->dataFilterRuleService->showPartners($request->id);
+
         return response()->json($result);
 //        $dataFiltersRulesId = $request->all();
 //        $connectionToDataBase= $this->affiliateService->connectionToDataBase($dataFiltersRulesId);
@@ -56,7 +64,8 @@ class DataFilterRuleController extends Controller
 
     }
 
-    public function get(Request $request){
+    public function get(Request $request)
+    {
         $dataFilterRules = $this->dataFilterRuleService->getDataFiltersRulesById($request);
         return response()->json($dataFilterRules);
     }
@@ -273,8 +282,6 @@ class DataFilterRuleController extends Controller
             )->withErrors($connectionToDataBase->getMessage() );
         } else {
             $recentEntries = $this->dataFilterRuleService->getRecentEntries();
-
-
             return view('affiliate.data-filters-rules.output-overview',
                 [
                 'menu' => 'affiliate-service',
@@ -320,5 +327,28 @@ class DataFilterRuleController extends Controller
     {
 
         return $this->dataFilterRuleService->detachProjectAndPartner($dataFiltersRulesId, $affiliatePartnerId);
+    }
+
+    public function sendMail(Request $request)
+    {
+        $dataFiltersRulesId = $request->data_filters_rules_id;
+        $dataFiltersRulesDescription = $request->data_filters_rules_description;
+        $connectionToDataBase= $this->affiliateService->connectionToDataBase($dataFiltersRulesId);
+        if (is_a($connectionToDataBase, 'ErrorException')) {
+            return view('affiliate.data-filters-rules.output-overview-single',
+                [
+                    'menu' => 'affiliate-service',
+                    'dataFiltersRulesDescription' => $dataFiltersRulesDescription
+                ]
+            )->withErrors($connectionToDataBase->getMessage() );
+        } else {
+            $entryId = 6;
+            $form = $this->dataFilterRuleService->outputOverviewSingleService($entryId);
+            Mail::to('thorfinn@orbitleads.com')
+                ->send(new OrderShipped($form, $this->dataFilterRuleService->nameEntry), 'Få tilbud på Garasje')
+                ;
+        }
+
+        dd('good');
     }
 }

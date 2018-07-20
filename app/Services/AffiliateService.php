@@ -6,7 +6,7 @@ use App\Plugins\WordPress\Wpdb;
 use App\Repository\AffiliateRepository;
 use Exception;
 
-class AffiliateService extends BaseService
+class AffiliateService
 {
     private $affiliateRepository;
 
