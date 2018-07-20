@@ -7,7 +7,6 @@ use App\Mail\OrderShipped;
 use App\Repository\AffiliateRepository;
 use App\Services\AffiliateService;
 use App\Services\DataFilterRuleService;
-use App\Services\NewsletterService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -16,24 +15,27 @@ class DataFilterRuleController extends Controller
     private $affiliateRepository;
     private $affiliateService;
     private $dataFilterRuleService;
-    private $newsletterService;
+    public $dataFilterRuleId;
+    public $dataFilterRuleDescription;
 
     public function __construct(
         AffiliateRepository $affiliateRepository,
         AffiliateService $affiliateService,
         DataFilterRuleService $dataFilterRuleService,
-        NewsletterService $newsletterService
+        Request $request
     )
     {
+        if ($request->has('data_filters_rules_id') && $request->has('data_filters_rules_description')) {
+            $this->dataFilterRuleId = $request->data_filters_rules_id;
+            $this->dataFilterRuleDescription = $request->data_filters_rules_description;
+        }
         $this->affiliateRepository = $affiliateRepository;
         $this->affiliateService = $affiliateService;
         $this->dataFilterRuleService = $dataFilterRuleService;
-        $this->newsletterService = $newsletterService;;
     }
 
     public function index()
     {
-          // $this->newsletterService->newsletterService();
             return view('affiliate.data-filters-rules.index',
                 [
                     'menu' => 'affiliate-service'
@@ -202,7 +204,6 @@ class DataFilterRuleController extends Controller
         if (is_a($connectionToDataBase, 'ErrorException')) {
            return view('affiliate.data-filters-rules.form-builder',
                [
-                   'menu' => 'affiliate-service',
                    'dataFiltersRulesDescription' => $dataFiltersRulesDescription
                ]
            )->withErrors($connectionToDataBase->getMessage() );
@@ -211,7 +212,6 @@ class DataFilterRuleController extends Controller
            $urls = $this->dataFilterRuleService->createUrls($forms, $dataFiltersRulesDescription);
            return view('affiliate.data-filters-rules.form-builder',
                [
-                   'menu' => 'affiliate-service',
                    'forms' => $forms,
                    'urls' => $urls,
                    'dataFiltersRulesDescription' => $dataFiltersRulesDescription
@@ -229,7 +229,6 @@ class DataFilterRuleController extends Controller
         if (is_a($connectionToDataBase, 'ErrorException')) {
             return view('affiliate.database-fields',
                 [
-                    'menu' => 'affiliate-service',
                     'dataFiltersRulesDescription' => $dataFiltersRulesDescription
                 ]
             )->withErrors($connectionToDataBase->getMessage());
@@ -239,7 +238,6 @@ class DataFilterRuleController extends Controller
             );
             return view('affiliate.database-fields',
                 [
-                    'menu' => 'affiliate-service',
                     'data' => $data
                 ]
             );
@@ -250,18 +248,15 @@ class DataFilterRuleController extends Controller
     {
         $dataFiltersRulesId = $request->data_filters_rules_id;
         $connectionToDataBase= $this->affiliateService->connectionToDataBase($dataFiltersRulesId);
-
         if (is_a($connectionToDataBase, 'ErrorException')) {
             return view('affiliate.data-filters-rules.data-filters-rules-data',
                 [
-                    'menu' => 'affiliate-service',
                     'dataFiltersRulesId' => $dataFiltersRulesId
                 ]
             )->withErrors($connectionToDataBase->getMessage());
         }else {
             return view('affiliate.data-filters-rules.data-filters-rules-data',
                 [
-                    'menu' => 'affiliate-service',
                     'dataFilterRulesId' => $dataFiltersRulesId
                 ]
             );
@@ -276,7 +271,6 @@ class DataFilterRuleController extends Controller
         if (is_a($connectionToDataBase, 'ErrorException')) {
             return view('affiliate.data-filters-rules.output-overview',
                 [
-                    'menu' => 'affiliate-service',
                     'dataFiltersRulesDescription' => $dataFiltersRulesDescription
                 ]
             )->withErrors($connectionToDataBase->getMessage() );
@@ -284,7 +278,6 @@ class DataFilterRuleController extends Controller
             $recentEntries = $this->dataFilterRuleService->getRecentEntries();
             return view('affiliate.data-filters-rules.output-overview',
                 [
-                'menu' => 'affiliate-service',
                 'recentEntries' => $recentEntries,
                 'dataFiltersRulesId' =>$dataFiltersRulesId,
                 'dataFiltersRulesDescription' => $dataFiltersRulesDescription
@@ -348,7 +341,6 @@ class DataFilterRuleController extends Controller
                 ->send(new OrderShipped($form, $this->dataFilterRuleService->nameEntry), 'Få tilbud på Garasje')
                 ;
         }
-
         dd('good');
     }
 }

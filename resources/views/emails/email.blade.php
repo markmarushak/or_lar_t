@@ -14,7 +14,6 @@
             if ( ! $element instanceof Quform_Element_Field && ! $element instanceof Quform_Element_Container && ! $element instanceof Quform_Element_Html) {
                 continue;
             }
-
             // Skip hidden elements
             if ($element->isHidden()) {
                 continue;
