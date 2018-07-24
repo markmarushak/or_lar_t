@@ -7,7 +7,9 @@
 		<!--Must be dynamic changed -->
 			@if('data-filters-rules' == $nameRoute)
 				{!! Breadcrumbs::render($nameRoute) !!}
-			@elseif('single-output-overview' == $nameRoute)
+			@elseif('edit-affiliate-partner' == $nameRoute)
+				{!! Breadcrumbs::render($nameRoute) !!}
+			@elseif('output-overview-single' == $nameRoute)
 				{!! Breadcrumbs::render($nameRoute, $nameEntry) !!}
 			@else
 				{!! Breadcrumbs::render($nameRoute) !!}

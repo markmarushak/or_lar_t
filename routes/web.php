@@ -52,7 +52,8 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
         Route::post('/delete', 'AffiliatePartnerController@delete')->name('delete-affiliate-partner');
         Route::post('/show', 'AffiliatePartnerController@show')->name('show-affiliates-partners');
         Route::post('/get', 'AffiliatePartnerController@getAffiliatePartner')->name('get-affiliate-partner');
-        Route::post('/edit', 'AffiliatePartnerController@edit')->name('edit-affiliate-partner');
+        Route::get('/edit/{id}', 'AffiliatePartnerController@edit')->name('edit-affiliate-partner');
+        Route::post('/update/', 'AffiliatePartnerController@update')->name('update-affiliate-partner');
         Route::get('/acaffiliates', 'AffiliatePartnerController@acAffiliatesPartners')->name('get-affiliates-partners-autocomplete');
 
         Route::get('/add-affiliates-partners', 'AffiliatePartnerController@add')->name('add-affiliates-partners');
@@ -87,34 +88,36 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
     Route::group(['prefix' => '/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules_description}'], function (){
 
         //connection
-        Route::get('/connection', 'DataFilterRuleController@connection')->name('connection');
+        Route::get('/connection', 'ProjectController@connection')->name('connection');
 
-        Route::put('/connection/update', 'DataFilterRuleController@updateConnectDb')->name('connection-update');
+        Route::put('/connection/update', 'ProjectController@updateConnectToDb')->name('connection-update');
 
         //form-builder
-        Route::get('/form-builder', 'DataFilterRuleController@formbuilder')->name('form-builder');
+        Route::get('/form-builder', 'ProjectController@formbuilder')->name('form-builder');
 
         //single-form-builder
         Route::get('/single-form-builder/{singleId?}/', 'DataFilterRuleController@singleFormBuilder')->name('single-form-builder');
 
-
         // Data Filters Edit page
-        Route::get('', 'AffiliateController@dataFiltersRules')->name('data-filters-rules-edit');
+        Route::get('', 'ProjectController@dataFiltersRules')->name('data-filters-rules-edit');
 
 
         //dataBaseFields
-        Route::get('/data-base-fields', 'DataFilterRuleController@dataBaseFields')->name('data-base-fields');
+        Route::get('/data-base-fields', 'ProjectController@dataBaseFields')->name('data-base-fields');
 
         //data-filters and rules data
         Route::group( ['prefix' => 'data-filters-rules-data'] , function() {
-        Route::get('/', 'DataFilterRuleController@dataFiltersRulesData')->name('data-filters-rules-data');
-        Route::get('/bind-project-partner', 'DataFilterRuleController@bindProjectAndPartner')->name('bind-project-and-partner');
-        Route::get('/detach-project-partner', 'DataFilterRuleController@detachProjectAndPartner')->name('detach-project-and-partner');
+        Route::get('/', 'ProjectController@dataFiltersRulesData')->name('data-filters-rules-data');
+        Route::get('/bind-project-partner', 'ProjectController@bindProjectAndPartner')->name('bind-project-and-partner');
+        Route::get('/detach-project-partner', 'ProjectController@detachProjectAndPartner')->name('detach-project-and-partner');
         });
         //outputOverview
-        Route::get('/output-overview', 'DataFilterRuleController@outputOverview')->name('output-overview');
+        Route::get('/output-overview', 'ProjectController@outputOverview')->name('output-overview');
 
-        //singleOutputOverviews
-        Route::get('/single-output-overview/{single_id?}/', 'DataFilterRuleController@singleOutputOverview')->name('single-output-overview');
+        //outputOverviewsSingle
+        Route::get('/output-overview-single/{single_id}/', 'ProjectController@outputOverviewSingle')->name('single-output-overview');
+
+        //Send Mail
+        Route::get('/send', 'DataFilterRuleController@sendMail');
     });
 });

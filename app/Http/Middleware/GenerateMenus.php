@@ -34,7 +34,7 @@ class GenerateMenus
 
             $menu->add('Connection',
                 ['action' =>
-                    ['\App\Http\Controllers\Affiliate\DataFilterRuleController@connection',
+                    ['\App\Http\Controllers\Affiliate\ProjectController@connection',
                         'data_filters_rules_id' => $this->request->data_filters_rules_id,
                         'data_filters_rules_description' => $this->request->data_filters_rules_description
                     ]]);
@@ -42,14 +42,14 @@ class GenerateMenus
 
             $menu->add('Form Builder',
                 ['action' =>
-                    ['\App\Http\Controllers\Affiliate\DataFilterRuleController@formbuilder',
+                    ['\App\Http\Controllers\Affiliate\ProjectController@formbuilder',
                         'data_filters_rules_id' => $this->request->data_filters_rules_id,
                         'data_filters_rules_description' => $this->request->data_filters_rules_description
                     ]]);
 
             $menu->add('Database Fields',
                 ['action' =>
-                    ['\App\Http\Controllers\Affiliate\DataFilterRuleController@dataBaseFields',
+                    ['\App\Http\Controllers\Affiliate\ProjectController@dataBaseFields',
                         'data_filters_rules_id' => $this->request->data_filters_rules_id,
                         'data_filters_rules_description' => $this->request->data_filters_rules_description
                     ]]);
@@ -57,7 +57,7 @@ class GenerateMenus
 
             $menu->add('Data Filters & Rules',
                 ['action' =>
-                    ['\App\Http\Controllers\Affiliate\DataFilterRuleController@dataFiltersRulesData',
+                    ['\App\Http\Controllers\Affiliate\ProjectController@dataFiltersRulesData',
                         'data_filters_rules_id' => $this->request->data_filters_rules_id,
                         'data_filters_rules_description' => $this->request->data_filters_rules_description
                     ]]);
@@ -65,7 +65,7 @@ class GenerateMenus
             //output-overview
             $menu->add('Output Overview',
                 ['action' =>
-                    ['\App\Http\Controllers\Affiliate\DataFilterRuleController@outputOverview',
+                    ['\App\Http\Controllers\Affiliate\ProjectController@outputOverview',
                         'data_filters_rules_id' => $this->request->data_filters_rules_id,
                         'data_filters_rules_description' => $this->request->data_filters_rules_description
                     ]]);

@@ -92,19 +92,21 @@ $(document).ready(function() {
 
     autoComplete.enable();
 
+
     showData();
 
-    $('#m_table_4').on('dblclick', 'tbody tr', function(){
-        showConditionalLogic($('#m_table_4').DataTable(), $(this), $(this).attr("id"));
+    $('#m_table_4').on('dblclick', 'tbody tr', function(event){
+        showConditionalLogic(event, $('#m_table_4').DataTable(), $(this), $(this).attr("id"));
     });
 })
 
 function showData()
 {
-
+    $('#m_table_4').hide();
     var table = $('#m_table_4').DataTable();
     table.clear();
     table.destroy();
+    $('#spinner').show();
     project_id = $('#project_id').val();
     $.ajax({
         method: 'POST',
@@ -112,6 +114,8 @@ function showData()
         url: laroute.action('show-partners'),
         data: {id: project_id},
     }).done(function(data){
+        $('#spinner').hide();
+        $('#m_table_4').show()
         table = $('#m_table_4').DataTable({
             paging: false,
             ordering: true,
@@ -143,38 +147,84 @@ function showData()
                 },
                 {
                     targets: 1,
-                    data: 'description',
+                    data: 'name',
                     render: function (data, type, full, meta) {
+                        if(data == null){
+                            data = "";
+                        }
                         return `
                         <span style="width: 70px;">`+data+`</span>`;
                     },
                 },
                 {
                     targets: 2,
-                    data: 'country',
+                    data: 'description',
                     render: function (data, type, full, meta) {
+                        if(data == null){
+                            data = "";
+                        }
                         return `
                         <span style="width: 70px;">`+data+`</span>`;
                     },
                 },
                 {
                     targets: 3,
-                    data: 'type',
+                    data: 'website',
                     render: function (data, type, full, meta) {
+                        if(data == null){
+                            data = "";
+                        }
                         return `
                         <span style="width: 70px;">`+data+`</span>`;
                     },
                 },
                 {
                     targets: 4,
-                    data: 'rules',
+                    data: 'address',
                     render: function (data, type, full, meta) {
+                        if(data == null){
+                            data = "";
+                        }
                         return `
                         <span style="width: 70px;">`+data+`</span>`;
                     },
                 },
                 {
                     targets: 5,
+                    data: 'country',
+                    render: function (data, type, full, meta) {
+                        if(data == null){
+                            data = "";
+                        }
+                        return `
+                        <span style="width: 70px;">`+data+`</span>`;
+                    },
+                },
+                {
+                    targets: 6,
+                    data: 'type',
+                    render: function (data, type, full, meta) {
+                        if(data == null){
+                            data = "";
+                        }
+                        return `
+                        <span style="width: 70px;">`+data+`</span>`;
+                    },
+                },
+                {
+                    targets: 7,
+                    data: 'rules',
+                    render: function (data, type, full, meta) {
+
+                        if(data == null){
+                            data = "";
+                        }
+                        return `
+                        <span style="width: 70px;">`+data+`</span>`;
+                    },
+                },
+                {
+                    targets: 8,
                     width: '30px',
                     orderable: false,
                     data:{id: 'affiliate_partner_id',
@@ -229,7 +279,7 @@ function deleteRow()
         url: laroute.action('delete-partners'),
 
         data: {data_filter_rules_id: project_id,
-                affiliate_partner_id: id},
+                affiliate_partner_id: id,},
 
 
     }).done(function () {
@@ -267,7 +317,8 @@ function addRule()
         url: laroute.action('add-rules'),
 
         data: {affiliate_partner_id: id,
-            new_rule: newRule},
+            new_rule: newRule,
+            data_filter_rules_id: project_id},
 
 
     }).done(function () {
@@ -275,7 +326,7 @@ function addRule()
     });
 }
 
-function showConditionalLogic(table, tr, t_id)
+function showConditionalLogic(event, table, tr, t_id)
 {
     $.ajax({
 
@@ -283,10 +334,13 @@ function showConditionalLogic(table, tr, t_id)
         dataType: 'json',
         url: laroute.action('get-rule'),
 
-        data: {affiliate_partner_id: t_id},
+        data: {affiliate_partner_id: t_id,
+                data_filter_rule_id: project_id},
 
 
     }).done(function (data) {
+        event = event || window.event;
+        event.preventDefault();
         var row = table.row(tr);
         if (row.child.isShown()) {
             $('.slider', row.child()).slideUp(function () {
@@ -305,6 +359,7 @@ function showConditionalLogic(table, tr, t_id)
             $('.slider', row.child()).slideDown();
             id = t_id;
         }
+
         var ruleArray = data[0].rules.split(" ");
 
         $('#m_zip_code :contains('+ruleArray[0]+')').attr("selected", "selected");

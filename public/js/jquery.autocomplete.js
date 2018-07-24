@@ -120,7 +120,7 @@
             paramName: 'query',
             transformResult: _transformResult,
             showNoSuggestionNotice: false,
-            noSuggestionNotice: 'No results',
+            noSuggestionNotice: 'No data',
             orientation: 'bottom',
             forceFixPosition: false
     };

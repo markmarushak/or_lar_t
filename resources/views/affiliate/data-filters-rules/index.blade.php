@@ -8,7 +8,10 @@
     </div>
     <div class="m-portlet m-portlet--mobile">
         <div class="m-portlet__body">
-            <table class="table m-table m-table--head-separator-primary" id="m_table_1">
+            <div class="container text-center" style="width: 100%">
+                <div id="spinner" class="m-loader m-loader--success m-loader--lg col-md-6" style="display: none; margin-top: 50px; width: 30px; display: inline-block;"></div>
+            </div>
+            <table class="table m-table m-table--head-separator-primary" id="m_table_1" style="display: none">
                 <thead>
                 <tr>
                     <th data-field="OrderID" class="m-datatable__cell m-datatable__cell--sort">

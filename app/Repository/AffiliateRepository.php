@@ -69,10 +69,10 @@ class AffiliateRepository
         ])->save();
     }
 
-    public function addToDatabase($request)
+    public function addAffiliatePartner($request)
     {
         $this->affiliatePartnerModel
-            ->insertGetId($request->only('description', 'country', 'type'));
+            ->insertGetId($request->only('name','description','website', 'address', 'country', 'type'));
     }
 
     public function getData($request)
@@ -91,8 +91,17 @@ class AffiliateRepository
         }
     }
 
+    public function updateAffiliateOrPartnerById($request)
+    {
+        $this->affiliatePartnerModel
+            ->where('id', $request->id)
+            ->update($request->only('name','description','website', 'address', 'country', 'type'));
+    }
+
     public function deleteFromDatabase($request){
-        $this->affiliatePartnerModel->where('id', '=', $request->all())->delete();
+        $this->affiliatePartnerModel
+            ->where('id', '=', $request->all())
+            ->delete();
     }
 
     public function getDataById($request)
@@ -102,15 +111,11 @@ class AffiliateRepository
             ->where('id', '=', $request->all())->get();
     }
 
-    public function editDataById($request)
+    public function getAffiliateOrPartnerById($request)
     {
-        $this->affiliatePartnerModel
-            ->where('id', '=', $request['id'])
-            ->update([
-                'description' => $request['description'],
-                'country'=> $request['country'],
-                'type'=>$request['type']
-            ]);
+        return $this->affiliatePartnerModel
+            ->where('id', '=', $request->id)
+            ->firstOrFail();
     }
 
     public function getAffiliatesDescriptions($request)

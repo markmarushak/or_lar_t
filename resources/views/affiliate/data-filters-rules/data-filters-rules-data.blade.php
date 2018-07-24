@@ -28,21 +28,40 @@
                             </span>
                          </a>
                      </div>
-                        <table class="table m-table m-table--head-separator-primary" id="m_table_4">
+                     <div class="container text-center" id="spinner" style="display: none; width: 100%">
+                         <div class="m-loader m-loader--success m-loader--lg col-md-6" style="margin-top: 50px; width: 30px; display: inline-block;"></div>
+                     </div>
+                     <table class="table m-table m-table--head-separator-primary" id="m_table_4" style="display: none">
                             <thead>
                             <tr>
                              <!--   <th>
 
                                 </th>-->
                                 <th data-field="ID" class="m-datatable__cell m-datatable__cell--sort" data-sort="desc">
-                                    <span style="width: 130px;">ID<i class="la la-arrow-down"></i></span>
+                                    <span style="width: 100px;">ID<i class="la la-arrow-down"></i></span>
                                 </th>
+                                <th data-field="Name" class="m-datatable__cell m-datatable__cell--sort">
+
+                                    <span style="width: 130px;">Name</span>
+                                </th>
+
                                 <th data-field="FormID" class="m-datatable__cell m-datatable__cell--sort">
                                     <span style="width: 50px;">Description</span>
                                 </th>
+                                <th data-field="Website" class="m-datatable__cell m-datatable__cell--sort">
+
+                                    <span style="width: 130px;">Website</span>
+                                </th>
+
+                                <th data-field="Address" class="m-datatable__cell m-datatable__cell--sort">
+
+                                    <span style="width: 130px;">Address</span>
+                                </th>
+
                                 <th data-field="Unread" class="m-datatable__cell m-datatable__cell--sort">
                                     <span style="width: 60px;">Country</span>
                                 </th>
+
                                 <th data-field="IP" class="m-datatable__cell m-datatable__cell--sort">
                                     <span style="width: 100px;">Type</span>
                                 </th>

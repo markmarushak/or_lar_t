@@ -21,6 +21,8 @@ class DataFiltersRules extends Model
 
     public function settingOfDataBase()
     {
+
+
         return $this->hasOne(SettingOfDataBase::class);
     }
 

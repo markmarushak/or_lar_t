@@ -7,18 +7,23 @@ $(document).ready(function() {
 
     showData();
 
+
+
 })
+
+
 
 var type = 'All';
 var id = '';
-var aff_data = {};
+
 
 //Render Table
 //-------------------------------------------------------
 function showData(){
-
+    $('#m_table_2').hide();
     var table = $('#m_table_2').DataTable();
     table.destroy();
+    $('#spinner').show();
 
     $.ajax({
        method: 'POST',
@@ -26,7 +31,9 @@ function showData(){
        url: laroute.action('show-affiliates-partners'),
        data: {data: type},
     }).done(function(data){
-        $('#m_table_2').DataTable({
+        $('#spinner').hide();
+        $('#m_table_2').show();
+        var table = $('#m_table_2').DataTable({
             paging: false,
             ordering: true,
             responsive: true,
@@ -57,31 +64,73 @@ function showData(){
                 },
                 {
                     targets: 1,
-                    data: 'description',
+                    data: 'name',
                     render: function (data, type, full, meta) {
+                        if(data == null){
+                            data = "";
+                        }
                         return `
                         <span style="width: 70px;">`+data+`</span>`;
                     },
                 },
                 {
                     targets: 2,
-                    data: 'country',
+                    data: 'description',
                     render: function (data, type, full, meta) {
+                        if(data == null){
+                            data = "";
+                        }
                         return `
                         <span style="width: 70px;">`+data+`</span>`;
                     },
                 },
                 {
                     targets: 3,
+                    data: 'website',
+                    render: function (data, type, full, meta) {
+                        if(data == null){
+                            data = "";
+                        }
+                        return `
+                        <span style="width: 70px;">`+data+`</span>`;
+                    },
+                },
+                {
+                    targets: 4,
+                    data: 'address',
+                    render: function (data, type, full, meta) {
+                        if(data == null){
+                            data = "";
+                        }
+                        return `
+                        <span style="width: 70px;">`+data+`</span>`;
+                    },
+                },
+                {
+                    targets: 5,
+                    data: 'country',
+                    render: function (data, type, full, meta) {
+                        if(data == null){
+                            data = "";
+                        }
+                        return `
+                        <span style="width: 70px;">`+data+`</span>`;
+                    },
+                },
+                {
+                    targets: 6,
                     data: 'type',
                     render: function (data, type, full, meta) {
+                        if(data == null){
+                            data = "";
+                        }
                         return `
                         <span style="width: 70px;">`+data+`</span>`;
                     },
                 },
 
                 {
-                    targets: 4,
+                    targets: 7,
                     width: '30px',
                     orderable: false,
                     data:{id: 'id',
@@ -101,7 +150,7 @@ function showData(){
                                                         <ul class="m-nav">
 
                                                             <li class="m-nav__item">
-                                                                <a href="#" onclick="editRow(`+data.id+`)" class="m-nav__link">
+                                                                <a href="#" onclick=" window.location = laroute.action('edit-affiliate-partner', {id: `+data.id+`})" class="m-nav__link">
                                                                     <i class="m-nav__link-icon flaticon-edit"></i>
                                                                     <span class="m-nav__link-text">Edit</span>
                                                                 </a>
@@ -137,74 +186,99 @@ function searchData(){
 }
 
 
-//Edit record in Database
-//------------------------------------------------------------------
-function editRow (id) {
-    $.ajax({
-        method: 'POST',
-        dataType: 'json',
-        url: laroute.action('get-affiliate-partner'),
-        data: {data: id},
+// //Edit record in Database
+// //------------------------------------------------------------------
+// function editRow (id) {
+//     $.ajax({
+//         method: 'POST',
+//         dataType: 'json',
+//         url: laroute.action('get-affiliate-partner'),
+//         data: {data: id},
+//
+//     }).done(function (data) {
+//         $.each(data, function (key, value) {
+//             $('#e_description').val(value.description);
+//             aff_data.id = id;
+//             $('#query').val(value.country);
+//             $('#e_type :contains('+value.type+')').attr("selected", "selected");
+//             aff_data.description = value.description;
+//
+//         })
+//     })
+// }
 
-    }).done(function (data) {
-        $.each(data, function (key, value) {
-            $('#n_description').val(value.description);
-            aff_data.id = id;
-            $('#n_country').val(value.country);
-            $('#n_type').val(value.type);
-            $('#n_rules').val(value.rules);
-            aff_data.description = value.description;
-            if (value.status == true) {
-                $('#n_status').attr("checked", "checked");
-            }
-            else {
-                $('#n_status').removeAttr("checked");
-            }
-        })
-        $('#m_modal_5').show();
-        $('#edit_modal').slideDown(300);
-    })
-}
+// function showEditRow(tr_id)
+// {
+//     event.preventDefault();
+//
+//     editRow(tr_id);
+//     var tr = ($('#'+tr_id));
+//     var table = $('#m_table_2').DataTable();
+//     var row = table.row(tr);
+//     if (row.child.isShown()) {
+//         $('.slider', row.child()).slideUp(function () {
+//             row.child.hide();
+//             tr.removeClass('shown');
+//             id = '';
+//         });
+//     }
+//     else {
+//         if ($('tbody tr').hasClass('shown')) {
+//             showEditRow($('.shown').attr('id'));
+//         }
+//         row.child(edit_row).show();
+//         $('.slider', row.child()).slideDown('slow');
+//         tr.addClass('shown');
+//
+//         //id = t_id;
+//     }
+//     var autoComplete = $('#query').autocomplete({
+//         lookup: countries,
+//         minChars: 2,
+//         delimiter: /(,|;)\s*/,
+//         maxHeight: 400,
+//         width: 300,
+//         zIndex: 9999,
+//         deferRequestBy: 300,
+//         showNoSuggestionNotice: true,
+//         onSelect: function (suggestion) {
+//             console.log(suggestion);
+//         }
+//     });
+//     autoComplete.enable();
+// }
+
+
 
 //Save edited record to Database
 //------------------------------------------------
-function saveRow(){
-
-    closeEditModal();
-    var status = true;
-    if($('#n_status').is(":checked")){
-        status = 1;
-    }
-    else{
-        status = 0;
-    }
-
-    $.ajax({
-
-        type: 'POST',
-        dataType: 'json',
-        url: laroute.action('edit-affiliate-partner'),
-
-        data: {id: aff_data.id,
-            description: $('#n_description').val(),
-            country: $('#n_country').val(),
-            type: $('#n_type').val(),
-            rules: $('#n_rules').val(),
-            status: status},
+// function saveRow(){
+//
+//
+//     $.ajax({
+//
+//         type: 'POST',
+//         dataType: 'json',
+//         url: laroute.action('edit-affiliate-partner'),
+//
+//         data: {id: aff_data.id,
+//             description: $('#e_description').val(),
+//             country: $('#query').val(),
+//             type: $('#e_type').val()},
+//
+//
+//     }).done(function () {
+//         showData();
+//     });
+// }
 
 
-    }).done(function () {
-        showData();
-    });
-}
-
-
-function closeEditModal(){
-    $('#edit_modal').slideUp('fast', function(){
-        $('#m_modal_5').hide();
-    });
-
-}
+// function closeEditModal(){
+//     $('#edit_modal').slideUp('fast', function(){
+//         $('#m_modal_5').hide();
+//     });
+//
+// }
 
 function closeDeleteModal(){
     $('#delete_modal').slideUp('fast', function(){
@@ -261,5 +335,7 @@ function showModal(n_id, description, type){
     $('#m_modal_del').show();
     $('#delete_modal').slideDown(300);
 }
+
+
 
 
