@@ -13,8 +13,6 @@ class DataFilterRuleService
     protected $quformFormFactory;
     protected $dataFilterRuleRepository;
 
-    public $nameEntry;
-
     public function __construct(
         Quform_Repository $quformRepository,
         Quform_Form_Factory $quformFormFactory,

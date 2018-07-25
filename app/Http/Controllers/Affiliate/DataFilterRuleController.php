@@ -47,16 +47,6 @@ class DataFilterRuleController extends Controller
         $result = $this->dataFilterRuleService->showPartners($request->id);
 
         return response()->json($result);
-//        $dataFiltersRulesId = $request->all();
-//        $connectionToDataBase= $this->affiliateService->connectionToDataBase($dataFiltersRulesId);
-//
-//        if (is_a($connectionToDataBase, 'ErrorException')) {
-//            return response()->json()->withErrors($connectionToDataBase->getMessage());
-//        }else {
-//            $result = $this->dataFilterRuleService->showPartners();
-//            return response()->json($result);
-//        }
-
     }
 
     public function get(Request $request)

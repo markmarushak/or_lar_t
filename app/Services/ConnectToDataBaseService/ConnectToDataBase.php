@@ -3,35 +3,39 @@
 namespace App\Services\ConnectToDataBaseService;
 
 use App\Plugins\WordPress\Wpdb;
+use App\Repository\AffiliateRepository;
 
 class ConnectToDataBase
 {
-    private $username;
-    private $password;
-    private $database;
-    private $host;
 
-    public function __construct($username, $password, $database, $host)
+    public $affiliateRepository;
+
+    public function __construct(AffiliateRepository $affiliateRepository)
     {
-            $this->username = $username;
-            $this->password = $password;
-            $this->database = $database;
-            $this->host = $host;
-            $this->connectionToDataBase();
+        $this->affiliateRepository = $affiliateRepository;
     }
 
+    public function connectionToDataBase($dataFiltersRulesId)
+    {
+        if (isset($dataFiltersRulesId) && !empty($dataFiltersRulesId)) {
+            $settingOfDataBase = $this->getSettingOfDataBaseById($dataFiltersRulesId);
+          return  $this->connectionToWPDataBase(
+              $settingOfDataBase->username,
+              $settingOfDataBase->password,
+              $settingOfDataBase->database,
+              $settingOfDataBase->host
+          );
+        } else {
+            return false;
+        }
+    }
 
-    public function connectionToDataBase()
+    public function connectionToWPDataBase($username, $password, $database, $host)
     {
         global $wpdb;
         try
         {
-            if ($wpdb = new Wpdb(
-                $this->username,
-                $this->password,
-                $this->database,
-                $this->host
-            ))
+            if ($wpdb = new Wpdb ( $username, $password, $database, $host ))
             {
                 return true;
             }
@@ -46,6 +50,21 @@ class ConnectToDataBase
         }
     }
 
+    public function getSettingOfDataBaseById($dataFiltersRulesId)
+    {
+        $settingsOfDataBase = $this->affiliateRepository->getSettingOfDataBaseById($dataFiltersRulesId);
 
+        if ($settingsOfDataBase == true) {
+            if (isset($settingsOfDataBase->setting) && !empty($settingsOfDataBase->setting)) {
+                $settingsOfDataBase->setting = decrypt($settingsOfDataBase->setting);
+                $settingsOfDataBase->setting = json_decode($settingsOfDataBase->setting);
+                return $settingsOfDataBase;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 
 }

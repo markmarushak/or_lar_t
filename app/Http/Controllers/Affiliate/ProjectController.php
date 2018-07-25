@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Affiliate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RequestUpdateConnectToDb;
 use App\Services\ConnectToDataBaseService\ConnectToDataBase;
+use App\Services\ConnectToDataBaseService\UpdateDataBase;
 use App\Services\DataFilterRuleService;
 use App\Services\ProjectService;
 use Illuminate\Http\Request;
@@ -14,17 +15,21 @@ class ProjectController extends Controller
 {
     public $dataFilterRuleId;
     public $dataFilterRuleDescription;
-    public $dataFilterRuleService;
     public $projectService;
-    private $connectToDataBase;
+    public $updateDataBase;
+
+    public $connectToDataBase;
 
     public function __construct(
-        DataFilterRuleService $dataFilterRuleService,
         Request $request,
-        ConnectToDataBase $connectToDataBase,
-        ProjectService $projectService
+        UpdateDataBase $updateDataBase,
+        ProjectService $projectService,
+        connectToDataBase $connectToDataBase
     )
     {
+        $this->updateDataBase = $updateDataBase;
+        $this->projectService = $projectService;
+        $this->connectToDataBase = $connectToDataBase;
         if (isset($request->data_filters_rules_id)
             && !empty($request->data_filters_rules_id)
             && isset($request->data_filters_rules_description)
@@ -33,17 +38,11 @@ class ProjectController extends Controller
             $this->dataFilterRuleId =  $request->data_filters_rules_id;
             $this->dataFilterRuleDescription =  $request->data_filters_rules_description;
         }
-        $this->dataFilterRuleService = $dataFilterRuleService;
-        $this->connectToDataBase = $connectToDataBase;
-        $this->projectService = $projectService;
-
     }
-
 
     public function connection()
     {
         $settingsOfDataBase = $this->connectToDataBase->getSettingOfDataBaseById($this->dataFilterRuleId);
-
         return view('affiliate.data-filters-rules.connection',
             [
                 'dataFiltersRulesDescription' => $this->dataFilterRuleDescription,
@@ -61,9 +60,9 @@ class ProjectController extends Controller
     public function updateConnectToDb(RequestUpdateConnectToDb $request)
     {
         if($request->id) {
-            $this->connectToDataBase->editConnectToDb($request);
+            $this->updateDataBase->editConnectToDb($request, $this->dataFilterRuleId);
         } else {
-            $this->connectToDataBase->addConnectToDb($request);
+            $this->updateDataBase->addConnectToDb($request, $this->dataFilterRuleId);
         }
         return redirect()->route('connection', [
             'data_filters_rules_id' => $this->dataFilterRuleId,
