@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Affiliate;
 
 use App\Http\Controllers\Controller;
 use App\Mail\OrderShipped;
-use App\Repository\AffiliateRepository;
 use App\Services\AffiliateService;
-use App\Services\ConnectToDataBaseService\ConnectToDataBase;
 use App\Services\DataFilterRuleService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;

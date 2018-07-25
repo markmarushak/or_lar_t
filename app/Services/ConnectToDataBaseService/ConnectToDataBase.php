@@ -2,42 +2,35 @@
 
 namespace App\Services\ConnectToDataBaseService;
 
-
 use App\Plugins\WordPress\Wpdb;
-use App\Repository\AffiliateRepository;
-use Illuminate\Http\Request;
 
-
-class ConnectToDataBase extends CrudToDataBase
+class ConnectToDataBase
 {
-        private $dataFilterRuleId;
+    private $username;
+    private $password;
+    private $database;
+    private $host;
 
-    public function __construct
-    (
-        AffiliateRepository $affiliateRepository,
-        Request $request
-    )
+    public function __construct($username, $password, $database, $host)
     {
-       // parent::__construct($affiliateRepository, $dataFiltersRulesId);
-
-        $this->affiliateRepository = $affiliateRepository;
-        $this->dataFilterRuleId = $request->data_filters_rules_id;
-        $this->connectionToDataBase($this->dataFilterRuleId);
+            $this->username = $username;
+            $this->password = $password;
+            $this->database = $database;
+            $this->host = $host;
+            $this->connectionToDataBase();
     }
 
 
-    public function connectionToDataBase($dataFiltersRulesId)
+    public function connectionToDataBase()
     {
-        $settingOfDataBaseById = $this->affiliateRepository->getSettingOfDataBaseById($dataFiltersRulesId);
-        $settingOfDataBaseById = $this->decryptSettingToDb($settingOfDataBaseById->setting);
         global $wpdb;
         try
         {
             if ($wpdb = new Wpdb(
-                $settingOfDataBaseById->username,
-                $settingOfDataBaseById->password,
-                $settingOfDataBaseById->database,
-                $settingOfDataBaseById->host
+                $this->username,
+                $this->password,
+                $this->database,
+                $this->host
             ))
             {
                 return true;
@@ -54,49 +47,5 @@ class ConnectToDataBase extends CrudToDataBase
     }
 
 
-    public function editConnectToDb($request)
-    {
-        $dataFiltersRulesObject = $this->affiliateRepository->getDataFiltersRulesById($this->dataFilterRuleId);
-        $settingOfDataBase = $this->encryptSettingToDb($request);
-        $this->affiliateRepository->editConnectToDb($settingOfDataBase, $dataFiltersRulesObject);
-    }
 
-    public function addConnectToDb($request)
-    {
-        $dataFiltersRulesObject = $this->affiliateRepository->getDataFiltersRulesById($this->dataFilterRuleId);
-        $settingOfDataBase = $this->encryptSettingToDb($request);
-        $this->affiliateRepository->addConnectToDb($settingOfDataBase, $dataFiltersRulesObject);
-    }
-
-    protected function encryptSettingToDb($request)
-    {
-        $settingOfDataBase =  $request->only( 'domain', 'form', 'host', 'host_name', 'port', 'database', 'username',
-            'password', 'charset', 'collation'
-        );
-        $settingOfDataBase = json_encode($settingOfDataBase);
-        return encrypt($settingOfDataBase);
-    }
-
-    protected function decryptSettingToDb($settingOfDataBase)
-    {
-        $settingOfDataBase =  decrypt($settingOfDataBase);
-        return json_decode($settingOfDataBase);
-    }
-
-    public function getSettingOfDataBaseById($dataFiltersRulesId)
-    {
-        $settingsOfDataBase = $this->affiliateRepository->getSettingOfDataBaseById($dataFiltersRulesId);
-
-        if ($settingsOfDataBase == true) {
-            if (isset($settingsOfDataBase->setting) && !empty($settingsOfDataBase->setting)) {
-                $settingsOfDataBase->setting = decrypt($settingsOfDataBase->setting);
-                $settingsOfDataBase->setting = json_decode($settingsOfDataBase->setting);
-                return $settingsOfDataBase;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
 }
