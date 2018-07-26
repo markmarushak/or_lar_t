@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RequestUpdateConnectToDb;
 use App\Services\ConnectToDataBaseService\ConnectToDataBase;
 use App\Services\ConnectToDataBaseService\UpdateDataBase;
-use App\Services\DataFilterRuleService;
 use App\Services\ProjectService;
 use Illuminate\Http\Request;
 
@@ -78,13 +77,16 @@ class ProjectController extends Controller
      */
     public function formBuilder()
     {
-        if (is_a($this->connectToDataBase, 'ErrorException')) {
+        if (is_a($this->connectToDataBase->connectionToDataBase($this->dataFilterRuleId), 'ErrorException')) {
             return view('affiliate.data-filters-rules.form-builder',
                 [
                     'dataFiltersRulesDescription' => $this->dataFilterRuleDescription
                 ]
             )->withErrors($this->connectToDataBase->getMessage() );
         } else {
+
+
+
             $forms =  $this->projectService->getForms();
             $urls = $this->projectService->createUrls($forms, $this->dataFilterRuleDescription);
             return view('affiliate.data-filters-rules.form-builder',

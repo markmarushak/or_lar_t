@@ -63,6 +63,7 @@ class NOOP_Translations
      */
     function select_plural_form($count)
     {
+
         return 1 == $count ? 0 : 1;
     }
 

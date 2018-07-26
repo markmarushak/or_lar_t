@@ -9,12 +9,10 @@ class UpdateDataBase
     public $affiliateRepository;
 
     public function __construct(
-        AffiliateRepository $affiliateRepository,
-        ConfigurationToDataBase $configurationToDataBase
+        AffiliateRepository $affiliateRepository
         )
     {
         $this->affiliateRepository = $affiliateRepository;
-        $this->configurationToDataBase = $configurationToDataBase;
     }
 
     public function editConnectToDb($request, $dataFilterRuleId)

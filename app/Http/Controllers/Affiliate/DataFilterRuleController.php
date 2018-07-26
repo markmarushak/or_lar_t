@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Affiliate;
 
 use App\Http\Controllers\Controller;
-use App\Mail\OrderShipped;
+use App\Mail\MailListener;
 use App\Services\AffiliateService;
 use App\Services\DataFilterRuleService;
 use Illuminate\Http\Request;
@@ -145,7 +145,7 @@ class DataFilterRuleController extends Controller
             $entryId = 6;
             $form = $this->dataFilterRuleService->outputOverviewSingleService($entryId);
             Mail::to('thorfinn@orbitleads.com')
-                ->send(new OrderShipped($form, $this->dataFilterRuleService->nameEntry), 'Få tilbud på Garasje')
+                ->send(new MailListener($form, $this->dataFilterRuleService->nameEntry), 'Få tilbud på Garasje')
                 ;
         }
         dd('good');
