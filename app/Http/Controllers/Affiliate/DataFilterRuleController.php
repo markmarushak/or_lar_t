@@ -42,69 +42,6 @@ class DataFilterRuleController extends Controller
         return response()->json($dataFiltersRules);
     }
 
-    public function showPartners(Request $request)
-    {
-        $result = $this->dataFilterRuleService->showPartners($request->id);
-
-        return response()->json($result);
-    }
-
-    public function get(Request $request)
-    {
-        $dataFilterRules = $this->dataFilterRuleService->getDataFiltersRulesById($request);
-        return response()->json($dataFilterRules);
-    }
-
-    public function getPartners(Request $request){
-        $result = $this->dataFilterRuleService->getPartners($request);
-        return response()->json($result);
-    }
-
-    public function edit(Request $request)
-    {
-        $this->dataFilterRuleService->editDataFiltersRulesById($request);
-        return response()->json();
-    }
-
-    public function editPartners(Request $request)
-    {
-        $this->dataFilterRuleService->editPartners($request);
-        return response()->json();
-    }
-
-    public function deletePartners(Request $request)
-    {
-        $dataFiltersRulesId = $request['data_filter_rules_id'];
-        $affiliatePartnerId = $request['affiliate_partner_id'];
-        $this->detachProjectAndPartner($dataFiltersRulesId, $affiliatePartnerId);
-        return response()->json();
-    }
-
-    public function add()
-    {
-        return view('affiliate.data-filters-rules.add');
-    }
-
-    public function addPartners(Request $request)
-    {
-        $affiliatesPartnersId = $this->dataFilterRuleService->addPartners($request['affiliates_partners_description']);
-        $dataFiltersRulesId = $request['data_filters_rules_id'];
-        $this->bindProjectAndPartner($dataFiltersRulesId, $affiliatesPartnersId);
-        return response()->json();
-    }
-
-    public function addRules(Request $request)
-    {
-        $this->dataFilterRuleService->addRules($request);
-        return response()->json();
-    }
-
-    public function getRule(Request $request)
-    {
-        $affiliatePartnerRule = $this->dataFilterRuleService->getRule($request);
-        return response()->json($affiliatePartnerRule);
-    }
-
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -145,7 +82,7 @@ class DataFilterRuleController extends Controller
             $entryId = 6;
             $form = $this->dataFilterRuleService->outputOverviewSingleService($entryId);
             Mail::to('thorfinn@orbitleads.com')
-                ->send(new MailListener($form, $this->dataFilterRuleService->nameEntry), 'Få tilbud på Garasje')
+                ->send(new MailListener($form, $this->dataFilterRuleService->nameEntry))
                 ;
         }
         dd('good');

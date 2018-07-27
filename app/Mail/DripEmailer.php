@@ -8,16 +8,22 @@ use App\Services\DataFilterRuleService;
 class DripEmailer
 {
     public $dataFilterRuleService;
+    public $emailBuilder;
 
-    public function __construct(DataFilterRuleService $dataFilterRuleService)
+    public function __construct(
+        DataFilterRuleService $dataFilterRuleService,
+        EmailBuilder $emailBuilder
+    )
     {
         $this->dataFilterRuleService = $dataFilterRuleService;
+        $this->emailBuilder = $emailBuilder;
     }
 
     public function send()
     {
      $dataFilterRule =  $this->dataFilterRuleService->getAllDataFiltersRules()->all();
-     dd($dataFilterRule);
+     $this->emailBuilder->emailBuilder($dataFilterRule);
     }
+
 
 }

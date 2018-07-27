@@ -46,13 +46,6 @@ class DataFilterRuleRepository
         ]);
     }
 
-
-    public function bindProjectAndPartner($dataFilterRule, $affiliatePartner)
-    {
-      return $affiliatePartner->dataFiltersRules()
-          ->sync($dataFilterRule);
-    }
-
     public function getRuleByIdWithPartner($dataFiltersRulesId)
     {
         return $this->dataFiltersRulesModel
@@ -61,69 +54,5 @@ class DataFilterRuleRepository
             ->firstOrFail();
     }
 
-    public function detachProjectAndPartner($dataFilterRule, $affiliatePartner)
-    {
-       return $dataFilterRule
-           ->affiliatesPartners()
-           ->detach($affiliatePartner);
-    }
 
-    public function showPartners($dataFilterRuleId)
-    {
-         return $this->dataFiltersRulesModel
-            ->find($dataFilterRuleId)
-            ->with('affiliatesPartners')
-            ->firstOrFail()
-            ->affiliatesPartners()
-            ->select()
-            ->get();
-    }
-
-    public function getPartnerById($id)
-    {
-        return $this->affiliatePartnerModel
-            ->find($id)
-            ->first();
-    }
-
-    public function editPartners($request)
-    {
-
-    }
-
-    public function deletePartners($request)
-    {
-
-    }
-
-    public function addPartners($request)
-    {
-        return $this->affiliatePartnerModel
-            ->where('description', '=', $request)
-            ->select('id')
-            ->get();
-    }
-
-    public function addRules($affiliatePartnerId, $dataFilterRuleId, $newRule)
-    {
-        return $this->dataFiltersRulesModel
-            ->find($dataFilterRuleId)
-            ->with('affiliatesPartners')
-            ->firstOrFail()
-            ->affiliatesPartners()
-            ->where('affiliate_partner_id', '=', $affiliatePartnerId)
-            ->update(['rules' => $newRule]);
-    }
-
-    public function getRule($request)
-    {
-        return $this->dataFiltersRulesModel
-            ->find($request['data_filter_rule_id'])
-            ->with('affiliatesPartners')
-            ->firstOrFail()
-            ->affiliatesPartners()
-            ->where('affiliate_partner_id', '=', $request['affiliate_partner_id'])
-            ->select('rules')
-            ->get();
-    }
 }

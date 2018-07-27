@@ -1,18 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -73,18 +60,6 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
     });
 
 
-    Route::get('/email-bulk-split/data-filters-rules/add', 'DataFilterRuleController@add')->name('data-filters-rules-add');
-
-    Route::post('/email-bulk-split/data-filters-rules/add', 'DataFilterRuleController@store')->name('data-filters-rules-store');
-    Route::post('/email-bulk-split/data-filters-rules/data-filters-rules-data/show-partners', 'DataFilterRuleController@showPartners')->name('show-partners');
-    Route::post('/email-bulk-split/data-filters-rules/data-filters-rules-data/get-partners', 'DataFilterRuleController@getPartners')->name('get-partners');
-    Route::post('/email-bulk-split/data-filters-rules/data-filters-rules-data/edit-partners', 'DataFilterRuleController@editPartners')->name('edit-partners');
-    Route::post('/email-bulk-split/data-filters-rules/data-filters-rules-data/delete-partners', 'DataFilterRuleController@deletePartners')->name('delete-partners');
-    Route::post('/email-bulk-split/data-filters-rules/data-filters-rules-data/add-partners', 'DataFilterRuleController@addPartners')->name('add-partners');
-    Route::post('/email-bulk-split/data-filters-rules/data-filters-rules-data/add-rules', 'DataFilterRuleController@addRules')->name('add-rules');
-    Route::post('/email-bulk-split/data-filters-rules/data-filters-rules-data/get-rule', 'DataFilterRuleController@getRule')->name('get-rule');
-
-
     Route::group(['prefix' => '/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules_description}'], function (){
 
         //connection
@@ -98,6 +73,7 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
         //single-form-builder
         Route::get('/single-form-builder/{singleId?}/', 'DataFilterRuleController@singleFormBuilder')->name('single-form-builder');
 
+
         // Data Filters Edit page
         Route::get('', 'ProjectController@dataFiltersRules')->name('data-filters-rules-edit');
 
@@ -110,6 +86,16 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
         Route::get('/', 'ProjectController@dataFiltersRulesData')->name('data-filters-rules-data');
         Route::get('/bind-project-partner', 'ProjectController@bindProjectAndPartner')->name('bind-project-and-partner');
         Route::get('/detach-project-partner', 'ProjectController@detachProjectAndPartner')->name('detach-project-and-partner');
+            Route::get('/add', 'ProjectControllerController@add')->name('data-filters-rules-add');
+
+            Route::post('/add', 'ProjectControllerController@store')->name('data-filters-rules-store');
+            Route::post('/show-partners', 'ProjectControllerController@showPartners')->name('show-partners');
+            Route::post('/get-partners', 'ProjectControllerController@getPartners')->name('get-partners');
+            Route::post('/edit-partners', 'ProjectControllerController@editPartners')->name('edit-partners');
+            Route::post('/delete-partners', 'ProjectControllerController@deletePartners')->name('delete-partners');
+            Route::post('/add-partners', 'ProjectControllerController@addPartners')->name('add-partners');
+            Route::post('/add-rules', 'ProjectControllerController@addRules')->name('add-rules');
+            Route::post('/get-rule', 'ProjectControllerController@getRule')->name('get-rule');
         });
         //outputOverview
         Route::get('/output-overview', 'ProjectController@outputOverview')->name('output-overview');

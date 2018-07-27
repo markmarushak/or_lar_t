@@ -4,19 +4,18 @@ namespace App\Http\Controllers\Affiliate;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repository\AffiliateRepository;
 use App\Services\AffiliateService;
 
 class AffiliatePartnerController extends Controller
 {
+    public $affiliateService;
 
     public function __construct
     (
-        AffiliateRepository $affiliateRepository,
+
         AffiliateService $affiliateService
     )
     {
-        $this->affiliateRepository = $affiliateRepository;
         $this->affiliateService = $affiliateService;
     }
 
