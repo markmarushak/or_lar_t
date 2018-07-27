@@ -6,6 +6,7 @@ namespace App\Services;
 use App\Plugins\QformLibrary\Quform\Form\Quform_Form_Factory;
 use App\Plugins\QformLibrary\Quform\Quform_Repository;
 use App\Repository\ProjectRepository;
+use Illuminate\Support\Facades\Route;
 
 class ProjectService
 {
@@ -92,41 +93,41 @@ class ProjectService
 
     public function bindProjectAndPartner($dataFiltersRulesId, $affiliatePartnerId)
     {
-        $affiliatePartner = $this->dataFilterRuleRepository->getPartnerById($affiliatePartnerId);
-        $dataFilterRule =  $this->dataFilterRuleRepository->getRuleByIdWithPartner($dataFiltersRulesId);
-        $this->dataFilterRuleRepository->bindProjectAndPartner($dataFilterRule, $affiliatePartner);
+        $affiliatePartner = $this->projectRepository->getPartnerById($affiliatePartnerId);
+        $dataFilterRule =  $this->projectRepository->getRuleByIdWithPartner($dataFiltersRulesId);
+        $this->projectRepository->bindProjectAndPartner($dataFilterRule, $affiliatePartner);
 
     }
 
     public function detachProjectAndPartner($dataFiltersRulesId, $affiliatePartnerId)
     {
-        $affiliatePartner = $this->dataFilterRuleRepository->getPartnerById($affiliatePartnerId);
-        $dataFilterRule =  $this->dataFilterRuleRepository->getRuleByIdWithPartner($dataFiltersRulesId);
-        return $this->dataFilterRuleRepository->detachProjectAndPartner($dataFilterRule, $affiliatePartner);
+        $affiliatePartner = $this->projectRepository->getPartnerById($affiliatePartnerId);
+        $dataFilterRule =  $this->projectRepository->getRuleByIdWithPartner($dataFiltersRulesId);
+        return $this->projectRepository->detachProjectAndPartner($dataFilterRule, $affiliatePartner);
     }
 
     public function showPartners($dataFilterRuleId){
-        return $this->dataFilterRuleRepository->showPartners($dataFilterRuleId);
+        return $this->projectRepository->showPartners($dataFilterRuleId);
     }
 
     public function getPartners($request)
     {
-        return $this->dataFilterRuleRepository->getPartners($request);
+        return $this->projectRepository->getPartners($request);
     }
 
     public function editPartners($request)
     {
-        $this->dataFilterRuleRepository->editPartners($request);
+        $this->projectRepository->editPartners($request);
     }
 
     public function deletePartners($request)
     {
-        $this->dataFilterRuleRepository->deletePartners($request);
+        $this->projectRepository->deletePartners($request);
     }
 
     public function addPartners($request)
     {
-        return $this->dataFilterRuleRepository->addPartners($request);
+        return $this->projectRepository->addPartners($request);
     }
 
     public function addRules($request)
@@ -134,12 +135,12 @@ class ProjectService
         $affiliatePartnerId = $request['affiliate_partner_id'];
         $dataFilterRuleId =  $request['data_filter_rules_id'];
         $newRule = $request['new_rule'];
-        $this->dataFilterRuleRepository->addRules($affiliatePartnerId, $dataFilterRuleId, $newRule);
+        $this->projectRepository->addRules($affiliatePartnerId, $dataFilterRuleId, $newRule);
     }
 
     public function getRule($request)
     {
-        return $this->dataFilterRuleRepository->getRule($request);
+        return $this->projectRepository->getRule($request);
     }
 
 }

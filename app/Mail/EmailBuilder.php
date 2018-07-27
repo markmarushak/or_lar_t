@@ -5,6 +5,7 @@ namespace App\Mail;
 
 use App\Services\ConnectToDataBaseService\ConnectToDataBase;
 use App\Services\ProjectService;
+use Illuminate\Support\Facades\Mail;
 
 class EmailBuilder
 {
@@ -27,9 +28,7 @@ class EmailBuilder
                             $error = $this->connectToDataBase->getMessage();
                 } else {
                     $this->generateOutputEmail();
-
                 }
-
             }
         }
     }
@@ -40,10 +39,16 @@ class EmailBuilder
         foreach ($outputOverview as $key ) {
             if ($key['unread'] = 1) {
                     $form = $this->projectService->outputOverviewSingleService($key['id']);
-                    $mail = new MailListener($form, null, $key['name']);
-
+                    $letter = new MailListener($form, null, $key['name']);
+                    $collectionOfPartner = $this->projectService->showPartners($this->projectId);
+                    $this->sendEmail($letter, $collectionOfPartner);
             }
-
         }
+    }
+
+    public function sendEmail($letter, $collectionOfPartner )
+    {
+        Mail::to($collectionOfPartner)
+            ->send($letter);
     }
 }

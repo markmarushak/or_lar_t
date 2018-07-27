@@ -8,6 +8,8 @@ use App\Services\ConnectToDataBaseService\ConnectToDataBase;
 use App\Services\ConnectToDataBaseService\UpdateDataBase;
 use App\Services\ProjectService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\View;
 
 
 class ProjectController extends Controller
@@ -39,6 +41,11 @@ class ProjectController extends Controller
         }
     }
 
+    /**
+     * Show settings for Word Press data base
+     *
+     * @return View
+    */
     public function connection()
     {
         $settingsOfDataBase = $this->connectToDataBase->getSettingOfDataBaseById($this->dataFilterRuleId);
@@ -52,6 +59,8 @@ class ProjectController extends Controller
     }
 
     /**
+     * Update settings for connect to Word Press data base
+     *
      * @param RequestUpdateConnectToDb $request
      *
      * @return \Illuminate\Http\RedirectResponse
@@ -70,6 +79,7 @@ class ProjectController extends Controller
     }
 
     /**
+     * Show form builders
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      *
@@ -84,9 +94,6 @@ class ProjectController extends Controller
                 ]
             )->withErrors($this->connectToDataBase->getMessage() );
         } else {
-
-
-
             $forms =  $this->projectService->getForms();
             $urls = $this->projectService->createUrls($forms, $this->dataFilterRuleDescription);
             return view('affiliate.data-filters-rules.form-builder',
@@ -102,6 +109,7 @@ class ProjectController extends Controller
 
 
     /**
+     * Show data base fields
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      *
@@ -124,6 +132,7 @@ class ProjectController extends Controller
         }
     }
 
+
     public function dataFiltersRulesData()
     {
         if (is_a($this->connectToDataBase, 'ErrorException')) {
@@ -141,21 +150,31 @@ class ProjectController extends Controller
         }
     }
 
+    public function bindProjectAndPartner($dataFiltersRulesId, $affiliatePartnerId)
+    {
+        $this->projectService->bindProjectAndPartner($dataFiltersRulesId, $affiliatePartnerId);
+    }
+
+    public function detachProjectAndPartner($dataFiltersRulesId, $affiliatePartnerId)
+    {
+
+        return $this->projectService->detachProjectAndPartner($dataFiltersRulesId, $affiliatePartnerId);
+    }
+
     public function showPartners(Request $request)
     {
-        $result = $this->dataFilterRuleService->showPartners($request->id);
-
+        $result = $this->projectService->showPartners($request->id);
         return response()->json($result);
     }
 
     public function get(Request $request)
     {
-        $dataFilterRules = $this->dataFilterRuleService->getDataFiltersRulesById($request);
+        $dataFilterRules = $this->projectService->getDataFiltersRulesById($request);
         return response()->json($dataFilterRules);
     }
 
     public function getPartners(Request $request){
-        $result = $this->dataFilterRuleService->getPartners($request);
+        $result = $this->projectService->getPartners($request);
         return response()->json($result);
     }
 
@@ -186,7 +205,7 @@ class ProjectController extends Controller
 
     public function addPartners(Request $request)
     {
-        $affiliatesPartnersId = $this->dataFilterRuleService->addPartners($request['affiliates_partners_description']);
+        $affiliatesPartnersId = $this->projectService->addPartners($request['affiliates_partners_description']);
         $dataFiltersRulesId = $request['data_filters_rules_id'];
         $this->bindProjectAndPartner($dataFiltersRulesId, $affiliatesPartnersId);
         return response()->json();
@@ -194,16 +213,22 @@ class ProjectController extends Controller
 
     public function addRules(Request $request)
     {
-        $this->dataFilterRuleService->addRules($request);
+        $this->projectService->addRules($request);
         return response()->json();
     }
 
     public function getRule(Request $request)
     {
-        $affiliatePartnerRule = $this->dataFilterRuleService->getRule($request);
+        $affiliatePartnerRule = $this->projectService->getRule($request);
         return response()->json($affiliatePartnerRule);
     }
 
+
+    /**
+     * Show all output overview
+     *
+     * @return View
+     * */
     public function outputOverview()
     {
         if (is_a($this->connectToDataBase, 'ErrorException')) {
@@ -224,6 +249,13 @@ class ProjectController extends Controller
         }
     }
 
+
+    /**
+     * Show single output overview by id
+     * @param $request->single_id
+     *
+     * @return View
+    */
     public function outputOverviewSingle(Request $request)
     {
         if (is_a($this->connectToDataBase, 'ErrorException')) {

@@ -12,7 +12,6 @@ class AffiliatePartnerController extends Controller
 
     public function __construct
     (
-
         AffiliateService $affiliateService
     )
     {

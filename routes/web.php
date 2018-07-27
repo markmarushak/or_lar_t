@@ -59,7 +59,6 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
         Route::post('/edit', 'DataFilterRuleController@edit')->name('data-filters-rules-edit');
     });
 
-
     Route::group(['prefix' => '/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules_description}'], function (){
 
         //connection
@@ -78,6 +77,7 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
         Route::get('', 'ProjectController@dataFiltersRules')->name('data-filters-rules-edit');
 
 
+
         //dataBaseFields
         Route::get('/data-base-fields', 'ProjectController@dataBaseFields')->name('data-base-fields');
 
@@ -86,21 +86,22 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
         Route::get('/', 'ProjectController@dataFiltersRulesData')->name('data-filters-rules-data');
         Route::get('/bind-project-partner', 'ProjectController@bindProjectAndPartner')->name('bind-project-and-partner');
         Route::get('/detach-project-partner', 'ProjectController@detachProjectAndPartner')->name('detach-project-and-partner');
-            Route::get('/add', 'ProjectControllerController@add')->name('data-filters-rules-add');
+            Route::get('/add', 'ProjectController@add')->name('data-filters-rules-add');
+            Route::post('/add', 'ProjectController@store')->name('data-filters-rules-store');
 
-            Route::post('/add', 'ProjectControllerController@store')->name('data-filters-rules-store');
-            Route::post('/show-partners', 'ProjectControllerController@showPartners')->name('show-partners');
-            Route::post('/get-partners', 'ProjectControllerController@getPartners')->name('get-partners');
-            Route::post('/edit-partners', 'ProjectControllerController@editPartners')->name('edit-partners');
-            Route::post('/delete-partners', 'ProjectControllerController@deletePartners')->name('delete-partners');
-            Route::post('/add-partners', 'ProjectControllerController@addPartners')->name('add-partners');
-            Route::post('/add-rules', 'ProjectControllerController@addRules')->name('add-rules');
-            Route::post('/get-rule', 'ProjectControllerController@getRule')->name('get-rule');
+            Route::get('/show-partners', 'ProjectController@showPartners')->name('show-partners');
+
+            Route::post('/get-partners', 'ProjectController@getPartners')->name('get-partners');
+            Route::post('/edit-partners', 'ProjectController@editPartners')->name('edit-partners');
+            Route::post('/delete-partners', 'ProjectController@deletePartners')->name('delete-partners');
+            Route::post('/add-partners', 'ProjectController@addPartners')->name('add-partners');
+            Route::post('/add-rules', 'ProjectController@addRules')->name('add-rules');
+            Route::post('/get-rule', 'ProjectController@getRule')->name('get-rule');
         });
         //outputOverview
         Route::get('/output-overview', 'ProjectController@outputOverview')->name('output-overview');
 
-        //outputOverviewsSingle
+        //outputOverviewSingle
         Route::get('/output-overview-single/{single_id}/', 'ProjectController@outputOverviewSingle')->name('single-output-overview');
 
         //Send Mail

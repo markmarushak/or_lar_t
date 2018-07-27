@@ -109,9 +109,9 @@ function showData()
     $('#spinner').show();
     project_id = $('#project_id').val();
     $.ajax({
-        method: 'POST',
+        url: 'data-filters-rules-data/show-partners',
+        method: 'GET',
         dataType: 'json',
-        url: laroute.action('show-partners'),
         data: {id: project_id},
     }).done(function(data){
         $('#spinner').hide();

@@ -55,16 +55,7 @@ class DataFilterRuleController extends Controller
     }
 
 
-    public function bindProjectAndPartner($dataFiltersRulesId, $affiliatePartnerId)
-    {
-       $this->dataFilterRuleService->bindProjectAndPartner($dataFiltersRulesId, $affiliatePartnerId);
-    }
 
-    public function detachProjectAndPartner($dataFiltersRulesId, $affiliatePartnerId)
-    {
-
-        return $this->dataFilterRuleService->detachProjectAndPartner($dataFiltersRulesId, $affiliatePartnerId);
-    }
 
     public function sendMail(Request $request)
     {
@@ -82,8 +73,7 @@ class DataFilterRuleController extends Controller
             $entryId = 6;
             $form = $this->dataFilterRuleService->outputOverviewSingleService($entryId);
             Mail::to('thorfinn@orbitleads.com')
-                ->send(new MailListener($form, $this->dataFilterRuleService->nameEntry))
-                ;
+                ->send(new MailListener($form, $this->dataFilterRuleService->nameEntry));
         }
         dd('good');
     }
