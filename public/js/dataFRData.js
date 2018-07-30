@@ -274,9 +274,9 @@ function deleteRow()
 
     $.ajax({
 
-        type: 'POST',
+        type: 'DELETE',
 
-        url: laroute.action('delete-partners'),
+        url: 'data-filters-rules-data/delete-partners',
 
         data: {data_filter_rules_id: project_id,
                 affiliate_partner_id: id,},
@@ -296,7 +296,7 @@ function addPartner()
 
         type: 'POST',
         dataType: 'json',
-        url: laroute.action('add-partners'),
+        url: 'data-filters-rules-data/add-partners',
 
         data: {affiliates_partners_description: $('#query').val(),
                 data_filters_rules_id: $('#project_id').val()},
@@ -314,7 +314,7 @@ function addRule()
 
         type: 'POST',
         dataType: 'json',
-        url: laroute.action('add-rules'),
+        url: 'data-filters-rules-data/add-rules',
 
         data: {affiliate_partner_id: id,
             new_rule: newRule,
@@ -330,9 +330,9 @@ function showConditionalLogic(event, table, tr, t_id)
 {
     $.ajax({
 
-        type: 'POST',
+        type: 'GET',
         dataType: 'json',
-        url: laroute.action('get-rule'),
+        url: 'data-filters-rules-data/get-rule',
 
         data: {affiliate_partner_id: t_id,
                 data_filter_rule_id: project_id},

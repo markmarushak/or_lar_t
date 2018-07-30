@@ -26,9 +26,9 @@ function showData(){
     $('#spinner').show();
 
     $.ajax({
-       method: 'POST',
+       method: 'GET',
        dataType: 'json',
-       url: laroute.action('show-affiliates-partners'),
+       url: 'affiliates-partners/show',
        data: {data: type},
     }).done(function(data){
         $('#spinner').hide();
@@ -310,9 +310,9 @@ function deleteRow() {
 
     $.ajax({
 
-        type: 'POST',
+        type: 'DELETE',
 
-        url: laroute.action('delete-affiliate-partner'),
+        url: 'affiliates-partners/delete',
 
         data: {data: id},
 

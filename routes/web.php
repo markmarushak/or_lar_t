@@ -36,8 +36,8 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
     Route::group( ['prefix' => 'affiliates-partners'] , function() {
 
         Route::get('/', 'AffiliatePartnerController@index')->name('affiliates-partners');
-        Route::post('/delete', 'AffiliatePartnerController@delete')->name('delete-affiliate-partner');
-        Route::post('/show', 'AffiliatePartnerController@show')->name('show-affiliates-partners');
+        Route::delete('/delete', 'AffiliatePartnerController@delete')->name('delete-affiliate-partner');
+        Route::get('/show', 'AffiliatePartnerController@show')->name('show-affiliates-partners');
         Route::post('/get', 'AffiliatePartnerController@getAffiliatePartner')->name('get-affiliate-partner');
         Route::get('/edit/{id}', 'AffiliatePartnerController@edit')->name('edit-affiliate-partner');
         Route::post('/update/', 'AffiliatePartnerController@update')->name('update-affiliate-partner');
@@ -54,8 +54,8 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
     //data filters rules
     Route::group( ['prefix' => 'email-bulk-split/data-filters-rules'] , function() {
         Route::get('/', 'DataFilterRuleController@index')->name('data-filters-rules');
-        Route::post('/show', 'DataFilterRuleController@show')->name('data-filters-rules-show');
-        Route::post('/get', 'DataFilterRuleController@get')->name('data-filters-rules-get');
+        Route::get('/show', 'DataFilterRuleController@show')->name('data-filters-rules-show');
+        Route::get('/get', 'DataFilterRuleController@get')->name('data-filters-rules-get');
         Route::post('/edit', 'DataFilterRuleController@edit')->name('data-filters-rules-edit');
     });
 
@@ -90,13 +90,12 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
             Route::post('/add', 'ProjectController@store')->name('data-filters-rules-store');
 
             Route::get('/show-partners', 'ProjectController@showPartners')->name('show-partners');
-
             Route::post('/get-partners', 'ProjectController@getPartners')->name('get-partners');
             Route::post('/edit-partners', 'ProjectController@editPartners')->name('edit-partners');
-            Route::post('/delete-partners', 'ProjectController@deletePartners')->name('delete-partners');
+            Route::delete('/delete-partners', 'ProjectController@deletePartners')->name('delete-partners');
             Route::post('/add-partners', 'ProjectController@addPartners')->name('add-partners');
             Route::post('/add-rules', 'ProjectController@addRules')->name('add-rules');
-            Route::post('/get-rule', 'ProjectController@getRule')->name('get-rule');
+            Route::get('/get-rule', 'ProjectController@getRule')->name('get-rule');
         });
         //outputOverview
         Route::get('/output-overview', 'ProjectController@outputOverview')->name('output-overview');

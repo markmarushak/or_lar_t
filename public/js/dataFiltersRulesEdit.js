@@ -20,9 +20,9 @@ function showData(){
     $('#spinner').show();
 
     $.ajax({
-        method: 'POST',
+        method: 'GET',
         dataType: 'json',
-        url: laroute.action('data-filters-rules-show'),
+        url: 'data-filters-rules/show',
         data:'',
     }).done(function(data){
         $('#spinner').hide();
@@ -142,9 +142,9 @@ function showData(){
 
 function editRow (id) {
     $.ajax({
-        method: 'POST',
+        method: 'GET',
         dataType: 'json',
-        url: laroute.action('data-filters-rules-get'),
+        url: 'data-filters-rules/get',
         data: {data: id},
 
     }).done(function (data) {
@@ -183,7 +183,7 @@ function saveRow(){
 
         type: 'POST',
         dataType: 'json',
-        url: laroute.action('data-filters-rules-edit'),
+        url: 'data-filters-rules/edit',
 
         data: {id: aff_data.id,
             description: $('#n_description').val(),
