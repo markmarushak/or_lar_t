@@ -6,6 +6,7 @@ namespace App\Repository;
 
 use App\Models\AffiliatePartner;
 use App\Models\DataFiltersRules;
+use App\Models\EmailLetter;
 use App\Plugins\QformLibrary\Quform\Quform_Repository;
 
 class ProjectRepository
@@ -13,16 +14,19 @@ class ProjectRepository
     protected $quformRepository;
     protected $dataFiltersRulesModel;
     protected $affiliatePartnerModel;
+    protected $emailLetterModel;
 
     public function __construct(
         Quform_Repository $quformRepository,
         DataFiltersRules $dataFiltersRules,
-        AffiliatePartner $affiliatePartner
+        AffiliatePartner $affiliatePartner,
+        EmailLetter $emailLetter
     )
     {
         $this->quformRepository = $quformRepository;
         $this->dataFiltersRulesModel = $dataFiltersRules;
         $this->affiliatePartnerModel = $affiliatePartner;
+        $this->emailLetterModel = $emailLetter;
     }
 
     public function getFormsEntryById($id = null)
@@ -113,5 +117,11 @@ class ProjectRepository
             ->where('affiliate_partner_id', '=', $request['affiliate_partner_id'])
             ->select('rules')
             ->get();
+    }
+
+
+    public function receivers($projectId, $collectionOfPartner)
+    {
+        
     }
 }

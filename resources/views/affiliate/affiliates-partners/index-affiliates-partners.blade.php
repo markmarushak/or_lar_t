@@ -100,7 +100,7 @@
 
 
                 <div class="pt-2">
-                    <a href="#" onclick="window.location = laroute.action('add-affiliates-partners')" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+                    <a href="#" onclick="window.location = '\affiliates-partners\/add-affiliates-partners'" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-plus"></i>
 							<span id="add_btn">Add</span>

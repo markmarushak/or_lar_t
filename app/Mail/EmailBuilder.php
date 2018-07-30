@@ -42,6 +42,8 @@ class EmailBuilder
                     $letter = new MailListener($form, null, $key['name']);
                     $collectionOfPartner = $this->projectService->showPartners($this->projectId);
                     $this->sendEmail($letter, $collectionOfPartner);
+                $this->projectService->receivers($this->projectId, $collectionOfPartner);
+
             }
         }
     }

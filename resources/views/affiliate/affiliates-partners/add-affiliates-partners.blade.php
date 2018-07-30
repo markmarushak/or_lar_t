@@ -52,6 +52,16 @@
                         </div>
                     </div>
 
+                    <div class="form-group m-form__group">
+                        <label>Email:</label>
+                        <div class="m-input-icon m-input-icon--left col-lg-4 col-md-9 col-sm-12">
+                            <input name="email" type="email" class="form-control m-input "
+                                   placeholder="Email company" value="{{old('email')}}">
+                            <span class="m-input-icon__icon m-input-icon__icon--left"><span><i
+                                            class="la la-map-marker"></i></span></span>
+                        </div>
+                    </div>
+
 
                     <div class="form-group m-form__group">
                         <label>Country:</label>

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AffiliatePartner extends Model
 {
-    protected $fillable = ['name','description','website', 'address', 'country', 'type'];
+    protected $fillable = ['name','description','website', 'address', 'email', 'country', 'type'];
 
   //  protected $guarded = ['_token'];
 
