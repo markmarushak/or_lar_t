@@ -29,16 +29,16 @@ class DataFilterRuleController extends Controller
 
     public function index()
     {
-            return view('affiliate.data-filters-rules.index',
-                [
-                    'menu' => 'affiliate-service'
-                ]
-            );
+        return view('affiliate.data-filters-rules.index',
+            [
+                'menu' => 'affiliate-service'
+            ]
+        );
     }
 
     public function show()
     {
-        $dataFiltersRules =  $this->dataFilterRuleService->getAllDataFiltersRules();
+        $dataFiltersRules = $this->dataFilterRuleService->getAllDataFiltersRules();
         return response()->json($dataFiltersRules);
     }
 
@@ -60,20 +60,18 @@ class DataFilterRuleController extends Controller
     }
 
 
-
-
     public function sendMail(Request $request)
     {
         $dataFiltersRulesId = $request->data_filters_rules_id;
         $dataFiltersRulesDescription = $request->data_filters_rules_description;
-        $connectionToDataBase= $this->affiliateService->connectionToDataBase($dataFiltersRulesId);
+        $connectionToDataBase = $this->affiliateService->connectionToDataBase($dataFiltersRulesId);
         if (is_a($connectionToDataBase, 'ErrorException')) {
             return view('affiliate.data-filters-rules.output-overview-single',
                 [
                     'menu' => 'affiliate-service',
                     'dataFiltersRulesDescription' => $dataFiltersRulesDescription
                 ]
-            )->withErrors($connectionToDataBase->getMessage() );
+            )->withErrors($connectionToDataBase->getMessage());
         } else {
             $entryId = 6;
             $form = $this->dataFilterRuleService->outputOverviewSingleService($entryId);

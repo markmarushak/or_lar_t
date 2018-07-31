@@ -4,6 +4,7 @@ namespace App\Services\ConnectToDataBaseService;
 
 use App\Plugins\WordPress\Wpdb;
 use App\Repository\AffiliateRepository;
+use Exception;
 
 class ConnectToDataBase
 {
@@ -23,12 +24,11 @@ class ConnectToDataBase
     {
         if (isset($dataFiltersRulesId) && !empty($dataFiltersRulesId)) {
             $settingOfDataBase = $this->getSettingOfDataBaseById($dataFiltersRulesId);
-            return $this->connectionToWPDataBase(
+          return  $this->connectionToWPDataBase(
                 $settingOfDataBase->setting->username,
                 $settingOfDataBase->setting->password,
                 $settingOfDataBase->setting->database,
-                $settingOfDataBase->setting->host
-            );
+                $settingOfDataBase->setting->host);
         } else {
             return false;
         }
@@ -49,17 +49,12 @@ class ConnectToDataBase
 
     public function connectionToWPDataBase($username, $password, $database, $host)
     {
-        global $wpdb;
         try {
-            if ($wpdb = new Wpdb ($username, $password, $database, $host)) {
-                return true;
-            } else {
-                throw new Exception('Unable to connect');
-            }
+            global $wpdb;
+            $wpdb = new Wpdb ($username, $password, $database, $host);
         } catch (Exception $e) {
             return $e;
         }
     }
-
 
 }
