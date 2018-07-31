@@ -115,7 +115,7 @@ class ProjectController extends Controller
      */
     public function dataBaseFields()
     {
-        if (is_a($this->connectToDataBase, 'ErrorException')) {
+        if (is_a($this->connectToDataBase->connectionToDataBase($this->dataFilterRuleId), 'ErrorException')) {
             return view('affiliate.database-fields',
                 [
                     'dataFiltersRulesDescription' => $this->dataFilterRuleDescription
@@ -133,7 +133,7 @@ class ProjectController extends Controller
 
     public function dataFiltersRulesData()
     {
-        if (is_a($this->connectToDataBase, 'ErrorException')) {
+        if (is_a($this->connectToDataBase->connectionToDataBase($this->dataFilterRuleId), 'ErrorException')) {
             return view('affiliate.data-filters-rules.data-filters-rules-data',
                 [
                     'dataFiltersRulesId' => $this->dataFilterRuleId
@@ -224,7 +224,7 @@ class ProjectController extends Controller
      * */
     public function outputOverview()
     {
-        if (is_a($this->connectToDataBase, 'ErrorException')) {
+        if (is_a($this->connectToDataBase->connectionToDataBase($this->dataFilterRuleId), 'ErrorException')) {
             return view('affiliate.data-filters-rules.output-overview',
                 [
                     'dataFiltersRulesDescription' => $this->dataFilterRuleDescription
@@ -251,7 +251,7 @@ class ProjectController extends Controller
     */
     public function outputOverviewSingle(Request $request)
     {
-        if (is_a($this->connectToDataBase, 'ErrorException')) {
+        if (is_a($this->connectToDataBase->connectionToDataBase($this->dataFilterRuleId), 'ErrorException')) {
             return view('affiliate.data-filters-rules.output-overview-single',
                 [
                     'dataFiltersRulesDescription' => $this->dataFilterRuleDescription
