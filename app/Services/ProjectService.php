@@ -72,11 +72,11 @@ class ProjectService
         // Calculate which elements are hidden by conditional logic and which groups are empty
         $form->calculateElementVisibility();
 
-        if (Route::currentRouteName() == 'single-output-overview' ) {
+      //  if (Route::currentRouteName() == 'single-output-overview' ) {
             if ($entry['unread'] == 1) {
                 $this->quformRepository->readEntries(array($entry['id']));
             }
-        }
+     //   }
 
         // Get label data from label IDs
         $entry['labels'] = $this->quformRepository->getEntryLabels($entryId);

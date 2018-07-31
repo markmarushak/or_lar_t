@@ -122,6 +122,6 @@ class ProjectRepository
 
     public function receivers($projectId, $collectionOfPartner)
     {
-        
+
     }
 }
