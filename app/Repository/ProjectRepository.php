@@ -6,7 +6,7 @@ namespace App\Repository;
 
 use App\Models\AffiliatePartner;
 use App\Models\DataFiltersRules;
-use App\Models\EmailLetter;
+use App\Models\EmailNewsLetter;
 use App\Plugins\QformLibrary\Quform\Quform_Repository;
 
 class ProjectRepository
@@ -20,7 +20,7 @@ class ProjectRepository
         Quform_Repository $quformRepository,
         DataFiltersRules $dataFiltersRules,
         AffiliatePartner $affiliatePartner,
-        EmailLetter $emailLetter
+        EmailNewsLetter $emailLetter
     )
     {
         $this->quformRepository = $quformRepository;
