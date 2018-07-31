@@ -38,7 +38,6 @@ class ProjectController extends Controller
             $this->dataFilterRuleDescription =  $request->data_filters_rules_description;
         }
     }
-
     /**
      * Show settings for Word Press data base
      *
