@@ -107,6 +107,7 @@ class ProjectController extends Controller
         }
     }
 
+
     /**
      * Show data base fields
      *
@@ -237,6 +238,7 @@ class ProjectController extends Controller
             );
         }
     }
+
 
     /**
      * Show single output overview by id
