@@ -43,7 +43,7 @@
             </table>
             <div class="form-group m-form__group row">
                 <div class="pt-2">
-                    <a href="#" onclick="window.location = laroute.action('data-filters-rules-add')" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+                    <a href="#" onclick="window.location = 'data-filters-rules/add'" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-plus"></i>
 							<span id="add_btn">Add</span>

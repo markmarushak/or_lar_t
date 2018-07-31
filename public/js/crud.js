@@ -150,7 +150,7 @@ function showData(){
                                                         <ul class="m-nav">
 
                                                             <li class="m-nav__item">
-                                                                <a href="#" onclick=" window.location = laroute.action('edit-affiliate-partner', {id: `+data.id+`})" class="m-nav__link">
+                                                                <a href="#" onclick=" window.location = 'affiliates-partners/edit/`+data.id+`'" class="m-nav__link">
                                                                     <i class="m-nav__link-icon flaticon-edit"></i>
                                                                     <span class="m-nav__link-text">Edit</span>
                                                                 </a>

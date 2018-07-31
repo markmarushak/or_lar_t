@@ -93,14 +93,12 @@ function showData(){
                     },
                 },
                 {
-                   // laroute.action('connection', {data_filters_rules_id:'`+data.id+`', data_filters_rules_description:'`+data.description+`'})
                     targets: 4,
                     data: {id: 'id',
                             description: 'description'},
                     render: function (data, type, full, meta) {
-                        //alert(window.location.replace("/affiliate-service/data-filters-rules/edit/"+data.id+"/Garasje-Tilbud.no/connection"))
                         return `
-                        <span style="width: 70px;"><a href="#" onclick="window.location = '/affiliate-service/data-filters-rules/edit/1/Garasje-Tilbud.no/connection'" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
+                        <span style="width: 70px;"><a href="#" onclick="window.location = '/affiliate-service/data-filters-rules/edit/`+data.id+`/`+data.description+`/connection'" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
                                     <i class="la la-edit"></i>
                                 </a></span>`;
                     },

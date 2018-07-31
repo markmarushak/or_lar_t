@@ -11,7 +11,8 @@ class ConnectToDataBase
     public $affiliateRepository;
 
 
-    public function __construct(
+    public function __construct
+    (
         AffiliateRepository $affiliateRepository
     )
     {
@@ -20,18 +21,30 @@ class ConnectToDataBase
 
     public function connectionToDataBase($dataFiltersRulesId)
     {
-
         if (isset($dataFiltersRulesId) && !empty($dataFiltersRulesId)) {
             $settingOfDataBase = $this->getSettingOfDataBaseById($dataFiltersRulesId);
             return $this->connectionToWPDataBase(
-                $settingOfDataBase->username,
-                $settingOfDataBase->password,
-                $settingOfDataBase->database,
-                $settingOfDataBase->host
+                $settingOfDataBase->setting->username,
+                $settingOfDataBase->setting->password,
+                $settingOfDataBase->setting->database,
+                $settingOfDataBase->setting->host
             );
         } else {
             return false;
         }
+    }
+
+    public function getSettingOfDataBaseById($dataFiltersRulesId)
+    {
+        $settingsOfDataBase = $this->affiliateRepository->getSettingOfDataBaseById($dataFiltersRulesId);
+        if (isset($settingsOfDataBase->setting) && !empty($settingsOfDataBase->setting)) {
+            $settingsOfDataBase->setting = decrypt($settingsOfDataBase->setting);
+            $settingsOfDataBase->setting = json_decode($settingsOfDataBase->setting);
+            return $settingsOfDataBase;
+        } else {
+            return false;
+        }
+
     }
 
     public function connectionToWPDataBase($username, $password, $database, $host)
@@ -48,16 +61,5 @@ class ConnectToDataBase
         }
     }
 
-    public function getSettingOfDataBaseById($dataFiltersRulesId)
-    {
-        $settingsOfDataBase = $this->affiliateRepository->getSettingOfDataBaseById($dataFiltersRulesId);
-        if (isset($settingsOfDataBase->setting) && !empty($settingsOfDataBase->setting)) {
-            $settingsOfDataBase->setting = decrypt($settingsOfDataBase->setting);
-            $settingsOfDataBase = json_decode($settingsOfDataBase->setting);
-            return $settingsOfDataBase;
-        } else {
-            return false;
-        }
 
-    }
 }

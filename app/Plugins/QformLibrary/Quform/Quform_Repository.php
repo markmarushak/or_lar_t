@@ -18,7 +18,7 @@ class Quform_Repository
     {
         global $wpdb;
 
-        return $wpdb->prefix . 'quform_forms';
+        return  $wpdb->prefix . 'quform_forms';
     }
 
     /**
@@ -30,7 +30,7 @@ class Quform_Repository
     {
         global $wpdb;
 
-        return $wpdb->prefix . 'quform_entries';
+        return  $wpdb->prefix . 'quform_entries';
     }
 
     /**
@@ -1375,7 +1375,6 @@ AND `ed`.`value` = '%s';";
         if (is_numeric($count)) {
             $sql .= $wpdb->prepare(" LIMIT %d", $count);
         }
-
         return $wpdb->get_results($sql, ARRAY_A);
     }
 

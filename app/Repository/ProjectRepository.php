@@ -119,6 +119,13 @@ class ProjectRepository
             ->get();
     }
 
+    public function getRuleByIdWithPartner($dataFiltersRulesId)
+    {
+        return $this->dataFiltersRulesModel
+            ->find($dataFiltersRulesId)
+            ->with('affiliatesPartners')
+            ->firstOrFail();
+    }
 
     public function receivers($projectId, $collectionOfPartner)
     {

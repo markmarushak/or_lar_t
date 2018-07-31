@@ -42,6 +42,11 @@ class DataFilterRuleController extends Controller
         return response()->json($dataFiltersRules);
     }
 
+    public function add()
+    {
+        return view('affiliate.data-filters-rules.add');
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, [

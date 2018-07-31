@@ -57,6 +57,8 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
         Route::get('/show', 'DataFilterRuleController@show')->name('data-filters-rules-show');
         Route::get('/get', 'DataFilterRuleController@get')->name('data-filters-rules-get');
         Route::post('/edit', 'DataFilterRuleController@edit')->name('data-filters-rules-edit');
+        Route::get('/add', 'DataFilterRuleController@add')->name('data-filters-rules-add');
+        Route::post('/add', 'DataFilterRuleController@store')->name('data-filters-rules-store');
     });
 
     Route::group(['prefix' => '/data-filters-rules/edit/{data_filters_rules_id}/{data_filters_rules_description}'], function (){
@@ -86,8 +88,7 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
         Route::get('/', 'ProjectController@dataFiltersRulesData')->name('data-filters-rules-data');
         Route::get('/bind-project-partner', 'ProjectController@bindProjectAndPartner')->name('bind-project-and-partner');
         Route::get('/detach-project-partner', 'ProjectController@detachProjectAndPartner')->name('detach-project-and-partner');
-            Route::get('/add', 'ProjectController@add')->name('data-filters-rules-add');
-            Route::post('/add', 'ProjectController@store')->name('data-filters-rules-store');
+
 
             Route::get('/show-partners', 'ProjectController@showPartners')->name('show-partners');
             Route::post('/get-partners', 'ProjectController@getPartners')->name('get-partners');

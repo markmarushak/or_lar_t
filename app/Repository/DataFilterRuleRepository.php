@@ -46,13 +46,7 @@ class DataFilterRuleRepository
         ]);
     }
 
-    public function getRuleByIdWithPartner($dataFiltersRulesId)
-    {
-        return $this->dataFiltersRulesModel
-            ->find($dataFiltersRulesId)
-            ->with('affiliatesPartners')
-            ->firstOrFail();
-    }
+
 
 
 }

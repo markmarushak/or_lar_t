@@ -8,9 +8,7 @@ use App\Services\ConnectToDataBaseService\ConnectToDataBase;
 use App\Services\ConnectToDataBaseService\UpdateDataBase;
 use App\Services\ProjectService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
-
 
 class ProjectController extends Controller
 {
@@ -196,11 +194,6 @@ class ProjectController extends Controller
         $affiliatePartnerId = $request['affiliate_partner_id'];
         $this->detachProjectAndPartner($dataFiltersRulesId, $affiliatePartnerId);
         return response()->json();
-    }
-
-    public function add()
-    {
-        return view('affiliate.data-filters-rules.add');
     }
 
     public function addPartners(Request $request)
