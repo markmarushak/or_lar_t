@@ -44,5 +44,10 @@ class DataFilterRuleService
         return $this->dataFilterRuleRepository->editDataFiltersRulesById($request);
     }
 
+    public function getEmailSend()
+    {
+        return $this->dataFilterRuleRepository->getEmailSend();
+    }
+
 
 }
