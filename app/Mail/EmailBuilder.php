@@ -43,8 +43,6 @@ class EmailBuilder
                     $collectionOfPartner = $this->projectService->getPartnerWhichEmail($this->projectId);
                     // $this->projectService->receivers($this->projectId, $collectionOfPartner, $key['id']);
                 $this->sendEmail($letter, $collectionOfPartner);
-            } else {
-                return false;
             }
         }
     }
