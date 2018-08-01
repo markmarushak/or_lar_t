@@ -260,7 +260,7 @@ class ProjectController extends Controller
             return view('affiliate.data-filters-rules.output-overview-single', [
                 'dataFiltersRulesId' => $this->dataFilterRuleId,
                 'dataFiltersRulesDescription' => $this->dataFilterRuleDescription,
-                'nameEntry' => $this->dataFilterRuleService->nameEntry,
+                'nameEntry' => $this->projectService->nameEntry,
                 'form' => $form
             ]);
         }

@@ -143,9 +143,9 @@ class ProjectService
         return $this->projectRepository->getRule($request);
     }
 
-    public function receivers($projectId, $collectionOfPartner)
+    public function receivers($projectId, $collectionOfPartner, $outputOverviewId)
     {
-        return $this->projectRepository->receivers($projectId, $collectionOfPartner);
+        return $this->projectRepository->receivers($projectId, $collectionOfPartner, $outputOverviewId);
     }
 
 }

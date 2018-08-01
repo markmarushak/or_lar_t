@@ -21,9 +21,10 @@ class DripEmailer
 
     public function send()
     {
-        $dataFilterRule =  $this->dataFilterRuleService->getEmailSend();
-//     $dataFilterRule =  $this->dataFilterRuleService->getAllDataFiltersRules()->all();
-//     $this->emailBuilder->emailBuilder($dataFilterRule);
+
+      //  $dataFilterRule =  $this->dataFilterRuleService->getEmailSend();
+     $dataFilterRule =  $this->dataFilterRuleService->getAllDataFiltersRules()->all();
+     $this->emailBuilder->emailBuilder($dataFilterRule);
     }
 
 

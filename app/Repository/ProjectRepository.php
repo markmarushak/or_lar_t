@@ -6,7 +6,7 @@ namespace App\Repository;
 
 use App\Models\AffiliatePartner;
 use App\Models\DataFiltersRules;
-use App\Models\EmailLetter;
+use App\Models\EmailNewsLetter;
 use App\Plugins\QformLibrary\Quform\Quform_Repository;
 
 class ProjectRepository
@@ -14,19 +14,19 @@ class ProjectRepository
     protected $quformRepository;
     protected $dataFiltersRulesModel;
     protected $affiliatePartnerModel;
-    protected $emailLetterModel;
+    protected $emailNewsLetterModel;
 
     public function __construct(
         Quform_Repository $quformRepository,
         DataFiltersRules $dataFiltersRules,
         AffiliatePartner $affiliatePartner,
-        EmailLetter $emailLetter
+        EmailNewsLetter $emailNewsLetterModel
     )
     {
         $this->quformRepository = $quformRepository;
         $this->dataFiltersRulesModel = $dataFiltersRules;
         $this->affiliatePartnerModel = $affiliatePartner;
-        $this->emailLetterModel = $emailLetter;
+        $this->emailNewsLetterModel = $emailNewsLetterModel;
     }
 
     public function getFormsEntryById($id = null)
@@ -127,8 +127,8 @@ class ProjectRepository
             ->firstOrFail();
     }
 
-    public function receivers($projectId, $collectionOfPartner)
+    public function receivers($projectId, $collectionOfPartner, $outputOverviewId)
     {
-
+        $this->emailNewsLetterModel->fill()->save();
     }
 }

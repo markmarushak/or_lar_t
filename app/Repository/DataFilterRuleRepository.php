@@ -5,7 +5,7 @@ namespace App\Repository;
 
 use App\Models\DataFiltersRules;
 use App\Models\AffiliatePartner;
-use App\Models\EmailLetter;
+use App\Models\EmailNewsLetter;
 use App\Plugins\QformLibrary\Quform\Quform_Repository;
 
 class DataFilterRuleRepository
@@ -13,13 +13,11 @@ class DataFilterRuleRepository
     protected $dataFiltersRulesModel;
     protected $quformRepository;
     protected $affiliatePartnerModel;
-    protected $emailLetter;
 
     public function __construct(
         DataFiltersRules $dataFiltersRulesModel,
         Quform_Repository $quformRepository,
-        AffiliatePartner $affiliatePartnerModel,
-        EmailLetter $emailLetter
+        AffiliatePartner $affiliatePartnerModel
     )
     {
         $this->dataFiltersRulesModel = $dataFiltersRulesModel;
@@ -53,16 +51,5 @@ class DataFilterRuleRepository
             'country'=>$request['country']
         ]);
     }
-
-    public function getEmailSend()
-    {
-        $this->emailLetter->fill([
-            'data_filter_rule_id' => 1,
-            'output_overview_id' => 5
-        ])->save();
-    }
-
-
-
 
 }
