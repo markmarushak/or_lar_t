@@ -38,10 +38,10 @@ class EmailBuilder
         $outputOverview = $this->projectService->getRecentEntries();
         foreach ($outputOverview as $key ) {
             if ($key['unread'] == 1) {
-                    $form = $this->projectService->outputOverviewSingleService($key['id']);
+                $form = $this->projectService->outputOverviewSingleService($key['id']);
                     $letter = new MailListener($form, null, $key['name']);
-                    $collectionOfPartner = $this->projectService->showPartners($this->projectId);
-               // $this->projectService->receivers($this->projectId, $collectionOfPartner, $key['id']);
+                    $collectionOfPartner = $this->projectService->getPartnerWhichEmail($this->projectId);
+                    // $this->projectService->receivers($this->projectId, $collectionOfPartner, $key['id']);
                 $this->sendEmail($letter, $collectionOfPartner);
             } else {
                 return false;
@@ -49,7 +49,7 @@ class EmailBuilder
         }
     }
 
-    public function sendEmail($letter, $collectionOfPartner )
+    public function sendEmail($letter, $collectionOfPartner)
     {
         Mail::to($collectionOfPartner)
             ->send($letter);

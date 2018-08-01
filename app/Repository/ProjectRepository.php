@@ -71,6 +71,19 @@ class ProjectRepository
             ->get();
     }
 
+    public function getPartnerWhichEmail($dataFilterRuleId)
+    {
+        return $this->dataFiltersRulesModel
+            ->find($dataFilterRuleId)
+            ->with('affiliatesPartners')
+            ->firstOrFail()
+            ->affiliatesPartners()
+            ->whereNotNull('email')
+            ->whereNotNull('name')
+            ->select()
+            ->get();
+    }
+
     public function getPartnerById($id)
     {
         return $this->affiliatePartnerModel

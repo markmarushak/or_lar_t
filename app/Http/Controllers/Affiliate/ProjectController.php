@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Affiliate;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RequestUpdateConnectToDb;
+use App\Mail\MailListener;
 use App\Plugins\WordPress\Wpdb;
 use App\Services\ConnectToDataBaseService\ConnectToDataBase;
 use App\Services\ConnectToDataBaseService\UpdateDataBase;
 use App\Services\ProjectService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\View;
 
 class ProjectController extends Controller
@@ -264,6 +266,28 @@ class ProjectController extends Controller
                 'form' => $form
             ]);
         }
+    }
+
+
+    public function sendMail(Request $request)
+    {
+        $dataFiltersRulesId = $request->data_filters_rules_id;
+        $dataFiltersRulesDescription = $request->data_filters_rules_description;
+        $connectToDb =$this->connectToDataBase->connectionToDataBase($this->dataFilterRuleId);
+        if (is_a($connectToDb, 'ErrorException')) {
+            return view('affiliate.data-filters-rules.output-overview-single',
+                [
+                    'menu' => 'affiliate-service',
+                    'dataFiltersRulesDescription' => $dataFiltersRulesDescription
+                ]
+            )->withErrors($connectToDb->getMessage());
+        } else {
+            $entryId = 6;
+            $form = $this->projectService->outputOverviewSingleService($entryId);
+            Mail::to('thorfinn@orbitleads.com')
+                ->send(new MailListener($form, $this->projectService->nameEntry, 'test'));
+        }
+        dd('good');
     }
 
 }

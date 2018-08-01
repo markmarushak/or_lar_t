@@ -33,7 +33,6 @@ class MailListener extends Mailable
      */
     public function build()
     {
-
         return $this->from(env('MAIL_FROM_ADDRESS'))
             ->subject($this->subjectName)
             ->view('emails.email')->with([

@@ -105,6 +105,6 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
         Route::get('/output-overview-single/{single_id}/', 'ProjectController@outputOverviewSingle')->name('single-output-overview');
 
         //Send Mail
-        Route::get('/send', 'DataFilterRuleController@sendMail');
+        Route::get('/send', 'ProjectController@sendMail');
     });
 });

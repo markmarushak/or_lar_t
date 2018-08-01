@@ -109,6 +109,10 @@ class ProjectService
     public function showPartners($dataFilterRuleId){
         return $this->projectRepository->showPartners($dataFilterRuleId);
     }
+    public function getPartnerWhichEmail($dataFilterRuleId)
+    {
+        return $this->projectRepository->getPartnerWhichEmail($dataFilterRuleId);
+    }
 
     public function getPartners($request)
     {
