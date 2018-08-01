@@ -37,7 +37,7 @@ class EmailBuilder
     {
         $outputOverview = $this->projectService->getRecentEntries();
         foreach ($outputOverview as $key ) {
-            if ($key['unread'] = 1) {
+            if ($key['unread'] === 1) {
                     $form = $this->projectService->outputOverviewSingleService($key['id']);
                     $letter = new MailListener($form, null, $key['name']);
                     $collectionOfPartner = $this->projectService->showPartners($this->projectId);

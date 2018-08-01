@@ -1,6 +1,6 @@
 <script type="text/javascript">
     $(document).ready(function () {
-        let url = document.location.href;
+        let url = window.location.href;
         if (url.indexOf('data-filters-rules') !== -1) {
             $("#hide_1").addClass("m-menu__item--open");
             $("#hide_2").addClass("m-menu__item--open");
@@ -8,20 +8,6 @@
         else if(url.indexOf('email-bulk-split') !== -1){
             $("#hide_1").addClass("m-menu__item--open");
         }
-        //$("#hide_1").hide();
-        /*$("#mini_prof_1").click(function () {
-        }, function () {
-            $("#hide_1").show(200);
-        });
-
-        $('#hide_1').click(function(){ return false; });
-
-        $("#mini_prof_2").click(function () {
-        }, function () {
-            $("#hide_2").show(200);
-        });
-
-        $('#hide_2').click(function(){ return false; });*/
     });
 </script>
 <button class="m-aside-left-close  m-aside-left-close--skin-dark " id="m_aside_left_close_btn">
@@ -52,7 +38,8 @@
 				</a>
 			</li>--}}
 
-            <?php if(!empty($menu) && $menu == 'affiliate-service'): ?>
+            <?php
+            //if(!empty($menu) && $menu == 'affiliate-service'): ?>
 
 
             {{--<li class="m-menu__section">
@@ -111,7 +98,7 @@
 
                     </a>
                 </li>
-			<?php endif; ?>
+			<?php //endif; ?>
 
 
 		</ul>
