@@ -51,7 +51,7 @@ class ConnectToDataBase
     {
         try {
             global $wpdb;
-            $wpdb = new Wpdb ($username, $password, $database, $host);
+           return $wpdb = new Wpdb ($username, $password, $database, $host);
         } catch (Exception $e) {
             return $e;
         }

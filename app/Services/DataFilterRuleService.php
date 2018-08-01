@@ -44,5 +44,4 @@ class DataFilterRuleService
         return $this->dataFilterRuleRepository->editDataFiltersRulesById($request);
     }
 
-
 }

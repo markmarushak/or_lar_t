@@ -9,7 +9,7 @@
 				{!! Breadcrumbs::render($nameRoute) !!}
 			@elseif('edit-affiliate-partner' == $nameRoute)
 				{!! Breadcrumbs::render($nameRoute) !!}
-			@elseif('output-overview-single' == $nameRoute)
+			@elseif('single-output-overview' == $nameRoute)
 				{!! Breadcrumbs::render($nameRoute, $nameEntry) !!}
 			@else
 				{!! Breadcrumbs::render($nameRoute) !!}
