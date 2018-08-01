@@ -220,13 +220,13 @@ class ProjectController extends Controller
      * */
     public function outputOverview()
     {
-        $connectToDb =$this->connectToDataBase->connectionToDataBase($this->dataFilterRuleId);
-        if (is_a($connectToDb, 'ErrorException')) {
+        $this->connectToDataBase = $this->connectToDataBase->connectionToDataBase($this->dataFilterRuleId);
+        if (is_a($this->connectToDataBase, 'ErrorException')) {
             return view('affiliate.data-filters-rules.output-overview',
                 [
                     'dataFiltersRulesDescription' => $this->dataFilterRuleDescription
                 ]
-            )->withErrors($connectToDb->getMessage() );
+            )->withErrors($this->connectToDataBase->getMessage() );
         } else {
             $recentEntries = $this->projectService->getRecentEntries();
             return view('affiliate.data-filters-rules.output-overview',
