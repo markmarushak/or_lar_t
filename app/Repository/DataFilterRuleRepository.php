@@ -16,8 +16,7 @@ class DataFilterRuleRepository
 
     public function __construct(
         DataFiltersRules $dataFiltersRulesModel,
-        Quform_Repository $quformRepository,
-        AffiliatePartner $affiliatePartnerModel
+        Quform_Repository $quformRepository
     )
     {
         $this->dataFiltersRulesModel = $dataFiltersRulesModel;
