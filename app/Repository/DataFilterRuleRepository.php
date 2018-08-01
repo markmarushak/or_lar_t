@@ -23,7 +23,6 @@ class DataFilterRuleRepository
         $this->dataFiltersRulesModel = $dataFiltersRulesModel;
         $this->quformRepository = $quformRepository;
         $this->affiliatePartnerModel = $affiliatePartnerModel;
-        $this->emailLetter = $emailLetter;
     }
 
     public function addDataFilterRule($request)
