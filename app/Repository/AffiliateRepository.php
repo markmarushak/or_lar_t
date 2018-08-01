@@ -95,7 +95,7 @@ class AffiliateRepository
     {
         $this->affiliatePartnerModel
             ->where('id', $request->id)
-            ->update($request->only('name','description','website', 'address', 'country', 'type'));
+            ->update($request->only('name','description','website', 'address', 'email', 'country', 'type'));
     }
 
     public function deleteFromDatabase($request){
