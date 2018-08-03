@@ -142,6 +142,11 @@ class ProjectRepository
 
     public function receivers($projectId, $collectionOfPartner, $outputOverviewId)
     {
-        $this->emailNewsLetterModel->fill()->save();
+      $this->emailNewsLetterModel->fill(['project_id' => $projectId])->save();
+    }
+
+    public function setTimeSentEmail()
+    {
+       return $this->emailNewsLetterModel->select('project_id', 'created_at')->get()->all();
     }
 }

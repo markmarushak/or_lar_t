@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Services\ProjectService;
+
 
 class HomeController extends Controller
 {
+    public $projectService;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(ProjectService $projectService)
     {
         $this->middleware('auth');
+        $this->projectService = $projectService;
     }
 
     /**
@@ -23,6 +27,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('home', compact('dateAndTime'));
+    }
+
+    public function setTimeSentEmail()
+    {
+        $this->projectService->setTimeSentEmail();
+
+        return   response()->json();
     }
 }

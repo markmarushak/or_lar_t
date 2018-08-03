@@ -152,4 +152,15 @@ class ProjectService
         return $this->projectRepository->receivers($projectId, $collectionOfPartner, $outputOverviewId);
     }
 
+    public function setTimeSentEmail()
+    {
+        $dateAndProjectId =$this->projectRepository->setTimeSentEmail();
+
+        $dateAndTime = array();
+        foreach ($dateAndProjectId as $value) {
+            $dateAndTime += array($value->created_at->format('H:i') => $value->created_at->format('m.d') );
+            }
+        return $dateAndTime;
+    }
+
 }

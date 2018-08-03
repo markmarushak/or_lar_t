@@ -77,14 +77,15 @@ License: You must have a valid license purchased only from themeforest(the above
 {!! Html::script('assets/demo/default/base/scripts.bundle.js') !!}
 {!! Html::script('assets/admin/js/script.js') !!}
 {!! Html::script('assets/demo/default/custom/components/base/bootstrap-notify.js') !!}
+
 <!--end::Base Scripts -->
 <!--begin::Page Snippets -->
 {!! Html::script('assets/vendors/custom/fullcalendar/fullcalendar.bundle.js') !!}
 {!! Html::script('assets/demo/default/custom/components/datatables/base/basic.js') !!}
 {!! Html::script('assets/app/js/dashboard.js') !!}
 {!! Html::script('assets/app/js/my.js') !!}
-{{--{!! Html::script('js/laroute.js') !!}--}}
 {!! Html::script('js/jquery.autocomplete.js') !!}
+{!! Html::script('js/MyChart.js') !!}
 
 @include('layouts.admin.layout')
 

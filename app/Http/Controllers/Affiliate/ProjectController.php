@@ -268,7 +268,6 @@ class ProjectController extends Controller
         }
     }
 
-
     public function sendMail(Request $request)
     {
         $dataFiltersRulesId = $request->data_filters_rules_id;
