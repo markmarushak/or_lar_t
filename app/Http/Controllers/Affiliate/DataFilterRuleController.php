@@ -8,7 +8,6 @@ use App\Services\AffiliateService;
 use App\Services\DataFilterRuleService;
 use Illuminate\Http\Request;
 
-
 class DataFilterRuleController extends Controller
 {
     private $affiliateService;
