@@ -32,8 +32,7 @@ class HomeController extends Controller
 
     public function setTimeSentEmail()
     {
-        $this->projectService->setTimeSentEmail();
-
-        return   response()->json();
+        $dateAndTime = $this->projectService->setTimeSentEmail();
+        return   response()->json($dateAndTime);
     }
 }

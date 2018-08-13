@@ -158,7 +158,7 @@ class ProjectService
 
         $dateAndTime = array();
         foreach ($dateAndProjectId as $value) {
-            $dateAndTime += array($value->created_at->format('H:i') => $value->created_at->format('m.d') );
+            $dateAndTime += array($value->created_at->format('H.i') => $value->created_at->format('m.d') );
             }
         return $dateAndTime;
     }
