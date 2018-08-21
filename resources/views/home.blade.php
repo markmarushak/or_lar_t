@@ -1,11 +1,178 @@
 @extends('layouts.admin.app')
 
 @section('content')
+    <link rel="stylesheet" type="text/css" href="http://keenthemes.com/preview/metronic/theme/assets/global/css/components.min.css">
 
     <!--Begin::Section-->
     <div class="row">
 
-        <div class="col-xl-4">
+        <div class="col-md-4">
+            <div class="portlet blue-steel box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs"></i>Today </div>
+                    <div class="tools">
+                        <a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
+                        <a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title=""> </a>
+                        <a href="javascript:;" class="reload" data-original-title="" title=""> </a>
+                        <a href="javascript:;" class="remove" data-original-title="" title=""> </a>
+                    </div>
+                </div>
+                <div class="portlet-body" id="blockui_sample_4_portlet_body">
+                    <div>
+                        <div class="col-xs-8">Impressions: 150 </div>
+
+
+                        <p>
+                            Clicks: 70  </p>
+                        <p>
+                            Converstations: 35  </p>
+
+                        <p class="text-right"><a href="#">Reporting overview ></a></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="portlet yellow-gold box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs"></i>Affiliate Growth </div>
+
+                </div>
+                <div class="portlet-body" id="blockui_sample_4_portlet_body">
+                    <div>
+                        <p>Last 28 days </p>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="portlet grey-salsa box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs"></i>Geo distribution </div>
+
+
+                    <div class="tools">
+                        <div class="caption font-italic">
+                            Last 25 days
+                        </div>
+
+                    </div>
+                </div>
+                <div class="portlet-body" id="blockui_sample_4_portlet_body">
+                    <div>
+                        <p>Impressions </p>
+                        <p>
+                            Clicks  </p>
+                        <p>
+                            Converstations  </p>
+
+                        <p class="text-right"><a href="#">Reporting overview ></a></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="portlet green-sharp box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs"></i>
+                        Commissions
+                        <div class="font-italic m--icon-font-size-sm3 m--padding-left-20">Pending approval</div>
+                    </div>
+                    <div class="tools">
+                        <a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
+                        <a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title=""> </a>
+                        <a href="javascript:;" class="reload" data-original-title="" title=""> </a>
+                        <a href="javascript:;" class="remove" data-original-title="" title=""> </a>
+                    </div>
+                </div>
+                <div class="portlet-body" id="blockui_sample_4_portlet_body">
+                    <div>
+                        <p>Impressions </p>
+                        <p>
+                            Clicks  </p>
+                        <p>
+                            Converstations  </p>
+
+                        <p class="text-right"><a href="#">Reporting overview ></a></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="portlet green-sharp box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs"></i>
+                        Commissions
+
+                        <div class="font-italic m--icon-font-size-sm3 m--padding-left-20">Pending payout</div>
+                    </div>
+                    <div class="tools">
+                        <a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
+                        <a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title=""> </a>
+                        <a href="javascript:;" class="reload" data-original-title="" title=""> </a>
+                        <a href="javascript:;" class="remove" data-original-title="" title=""> </a>
+                    </div>
+                </div>
+                <div class="portlet-body" id="blockui_sample_4_portlet_body">
+                    <div>
+                        <p>Impressions </p>
+                        <p>
+                            Clicks  </p>
+                        <p>
+                            Converstations  </p>
+
+                        <p class="text-right"><a href="#">Reporting overview ></a></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="portlet purple-sharp box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs"></i>Pending affiliates
+                        <div class="font-italic m--icon-font-size-sm3 m--padding-left-20">-------------------------</div>
+
+                    </div>
+
+                    <div class="tools">
+                        <a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
+                        <a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title=""> </a>
+                        <a href="javascript:;" class="reload" data-original-title="" title=""> </a>
+                        <a href="javascript:;" class="remove" data-original-title="" title=""> </a>
+                    </div>
+                </div>
+                <div class="portlet-body" id="blockui_sample_4_portlet_body">
+                    <div>
+                        <p>Impressions </p>
+                        <p>
+                            Clicks  </p>
+                        <p>
+                            Converstations  </p>
+
+                        <p class="text-right"><a href="#">Reporting overview ></a></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-4">
             <!--begin:: Widgets/Top Products-->
             <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height ">
                 <div class="m-portlet__head">
@@ -19,6 +186,9 @@
 
                 </div>
                 <div class="m-portlet__body">
+
+
+
                     <!--begin::Widget5-->
                     <div class="m-widget4">
                         <div class="m-widget4__chart m-portlet-fit--sides m--margin-top-10 m--margin-top-20"
@@ -44,6 +214,7 @@
             </div>
             <!--end:: Widgets/Top Products-->
         </div>
+
 
 
     </div>
