@@ -29,6 +29,16 @@ Route::get('/route-clear', function() {
 
 Route::get('/time-sent-email', 'HomeController@setTimeSentEmail')->name('set-time-sent-email');
 
+
+Route::group(['namespace' => 'Reporting', 'prefix' => 'report-service', 'middleware' => 'auth'], function(){
+    Route::get('/', 'ReportingController@index')->name('reporting');
+
+
+
+});
+
+
+
 Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'middleware' => 'auth'], function(){
 
     Route::get('/', 'AffiliateController@index')->name('affiliate-service');

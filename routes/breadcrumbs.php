@@ -1,5 +1,10 @@
 <?php
 
+
+
+
+
+
 // Dashboard
 Breadcrumbs::register('home', function($breadcrumbs)
 {
@@ -113,5 +118,13 @@ Breadcrumbs::register('single-output-overview', function($breadcrumbs, $nameEntr
     $breadcrumbs->parent('output-overview');
     $breadcrumbs->push($nameEntry ,route('single-output-overview', [  'single_id', 'data_filters_rules_id', 'data_filters_rules_description']));
 });
+
+
+// Dashboard
+Breadcrumbs::register('reporting', function($breadcrumbs)
+{
+    $breadcrumbs->push('Reporting', route('reporting'));
+});
+
 
 ?>

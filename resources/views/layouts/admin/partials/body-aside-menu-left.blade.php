@@ -98,6 +98,62 @@
 
                     </a>
                 </li>
+
+                <li class="m-menu__item  m-menu__item--submenu " aria-haspopup="true" m-menu-submenu-toggle="hover">
+                    <a href="{{route('reporting')}}" class="m-menu__link ">
+                        <i class="m-menu__link-icon fa fa-bar-chart-o"></i>
+                        <span class="m-menu__link-text">
+                                                Reporting
+                                            </span>
+
+                    </a>
+                </li>
+            <li class="m-menu__item  m-menu__item--submenu " aria-haspopup="true" m-menu-submenu-toggle="hover">
+                <a href="{{route('reporting')}}" class="m-menu__link ">
+                    <i class="m-menu__link-icon fa fa-tasks"></i>
+                    <span class="m-menu__link-text">
+                                                Programs
+                                            </span>
+
+                </a>
+            </li>
+
+            <li class="m-menu__item  m-menu__item--submenu " aria-haspopup="true" m-menu-submenu-toggle="hover">
+                <a href="{{route('reporting')}}" class="m-menu__link ">
+                    <i class="m-menu__link-icon fa fa-exchange"></i>
+                    <span class="m-menu__link-text">
+                                                Conversions
+                                            </span>
+
+                </a>
+            </li>
+            <li class="m-menu__item  m-menu__item--submenu " aria-haspopup="true" m-menu-submenu-toggle="hover">
+                <a href="{{route('reporting')}}" class="m-menu__link ">
+                    <i class="m-menu__link-icon fa fa-cc-mastercard"></i>
+                    <span class="m-menu__link-text">
+                                                Payouts
+                                            </span>
+
+                </a>
+            </li>
+            <li class="m-menu__item  m-menu__item--submenu " aria-haspopup="true" m-menu-submenu-toggle="hover">
+                <a href="{{route('reporting')}}" class="m-menu__link ">
+                    <i class="m-menu__link-icon fa fa-wrench"></i>
+                    <span class="m-menu__link-text">
+                                                Settings
+                                            </span>
+
+                </a>
+            </li>
+            <li class="m-menu__item  m-menu__item--submenu " aria-haspopup="true" m-menu-submenu-toggle="hover">
+                <a href="{{route('reporting')}}" class="m-menu__link ">
+                    <i class="m-menu__link-icon fa fa-support"></i>
+                    <span class="m-menu__link-text">
+                                                Support
+                                            </span>
+
+                </a>
+            </li>
 			<?php //endif; ?>
 
 
