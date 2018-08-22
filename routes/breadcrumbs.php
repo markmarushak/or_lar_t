@@ -103,6 +103,7 @@ Breadcrumbs::register('data-filters-rules-data', function($breadcrumbs) {
     $breadcrumbs->push('Data Filters & Rules', route('data-filters-rules-data', ['data_filters_rules_id', 'data_filters_rules_description']));
 });
 
+
 //output-overview
 Breadcrumbs::register('output-overview', function($breadcrumbs) {
 
