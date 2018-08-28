@@ -121,11 +121,43 @@ Breadcrumbs::register('single-output-overview', function($breadcrumbs, $nameEntr
 });
 
 
-// Dashboard
+// Reporting
 Breadcrumbs::register('reporting', function($breadcrumbs)
 {
     $breadcrumbs->push('Reporting', route('reporting'));
 });
 
+
+//  Programs
+Breadcrumbs::register('programs', function($breadcrumbs)
+{
+    $breadcrumbs->push('Programs', route('programs'));
+});
+
+//  Conversions
+Breadcrumbs::register('conversions', function($breadcrumbs)
+{
+    $breadcrumbs->push('Conversions', route('conversions'));
+});
+
+// Payouts
+Breadcrumbs::register('payouts', function($breadcrumbs)
+{
+    $breadcrumbs->push('Payouts', route('payouts'));
+});
+
+
+// Settings
+Breadcrumbs::register('settings', function($breadcrumbs)
+{
+    $breadcrumbs->push('Settings', route('settings'));
+});
+
+
+//Support
+Breadcrumbs::register('support', function($breadcrumbs)
+{
+    $breadcrumbs->push('Support', route('support'));
+});
 
 ?>

@@ -32,9 +32,32 @@ Route::get('/time-sent-email', 'HomeController@setTimeSentEmail')->name('set-tim
 
 Route::group(['namespace' => 'Reporting', 'prefix' => 'report-service', 'middleware' => 'auth'], function(){
     Route::get('/', 'ReportingController@index')->name('reporting');
+});
 
 
+Route::group(['namespace' => 'Programs', 'prefix' => 'programs-service', 'middleware' => 'auth'], function(){
+    Route::get('/', 'ProgramsController@index')->name('programs');
+});
 
+
+Route::group(['namespace' => 'Conversions', 'prefix' => 'conversions-service', 'middleware' => 'auth'], function(){
+    Route::get('/', 'ConversionsController@index')->name('conversions');
+});
+
+
+// Payouts
+Route::group(['namespace' => 'Payouts', 'prefix' => 'payouts-service', 'middleware' => 'auth'], function(){
+    Route::get('/', 'PayoutsController@index')->name('payouts');
+});
+
+//Settings
+Route::group(['namespace' => 'Settings', 'prefix' => 'settings-service', 'middleware' => 'auth'], function(){
+    Route::get('/', 'SettingsController@index')->name('settings');
+});
+
+//Support
+Route::group(['namespace' => 'Support', 'prefix' => 'support-service', 'middleware' => 'auth'], function(){
+    Route::get('/', 'SupportController@index')->name('support');
 });
 
 
