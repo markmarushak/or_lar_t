@@ -54,9 +54,10 @@ Route::group(['namespace' => 'Payouts', 'prefix' => 'payouts-service', 'middlewa
 Route::group(['namespace' => 'Settings', 'prefix' => 'settings-service', 'middleware' => 'auth'], function(){
     Route::get('/', 'SettingsController@index')->name('settings');
 
+    Route::get('/api', 'SettingsController@api')->name('settings');
+
 
     Route::group(['prefix'=>'api','namespace' => 'API'], function (){
-        Route::get('/', 'SettingsController@api')->name('settings');
         Route::post('/send', 'SettingsApiController@connect')->name('settings');
     });
 });
