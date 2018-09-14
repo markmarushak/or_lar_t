@@ -53,6 +53,12 @@ Route::group(['namespace' => 'Payouts', 'prefix' => 'payouts-service', 'middlewa
 //Settings
 Route::group(['namespace' => 'Settings', 'prefix' => 'settings-service', 'middleware' => 'auth'], function(){
     Route::get('/', 'SettingsController@index')->name('settings');
+
+
+    Route::group(['prefix'=>'api','namespace' => 'API'], function (){
+        Route::get('/', 'SettingsController@api')->name('settings');
+        Route::post('/send', 'SettingsApiController@connect')->name('settings');
+    });
 });
 
 //Support
@@ -142,4 +148,9 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
         //Send Mail
         Route::get('/send', 'ProjectController@sendMail');
     });
+});
+
+
+Route::group(['namespace' => 'Test', 'prefix' => 'test-service', 'middleware' => 'auth'], function (){
+    Route::get('/', 'TestController@index')->name('test');
 });

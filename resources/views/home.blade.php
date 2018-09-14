@@ -1,5 +1,4 @@
 @extends('layouts.admin.app')
-
 @section('content')
     <link rel="stylesheet" type="text/css" href="http://keenthemes.com/preview/metronic/theme/assets/global/css/components.min.css">
 
@@ -24,7 +23,8 @@
 
 
                         <p>
-                            Clicks: 70  </p>
+                            Clicks: {{ $total['clicks'] }}  </p>
+                        <p> Visits: {{ $total['visits'] }}</p>
                         <p>
                             Converstations: 35  </p>
 
