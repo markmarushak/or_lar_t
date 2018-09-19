@@ -63,4 +63,9 @@ class AffiliateController extends Controller
         return view('affiliate.email-bulk-split', ['menu' => 'affiliate-service']);
     }
 
+    public function add()
+    {
+        return view('affiliate.compaigns-add');
+    }
+
 }

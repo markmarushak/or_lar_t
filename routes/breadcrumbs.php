@@ -44,6 +44,10 @@ Breadcrumbs::register('compaigns', function($breadcrumbs)
     $breadcrumbs->push('Compaigns', route('compaigns'));
 });
 
+Breadcrumbs::register('compaigns-add', function ($breadcrumbs){
+   $breadcrumbs->parent('compaigns');
+   $breadcrumbs->push('Compaigns-Add', route('compaigns-add'));
+});
 
 Breadcrumbs::register('email-bulk-split', function($breadcrumbs) {
     $breadcrumbs->parent('compaigns');
@@ -153,6 +157,12 @@ Breadcrumbs::register('settings', function($breadcrumbs)
     $breadcrumbs->push('Settings', route('settings'));
 });
 
+// Api
+Breadcrumbs::register('settings-api', function($breadcrumbs)
+{
+    $breadcrumbs->parent('settings');
+    $breadcrumbs->push('API', route('settings-api'));
+});
 
 //Support
 Breadcrumbs::register('support', function($breadcrumbs)
