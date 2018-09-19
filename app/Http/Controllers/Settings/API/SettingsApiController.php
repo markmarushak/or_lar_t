@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Settings\API;
 
 use App\Models\API;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 use MadnessCODE\Voluum\Auth\PasswordCredentials;
 
 
@@ -15,19 +15,21 @@ class SettingsApiController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->connect();
     }
 
     public function connect()
     {
+        $url = Route::getFacadeRoot()->current()->uri();;
+
         $data['user'] = Auth::id();
         $db = DB::table('api')->where('user_id',$data['user'])->select('email','password')->get();
         $db = json_decode(json_encode($db),True);
         if  (!empty($db)){
             return $this->apiConnect($db);
-        }else{
-           if (request()){
-               return $data[] .= request();
-           }
+        }
+        elseif($url !== 'settings-service/api') {
+            return false;
         }
     }
 
@@ -40,6 +42,7 @@ class SettingsApiController extends Controller
         $report_api = new \MadnessCODE\Voluum\API($client);
         return $report_api;
     }
+
     public function get($request,array $option)
     {
         $connect = $this->connect();

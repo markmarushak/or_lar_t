@@ -30,12 +30,17 @@ class HomeController extends Controller
     {
 
       $api = new SettingsApiController();
-      $report = $api->getReport(['groupBy'=>'campaign'],date('Y-m-d'),date('Y-m-d',strtotime(date('Y-m-d').'+1 days')));
+      if ($api->connect())
+      {
+          $report = $api->getReport(['groupBy'=>'campaign'],date('Y-m-d'),date('Y-m-d',strtotime(date('Y-m-d').'+1 days')));
       $total = $report['totals'];
         return view('home',[
             'total' => $total,
             'report' => $report
         ]);
+      }else {
+          return view('settings.api');
+      }
     }
 
     public function setTimeSentEmail()
