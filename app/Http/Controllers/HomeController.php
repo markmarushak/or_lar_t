@@ -29,9 +29,12 @@ class HomeController extends Controller
     public function index()
     {
 
-      $api = new SettingsApiController();
-      $report = $api->getReport(['groupBy'=>'campaign'],date('Y-m-d'),date('Y-m-d',strtotime(date('Y-m-d').'+1 days')));
-      $total = $report['totals'];
+      //$api = new SettingsApiController();
+        //$report = $api->getReport(['groupBy'=>'campaign'],date('Y-m-d'),date('Y-m-d',strtotime(date('Y-m-d').'+1 days')));
+        //$total = $report['totals'];
+
+        $total = 10;
+        $report = 10;
         return view('home',[
             'total' => $total,
             'report' => $report
