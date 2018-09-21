@@ -56,6 +56,15 @@ class SettingsApiController extends Controller
         return $result;
     }
 
+    public function post($request,array $option)
+    {
+        $connect = $this->apiConnect();
+        $req = $connect->post($request,$option);
+        $result = $req->getData();
+        $result = json_decode(json_encode($result),true);
+        return $result;
+    }
+
     /**
      * Get function only report with option [campaign,offers,lander, flows, Traffic source, Affiliate] ....
      * option = ['groupBy'=>'campaign']----|Example

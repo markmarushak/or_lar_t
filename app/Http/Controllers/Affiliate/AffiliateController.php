@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Affiliate;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Settings\API\SettingsApiController;
 use App\Services\ProjectService;
+use Illuminate\Http\Request;
 use MadnessCODE\Voluum\Auth\PasswordCredentials;
 use MadnessCODE\Voluum\Client\API;
 
@@ -66,6 +67,11 @@ class AffiliateController extends Controller
     public function add()
     {
         return view('affiliate.compaigns-add');
+    }
+
+    public function ajaxCompaigns(Request $request = null)
+    {
+
     }
 
 }

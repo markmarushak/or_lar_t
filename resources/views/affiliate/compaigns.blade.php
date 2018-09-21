@@ -11,11 +11,45 @@
         .wrap::-webkit-scrollbar{
             display: none;
         }
+        .block-scroll tr,.block-scroll td {transition: all .5s;}
+        .block-scroll tr:hover {
+            background: #f2f3f8;
+        }
+        .block-scroll td:hover {
+            background: #2c2e3e;
+            color: #fff;
+            cursor: pointer;
+        }
     </style>
     <div class="m-portlet m-portlet--mobile">
         <div class="m-portlet__body">
             <div class="container text-center" style="width: 100%">
                 <div id="spinner" class="m-loader m-loader--success m-loader--lg col-md-6" style="margin-top: 50px; width: 30px; display: none;"></div>
+            </div>
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                <div class="btn-group" role="group">
+                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Limit
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <a class="dropdown-item" href="#">50</a>
+                        <a class="dropdown-item" href="#">100</a>
+                        <a class="dropdown-item" href="#">200</a>
+                        <a class="dropdown-item" href="#">500</a>
+                        <a class="dropdown-item" href="#">1000</a>
+                    </div>
+                </div>
+                <div class="btn-group" role="group">
+                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        status
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <a class="dropdown-item" href="#">All</a>
+                        <a class="dropdown-item" href="#">Archived</a>
+                        <a class="dropdown-item" href="#">With traffic</a>
+                        <a class="dropdown-item" href="#">Active</a>
+                    </div>
+                </div>
             </div>
             <div class="wrap">
                 <div class="block-scroll">
@@ -71,5 +105,7 @@
             </div>
         </div>
     </div>
+
+    {{ Html::script('js/campaigns.js') }}
 
 @endsection
