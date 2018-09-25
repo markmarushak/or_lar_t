@@ -53,6 +53,13 @@ Route::group(['namespace' => 'Payouts', 'prefix' => 'payouts-service', 'middlewa
 //Settings
 Route::group(['namespace' => 'Settings', 'prefix' => 'settings-service', 'middleware' => 'auth'], function(){
     Route::get('/', 'SettingsController@index')->name('settings');
+
+    Route::get('/api', 'SettingsController@api')->name('settings-api');
+
+
+    Route::group(['prefix'=>'api','namespace' => 'API'], function (){
+        Route::post('/send', 'SettingsApiController@connect')->name('settings');
+    });
 });
 
 //Support
@@ -65,7 +72,12 @@ Route::group(['namespace' => 'Support', 'prefix' => 'support-service', 'middlewa
 Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'middleware' => 'auth'], function(){
 
     Route::get('/', 'AffiliateController@index')->name('affiliate-service');
-    Route::get('/compaigns', 'AffiliateController@compaigns')->name('compaigns');
+
+    Route::group(['prefix'=>'compaigns'], function (){
+        Route::get('/', 'AffiliateController@compaigns')->name('compaigns');
+        Route::post('/', 'AffiliateController@ajaxCompaigns')->name('compaigns');
+        Route::get('/add', 'AffiliateController@add')->name('compaigns-add');
+    });
 
     //affiliates-partners
     Route::group( ['prefix' => 'affiliates-partners'] , function() {
@@ -142,4 +154,9 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
         //Send Mail
         Route::get('/send', 'ProjectController@sendMail');
     });
+});
+
+
+Route::group(['namespace' => 'Test', 'prefix' => 'test-service', 'middleware' => 'auth'], function (){
+    Route::get('/', 'TestController@index')->name('test');
 });

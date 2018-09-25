@@ -86,8 +86,19 @@
                                 </ul>
                             </div>
                          </li>
+                        <li class="m-menu__item m-menu__item--submenu" id="hide_2" aria-haspopup="true" m-menu-submenu-toggles="hover">
+                            <a href="/affiliate-service/compaigns" class="m-menu__link m-menu__toggle" id="mini_prof_2">
+                                <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                    <span></span>
+                                </i>
+                                <span class="m-menu__link-text">
+                                    compaigns
+								</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
+
                 </li>
                 <li class="m-menu__item  m-menu__item--submenu " aria-haspopup="true" m-menu-submenu-toggle="hover">
                     <a href="{{route('affiliates-partners')}}" class="m-menu__link ">
@@ -136,14 +147,55 @@
 
                 </a>
             </li>
-            <li class="m-menu__item  m-menu__item--submenu " aria-haspopup="true" m-menu-submenu-toggle="hover">
-                <a href="{{route('settings')}}" class="m-menu__link ">
+            <li class="m-menu__item  m-menu__item--submenu" id="hide_1" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                <a href="javascript:;" class="m-menu__link m-menu__toggle" id="mini_prof_1">
                     <i class="m-menu__link-icon fa fa-wrench"></i>
                     <span class="m-menu__link-text">
-                                                Settings
-                                            </span>
-
+                        Settings
+                    </span>
+                    <i class="m-menu__ver-arrow la la-angle-right"></i>
                 </a>
+                <div class="m-menu__submenu">
+                    <span class="m-menu__arrow"></span>
+                    <ul class="m-menu__subnav">
+                        <li class="m-menu__item m-menu__item--submenu" id="hide_2" aria-haspopup="true" m-menu-submenu-toggles="hover">
+                            <a href="javascript:;" class="m-menu__link m-menu__toggle" id="mini_prof_2">
+                                <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                    <span></span>
+                                </i>
+                                <span class="m-menu__link-text">
+													Profile
+								</span>
+                                <i class="m-menu__ver-arrow la la-angle-right"></i>
+                            </a>
+                            <div class="m-menu__submenu ">
+                                <span class="m-menu__arrow"></span>
+                                <ul class="m-menu__subnav">
+                                    <li class="m-menu__item m-menu__item--submenu--active" aria-haspopup="true" m-menu-submenu-toggles="hover" id="menu_id">
+                                        <a href="/affiliate-service/email-bulk-split/data-filters-rules" id="mini_prof_3" class="m-menu__link m-menu__toggle">
+                                            <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                                <span></span>
+                                            </i>
+                                            <span class="m-menu__link-text">
+													Info
+								            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="m-menu__item m-menu__item--submenu" id="hide_2" aria-haspopup="true" m-menu-submenu-toggles="hover">
+                            <a href="/settings-service/api" class="m-menu__link m-menu__toggle" id="mini_prof_2">
+                                <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                    <span></span>
+                                </i>
+                                <span class="m-menu__link-text">
+                                    API
+								</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
             <li class="m-menu__item  m-menu__item--submenu " aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="{{route('support')}}" class="m-menu__link ">
