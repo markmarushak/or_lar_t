@@ -33,7 +33,7 @@ class HomeController extends Controller
       if ($api->connect())
       {
           $report = $api->getReport(['groupBy'=>'campaign'],date('Y-m-d'),date('Y-m-d',strtotime(date('Y-m-d').'+1 days')));
-      $total = $report['totals'];
+            $total = $report['totals'];
         return view('home',[
             'total' => $total,
             'report' => $report

@@ -23,7 +23,7 @@ class TestController extends Controller
         $to =date('Y-m-d',strtotime(date('Y-m-d').'+1 days'));
 
         $connect = new SettingsApiController();
-        $result = $connect->get('report/conversions',['columns'=>['ip'],'offset'=>50,'limit'=>300,'from'=>date('Y-m-d'),'to' => $to]);
+        $result = $connect->get('report/errors',['limit'=>100,'offset'=>200,'sort'=>'','direction'=>'ASC','from'=>date('Y-m-d'),'to' => $to]);
 //
 //        foreach ($result['columnMappings'] as $row)
 //        {
