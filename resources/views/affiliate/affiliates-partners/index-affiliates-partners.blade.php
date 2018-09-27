@@ -1,6 +1,8 @@
 @extends('layouts.admin.app')
 
 @section('content')
+
+    {{--{{ dd($cols) }}--}}
     <div class="m-portlet m-portlet--mobile">
         <div class="m-portlet__body">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">

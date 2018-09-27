@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class TabName extends Model
 {
@@ -13,10 +14,16 @@ class TabName extends Model
 
     public function baseContent()
     {
-        foreach ($this->tab_name as $tab){
-            TabName::create([
-                'name' => $tab
-            ]);
+        $db = DB::table('tab_name')->select('*')->get();
+        $db = json_decode(json_encode($db), True);
+        if(empty($db)){
+            foreach ($this->tab_name as $tab){
+                TabName::create([
+                    'name' => $tab,
+                    'parent_id' => 0
+                ]);
+            }
         }
+
     }
 }

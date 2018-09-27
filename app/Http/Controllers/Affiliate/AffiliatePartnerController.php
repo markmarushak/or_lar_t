@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Affiliate;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Settings\API\SettingsApiController;
 use Illuminate\Http\Request;
 use App\Services\AffiliateService;
 
@@ -20,9 +21,15 @@ class AffiliatePartnerController extends Controller
 
     public function index()
     {
+        $prefix = 'affiliate-network';
+        $connect = new SettingsApiController();
+        $result = $connect->getReport(['groupBy'=>$prefix],'today');
+        $cols = $connect->rows('Affiliate network');
         return view('affiliate.affiliates-partners.index-affiliates-partners',
             [
                 'menu' => 'affiliate-service',
+                'cols' =>$cols,
+                'result' => $result
             ]
         );
     }

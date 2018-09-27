@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 use MadnessCODE\Voluum\Auth\PasswordCredentials;
 
 
@@ -74,15 +75,50 @@ class SettingsApiController extends Controller
      * @param array $option
      * @return mixed
      */
-    public function getReport(array $option, $timeFrom, $timeTo)
+    public function getReport(array $option, $timeFrom)
     {
         $connect = $this->apiConnect();
-        $option['to'] = $timeTo;
-        $option['from'] = $timeFrom;
+
+        $from = [
+          'today' => $this->timeDate('0','+'),
+          'yesterday' => $this->timeDate('1','-'),
+            //TODO:доделать список времени
+        ];
+        $option['to'] = $this->timeDate('1','+');
+        $option['from'] = $from[$timeFrom];
         $req = $connect->get('report',$option);
         $result = $req->getData();
         $result = json_decode(json_encode($result),true);
         return $result;
+    }
+
+    public function rows($group_name)
+    {
+        $group = DB::table('tab_name')
+            ->join('tab_description', function ($join) use ($group_name){
+
+               $join->on('tab_name.id','=','tab_description.tab_id')
+                    ->where('tab_name.name','like', $group_name.'%');
+            })
+            ->select('tab_description.key','tab_description.label','tab_description.type','tab_description.status')
+            ->get();
+        $group = json_decode(json_encode($group),true);
+        $cols = [];
+        $type = ['string','uuid','long','double'];
+        foreach ($type as $types){
+            foreach ($group as $g){
+                if (strcasecmp($g['type'],$types) == 0)
+                    $cols[] = $g;
+            }
+        }
+
+
+        return $cols;
+    }
+
+    public function timeDate($number,$switchTime)
+    {
+        return date('Y-m-d',strtotime(date('Y-m-d').$switchTime.$number.' days'));
     }
 
     public function create(array $data)

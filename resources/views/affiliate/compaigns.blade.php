@@ -1,6 +1,14 @@
 @extends('layouts.admin.app')
 @section('content')
     <style>
+        .hided {
+            opacity: .5;
+        }
+        .block-scroll tr, .block-scroll td {
+            max-width: 200px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
         .wrap {
             max-width: 100%;
             overflow: scroll;
@@ -59,7 +67,7 @@
                         <thead>
                         <tr>
 
-                            @foreach($column as $col)
+                            @foreach($cols as $col)
                                 <th data-field="Website" class="m-datatable__cell m-datatable__cell--sort">
                                     {{ $col['label'] }}
                                 </th>
@@ -67,28 +75,15 @@
 
                         </tr>
                         </thead>
-
-                        @foreach($rows as $row)
-                            <tr>
-                                <td>{{ $row['campaignName'] }}</td>
-                                <td>{{ $row['campaignId'] }}</td>
-                                <td>Private: {{ $row['campaignWorkspaceName'] }}</td>
-                                <td>{{ $row['visits'] }}</td>
-                                <td>{{ $row['clicks'] }}</td>
-                                <td>{{ $row['conversions'] }}</td>
-                                <td>{{ $row['revenue'] }}</td>
-                                <td>{{ $row['cost'] }}</td>
-                                <td>{{ $row['profit'] }}</td>
-                                <td>{{ $row['cpv'] }}</td>
-                                <td>{{ $row['ctr'] }}</td>
-                                <td>{{ $row['cr'] }}</td>
-                                <td>{{ $row['cv'] }}</td>
-                                <td>{{ $row['roi'] }}</td>
-                                <td>{{ $row['epv'] }}</td>
-                                <td>{{ $row['epc'] }}</td>
-                                <td>{{ $row['ap'] }}</td>
-                            </tr>
-                        @endforeach
+                            @foreach($result['rows'] as $rows)
+                                <tr>
+                                @foreach($cols as $col)
+                                    <td>
+                                        {{ $rows[$col['key']] }}
+                                    </td>
+                                @endforeach
+                                </tr>
+                            @endforeach
 
                     </table>
                 </div>
@@ -107,5 +102,20 @@
     </div>
 
     {{ Html::script('js/campaigns.js') }}
+
+    <script>
+        $(document).ready(function () {
+
+            $('td').click(function () {
+               $('td').addClass('hided');
+               $(this).removeClass('hided');
+               $(this).mouseleave(function () {
+                  $('td').removeClass('hided');
+               });
+            });
+
+        });
+
+    </script>
 
 @endsection

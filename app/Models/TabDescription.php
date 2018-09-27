@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TabDescription extends Model
 {
     protected $table = 'tab_description';
-    protected $fillable = ['user_id','key','label','type'];
+    protected $fillable = ['tab_id','key','label','type','status'];
     public $timestamps = false;
     public $tab_descriptions =[
         'Campaign'           => [" Campaign", " Campaign ID", " External campaign ID", " Campaign URL", " Campaign country tag", " Campaign workspace", " Campaign workspace ID", " Impressions", " Visits", " Clicks", " Conversions", " Revenue", " Cost", " Profit", " CPV", " ICTR", " CTR", " CR", " CV", " ROI", " EPV", " EPC", " AP", " Errors", " Postback URL", " Redirect", " Cost model", " CPA", " CPC", " CPM"],
@@ -31,29 +31,4 @@ class TabDescription extends Model
         'Browsers version'   => [" Browser version", " Impressions", " Visits", " Clicks", " Conversions", " Revenue", " Cost", " Profit", " CPV", " ICTR", " CTR", " CR", " CV", " ROI", " EPV", " EPC", " AP", " Errors"],
         'Error log'          => ['Time', 'Campaign', 'Category', 'Details', 'URL']
     ];
-
-    public function allTabDescription()
-    {
-        $columns = $this->tab_descriptions;
-        $cols = [];
-        foreach ($columns as $column => $group)
-        {
-            $groupBy = trim($column);
-            $to =date('Y-m-d',strtotime(date('Y-m-d').'+1 days'));
-            $connect = new SettingsApiController();
-            $result = $connect->getReport(['groupBy'=>$groupBy,'columns'=>'cost' ],date('Y-m-d'), $to);
-            foreach ($result['columnMappings'] as $row)
-            {
-                foreach ($group as $col)
-                {
-                    $col = trim($col);
-                    $row['label'] = trim($row['label']);
-                    if (strcasecmp($col, $row['label']) == 0){
-                        $cols[] = $row;
-                    }
-                }
-            }
-        }
-        return true;
-    }
 }
