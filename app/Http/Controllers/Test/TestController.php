@@ -24,7 +24,6 @@ class TestController extends Controller
         $result = json_decode(json_encode(DB::table('migrations')->select('id','migration')->get()),true);
 
 
-
         return view('test.index',[
             'list' => $result,
         ]);

@@ -9,16 +9,21 @@
             overflow: hidden;
             white-space: nowrap;
         }
+        .block-scroll tr.string, .block-scroll td.string {
+            max-width: max-content;
+        }
+        .block-scroll tr.double, .block-scroll td.double {
+            max-width: min-content;
+        }
         .wrap {
             max-width: 100%;
-            overflow: scroll;
+            overflow-y: scroll;
+            max-height: 300px;
         }
         .block-scroll {
             min-width: max-content;
         }
-        .wrap::-webkit-scrollbar{
-            display: none;
-        }
+
         .block-scroll tr,.block-scroll td {transition: all .5s;}
         .block-scroll tr:hover {
             background: #f2f3f8;
@@ -68,9 +73,20 @@
                         <tr>
 
                             @foreach($cols as $col)
-                                <th data-field="Website" class="m-datatable__cell m-datatable__cell--sort">
-                                    {{ $col['label'] }}
-                                </th>
+
+                                @if(strcasecmp($col['key'],'campaignName') == 0)
+                                    <th class="string">
+                                        {{ $col['label'] }}
+                                    </th>
+                                @elseif(strcasecmp($col['type'],'double') == 0)
+                                    <th class="double">
+                                        {{ $col['label'] }}
+                                    </th>
+                                @else
+                                    <th>
+                                        {{ $col['label'] }}
+                                    </th>
+                                @endif
                             @endforeach
 
                         </tr>
@@ -78,9 +94,23 @@
                             @foreach($result['rows'] as $rows)
                                 <tr>
                                 @foreach($cols as $col)
-                                    <td>
-                                        {{ $rows[$col['key']] }}
-                                    </td>
+                                    @if(strcasecmp($col['key'],'campaignName') == 0)
+                                        <td class="string">
+                                            {{ $rows[$col['key']] }}
+                                        </td>
+                                    @elseif(strcasecmp($col['type'],'double') == 0)
+                                        <td class="double">
+                                            {{ $rows[$col['key']] }}
+                                        </td>
+                                    @elseif(strcasecmp($col['type'],'long') == 0)
+                                        <td class="double">
+                                            {{ $rows[$col['key']] }}
+                                        </td>
+                                    @else
+                                        <td>
+                                            {{ $rows[$col['key']] }}
+                                        </td>
+                                    @endif
                                 @endforeach
                                 </tr>
                             @endforeach
