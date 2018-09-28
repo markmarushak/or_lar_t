@@ -21,10 +21,18 @@ class TestController extends Controller
 
     public function index(Request $request = null)
     {
+        $result = json_decode(json_encode(DB::table('migrations')->select('id','migration')->get()),true);
+//          DB::table('migrations')->where('id','=','15')->delete();
+//          DB::table('migrations')->where('id','=','16')->delete();
+//          DB::table('migrations')->where('id','=','17')->delete();
+//          DB::table('migrations')->where('id','=','15')->delete();
+//        Schema::drop('tab_name');
+//        Schema::drop('tab_description');
 
 
-
-        return view('test.index',['todo']);
+        return view('test.index',[
+            'list' => $result,
+        ]);
     }
 
 

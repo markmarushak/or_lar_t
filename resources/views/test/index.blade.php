@@ -4,7 +4,13 @@
 
 @section('content')
 
-   <h1>Cleared</h1>
+    <ul>
+        @foreach($list as $l)
+            <li>
+                {{ $l['id'] }} | {{ $l['migration'] }}
+            </li>
+        @endforeach
+    </ul>
 
 @endsection
 
