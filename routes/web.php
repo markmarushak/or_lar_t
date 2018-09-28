@@ -62,6 +62,7 @@ Route::group(['namespace' => 'Settings', 'prefix' => 'settings-service', 'middle
     });
 
     Route::get('/table-template', 'SettingsController@teamplateTable')->name('table-template');
+    Route::post('/table-template-update', 'SettingsController@teamplateUpdate')->name('table-template');
 
 });
 

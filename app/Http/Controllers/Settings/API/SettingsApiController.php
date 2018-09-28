@@ -170,10 +170,10 @@ class SettingsApiController extends Controller
                         'status' => 0
                     ]);
                 }
+                DB::table('tab_name')->where('id','=',$tab_id)->update(['status'=>'load']);
                 return true;
             }
         }
-        echo 'table already exists!';
     }
 
     public function create(array $data)

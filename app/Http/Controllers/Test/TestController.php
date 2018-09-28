@@ -21,20 +21,10 @@ class TestController extends Controller
 
     public function index(Request $request = null)
     {
-        if(!empty($request->query())){
-            $db = new TabDescription();
-            $tabs_name = $db->tab_descriptions;
-            $tab_name[$request->input('tab')] = $tabs_name[$request->input('tab')];
-            $this->allTabDescription($tab_name);
-        }
-        $result = json_decode(json_encode(DB::table('tab_name')->select('name')->get()),true);
-        if (empty($result))
-        {
-            $tab_name = new TabName();
-            $tab_name->baseContent();
-            $result = json_decode(json_encode(DB::table('tab_name')->select('name')->get()),true);
-        }
+        $result = json_decode(json_encode(DB::table('migrations')->select('id','migration')->get()),true);
 
+//        Schema::drop('tab_name');
+//        Schema::drop('tab_description');
 
 
         return view('test.index',[

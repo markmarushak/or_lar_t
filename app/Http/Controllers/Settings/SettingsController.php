@@ -35,10 +35,27 @@ class SettingsController extends Controller
             $allTab = new SettingsApiController();
             $allTab->allTabDescription($tab_name);
         }
-        $result = json_decode(json_encode(DB::table('tab_name')->select('name')->get()),true);
+        $result = json_decode(json_encode(DB::table('tab_name')->select('name','status')->get()),true);
         if (empty($result))
         {
             $tab_name = new TabName();
+            $tab_name->baseContent();
+            $result = json_decode(json_encode(DB::table('tab_name')->select('name')->get()),true);
+        }
+
+        return view('settings.table-template',[
+            'list' => $result
+        ]);
+    }
+
+    public function teamplateUpdate()
+    {
+        $tab_name = new TabName();
+        $tab_name->updateBaseContent();
+
+        $result = json_decode(json_encode(DB::table('tab_name')->select('name','status')->get()),true);
+        if (empty($result))
+        {
             $tab_name->baseContent();
             $result = json_decode(json_encode(DB::table('tab_name')->select('name')->get()),true);
         }
