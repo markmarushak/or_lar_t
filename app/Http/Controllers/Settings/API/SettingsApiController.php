@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Settings\API;
 
 use App\Models\API;
 use App\Http\Controllers\Controller;
+use App\Models\TabDescription;
+use App\Models\TabName;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -122,6 +124,56 @@ class SettingsApiController extends Controller
     public function timeDate($number,$switchTime)
     {
         return date('Y-m-d',strtotime(date('Y-m-d').$switchTime.$number.' days'));
+    }
+
+    public function allTabDescription($tab_name)
+    {
+        $columns = $tab_name;
+        $cols = [];
+        foreach ($columns as $column => $group)
+        {
+            $groupBy = trim($column);
+            $db = $columns[$groupBy][0];
+            $db = trim($db);
+            $tab_id = DB::table('tab_name')->where('name', 'like', $db.'%')->select('id')->get();
+            $tab_id = json_decode(json_encode($tab_id),True);
+            if(empty($tab_id)){
+                $tab_name = new TabName();
+                $tab_name->baseContent();
+                $tab_id = DB::table('tab_name')->where('name', '=', $db)->select('id')->get();
+                $tab_id = json_decode(json_encode($tab_id),True);
+            }
+            $tab_id = $tab_id[0]['id'];
+
+            if(json_decode(json_encode(DB::table('tab_description')->where('tab_id','=',$tab_id)->select('id')->get()),true) == false)
+            {
+                $connect = new SettingsApiController();
+                $result = $connect->getReport(['groupBy'=>$groupBy,'columns'=>'cost' ],'today');
+                foreach ($result['columnMappings'] as $row)
+                {
+                    foreach ($group as $col)
+                    {
+                        $col = trim($col);
+                        $row['label'] = trim($row['label']);
+                        if (strcasecmp($col, $row['label']) == 0){
+                            $cols[] = $row;
+                        }
+                    }
+                }
+
+                foreach ($cols as $col){
+                    TabDescription::create([
+                        'tab_id' => $tab_id,
+                        'key' => $col['key'],
+                        'label' => $col['label'],
+                        'type' => $col['type'],
+                        'status' => 0
+                    ]);
+                }
+                return true;
+            }
+        }
+        echo 'table already exists!';
     }
 
     public function create(array $data)

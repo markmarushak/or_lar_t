@@ -164,10 +164,22 @@ Breadcrumbs::register('settings-api', function($breadcrumbs)
     $breadcrumbs->push('API', route('settings-api'));
 });
 
+Breadcrumbs::register('table-template', function($breadcrumbs)
+{
+    $breadcrumbs->parent('settings');
+    $breadcrumbs->push('Table-Template', route('table-template'));
+});
+
 //Support
 Breadcrumbs::register('support', function($breadcrumbs)
 {
     $breadcrumbs->push('Support', route('support'));
+});
+
+//Test
+Breadcrumbs::register('test', function($breadcrumbs)
+{
+    $breadcrumbs->push('Test-page developers', route('test'));
 });
 
 ?>

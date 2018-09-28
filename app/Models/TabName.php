@@ -10,7 +10,7 @@ class TabName extends Model
     protected $table = 'tab_name';
     protected $fillable = ['name'];
     public $timestamps = false;
-    private $tab_name = ["Dashboard", "Campaigns", "Offers", "Landers", "Flows", "Traffic sources", "Affiliate networks", "Conversions", "Country", "Connection", "Connection Type", "ISP / Carrier", "Mobile Carrier", "Devices", "Device types", "Brands", "Models", "OS", "OS version", "Browsers", "Browsers version", "Error log"];
+    private $tab_name = ["Campaign", "Offer", "Lander", "Flow", "Traffic source", "Affiliate network", "Conversion", "Country", "Connection", "Connection Type", "ISP / Carrier", "Mobile Carrier", "Device", "Device type", "Brand", "Model", "OS", "OS version", "Browser", "Browser version", "Error log"];
 
     public function baseContent()
     {

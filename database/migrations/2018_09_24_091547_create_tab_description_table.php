@@ -19,6 +19,7 @@ class CreateTabDescriptionTable extends Migration
            $table->string('key');
            $table->string('label');
            $table->string('type');
+           $table->integer('status')->default(0);
         });
     }
 

@@ -194,6 +194,16 @@
 								</span>
                             </a>
                         </li>
+                        <li class="m-menu__item m-menu__item--submenu" id="hide_2" aria-haspopup="true" m-menu-submenu-toggles="hover">
+                            <a href="/settings-service/table-template" class="m-menu__link m-menu__toggle" id="mini_prof_2">
+                                <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                    <span></span>
+                                </i>
+                                <span class="m-menu__link-text">
+                                    Table Template
+								</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>

@@ -60,6 +60,9 @@ Route::group(['namespace' => 'Settings', 'prefix' => 'settings-service', 'middle
     Route::group(['prefix'=>'api','namespace' => 'API'], function (){
         Route::post('/send', 'SettingsApiController@connect')->name('settings');
     });
+
+    Route::get('/table-template', 'SettingsController@teamplateTable')->name('table-template');
+
 });
 
 //Support
@@ -155,7 +158,6 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
         Route::get('/send', 'ProjectController@sendMail');
     });
 });
-
 
 Route::group(['namespace' => 'Test', 'prefix' => 'test-service', 'middleware' => 'auth'], function (){
     Route::get('/', 'TestController@index')->name('test');
