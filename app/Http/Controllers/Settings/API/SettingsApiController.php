@@ -103,6 +103,9 @@ class SettingsApiController extends Controller
             ->select('tab_description.key','tab_description.label','tab_description.type','tab_description.status')
             ->get();
         $group = json_decode(json_encode($group),true);
+        if($group){
+
+        }
         $cols = [];
         $type = ['string','uuid','long','double'];
         foreach ($type as $types){

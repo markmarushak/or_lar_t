@@ -19,15 +19,15 @@ class TestController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $to =date('Y-m-d',strtotime(date('Y-m-d').'+1 days'));
         $db = new TabDescription();
         $tabs_name = $db->tab_descriptions;
-        $tab_name['Campaign'] = $tabs_name['Campaign'];
+        $tab_name[$request->input('tab')] = $tabs_name[$request->input('tab')];
         $this->allTabDescription($tab_name);
         $connect = new SettingsApiController();
-        $result = $connect->getReport(['groupBy'=>'affiliate-network','columns'=>'cost'],'today');
+        $result = $connect->getReport(['groupBy'=>$request->input('tab'),'columns'=>'cost'],'today');
 
         return view('test.index',[
             'row' => $result,
@@ -72,7 +72,8 @@ class TestController extends Controller
                'tab_id' => $tab_id,
                'key' => $col['key'],
                'label' => $col['label'],
-               'type' => $col['type']
+               'type' => $col['type'],
+               'status' => 0
             ]);
         }
         return true;
