@@ -22,10 +22,7 @@ class TestController extends Controller
     public function index(Request $request = null)
     {
         $result = json_decode(json_encode(DB::table('migrations')->select('id','migration')->get()),true);
-          DB::table('migrations')->where('id','=','19')->delete();
-          DB::table('migrations')->where('id','=','20')->delete();
-        Schema::drop('tab_name');
-        Schema::drop('tab_description');
+
 
 
         return view('test.index',[
