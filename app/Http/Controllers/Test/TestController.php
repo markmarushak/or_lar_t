@@ -21,12 +21,7 @@ class TestController extends Controller
 
     public function index(Request $request = null)
     {
-          DB::table('migrations')->where('id','=','15')->delete();
-          DB::table('migrations')->where('id','=','16')->delete();
-          DB::table('migrations')->where('id','=','17')->delete();
-          DB::table('migrations')->where('id','=','18')->delete();
-        Schema::drop('tab_name');
-        Schema::drop('tab_description');
+
 
 
         return view('test.index',['todo']);
