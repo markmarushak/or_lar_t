@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateTabName extends Migration
+class TableTabName extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class UpdateTabName extends Migration
      */
     public function up()
     {
-        Schema::table('tab_name', function (Blueprint $table){
-            $table->integer('parent_id');
+        Schema::table('tab_name',function (Blueprint $table){
+           $table->string('status');
         });
     }
 

@@ -1,21 +1,18 @@
-<h1> Test</h1>
+@extends('.layouts.admin.app')
 
-<pre><?= print_r($row,1)?></pre>
-{{--<table>--}}
-    {{--<tr>--}}
-        {{--@foreach($th as $t)--}}
-            {{--<th>--}}
-                {{--{{ $t['label'] }}--}}
-            {{--</th>--}}
-        {{--@endforeach--}}
-    {{--</tr>--}}
-    {{--@foreach($row as $r)--}}
-        {{--<tr>--}}
-            {{--@foreach($th as $k)--}}
-                  {{--<td>{{ $r[$k['key']] }}</td>--}}
-            {{--@endforeach--}}
-        {{--</tr>--}}
-    {{--@endforeach--}}
-{{--</table>--}}
+
+
+@section('content')
+
+    <ul>
+        @foreach($list as $l)
+            <li>
+                {{ $l['id'] }} | {{ $l['migration'] }}
+            </li>
+        @endforeach
+    </ul>
+
+@endsection
+
 
 

@@ -35,25 +35,17 @@ class AffiliateController extends Controller
 
     public function compaigns()
     {
+        $prefix = 'campaign';
         $connect = new SettingsApiController();
-        $result = $connect->getReport(['groupBy'=>'campaign'],date('Y-m-d'),date('Y-m-d',strtotime(date('Y-m-d').'+ 1 days')));
+        $result = $connect->getReport(['groupBy'=>$prefix],'today');
+        $cols = $connect->rows('campaign');
 
-
-        $colum = $result['columnMappings'];
-        $rows = $result['rows'];
-
-        $src = [18,17,24,74,27,29,60,30,59,35,39,36,40,63,46,45,2];
-        $cols = [];
-        for ($i=0;$i<count($src);$i++){
-            $cols[] = $colum[$src[$i]];
-        }
 
 
         return view('affiliate.compaigns', [
             'menu' => 'affiliate-service',
             'result' => $result,
-            'column' => $cols,
-            'rows'  =>$rows
+            'cols'  =>$cols
         ]);
 
     }

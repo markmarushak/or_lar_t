@@ -16,6 +16,7 @@ class CreateTabNameTable extends Migration
         Schema::create('tab_name', function (Blueprint $table){
            $table->increments('id');
            $table->string('name');
+           $table->integer('parent_id')->default(0);
         });
     }
 

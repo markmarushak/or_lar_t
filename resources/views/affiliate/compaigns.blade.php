@@ -1,16 +1,29 @@
 @extends('layouts.admin.app')
 @section('content')
     <style>
+        .hided {
+            opacity: .5;
+        }
+        .block-scroll tr, .block-scroll td {
+            max-width: 200px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .block-scroll tr.string, .block-scroll td.string {
+            max-width: max-content;
+        }
+        .block-scroll tr.double, .block-scroll td.double {
+            max-width: min-content;
+        }
         .wrap {
             max-width: 100%;
-            overflow: scroll;
+            overflow-y: scroll;
+            max-height: 300px;
         }
         .block-scroll {
             min-width: max-content;
         }
-        .wrap::-webkit-scrollbar{
-            display: none;
-        }
+
         .block-scroll tr,.block-scroll td {transition: all .5s;}
         .block-scroll tr:hover {
             background: #f2f3f8;
@@ -59,36 +72,48 @@
                         <thead>
                         <tr>
 
-                            @foreach($column as $col)
-                                <th data-field="Website" class="m-datatable__cell m-datatable__cell--sort">
-                                    {{ $col['label'] }}
-                                </th>
+                            @foreach($cols as $col)
+
+                                @if(strcasecmp($col['key'],'campaignName') == 0)
+                                    <th class="string">
+                                        {{ $col['label'] }}
+                                    </th>
+                                @elseif(strcasecmp($col['type'],'double') == 0)
+                                    <th class="double">
+                                        {{ $col['label'] }}
+                                    </th>
+                                @else
+                                    <th>
+                                        {{ $col['label'] }}
+                                    </th>
+                                @endif
                             @endforeach
 
                         </tr>
                         </thead>
-
-                        @foreach($rows as $row)
-                            <tr>
-                                <td>{{ $row['campaignName'] }}</td>
-                                <td>{{ $row['campaignId'] }}</td>
-                                <td>Private: {{ $row['campaignWorkspaceName'] }}</td>
-                                <td>{{ $row['visits'] }}</td>
-                                <td>{{ $row['clicks'] }}</td>
-                                <td>{{ $row['conversions'] }}</td>
-                                <td>{{ $row['revenue'] }}</td>
-                                <td>{{ $row['cost'] }}</td>
-                                <td>{{ $row['profit'] }}</td>
-                                <td>{{ $row['cpv'] }}</td>
-                                <td>{{ $row['ctr'] }}</td>
-                                <td>{{ $row['cr'] }}</td>
-                                <td>{{ $row['cv'] }}</td>
-                                <td>{{ $row['roi'] }}</td>
-                                <td>{{ $row['epv'] }}</td>
-                                <td>{{ $row['epc'] }}</td>
-                                <td>{{ $row['ap'] }}</td>
-                            </tr>
-                        @endforeach
+                            @foreach($result['rows'] as $rows)
+                                <tr>
+                                @foreach($cols as $col)
+                                    @if(strcasecmp($col['key'],'campaignName') == 0)
+                                        <td class="string">
+                                            {{ $rows[$col['key']] }}
+                                        </td>
+                                    @elseif(strcasecmp($col['type'],'double') == 0)
+                                        <td class="double">
+                                            {{ $rows[$col['key']] }}
+                                        </td>
+                                    @elseif(strcasecmp($col['type'],'long') == 0)
+                                        <td class="double">
+                                            {{ $rows[$col['key']] }}
+                                        </td>
+                                    @else
+                                        <td>
+                                            {{ $rows[$col['key']] }}
+                                        </td>
+                                    @endif
+                                @endforeach
+                                </tr>
+                            @endforeach
 
                     </table>
                 </div>
@@ -107,5 +132,20 @@
     </div>
 
     {{ Html::script('js/campaigns.js') }}
+
+    <script>
+        $(document).ready(function () {
+
+            $('td').click(function () {
+               $('td').addClass('hided');
+               $(this).removeClass('hided');
+               $(this).mouseleave(function () {
+                  $('td').removeClass('hided');
+               });
+            });
+
+        });
+
+    </script>
 
 @endsection
