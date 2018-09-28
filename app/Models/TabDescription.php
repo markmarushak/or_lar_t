@@ -32,28 +32,13 @@ class TabDescription extends Model
         'Error log'          => ['Time', 'Campaign', 'Category', 'Details', 'URL']
     ];
 
-    public function allTabDescription()
+    /**
+     * @return array
+     */
+    public function getTabDescriptions()
     {
-        $columns = $this->tab_descriptions;
-        $cols = [];
-        foreach ($columns as $column => $group)
-        {
-            $groupBy = trim($column);
-            $to =date('Y-m-d',strtotime(date('Y-m-d').'+1 days'));
-            $connect = new SettingsApiController();
-            $result = $connect->getReport(['groupBy'=>$groupBy,'columns'=>'cost' ],date('Y-m-d'), $to);
-            foreach ($result['columnMappings'] as $row)
-            {
-                foreach ($group as $col)
-                {
-                    $col = trim($col);
-                    $row['label'] = trim($row['label']);
-                    if (strcasecmp($col, $row['label']) == 0){
-                        $cols[] = $row;
-                    }
-                }
-            }
-        }
-        return true;
+        return $this->tab_descriptions;
     }
+
+
 }
