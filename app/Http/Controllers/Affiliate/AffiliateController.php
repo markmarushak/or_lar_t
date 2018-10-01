@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Settings\API\SettingsApiController;
 use App\Services\ProjectService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 use MadnessCODE\Voluum\Auth\PasswordCredentials;
 use MadnessCODE\Voluum\Client\API;
 
@@ -37,12 +39,12 @@ class AffiliateController extends Controller
     {
         $prefix = 'campaign';
         $connect = new SettingsApiController();
-        $result = $connect->getReport(['groupBy'=>$prefix],'today');
+        $result = $connect->getReport(['groupBy'=>$prefix,'limit'=> 10, 'offset'=> 5],'today');
         $cols = $connect->rows('campaign');
 
 
 
-        return view('affiliate.compaigns', [
+        return view('affiliate.campaign.campaigns', [
             'menu' => 'affiliate-service',
             'result' => $result,
             'cols'  =>$cols
@@ -61,9 +63,23 @@ class AffiliateController extends Controller
         return view('affiliate.compaigns-add');
     }
 
-    public function ajaxCompaigns(Request $request = null)
+    public function ajaxCompaigns(Request $request)
     {
+        if($request->isMethod('post')){
+            $update = $request->input('data');
+            foreach ($update as $col => $value)
+            {
+                DB::table('tab_description')->where('id','=',$col)->update(['status'=>$value['status']]);
+            }
+            $prefix = 'campaign';
+            $connect = new SettingsApiController();
+            $result = $connect->getReport(['groupBy'=>$prefix,'limit'=> 10, 'offset'=> 5],'today');
+            $cols = $connect->rows($prefix);
+        }
 
+        return view('affiliate.campaign.table',[
+            'result'=> $result,
+            'cols'=> $cols
+        ]);
     }
-
 }

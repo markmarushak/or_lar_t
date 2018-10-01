@@ -102,7 +102,7 @@ class SettingsApiController extends Controller
                $join->on('tab_name.id','=','tab_description.tab_id')
                     ->where('tab_name.name','like', $group_name.'%');
             })
-            ->select('tab_description.key','tab_description.label','tab_description.type','tab_description.status')
+            ->select('tab_description.id','tab_description.key','tab_description.label','tab_description.type','tab_description.status')
             ->get();
         $group = json_decode(json_encode($group),true);
         if($group){
