@@ -79,7 +79,7 @@ Route::group(['namespace' => 'Affiliate', 'prefix' => 'affiliate-service', 'midd
 
     Route::group(['prefix'=>'compaigns'], function (){
         Route::get('/', 'AffiliateController@compaigns')->name('compaigns');
-        Route::post('/', 'AffiliateController@ajaxCompaigns')->name('compaigns');
+        Route::post('/ajax', 'AffiliateController@ajaxCompaigns');
         Route::get('/add', 'AffiliateController@add')->name('compaigns-add');
     });
 

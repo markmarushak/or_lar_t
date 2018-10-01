@@ -21,7 +21,8 @@ class TestController extends Controller
 
     public function index(Request $request = null)
     {
-        $result = json_decode(json_encode(DB::table('migrations')->select('id','migration')->get()),true);
+        $connect = new SettingsApiController();
+        $result = $connect->get('report/errors',['from'=>'2018-09-28','to'=>'2018-09-29','limit'=>25]);
 
         return view('test.index',[
             'list' => $result,
