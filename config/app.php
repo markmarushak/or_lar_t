@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://admin.orbitleads.com'),
+    'url' => env('APP_URL', 'https://admin.orbitleads.com'),
 
     /*
     |--------------------------------------------------------------------------
