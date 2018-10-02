@@ -52,32 +52,42 @@
         <div class="m-portlet__body">
 
             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                <div class="btn-group" role="group">
-                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Limit
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <a class="dropdown-item" href="#">50</a>
-                        <a class="dropdown-item" href="#">100</a>
-                        <a class="dropdown-item" href="#">200</a>
-                        <a class="dropdown-item" href="#">500</a>
-                        <a class="dropdown-item" href="#">1000</a>
-                    </div>
+                {{--<div class="btn-group" role="group">--}}
+                    {{--<button id="btnGroupDrop1" data-param="limit" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+                        {{--Limit--}}
+                    {{--</button>--}}
+                    {{--<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">--}}
+                        {{----}}
+                    {{--</div>    --}}
+                {{--</div>--}}
+                {{--<div class="btn-group" role="group">--}}
+                    {{--<button id="btnGroupDrop1" data-param="include" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+                        {{--status--}}
+                    {{--</button>--}}
+                    {{--<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">--}}
+
+
+                    {{--</div>--}}
+                {{--</div>--}}
+                <div class="form-group">
+                    <select name="time" id="time" class="form-control">
+
+                    </select>
                 </div>
-                <div class="btn-group" role="group">
-                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        status
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <a class="dropdown-item" href="#">All</a>
-                        <a class="dropdown-item" href="#">Archived</a>
-                        <a class="dropdown-item" href="#">With traffic</a>
-                        <a class="dropdown-item" href="#">Active</a>
-                    </div>
+                <div class="form-group">
+                    <select name="limit" id="limit" class="form-control">
+                        <option value="0">choice limit</option>
+                    </select>
                 </div>
-                <div class="btn-group" role="group">
-                    <button id="control-col" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        column control
+                <div class="form-group">
+                    <select name="include" id="include" class="form-control">
+
+                    </select>
+                </div>
+                <div class="dropdown">
+
+                    <button id="control-col" class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Control column
                     </button>
                     <div class="dropdown-menu control-cols" aria-labelledby="control-col">
                         @foreach($cols as $col)

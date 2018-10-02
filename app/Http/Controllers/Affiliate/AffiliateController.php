@@ -39,7 +39,7 @@ class AffiliateController extends Controller
     {
         $prefix = 'campaign';
         $connect = new SettingsApiController();
-        $result = $connect->getReport(['groupBy'=>$prefix,'limit'=> 10, 'offset'=> 5],'today');
+        $result = $connect->getReport(['groupBy'=>$prefix,'limit'=> 10, 'offset'=> 5,'time'=>'today']);
         $cols = $connect->rows('campaign');
 
 
@@ -66,15 +66,20 @@ class AffiliateController extends Controller
     public function ajaxCompaigns(Request $request)
     {
         if($request->isMethod('post')){
-            $update = $request->input('data');
-            foreach ($update as $col => $value)
-            {
-                DB::table('tab_description')->where('id','=',$col)->update(['status'=>$value['status']]);
+            if($request->input('column')){
+                $update = $request->input('column');
+                foreach ($update as $col => $value)
+                {
+                    DB::table('tab_description')->where('id','=',$col)->update(['status'=>$value['status']]);
+                }
             }
+            $data = $request->input('data');
             $prefix = 'campaign';
             $connect = new SettingsApiController();
-            $result = $connect->getReport(['groupBy'=>$prefix,'limit'=> 10, 'offset'=> 5],'today');
+            $result = $connect->getReport($data);
             $cols = $connect->rows($prefix);
+
+
         }
 
         return view('affiliate.campaign.table',[

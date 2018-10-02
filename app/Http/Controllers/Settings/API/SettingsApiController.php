@@ -77,7 +77,7 @@ class SettingsApiController extends Controller
      * @param array $option
      * @return mixed
      */
-    public function getReport(array $option, $timeFrom)
+    public function getReport(array $option)
     {
         $connect = $this->apiConnect();
 
@@ -87,7 +87,11 @@ class SettingsApiController extends Controller
             //TODO:доделать список времени
         ];
         $option['to'] = $this->timeDate('1','+');
-        $option['from'] = $from[$timeFrom];
+        if(isset($option['time'])){
+            $option['from'] = $from[$option['time']];
+        }else{
+            $option['from'] = $from['today'];
+        }
         $req = $connect->get('report',$option);
         $result = $req->getData();
         $result = json_decode(json_encode($result),true);
@@ -133,14 +137,12 @@ class SettingsApiController extends Controller
         foreach ($columns as $column => $group)
         {
             $groupBy = trim($column);
-            $db = $columns[$groupBy][0];
-            $db = trim($db);
-            $tab_id = DB::table('tab_name')->where('name', 'like', $db.'%')->select('id')->get();
+            $tab_id = DB::table('tab_name')->where('name', 'like', $groupBy.'%')->select('id')->get();
             $tab_id = json_decode(json_encode($tab_id),True);
             if(empty($tab_id)){
                 $tab_name = new TabName();
                 $tab_name->baseContent();
-                $tab_id = DB::table('tab_name')->where('name', '=', $db)->select('id')->get();
+                $tab_id = DB::table('tab_name')->where('name', '=', $groupBy)->select('id')->get();
                 $tab_id = json_decode(json_encode($tab_id),True);
             }
             $tab_id = $tab_id[0]['id'];
