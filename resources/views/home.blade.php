@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 @section('content')
-    <link rel="stylesheet" type="text/css" href="https://keenthemes.com/preview/metronic/theme/assets/global/css/components.min.css">
+    <link rel="stylesheet" type="text/css" href="keenthemes.com/preview/metronic/theme/assets/global/css/components.min.css">
 
     <!--Begin::Section-->
     <div class="row">
