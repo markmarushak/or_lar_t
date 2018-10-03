@@ -38,15 +38,15 @@ Breadcrumbs::register('edit-affiliate-partner', function($breadcrumbs) {
 });
 
 // Dashboard > Affiliate Service > compaigns
-Breadcrumbs::register('compaigns', function($breadcrumbs)
+Breadcrumbs::register('campaigns', function($breadcrumbs)
 {
     $breadcrumbs->parent('affiliate-service');
-    $breadcrumbs->push('Compaigns', route('compaigns'));
+    $breadcrumbs->push('Campaigns', route('campaigns'));
 });
 
-Breadcrumbs::register('compaigns-add', function ($breadcrumbs){
-   $breadcrumbs->parent('compaigns');
-   $breadcrumbs->push('Compaigns-Add', route('compaigns-add'));
+Breadcrumbs::register('campaigns-add', function ($breadcrumbs){
+   $breadcrumbs->parent('campaigns');
+   $breadcrumbs->push('Campaigns-Add', route('campaigns-add'));
 });
 
 Breadcrumbs::register('email-bulk-split', function($breadcrumbs) {

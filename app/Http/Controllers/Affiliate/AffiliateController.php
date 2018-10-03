@@ -35,7 +35,7 @@ class AffiliateController extends Controller
     }
 
 
-    public function compaigns()
+    public function campaigns()
     {
         $prefix = 'campaign';
         $connect = new SettingsApiController();
@@ -63,7 +63,7 @@ class AffiliateController extends Controller
         return view('affiliate.compaigns-add');
     }
 
-    public function ajaxCompaigns(Request $request)
+    public function ajaxCampaigns(Request $request)
     {
         if($request->isMethod('post')){
             if($request->input('column')){

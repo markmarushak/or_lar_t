@@ -53,7 +53,7 @@
                 <a href="javascript:;" class="m-menu__link m-menu__toggle" id="mini_prof_1">
                     <i class="m-menu__link-icon flaticon-layers"></i>
                     <span class="m-menu__link-text">
-										Compaigns
+										Campaigns
 									</span>
                     <i class="m-menu__ver-arrow la la-angle-right"></i>
                 </a>
@@ -87,12 +87,12 @@
                             </div>
                          </li>
                         <li class="m-menu__item m-menu__item--submenu" id="hide_2" aria-haspopup="true" m-menu-submenu-toggles="hover">
-                            <a href="/affiliate-service/compaigns" class="m-menu__link m-menu__toggle" id="mini_prof_2">
+                            <a href="/affiliate-service/campaigns" class="m-menu__link m-menu__toggle" id="mini_prof_2">
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>
                                 <span class="m-menu__link-text">
-                                    compaigns
+                                    Campaigns
 								</span>
                             </a>
                         </li>
