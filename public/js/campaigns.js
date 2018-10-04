@@ -16,7 +16,7 @@ $(document).ready(function () {
 
     $.ajax({
         method: 'POST',
-        url: 'affiliate-service/compaigns',
+        url: 'affiliate-service/campaigns',
         data: report
     }).done(function (data) {
        var result = JSON.parse(data);
@@ -45,7 +45,7 @@ $(document).ready(function () {
             $.ajax({
                 method: 'POST',
                 dataType:'html',
-                url: '/affiliate-service/compaigns/ajax',
+                url: '/affiliate-service/campaigns/ajax',
                 data: {_token:CSRF_TOKEN,column:column,data:report}
             }).done(function (data) {
                 $('#spinner').hide();
@@ -99,10 +99,11 @@ $(document).ready(function () {
             console.log('html clear');
             $('#spinner').show();
 
+            console.log(report);
             $.ajax({
                 method: 'POST',
                 dataType:'html',
-                url: '/affiliate-service/compaigns/ajax',
+                url: '/affiliate-service/campaigns/ajax',
                 data: {_token:CSRF_TOKEN,data:report}
             }).done(function (data) {
                 $('#spinner').hide();
@@ -113,4 +114,25 @@ $(document).ready(function () {
         });
     }
 
+        $('#filter-from').submit(function (event) {
+            event.preventDefault();
+            var id = $(this).find('#filter');
+            report[id.attr('name')] = $(id).val();
+
+            $('#t-info').html('');
+            console.log('html clear');
+            $('#spinner').show();
+
+            $.ajax({
+                method: 'POST',
+                dataType: 'html',
+                url: '/affiliate-service/campaigns/ajax',
+                data: {_token: CSRF_TOKEN, data: report}
+            }).done(function (data) {
+                $('#spinner').hide();
+
+                $('#t-info').append(data);
+                console.log('html add');
+            });
+        });
 });

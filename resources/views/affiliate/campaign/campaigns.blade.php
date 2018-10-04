@@ -107,11 +107,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-5 form-inline">
-                        <div class="form-group">
-                            <input type="text" class="form-control">
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
+                    <div class="col-sm-5">
+                        <form id="filter-from" class="form-inlinegit">
+                            <div class="form-group">
+                                <input type="text" name="filter" id="filter" class="form-control">
+                            </div>
+                            <button type="submit" data-from="filter" class="btn btn-default">Submit</button>
+                        </form>
                     </div>
                 </div>
             <div class="container text-center" id="spinner" style="display: none; width: 100%">
