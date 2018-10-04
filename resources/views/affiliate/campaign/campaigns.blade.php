@@ -108,7 +108,7 @@
                         </div>
                     </div>
                     <div class="col-sm-5">
-                        <form id="filter-from" class="form-inlinegit">
+                        <form id="filter-from" class="form-inline">
                             <div class="form-group">
                                 <input type="text" name="filter" id="filter" class="form-control">
                             </div>
@@ -121,8 +121,7 @@
             </div>
             <div class="wrap">
                 <div class="block-scroll">
-                    <table id="t-info" class="table m-table m-table--head-separator-primary"
-                           id="m_table_2">
+                    <table class="table m-table m-table--head-separator-primary" id="m_table_2">
 
                         <thead id="t-head">
                         <tr>
