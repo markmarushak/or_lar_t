@@ -51,7 +51,6 @@
     <div class="m-portlet m-portlet--mobile">
         <div class="m-portlet__body">
 
-            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                 {{--<div class="btn-group" role="group">--}}
                     {{--<button id="btnGroupDrop1" data-param="limit" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
                         {{--Limit--}}
@@ -69,43 +68,52 @@
 
                     {{--</div>--}}
                 {{--</div>--}}
-                <div class="form-group">
-                    <select name="time" id="time" class="form-control">
+                <div class="col-sm-12 form-inline">
+                    <div class="col-sm-7 form-inline">
+                        <div class="form-group">
+                            <select name="time" id="time" class="form-control">
 
-                    </select>
-                </div>
-                <div class="form-group">
-                    <select name="limit" id="limit" class="form-control">
-                        <option value="0">choice limit</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <select name="include" id="include" class="form-control">
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select name="limit" id="limit" class="form-control">
+                                <option value="0">choice limit</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select name="include" id="include" class="form-control">
 
-                    </select>
-                </div>
-                <div class="dropdown">
+                            </select>
+                        </div>
+                        <div class="dropdown">
 
-                    <button id="control-col" class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Control column
-                    </button>
-                    <div class="dropdown-menu control-cols" aria-labelledby="control-col">
-                        @foreach($cols as $col)
-                           @if($col['status'] == 1)
-                                <label>
-                                    <input type="checkbox" name="{{ $col['id'] }}" value="{{ $col['status'] }}" checked>
-                                    {{ $col['label'] }}
-                                </label>
-                            @else
-                                <label>
-                                    <input type="checkbox" name="{{ $col['id'] }}" value="{{ $col['status'] }}" >
-                                    {{ $col['label'] }}
-                                </label>
-                            @endif
-                        @endforeach
+                            <button id="control-col" class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Control column
+                            </button>
+                            <div class="dropdown-menu control-cols" aria-labelledby="control-col">
+                                @foreach($cols as $col)
+                                    @if($col['status'] == 1)
+                                        <label>
+                                            <input type="checkbox" name="{{ $col['id'] }}" value="{{ $col['status'] }}" checked>
+                                            {{ $col['label'] }}
+                                        </label>
+                                    @else
+                                        <label>
+                                            <input type="checkbox" name="{{ $col['id'] }}" value="{{ $col['status'] }}" >
+                                            {{ $col['label'] }}
+                                        </label>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 form-inline">
+                        <div class="form-group">
+                            <input type="text" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
                     </div>
                 </div>
-            </div>
             <div class="container text-center" id="spinner" style="display: none; width: 100%">
                 <div class="m-loader m-loader--success m-loader--lg col-md-6" style="margin-top: 50px; width: 30px; display: inline-block;"></div>
             </div>
