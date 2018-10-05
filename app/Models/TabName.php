@@ -10,7 +10,7 @@ class TabName extends Model
     protected $table = 'tab_name';
     protected $fillable = ['name','status'];
     public $timestamps = false;
-    private $tab_name = ["Campaign", "Offer", "Lander", "Flow", "Traffic source", "Affiliate-network", "Conversion", "Country", "Connection", "Connection Type", "ISP / Carrier", "Mobile Carrier", "Device", "Device type", "Brand", "Model", "OS", "OS version", "Browser", "Browser version", "Error log"];
+    private $tab_name = ["","Campaign", "Offer", "Lander", "Flow", "Traffic-source", "Affiliate-network", "Conversion", "Country", "Connection", "Connection Type", "ISP / Carrier", "Mobile Carrier", "Device", "Device type", "Brand", "Model", "OS", "OS version", "Browser", "Browser version", "Error log"];
 
     public function baseContent()
     {
@@ -29,8 +29,8 @@ class TabName extends Model
 
     public function updateBaseContent()
     {
-        foreach ($this->tab_name as $tab){
-            DB::table('tab_name')->where('name','like',$tab.'%')->update(['name'=> $tab]);
+        foreach ($this->tab_name as $tab => $v){
+            DB::table('tab_name')->where('id','=',$tab)->update(['name'=> $v]);
         }
     }
 }

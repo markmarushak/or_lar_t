@@ -51,58 +51,77 @@
     <div class="m-portlet m-portlet--mobile">
         <div class="m-portlet__body">
 
-            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                <div class="btn-group" role="group">
-                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Limit
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <a class="dropdown-item" href="#">50</a>
-                        <a class="dropdown-item" href="#">100</a>
-                        <a class="dropdown-item" href="#">200</a>
-                        <a class="dropdown-item" href="#">500</a>
-                        <a class="dropdown-item" href="#">1000</a>
+                {{--<div class="btn-group" role="group">--}}
+                    {{--<button id="btnGroupDrop1" data-param="limit" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+                        {{--Limit--}}
+                    {{--</button>--}}
+                    {{--<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">--}}
+                        {{----}}
+                    {{--</div>    --}}
+                {{--</div>--}}
+                {{--<div class="btn-group" role="group">--}}
+                    {{--<button id="btnGroupDrop1" data-param="include" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+                        {{--status--}}
+                    {{--</button>--}}
+                    {{--<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">--}}
+
+
+                    {{--</div>--}}
+                {{--</div>--}}
+                <div class="col-sm-12 form-inline">
+                    <div class="col-sm-7 form-inline">
+                        <div class="form-group">
+                            <select name="time" id="time" class="form-control">
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select name="limit" id="limit" class="form-control">
+                                <option value="0">choice limit</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select name="include" id="include" class="form-control">
+
+                            </select>
+                        </div>
+                        <div class="dropdown">
+
+                            <button id="control-col" class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Control column
+                            </button>
+                            <div class="dropdown-menu control-cols" aria-labelledby="control-col">
+                                @foreach($cols as $col)
+                                    @if($col['status'] == 1)
+                                        <label>
+                                            <input type="checkbox" name="{{ $col['id'] }}" value="{{ $col['status'] }}" checked>
+                                            {{ $col['label'] }}
+                                        </label>
+                                    @else
+                                        <label>
+                                            <input type="checkbox" name="{{ $col['id'] }}" value="{{ $col['status'] }}" >
+                                            {{ $col['label'] }}
+                                        </label>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <form id="filter-from" class="form-inline">
+                            <div class="form-group">
+                                <input type="text" name="filter" id="filter" class="form-control">
+                            </div>
+                            <button type="submit" data-from="filter" class="btn btn-default">Submit</button>
+                        </form>
                     </div>
                 </div>
-                <div class="btn-group" role="group">
-                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        status
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <a class="dropdown-item" href="#">All</a>
-                        <a class="dropdown-item" href="#">Archived</a>
-                        <a class="dropdown-item" href="#">With traffic</a>
-                        <a class="dropdown-item" href="#">Active</a>
-                    </div>
-                </div>
-                <div class="btn-group" role="group">
-                    <button id="control-col" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        column control
-                    </button>
-                    <div class="dropdown-menu control-cols" aria-labelledby="control-col">
-                        @foreach($cols as $col)
-                           @if($col['status'] == 1)
-                                <label>
-                                    <input type="checkbox" name="{{ $col['id'] }}" value="{{ $col['status'] }}" checked>
-                                    {{ $col['label'] }}
-                                </label>
-                            @else
-                                <label>
-                                    <input type="checkbox" name="{{ $col['id'] }}" value="{{ $col['status'] }}" >
-                                    {{ $col['label'] }}
-                                </label>
-                            @endif
-                        @endforeach
-                    </div>
-                </div>
-            </div>
             <div class="container text-center" id="spinner" style="display: none; width: 100%">
                 <div class="m-loader m-loader--success m-loader--lg col-md-6" style="margin-top: 50px; width: 30px; display: inline-block;"></div>
             </div>
             <div class="wrap">
                 <div class="block-scroll">
-                    <table id="t-info" class="table m-table m-table--head-separator-primary"
-                           id="m_table_2">
+                    <table class="table m-table m-table--head-separator-primary" id="m_table_2">
 
                         <thead id="t-head">
                         <tr>
